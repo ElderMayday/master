@@ -58,7 +58,7 @@ public class Component {
         this.pheromone = pheromone;
     }
 
-    public double getPrecomputed()
+    public double getValue()
     {
         if (!isPrecomputed)
             precompute();
