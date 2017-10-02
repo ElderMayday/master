@@ -7,8 +7,8 @@ import java.util.List;
  */
 public class Component {
 
-    protected static double alpha;
-    protected static double beta;
+    protected static double alpha = 1.0;
+    protected static double beta = 1.0;
 
     public static void setPrecomputationParameters(double alpha, double beta)
     {
