@@ -33,11 +33,44 @@ public class TestSelector
         assertEquals(result, expectedComponent);
     }
 
-
     @Test
     public void testSelectorManiezzo() throws Exception
     {
         Selector selector = new SelectorManiezzo(0.5);
+
+        List<Component> components = new ArrayList<Component>();
+
+        Component expectedComponent = new Component2d(1, 1, 1.0, 100.0);
+        components.add(new Component2d(1, 2, 0.0, 0.0));
+        components.add(expectedComponent);
+        components.add(new Component2d(1, 3, 0.0, 0.0));
+
+        Component result = selector.select(components);
+
+        assertEquals(result, expectedComponent);
+    }
+
+    @Test
+    public void testSelectorDorigoArgmax() throws Exception
+    {
+        Selector selector = new SelectorDorigo(1.0);
+
+        List<Component> components = new ArrayList<Component>();
+
+        Component expectedComponent = new Component2d(1, 1, 1.0, 100.0);
+        components.add(new Component2d(1, 2, 0.0, 0.0));
+        components.add(expectedComponent);
+        components.add(new Component2d(1, 3, 0.0, 0.0));
+
+        Component result = selector.select(components);
+
+        assertEquals(result, expectedComponent);
+    }
+
+    @Test
+    public void testSelectorDorigoStandard() throws Exception
+    {
+        Selector selector = new SelectorDorigo(0.0);
 
         List<Component> components = new ArrayList<Component>();
 

@@ -9,8 +9,8 @@ import java.util.List;
  */
 public class SelectorManiezzo extends Selector
 {
-    protected double alpha;
-    protected double alphaComplement;
+    protected final double alpha;
+    protected final double alphaComplement;
 
     public SelectorManiezzo(double alpha)
     {

@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public abstract class Selector
 {
-    protected Random random;
+    protected final Random random;
 
     public Selector()
     {
