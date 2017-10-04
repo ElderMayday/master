@@ -10,6 +10,11 @@ public class Component {
     protected static double alpha = 1.0;
     protected static double beta = 1.0;
 
+    /**
+     * Sets alpha and beta selection parameters. IMPORTANT!!! After calling this, the old component re-computation should be called manually if existed
+     * @param alpha
+     * @param beta
+     */
     public static void setPrecomputationParameters(double alpha, double beta)
     {
         Component.alpha = alpha;
@@ -37,7 +42,7 @@ public class Component {
 
     public void precompute()
     {
-        this.value = Math.pow(pheromone, alpha) * Math.pow(heuristic, beta);
+        this.value = Math.pow(pheromone, alpha) * Math.pow(heuristic, beta);    // 0^0 = 1 in java (just to remember)
         this.isPrecomputed = true;
     }
 
