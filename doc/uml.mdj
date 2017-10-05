@@ -23302,6 +23302,7 @@
 							"visibility": "public"
 						}
 					],
+					"documentation": "Needed to re-identify the component in ComponentStructure2d at some solution stages.\n\nYou won't figure them out fast by the object address look-up right?",
 					"visibility": "public",
 					"attributes": [
 						{

@@ -1,4 +1,4 @@
-package solution;
+package problem;
 
 /**
  * Created by Aldar on 04-Oct-17.
