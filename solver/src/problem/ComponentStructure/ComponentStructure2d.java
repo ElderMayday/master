@@ -1,4 +1,7 @@
-package problem;
+package problem.ComponentStructure;
+
+import problem.Component2d;
+import problem.Coordinate2d;
 
 /**
  * Created by Aldar on 04-Oct-17.
@@ -26,10 +29,25 @@ public abstract class ComponentStructure2d extends ComponentStructure
 
     public abstract Component2d Get(Coordinate2d coordinate2d);
 
-    public void Set(int row, int column, Component2d component2d)
+
+
+
+
+    public void SetT(int row, int column, double pheromone)
     {
-        this.Set(new Coordinate2d(row, column), component2d);
+        this.SetT(new Coordinate2d(row, column), pheromone);
     }
 
-    public abstract void Set(Coordinate2d coordinate2d, Component2d component2d);
+    public abstract void SetT(Coordinate2d coordinate2d, double pheromone);
+
+
+
+
+
+    public void SetH(int row, int column, double heuristic)
+    {
+        this.SetH(new Coordinate2d(row, column), heuristic);
+    }
+
+    public abstract void SetH(Coordinate2d coordinate2d, double heuristic);
 }

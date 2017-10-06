@@ -15,6 +15,13 @@ public class Component2d extends Component
         this.column = column;
     }
 
+    public Component2d(Coordinate2d coordinate2d, double heuristic, double pheromone)
+    {
+        super(heuristic, pheromone);
+        this.row = coordinate2d.row;
+        this.column = coordinate2d.column;
+    }
+
     //------------------------------------------------
 
     public int getRow()

@@ -63,6 +63,12 @@ public class Component {
         this.pheromone = pheromone;
     }
 
+    public void setHeuristic(double heuristic)
+    {
+        this.isPrecomputed = false;
+        this.heuristic = heuristic;
+    }
+
     public double getValue()
     {
         if (!isPrecomputed)

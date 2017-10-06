@@ -5,6 +5,21 @@ package problem;
  */
 public class Coordinate2d
 {
+    public static int colNumber;
+
+    /**
+     * Should be set equal to the table row number before using ComponentStructure2dHash in order to avoid collisions
+     * @param colNumber
+     */
+    public static void setColNumber(int colNumber)
+    {
+        Coordinate2d.colNumber = colNumber;
+    }
+
+    //----------------------------------------------------
+
+
+
     public final int row;
     public final int column;
 
@@ -31,8 +46,6 @@ public class Coordinate2d
     @Override
     public int hashCode()
     {
-        int result = row;
-        result = 47 * result + column;
-        return result;
+        return Coordinate2d.colNumber * row + column;
     }
 }

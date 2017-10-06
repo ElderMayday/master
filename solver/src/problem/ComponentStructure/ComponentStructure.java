@@ -1,4 +1,4 @@
-package problem;
+package problem.ComponentStructure;
 
 /**
  * Created by Aldar on 04-Oct-17.
