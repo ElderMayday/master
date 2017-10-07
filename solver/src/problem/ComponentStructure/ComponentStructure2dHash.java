@@ -27,7 +27,7 @@ public class ComponentStructure2dHash extends ComponentStructure2d
     {
         super(rowNumber, columnNumber);
         map = new HashMap<Coordinate2d, Component2d>();
-        Coordinate2d.setColNumber(columnNumber);            // to avoid collisions while hashing
+        Coordinate2d.setMaxColumnNumber(columnNumber);            // to avoid collisions while hashing
     }
 
     @Override

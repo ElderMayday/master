@@ -5,15 +5,15 @@ package problem;
  */
 public class Coordinate2d
 {
-    public static int colNumber;
+    public static int maxColumnNumber;
 
     /**
      * Should be set equal to the table row number before using ComponentStructure2dHash in order to avoid collisions
-     * @param colNumber
+     * @param maxColumnNumber
      */
-    public static void setColNumber(int colNumber)
+    public static void setMaxColumnNumber(int maxColumnNumber)
     {
-        Coordinate2d.colNumber = colNumber;
+        Coordinate2d.maxColumnNumber = maxColumnNumber;
     }
 
     //----------------------------------------------------
@@ -46,6 +46,6 @@ public class Coordinate2d
     @Override
     public int hashCode()
     {
-        return Coordinate2d.colNumber * row + column;
+        return Coordinate2d.maxColumnNumber * row + column;
     }
 }
