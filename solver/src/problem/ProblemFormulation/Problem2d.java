@@ -18,11 +18,4 @@ public abstract class Problem2d extends Problem
 
         this.structure2d = structure2d;
     }
-
-    @Override
-    protected void precomputeHeuristic()
-    {
-        for (Component component : structure2d)
-            component.precompute();
-    }
 }

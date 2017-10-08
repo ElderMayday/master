@@ -1,5 +1,6 @@
 package problem.ProblemFormulation;
 
+import problem.Component;
 import problem.ComponentStructure.ComponentStructure;
 
 import java.io.File;
@@ -43,5 +44,9 @@ public abstract class Problem
 
     protected abstract void determineCandidates();
 
-    protected abstract void precomputeHeuristic();
+    protected void precomputeHeuristic()
+    {
+        for (Component component : structure)
+            component.precompute();
+    }
 }

@@ -65,8 +65,8 @@
       <file leaf-file-name="Problem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/problem/ProblemFormulation/Problem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="45" column="40" lean-forward="false" selection-start-line="45" selection-start-column="40" selection-end-line="45" selection-end-column="40" />
+            <state relative-caret-position="252">
+              <caret line="48" column="44" lean-forward="false" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -86,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Problem2d.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Problem2d.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/problem/ProblemFormulation/Problem2d.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="278">
-              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -132,7 +132,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ComponentStructure.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ComponentStructure.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/problem/ComponentStructure/ComponentStructure.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="160">
@@ -193,13 +193,13 @@
         <option value="$PROJECT_DIR$/src/problem/Coordinate2d.java" />
         <option value="$PROJECT_DIR$/src/problem/Problem.java" />
         <option value="$PROJECT_DIR$/src/problem/Problem2d.java" />
-        <option value="$PROJECT_DIR$/src/problem/ProblemFormulation/Problem.java" />
         <option value="$PROJECT_DIR$/src/problem/ComponentStructure/ComponentStructure2d.java" />
         <option value="$PROJECT_DIR$/src/problem/ComponentStructure/ComponentStructure2dHash.java" />
         <option value="$PROJECT_DIR$/src/problem/ComponentStructure/ComponentStructure.java" />
         <option value="$PROJECT_DIR$/test/solution/selectors/TestComponentStructure.java" />
         <option value="$PROJECT_DIR$/src/problem/ComponentStructure/ComponentStructure2dStandard.java" />
         <option value="$PROJECT_DIR$/test/solution/selectors/TestComponentIterator.java" />
+        <option value="$PROJECT_DIR$/src/problem/ProblemFormulation/Problem.java" />
         <option value="$PROJECT_DIR$/src/problem/ProblemFormulation/Problem2d.java" />
       </list>
     </option>
@@ -1098,26 +1098,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/problem/ProblemFormulation/Problem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="45" column="40" lean-forward="false" selection-start-line="45" selection-start-column="40" selection-end-line="45" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/problem/ProblemFormulation/Problem2d.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/problem/ComponentStructure/ComponentStructure2d.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-20">
@@ -1151,6 +1131,26 @@
         <state relative-caret-position="160">
           <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/problem/ProblemFormulation/Problem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="48" column="44" lean-forward="false" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/problem/ProblemFormulation/Problem2d.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
