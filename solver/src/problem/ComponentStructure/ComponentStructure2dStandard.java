@@ -1,7 +1,11 @@
 package problem.ComponentStructure;
 
+import problem.Component;
 import problem.Component2d;
 import problem.Coordinate2d;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Created by Aldar on 05-Oct-17.
@@ -21,6 +25,8 @@ public class ComponentStructure2dStandard extends ComponentStructure2d
                 matrix[row][column] = new Component2d(row, column, 0.0, 0.0);
     }
 
+
+
     @Override
     public Component2d Get(Coordinate2d coordinate2d)
     {
@@ -37,5 +43,55 @@ public class ComponentStructure2dStandard extends ComponentStructure2d
     public void SetH(Coordinate2d coordinate2d, double heuristic)
     {
         matrix[coordinate2d.row][coordinate2d.column].setHeuristic(heuristic);
+    }
+
+
+
+    public Iterator<Component> iterator()
+    {
+        return new Structure2dStandardIterator();
+    }
+
+
+
+
+    class Structure2dStandardIterator implements Iterator<Component>
+    {
+        protected int currentRow, currentColumn;
+
+        public Structure2dStandardIterator()
+        {
+            currentRow = 0;
+            currentColumn = 0;
+        }
+
+        public boolean hasNext()
+        {
+            //if ((currentRow == rowNumber - 1) && (currentColumn == columnNumber - 1))
+            if (currentRow >= rowNumber)
+                return false;
+            else
+                return true;
+        }
+
+        public Component next()
+        {
+            if (!hasNext())
+                throw new NoSuchElementException();
+            else
+            {
+                Component result = matrix[currentRow][currentColumn];
+
+                if (currentColumn < columnNumber - 1)
+                    currentColumn++;
+                else
+                {
+                    currentColumn = 0;
+                    currentRow++;
+                }
+
+                return result;
+            }
+        }
     }
 }

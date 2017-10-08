@@ -1,9 +1,11 @@
 package problem.ComponentStructure;
 
+import problem.Component;
 import problem.Component2d;
 import problem.Coordinate2d;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -55,5 +57,34 @@ public class ComponentStructure2dHash extends ComponentStructure2d
             map.get(coordinate2d).setHeuristic(heuristic);
         else
             map.put(coordinate2d, new Component2d(coordinate2d, heuristic, 0.0));
+    }
+
+
+
+    public Iterator<Component> iterator()
+    {
+        return new Structure2dHashIterator();
+    }
+
+
+
+    class Structure2dHashIterator implements Iterator<Component>
+    {
+        protected Iterator<Map.Entry<Coordinate2d, Component2d>> setIterator;
+
+        public Structure2dHashIterator()
+        {
+            setIterator = map.entrySet().iterator();
+        }
+
+        public boolean hasNext()
+        {
+            return setIterator.hasNext();
+        }
+
+        public Component next()
+        {
+            return setIterator.next().getValue();
+        }
     }
 }
