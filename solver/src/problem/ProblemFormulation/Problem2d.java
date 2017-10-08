@@ -1,5 +1,6 @@
 package problem.ProblemFormulation;
 
+import problem.Component;
 import problem.ComponentStructure.*;
 
 import java.io.File;
@@ -21,6 +22,7 @@ public abstract class Problem2d extends Problem
     @Override
     protected void precomputeHeuristic()
     {
-
+        for (Component component : structure2d)
+            component.precompute();
     }
 }
