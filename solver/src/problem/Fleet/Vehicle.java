@@ -19,7 +19,7 @@ public class Vehicle
         this.capacity = capacity;
         this.length = length;
 
-        Reset();
+        reset();
     }
 
 
@@ -34,7 +34,7 @@ public class Vehicle
         return lengthLeft;
     }
 
-    public void Reset()
+    public void reset()
     {
         capacityLeft = capacity;
         lengthLeft = length;
