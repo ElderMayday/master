@@ -13,33 +13,32 @@ public abstract class Problem
 {
     public final boolean lowerIsBetter;   // lower goal function values correspond to better solution
     public final ComponentStructure structure;
-    public final boolean candidatesDetermined;
+    public final boolean mustDetermineCandidates;
+    public final boolean mustPrecompute;
 
-    public Problem(File file, ComponentStructure structure, boolean lowerIsBetter, boolean mustDetermineCandidates, boolean mustPrecompute) throws FileNotFoundException
+    public Problem(ComponentStructure structure, boolean lowerIsBetter, boolean mustDetermineCandidates, boolean mustPrecompute) throws FileNotFoundException
     {
         this.lowerIsBetter = lowerIsBetter;
         this.structure = structure;
-
-        this.loadInstance(file);
-
-        if (this.checkFeasibility())
-        {
-            if (mustDetermineCandidates)
-            {
-                this.determineCandidates();
-                this.candidatesDetermined = true;
-            }
-            else
-                this.candidatesDetermined = false;
-
-            if (mustPrecompute)
-                this.precomputeValues();
-        }
-        else
-            this.candidatesDetermined = false;
+        this.mustDetermineCandidates = mustDetermineCandidates;
+        this.mustPrecompute = mustPrecompute;
     }
 
-    protected abstract void loadInstance(File file) throws FileNotFoundException;
+    public void load(File file) throws FileNotFoundException
+    {
+        readDataFromFile(file);
+
+        if (checkFeasibility())
+        {
+            if (mustDetermineCandidates)
+                determineCandidates();
+
+            if (mustPrecompute)
+                precomputeValues();
+        }
+    }
+
+    protected abstract void readDataFromFile(File file) throws FileNotFoundException;
 
     protected abstract boolean checkFeasibility();
 

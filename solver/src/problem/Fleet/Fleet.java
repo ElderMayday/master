@@ -10,14 +10,20 @@ import java.util.List;
  */
 public abstract class Fleet
 {
-    protected final List<Vehicle> vehicles;
+    protected List<Vehicle> vehicles;
 
 
     public Fleet(List<Vehicle> vehicles)
     {
+        this.setVehicles(vehicles);
+    }
+
+    public void setVehicles(List<Vehicle> vehicles)
+    {
         this.vehicles = vehicles;
 
-        orderVehicles();
+        if (vehicles != null)
+            orderVehicles();
     }
 
 
@@ -26,7 +32,7 @@ public abstract class Fleet
 
 
 
-    public void resetAllVehicles()
+    public void resetVehicleParameters()
     {
         for (Vehicle vehicle : vehicles)
             vehicle.reset();

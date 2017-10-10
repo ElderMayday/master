@@ -13,9 +13,9 @@ public abstract class Problem2d extends Problem
 {
     public final ComponentStructure2d structure2d;
 
-    public Problem2d(File file, ComponentStructure2d structure2d, boolean lowerIsBetter, boolean mustDetermineCandidates, boolean mustPrecompute) throws FileNotFoundException
+    public Problem2d(ComponentStructure2d structure2d, boolean lowerIsBetter, boolean mustDetermineCandidates, boolean mustPrecompute) throws FileNotFoundException
     {
-        super(file, structure2d, lowerIsBetter, mustDetermineCandidates, mustPrecompute);
+        super(structure2d, lowerIsBetter, mustDetermineCandidates, mustPrecompute);
 
         this.structure2d = structure2d;
     }

@@ -33,7 +33,7 @@ public class TestFleet
             iterator.next().distractCapacity(20.0);
             iterator.next().distractLength(30.0);
 
-            fleet.resetAllVehicles();
+            fleet.resetVehicleParameters();
 
             Vehicle current;
             iterator = fleet.getVehiclesIterator();

@@ -1,8 +1,7 @@
 package solution.selectors;
 
 import org.junit.Test;
-import problem.Component;
-import problem.Component2d;
+import problem.Fleet.FleetDescendingCapacity;
 import problem.ProblemFormulation.Problem;
 import problem.ProblemFormulation.ProblemVRP;
 
@@ -10,8 +9,6 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -27,7 +24,8 @@ public class TestProblemVRP
 
         try
         {
-            problem = new ProblemVRP(new File("problem-samples/vrp1.json"), null, null, true, true);
+            problem = new ProblemVRP(null, new FleetDescendingCapacity(null), true, true);
+            problem.load(new File("problem-samples/vrp-unit-test.json"));
         }
         catch (FileNotFoundException e)
         {

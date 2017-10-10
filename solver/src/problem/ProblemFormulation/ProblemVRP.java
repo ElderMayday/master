@@ -3,9 +3,13 @@ package problem.ProblemFormulation;
 import org.json.JSONObject;
 import problem.ComponentStructure.ComponentStructure2d;
 import problem.Fleet.Fleet;
+import problem.Fleet.Vehicle;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -15,27 +19,41 @@ public class ProblemVRP extends Problem2d
 {
     public final Fleet fleet;
 
-    public ProblemVRP(File file, ComponentStructure2d structure2d, Fleet fleet, boolean mustDetermineCandidates, boolean mustPrecompute) throws FileNotFoundException
+    public ProblemVRP(ComponentStructure2d structure2d, Fleet fleet, boolean mustDetermineCandidates, boolean mustPrecompute) throws FileNotFoundException
     {
-        super(file, structure2d, true, mustDetermineCandidates, mustPrecompute);
+        super(structure2d, true, mustDetermineCandidates, mustPrecompute);
 
         this.fleet = fleet;
     }
 
     @Override
-    protected void loadInstance(File file) throws FileNotFoundException
+    protected void readDataFromFile(File file) throws FileNotFoundException
     {
-        String jsonData = null;
+        String fileText = new Scanner(file).useDelimiter("\\Z").next();
 
-        jsonData = new Scanner(file).useDelimiter("\\Z").next();
+        JSONObject jProblem = new JSONObject(fileText);
+        JSONObject jVehicles = jProblem.getJSONObject("vehicles");
 
-        JSONObject json = new JSONObject(jsonData);
+        List<Vehicle> vehicleList = new ArrayList<Vehicle>();
+        for (Iterator<String> vehicleIterator = jVehicles.keys(); vehicleIterator.hasNext();)
+        {
+            String vehicleID = vehicleIterator.next();
+            JSONObject jVehicle = jVehicles.getJSONObject(vehicleID);
+
+            double capacity = jVehicle.getDouble("capacity");
+            double length = jVehicle.getDouble("length");     // negative length is considered as missing of length restriction
+
+            Vehicle newVehicle = new Vehicle(capacity, length >= 0 ? length : 0.0, length > 0);
+            vehicleList.add(newVehicle);
+        }
+
+        fleet.setVehicles(vehicleList);
     }
 
     @Override
     protected boolean checkFeasibility()
     {
-        return false;
+        return true;
     }
 
     @Override

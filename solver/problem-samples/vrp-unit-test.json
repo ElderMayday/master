@@ -1,0 +1,26 @@
+{
+	"vehicles" : {
+		"1": {
+			"capacity" : 80.0,
+			"length" : 30.0
+		},
+		
+		"2": {
+			"capacity" : 100.0,
+			"length" : 20.0
+		},
+		
+		"3": {
+			"capacity" : 120.0,
+			"length" : -1.0
+		}
+	},
+	
+	
+	"map" : {
+		"numberOfPlaces" : 4
+	
+	}
+	
+	
+}
