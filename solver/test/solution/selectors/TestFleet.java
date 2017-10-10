@@ -22,9 +22,9 @@ public class TestFleet
         try
         {
             List<Vehicle> vehicleList = new ArrayList<Vehicle>();
-            vehicleList.add(new Vehicle(3.0, 1.0));
-            vehicleList.add(new Vehicle(1.0, 2.0));
-            vehicleList.add(new Vehicle(2.0, 3.0));
+            vehicleList.add(new Vehicle(3.0, 1.0, true));
+            vehicleList.add(new Vehicle(1.0, 2.0, true));
+            vehicleList.add(new Vehicle(2.0, 3.0, true));
 
             Fleet fleet = new FleetDescendingCapacity(vehicleList);
 

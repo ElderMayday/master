@@ -7,17 +7,19 @@ public class Vehicle
 {
     public final double capacity;    // initial vehicle values
     public final double length;
+    public final boolean hasLengthRestriction;
 
     protected double capacityLeft;   // solution-time current vehicle values
     protected double lengthLeft;
 
-    public Vehicle(double capacity, double length)
+    public Vehicle(double capacity, double length, boolean hasLengthRestriction)
     {
         if ((capacity < 0) || (length < 0))
             throw new IllegalArgumentException("Negative value of a vehicle parameter");
 
         this.capacity = capacity;
         this.length = length;
+        this.hasLengthRestriction = hasLengthRestriction;
 
         reset();
     }
