@@ -14,26 +14,34 @@ import java.util.Map;
  */
 public class ComponentStructure2dHash extends ComponentStructure2d
 {
-    protected final Map<Coordinate2d, Component2d> map;
-    protected final static Component2d nullComponent;  // stub component that is returned if trying to Get() non-initialized Component
+    protected Map<Coordinate2d, Component2d> map;
+    protected static Component2d nullComponent;  // stub component that is returned if trying to Get() non-initialized Component
 
     static
     {
-        nullComponent = new Component2d(-1, -1, 0.0, 0.0);
+        nullComponent = new Component2d(-1, -1, 1.0, 0.0);
     }
 
     //-----------------------------------------------------------------------
 
 
-    public ComponentStructure2dHash(int rowNumber, int columnNumber)
+    public ComponentStructure2dHash()
     {
-        super(rowNumber, columnNumber);
+
+    }
+
+
+    public void allocate(int rowNumber, int columnNumber)
+    {
+        super.allocate(rowNumber, columnNumber);
         map = new HashMap<Coordinate2d, Component2d>();
         Coordinate2d.setMaxColumnNumber(columnNumber);            // to avoid collisions while hashing
     }
 
+
+
     @Override
-    public Component2d Get(Coordinate2d coordinate2d)
+    public Component2d get(Coordinate2d coordinate2d)
     {
         if (map.containsKey(coordinate2d))
             return map.get(coordinate2d);
@@ -42,16 +50,16 @@ public class ComponentStructure2dHash extends ComponentStructure2d
     }
 
     @Override
-    public void SetT(Coordinate2d coordinate2d, double pheromone)
+    public void setT(Coordinate2d coordinate2d, double pheromone)
     {
         if (map.containsKey(coordinate2d))
             map.get(coordinate2d).setPheromone(pheromone);
         else
-            map.put(coordinate2d, new Component2d(coordinate2d, 0.0, pheromone));
+            map.put(coordinate2d, new Component2d(coordinate2d, 1.0, pheromone));
     }
 
     @Override
-    public void SetH(Coordinate2d coordinate2d, double heuristic)
+    public void setH(Coordinate2d coordinate2d, double heuristic)
     {
         if (map.containsKey(coordinate2d))
             map.get(coordinate2d).setHeuristic(heuristic);

@@ -18,14 +18,15 @@ public class TestComponentIterator
     @Test
     public void testComponentStructure2dStandartIterator()
     {
-        ComponentStructure2d structure2d = new ComponentStructure2dStandard(2, 2);
+        ComponentStructure2d structure2d = new ComponentStructure2dStandard();
+        structure2d.allocate(2, 2);
 
-        structure2d.SetT(0, 0, 4.0);
-        structure2d.SetH(0, 0, 3.0);
+        structure2d.setT(0, 0, 4.0);
+        structure2d.setH(0, 0, 3.0);
 
-        structure2d.SetH(0, 1, 2.0);
+        structure2d.setH(0, 1, 2.0);
 
-        structure2d.SetT(1, 0, 1.0);
+        structure2d.setT(1, 0, 1.0);
 
         boolean has00 = false, has01 = false, has10 = false, has11 = false;    // flag whether the matrix component was returned
 
@@ -56,14 +57,15 @@ public class TestComponentIterator
     @Test
     public void testComponentStructure2dStandartHash()
     {
-        ComponentStructure2d structure2d = new ComponentStructure2dHash(2, 2);
+        ComponentStructure2d structure2d = new ComponentStructure2dHash();
+        structure2d.allocate(2, 2);
 
-        structure2d.SetT(0, 0, 4.0);
-        structure2d.SetH(0, 0, 3.0);
+        structure2d.setT(0, 0, 4.0);
+        structure2d.setH(0, 0, 3.0);
 
-        structure2d.SetH(0, 1, 2.0);
+        structure2d.setH(0, 1, 2.0);
 
-        structure2d.SetT(1, 0, 1.0);
+        structure2d.setT(1, 0, 1.0);
 
         boolean has00 = false, has01 = false, has10 = false, has11 = false;    // flag whether the matrix component was returned
 

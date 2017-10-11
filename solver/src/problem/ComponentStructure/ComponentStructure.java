@@ -8,4 +8,5 @@ import problem.Component;
  */
 public abstract class ComponentStructure implements Iterable<Component>
 {
+
 }

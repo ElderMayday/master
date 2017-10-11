@@ -24,7 +24,7 @@ public abstract class Problem
         this.mustPrecompute = mustPrecompute;
     }
 
-    public void load(File file) throws FileNotFoundException
+    public void load(File file) throws Exception
     {
         readDataFromFile(file);
 
@@ -38,7 +38,7 @@ public abstract class Problem
         }
     }
 
-    protected abstract void readDataFromFile(File file) throws FileNotFoundException;
+    protected abstract void readDataFromFile(File file) throws Exception;
 
     protected abstract boolean checkFeasibility();
 
