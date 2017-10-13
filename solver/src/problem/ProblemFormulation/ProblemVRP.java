@@ -53,6 +53,37 @@ public class ProblemVRP extends Problem2d
     @Override
     protected boolean checkFeasibility()
     {
+        double totalCapacity = 0.0;
+        double maxCapacity = 0.0;
+
+        for (Iterator<Vehicle> iteratorVehicles = fleet.getVehiclesIterator(); iteratorVehicles.hasNext();)
+        {
+            double capacity = iteratorVehicles.next().capacity;
+
+            totalCapacity += capacity;
+
+            if (maxCapacity < capacity)
+                maxCapacity = capacity;
+        }
+
+        double totalDemand = 0.0;
+        double maxDemand = 0.0;
+
+        for (double demand : demands)
+        {
+            if (demand >= 0.0)          // because depot is marked by negative demand
+                totalDemand += demand;
+
+            if (maxDemand < demand)     // find minDemand
+                maxDemand = demand;
+        }
+
+        if (totalDemand > totalCapacity)
+            return false;                   // non-feasible instance because total demand is higher than total capacity
+
+        if (maxCapacity < maxDemand)
+            return false;                   // one of the clients cannot be satisfied by any of the vehicles
+
         return true;
     }
 

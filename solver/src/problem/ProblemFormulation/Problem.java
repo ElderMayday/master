@@ -36,6 +36,8 @@ public abstract class Problem
             if (mustPrecompute)
                 precomputeValues();
         }
+        else
+            throw new Exception("Non-feasible instance");
     }
 
     protected abstract void readDataFromFile(File file) throws Exception;
