@@ -38,13 +38,16 @@ public class ProblemVRP extends Problem2d
     @Override
     protected void readDataFromFile(File file) throws Exception
     {
-        String fileText = new Scanner(file).useDelimiter("\\Z").next();
+        String text = new Scanner(file).useDelimiter("\\Z").next();
 
-        JSONObject jProblem = new JSONObject(fileText);
+        ParserVrp parserVrp;
 
-        this.readVehciles(jProblem);
-        this.readMap(jProblem);
+        if (file.getAbsolutePath().endsWith(".json"))
+            parserVrp = new ParserVrpJson();
+        else
+            throw new Exception("File format is not expected");
 
+        parserVrp.parseVRP(text);
     }
 
     @Override
@@ -60,86 +63,95 @@ public class ProblemVRP extends Problem2d
     }
 
 
-
-
-
-    private void readVehciles(JSONObject jProblem)
+    abstract class ParserVrp
     {
-        JSONObject jVehicles = jProblem.getJSONObject("vehicles");
-
-        List<Vehicle> vehicleList = new ArrayList<Vehicle>();
-        for (Iterator<String> vehicleIterator = jVehicles.keys(); vehicleIterator.hasNext();)
-        {
-            String vehicleID = vehicleIterator.next();
-            JSONObject jVehicle = jVehicles.getJSONObject(vehicleID);
-
-            double capacity = jVehicle.getDouble("capacity");
-            double length = jVehicle.getDouble("length");     // negative length is considered as missing of length restriction
-
-            Vehicle newVehicle = new Vehicle(capacity, length >= 0 ? length : 0.0, length > 0);
-            vehicleList.add(newVehicle);
-        }
-
-        fleet.setVehicles(vehicleList);
+        public abstract void parseVRP(String text) throws Exception;
     }
 
-    private void readMap(JSONObject jProblem) throws Exception
+    class ParserVrpJson extends ParserVrp
     {
-        JSONObject jMap = jProblem.getJSONObject("map");
 
-        vertexNum = jMap.getInt("vertexNum");
-
-        distances = new double[vertexNum][vertexNum];
-        demands = new double[vertexNum];
-        depotId = -1;
-        structure2d.allocate(vertexNum, vertexNum);
-
-        JSONObject jVertexes = jMap.getJSONObject("vertexes");
-
-        for (Iterator<String> vertexIterator = jVertexes.keys(); vertexIterator.hasNext();)
+        @Override
+        public void parseVRP(String text) throws Exception
         {
-            JSONObject jVertex = jVertexes.getJSONObject(vertexIterator.next());
+            JSONObject jProblem = new JSONObject(text);
 
-            int vertexId = jVertex.getInt("id");
+            this.parseVehicles(jProblem);
+            this.parseMap(jProblem);
+        }
 
-            double demand = jVertex.getDouble("demand");
+        protected void parseVehicles(JSONObject jProblem)
+        {
+            JSONObject jVehicles = jProblem.getJSONObject("vehicles");
 
-            if (demand < 0.0)
+            List<Vehicle> vehicleList = new ArrayList<Vehicle>();
+            for (Iterator<String> vehicleIterator = jVehicles.keys(); vehicleIterator.hasNext();)
             {
-                if (depotId == -1)
-                    depotId = vertexId;
-                else
-                    throw new Exception("Duplicate depot found at vertex #" + vertexId);
+                String vehicleID = vehicleIterator.next();
+                JSONObject jVehicle = jVehicles.getJSONObject(vehicleID);
+
+                double capacity = jVehicle.getDouble("capacity");
+                double length = jVehicle.getDouble("length");     // negative length is considered as missing of length restriction
+
+                Vehicle newVehicle = new Vehicle(capacity, length >= 0 ? length : 0.0, length > 0);
+                vehicleList.add(newVehicle);
             }
 
-            demands[vertexId] = demand;
+            fleet.setVehicles(vehicleList);
+        }
 
-            JSONObject jTargets = jVertex.getJSONObject("targets");
+        protected void parseMap(JSONObject jProblem) throws Exception
+        {
+            JSONObject jMap = jProblem.getJSONObject("map");
 
-            for (Iterator<String> targetIterator = jTargets.keys(); targetIterator.hasNext();)
+            vertexNum = jMap.getInt("vertexNum");
+
+            distances = new double[vertexNum][vertexNum];
+            demands = new double[vertexNum];
+            depotId = -1;
+            structure2d.allocate(vertexNum, vertexNum);
+
+            JSONObject jVertexes = jMap.getJSONObject("vertexes");
+
+            for (Iterator<String> vertexIterator = jVertexes.keys(); vertexIterator.hasNext();)
             {
-                JSONObject jTarget = jTargets.getJSONObject(targetIterator.next());
+                JSONObject jVertex = jVertexes.getJSONObject(vertexIterator.next());
 
-                int targetId = jTarget.getInt("id");
-                double distance = jTarget.getDouble("distance");
+                int vertexId = jVertex.getInt("id");
 
-                distances[vertexId][targetId] = distance;
+                double demand = jVertex.getDouble("demand");
 
-                if (vertexId == targetId)
-                    if (distance >= 0.0)
-                        throw new Exception("Self path should be marked by negative distance");
+                if (demand < 0.0)
+                {
+                    if (depotId == -1)
+                        depotId = vertexId;
+                    else
+                        throw new Exception("Duplicate depot found at vertex #" + vertexId);
+                }
 
-                if (jTarget.has("heuristic"))
-                    structure2d.setH(vertexId, targetId, jTarget.getDouble("heuristic"));
+                demands[vertexId] = demand;
+
+                JSONObject jTargets = jVertex.getJSONObject("targets");
+
+                for (Iterator<String> targetIterator = jTargets.keys(); targetIterator.hasNext();)
+                {
+                    JSONObject jTarget = jTargets.getJSONObject(targetIterator.next());
+
+                    int targetId = jTarget.getInt("id");
+                    double distance = jTarget.getDouble("distance");
+
+                    distances[vertexId][targetId] = distance;
+
+                    if (vertexId == targetId)
+                        if (distance >= 0.0)
+                            throw new Exception("Self path should be marked by negative distance");
+
+                    if (jTarget.has("heuristic"))
+                        structure2d.setH(vertexId, targetId, jTarget.getDouble("heuristic"));
+                }
             }
         }
     }
-
-
-
-
-
-
 
 
 
