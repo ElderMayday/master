@@ -1,7 +1,7 @@
 package problem.ComponentStructure;
 
-import problem.Component;
-import problem.Component2d;
+import problem.component.Component;
+import problem.component.Component2d;
 import problem.Coordinate2d;
 
 import java.util.HashMap;
@@ -65,6 +65,19 @@ public class ComponentStructure2dHash extends ComponentStructure2d
             map.get(coordinate2d).setHeuristic(heuristic);
         else
             map.put(coordinate2d, new Component2d(coordinate2d, heuristic, 0.0));
+    }
+
+    @Override
+    public void setDistance(Coordinate2d coordinate2d, double distance)
+    {
+        if (map.containsKey(coordinate2d))
+            map.get(coordinate2d).setDistance(distance);
+        else
+        {
+            Component2d newComponent = new Component2d(coordinate2d, 1.0, 0.0);
+            map.put(coordinate2d, newComponent);
+            newComponent.setDistance(distance);
+        }
     }
 
 

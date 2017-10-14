@@ -1,12 +1,13 @@
-package problem;
+package problem.component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Aldar on 28-Sep-17.
  */
-public class Component {
-
+public class Component
+{
     protected static double alpha = 1.0;
     protected static double beta = 1.0;
 
@@ -26,11 +27,11 @@ public class Component {
 
 
 
-    protected double heuristic;
-    protected double pheromone;
-    protected double value;
-    protected boolean isPrecomputed;
-    protected List<Component> candidates;
+    protected double heuristic;                   // H-value
+    protected double pheromone;                   // T-value
+    protected double value;                       // t^alpha x h^beta value (if has been precomputed)
+    protected boolean isPrecomputed;              // true if the current <value> corresponds to the value of t^alpha x h^beta
+    protected final List<Component> candidates;   // List of the solution components that have been chosen as candidates
 
 
     public Component(double heuristic, double pheromone)
@@ -38,6 +39,7 @@ public class Component {
         this.heuristic = heuristic;
         this.pheromone = pheromone;
         this.isPrecomputed = false;
+        this.candidates = new ArrayList<Component>();
     }
 
     public void precompute()

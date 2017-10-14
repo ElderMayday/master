@@ -1,6 +1,6 @@
 package problem.ProblemFormulation;
 
-import problem.Component;
+import problem.component.Component;
 import problem.ComponentStructure.ComponentStructure;
 
 import java.io.File;

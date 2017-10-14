@@ -1,9 +1,7 @@
 package problem.ProblemFormulation;
 
-import problem.Component;
 import problem.ComponentStructure.*;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 
 /**

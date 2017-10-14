@@ -20,10 +20,6 @@ public class ProblemVRP extends Problem2d
     public final Fleet fleet;
 
     protected int vertexNum;
-
-
-
-    protected double[][] distances;    // distance matrix of size (vertexNum; vertexNum)
     protected double[] demands;
     protected int depotId;             // number of the vertex that represents depot
 
@@ -137,7 +133,6 @@ public class ProblemVRP extends Problem2d
 
             vertexNum = jMap.getInt("vertexNum");
 
-            distances = new double[vertexNum][vertexNum];
             demands = new double[vertexNum];
             depotId = -1;
             structure2d.allocate(vertexNum, vertexNum);
@@ -171,7 +166,7 @@ public class ProblemVRP extends Problem2d
                     int targetId = jTarget.getInt("id");
                     double distance = jTarget.getDouble("distance");
 
-                    distances[vertexId][targetId] = distance;
+                    structure2d.setDistance(vertexId, targetId, distance);
 
                     if (vertexId == targetId)
                         if (distance >= 0.0)
@@ -191,11 +186,6 @@ public class ProblemVRP extends Problem2d
     public int getVertexNum()
     {
         return vertexNum;
-    }
-
-    public double[][] getDistances()
-    {
-        return distances;
     }
 
     public double[] getDemands()

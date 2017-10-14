@@ -1,8 +1,8 @@
 package solution.selectors;
 
 import org.junit.Test;
-import problem.Component;
-import problem.Component2d;
+import problem.component.Component;
+import problem.component.Component2d;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package solution.selectors;
 
-import problem.Component;
+import problem.component.Component;
 
 import java.util.List;
 import java.util.ListIterator;

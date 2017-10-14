@@ -1,7 +1,7 @@
 package problem.ComponentStructure;
 
-import problem.Component;
-import problem.Component2d;
+import problem.component.Component;
+import problem.component.Component2d;
 import problem.Coordinate2d;
 
 import java.util.Iterator;
@@ -50,6 +50,11 @@ public class ComponentStructure2dStandard extends ComponentStructure2d
         matrix[coordinate2d.row][coordinate2d.column].setHeuristic(heuristic);
     }
 
+    @Override
+    public void setDistance(Coordinate2d coordinate2d, double distance)
+    {
+        matrix[coordinate2d.row][coordinate2d.column].setDistance(distance);
+    }
 
 
     public Iterator<Component> iterator()

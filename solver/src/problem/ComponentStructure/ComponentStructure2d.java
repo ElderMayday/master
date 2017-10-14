@@ -1,6 +1,6 @@
 package problem.ComponentStructure;
 
-import problem.Component2d;
+import problem.component.Component2d;
 import problem.Coordinate2d;
 
 /**
@@ -70,4 +70,14 @@ public abstract class ComponentStructure2d extends ComponentStructure
     }
 
     public abstract void setH(Coordinate2d coordinate2d, double heuristic);
+
+
+
+
+    public void setDistance(int row, int column, double distance)
+    {
+        this.setDistance(new Coordinate2d(row, column), distance);
+    }
+
+    public abstract void setDistance(Coordinate2d coordinate2d, double distance);
 }

@@ -1,6 +1,6 @@
 package problem.ComponentStructure;
 
-import problem.Component;
+import problem.component.Component;
 
 /**
  * Created by Aldar on 04-Oct-17.

@@ -39,7 +39,7 @@ public class TestProblemVRP
             assertEquals(problem.getVertexNum(), 4);
             assertEquals(problem.getDemands()[1], 20.0, 0.001);
             assertEquals(problem.getDepotId(), 0);
-            assertEquals(problem.getDistances()[0][0], -1.0, 0.001);
+            assertEquals(problem.structure2d.get(0, 0).getDistance(), -1.0, 0.001);
             assertEquals(problem.structure2d.get(0, 0).getHeuristic(), 1.2, 0.001);
         }
         catch (Exception e)

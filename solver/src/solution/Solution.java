@@ -1,9 +1,6 @@
 package solution;
 
-import problem.Component;
-
-import java.util.ArrayList;
-import java.util.List;
+import problem.component.Component;
 
 /**
  * Created by Aldar on 14-Oct-17.
