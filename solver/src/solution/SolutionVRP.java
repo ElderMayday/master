@@ -1,7 +1,7 @@
 package solution;
 
-import problem.Component;
-import problem.Component2d;
+import problem.component.Component;
+import problem.component.Component2d;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -31,7 +31,12 @@ public class SolutionVRP extends Solution
     @Override
     public double objective()
     {
-        return 0;
+        double objective = 0.0;
+
+        for (Component2d component2d : components2d)
+            objective += component2d.getDistance();
+
+        return objective;
     }
 
 
@@ -45,8 +50,9 @@ public class SolutionVRP extends Solution
     }
 
 
-
-
+    /**
+     * Wrapper iterator which casts Component2d to Component (for handling solutions of general problems)
+     */
     class SolutionVrpIterator implements Iterator<Component>
     {
         protected Iterator<Component2d> component2dIterator;
