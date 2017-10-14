@@ -72,7 +72,6 @@ public class ComponentStructure2dStandard extends ComponentStructure2d
 
         public boolean hasNext()
         {
-            //if ((currentRow == rowNumber - 1) && (currentColumn == columnNumber - 1))
             if (currentRow >= rowNumber)
                 return false;
             else
