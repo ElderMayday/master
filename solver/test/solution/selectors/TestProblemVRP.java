@@ -1,16 +1,14 @@
 package solution.selectors;
 
 import org.junit.Test;
-import problem.ComponentStructure.ComponentStructure2dStandard;
-import problem.Fleet.FleetDescendingCapacity;
-import problem.Fleet.Vehicle;
-import problem.ProblemFormulation.Problem;
-import problem.ProblemFormulation.ProblemVRP;
+import problem.componentStructure.ComponentStructure2dStandard;
+import problem.fleet.FleetDescendingCapacity;
+import problem.fleet.Vehicle;
+import problem.problemFormulation.ProblemVRP;
 
 import static org.junit.Assert.*;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Iterator;
 
 import static org.junit.Assert.assertEquals;

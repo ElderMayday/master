@@ -3,9 +3,9 @@ package solution.selectors;
 import org.junit.Test;
 import problem.component.Component;
 import problem.component.Component2d;
-import problem.ComponentStructure.ComponentStructure2d;
-import problem.ComponentStructure.ComponentStructure2dHash;
-import problem.ComponentStructure.ComponentStructure2dStandard;
+import problem.componentStructure.ComponentStructure2d;
+import problem.componentStructure.ComponentStructure2dHash;
+import problem.componentStructure.ComponentStructure2dStandard;
 
 import static org.junit.Assert.*;
 

@@ -1,7 +1,7 @@
 package solution.selectors;
 
 import org.junit.Test;
-import problem.ComponentStructure.*;
+import problem.componentStructure.*;
 
 import static org.junit.Assert.*;
 

@@ -1,4 +1,4 @@
-package problem.Fleet;
+package problem.fleet;
 
 /**
  * Created by Aldar on 09-Oct-17.

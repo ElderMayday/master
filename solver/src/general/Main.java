@@ -1,8 +1,5 @@
 package general;
 
-import problem.ComponentStructure.ComponentStructure2d;
-import problem.ComponentStructure.ComponentStructure2dStandard;
-
 public class Main
 {
 

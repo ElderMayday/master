@@ -1,9 +1,9 @@
 package solution.selectors;
 
 import org.junit.Test;
-import problem.Fleet.Fleet;
-import problem.Fleet.FleetDescendingCapacity;
-import problem.Fleet.Vehicle;
+import problem.fleet.Fleet;
+import problem.fleet.FleetDescendingCapacity;
+import problem.fleet.Vehicle;
 
 import java.util.ArrayList;
 import java.util.Iterator;

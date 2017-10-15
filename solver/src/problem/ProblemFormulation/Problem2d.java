@@ -1,6 +1,6 @@
-package problem.ProblemFormulation;
+package problem.problemFormulation;
 
-import problem.ComponentStructure.*;
+import problem.componentStructure.*;
 
 import java.io.FileNotFoundException;
 

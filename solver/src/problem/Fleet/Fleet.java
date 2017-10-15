@@ -1,4 +1,4 @@
-package problem.Fleet;
+package problem.fleet;
 
 
 import java.util.Iterator;

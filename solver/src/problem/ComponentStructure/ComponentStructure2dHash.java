@@ -1,4 +1,4 @@
-package problem.ComponentStructure;
+package problem.componentStructure;
 
 import problem.component.Component;
 import problem.component.Component2d;

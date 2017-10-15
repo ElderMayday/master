@@ -1,9 +1,9 @@
-package problem.ProblemFormulation;
+package problem.problemFormulation;
 
 import org.json.JSONObject;
-import problem.ComponentStructure.ComponentStructure2d;
-import problem.Fleet.Fleet;
-import problem.Fleet.Vehicle;
+import problem.componentStructure.ComponentStructure2d;
+import problem.fleet.Fleet;
+import problem.fleet.Vehicle;
 
 import java.io.File;
 import java.io.FileNotFoundException;
