@@ -5,9 +5,15 @@ import java.util.List;
 
 /**
  * Created by Aldar on 01-Oct-17.
+ * Several such selectors may disturb each other, since they statically store alpha and beta parameters for pre-computing
  */
 public class SelectorStandard extends Selector
 {
+    public SelectorStandard(double alpha, double beta)
+    {
+        Component.setPrecomputationParameters(alpha, beta);
+    }
+
     @Override
     public Component select(List<Component> components) throws Exception
     {

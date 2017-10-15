@@ -17,9 +17,7 @@ public class TestSelector
     @Test
     public void testSelectorStandard() throws Exception
     {
-        Selector selector = new SelectorStandard();
-
-        Component.setPrecomputationParameters(1.0, 1.0);
+        Selector selector = new SelectorStandard(1.0, 1.0);
 
         List<Component> components = new ArrayList<Component>();
 
@@ -53,7 +51,7 @@ public class TestSelector
     @Test
     public void testSelectorDorigoArgmax() throws Exception
     {
-        Selector selector = new SelectorDorigo(1.0);
+        Selector selector = new SelectorDorigo(1.0, 1.0, 1.0);
 
         List<Component> components = new ArrayList<Component>();
 
@@ -70,7 +68,7 @@ public class TestSelector
     @Test
     public void testSelectorDorigoStandard() throws Exception
     {
-        Selector selector = new SelectorDorigo(0.0);
+        Selector selector = new SelectorDorigo(1.0, 1.0, 0.0);
 
         List<Component> components = new ArrayList<Component>();
 

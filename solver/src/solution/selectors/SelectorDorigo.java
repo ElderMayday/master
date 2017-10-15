@@ -7,13 +7,16 @@ import java.util.ListIterator;
 
 /**
  * Created by Aldar on 04-Oct-17.
+ * Several such selectors may disturb each other, since they statically store alpha and beta parameters for pre-computing
  */
 public class SelectorDorigo extends Selector
 {
     protected final double probabilityOfBest;
 
-    public SelectorDorigo(double probabilityOfBest)
+    public SelectorDorigo(double alpha, double beta, double probabilityOfBest)
     {
+        Component.setPrecomputationParameters(alpha, beta);
+
         if (probabilityOfBest > 1.0)
             this.probabilityOfBest = 1.0;
         else
