@@ -6,6 +6,7 @@ import problem.component.Component2d;
 import solution.Solution;
 import solution.SolutionVRP;
 
+
 import java.util.Iterator;
 
 import static org.junit.Assert.*;

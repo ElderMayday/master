@@ -41,6 +41,12 @@ public class SolutionVRP extends Solution
 
 
 
+    public List<Component2d> getComponents2d()
+    {
+        return components2d;
+    }
+
+
 
 
     @Override
