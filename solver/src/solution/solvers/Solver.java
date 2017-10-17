@@ -15,7 +15,6 @@ public abstract class Solver
 
     protected Problem problem;
     protected Selector selector;
-    protected boolean precomputeHeuristic;
     protected TerminationCriteria terminationCriteria;
 
 
@@ -23,19 +22,24 @@ public abstract class Solver
      *
      * @param problem
      * @param selector
-     * @param precomputeHeuristic
+     * @param precomputeValues
      */
-    public Solver(Problem problem, Selector selector, boolean precomputeHeuristic, TerminationCriteria terminationCriteria)
+    public Solver(Problem problem, Selector selector, boolean precomputeValues, TerminationCriteria terminationCriteria)
     {
         this.problem = problem;
         this.selector = selector;
-        this.precomputeHeuristic = precomputeHeuristic;
         this.terminationCriteria = terminationCriteria;
+
+        this.pheromonePreset();
+
+        if (precomputeValues)
+            problem.precomputeValues();
     }
 
 
-
+    public abstract void pheromonePreset();
 
     public abstract List<Solution> solve();
+
 
 }

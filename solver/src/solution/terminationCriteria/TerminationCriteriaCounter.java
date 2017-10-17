@@ -5,9 +5,18 @@ package solution.terminationCriteria;
  */
 public class TerminationCriteriaCounter extends TerminationCriteria
 {
+    protected int count;
+
+    public TerminationCriteriaCounter(int count)
+    {
+        this.count = count > 0 ? count : 0;
+    }
+
     @Override
     public boolean isFullfilled()
     {
-        return false;
+        count--;
+
+        return count == 0;
     }
 }

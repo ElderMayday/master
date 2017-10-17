@@ -19,9 +19,9 @@ public class SolverStandard extends Solver
     protected GlobalUpdate update;
     protected int antNum;
 
-    public SolverStandard(Problem problem, Selector selector, boolean precomputeHeuristic, TerminationCriteria terminationCriteria, LocalSearch localSearch, GlobalUpdate update, int antNum)
+    public SolverStandard(Problem problem, Selector selector, boolean precomputeValues, TerminationCriteria terminationCriteria, LocalSearch localSearch, GlobalUpdate update, int antNum)
     {
-        super(problem, selector, precomputeHeuristic, terminationCriteria);
+        super(problem, selector, precomputeValues, terminationCriteria);
 
         this.localSearch = localSearch;
         this.update = update;
@@ -29,6 +29,11 @@ public class SolverStandard extends Solver
     }
 
 
+    @Override
+    public void pheromonePreset()
+    {
+
+    }
 
     @Override
     public List<Solution> solve()
@@ -37,9 +42,9 @@ public class SolverStandard extends Solver
 
         do
         {
-            solutions = construct();
+            solutions = constructAllSolutions();
         }
-        while (terminationCriteria.isFullfilled());
+        while (!terminationCriteria.isFullfilled());
 
         return solutions;
     }
@@ -48,15 +53,25 @@ public class SolverStandard extends Solver
 
 
 
-    protected List<Solution> construct()
+    protected List<Solution> constructAllSolutions()
     {
         List<Solution> solutions = new ArrayList<Solution>();
 
         for (int i = 0; i < antNum; i++)
         {
-
+            solutions.add(constructOneSolution());
         }
 
         return solutions;
+    }
+
+
+    protected Solution constructOneSolution()
+    {
+        Solution solution = null;
+
+
+
+        return solution;
     }
 }

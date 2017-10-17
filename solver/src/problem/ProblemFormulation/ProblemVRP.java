@@ -24,9 +24,9 @@ public class ProblemVRP extends Problem2d
     protected int depotId;             // number of the vertex that represents depot
 
 
-    public ProblemVRP(ComponentStructure2d structure2d, Fleet fleet, boolean mustDetermineCandidates, boolean mustPrecompute) throws FileNotFoundException
+    public ProblemVRP(ComponentStructure2d structure2d, Fleet fleet, boolean mustDetermineCandidates) throws FileNotFoundException
     {
-        super(structure2d, true, mustDetermineCandidates, mustPrecompute);
+        super(structure2d, true, mustDetermineCandidates);
 
         this.fleet = fleet;
     }
