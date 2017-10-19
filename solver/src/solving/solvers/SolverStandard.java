@@ -1,11 +1,11 @@
-package solution.solvers;
+package solving.solvers;
 
 import problem.problemFormulation.Problem;
-import solution.Solution;
-import solution.globalUpdate.GlobalUpdate;
-import solution.localSearch.LocalSearch;
-import solution.selectors.Selector;
-import solution.terminationCriteria.TerminationCriteria;
+import solving.solution.Solution;
+import solving.globalUpdate.GlobalUpdate;
+import solving.localSearch.LocalSearch;
+import solving.selectors.Selector;
+import solving.terminationCriteria.TerminationCriteria;
 
 import java.util.ArrayList;
 import java.util.List;

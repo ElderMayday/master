@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
  */
 public abstract class Problem
 {
-    public final boolean lowerIsBetter;   // lower goal function values correspond to better solution
+    public final boolean lowerIsBetter;   // lower goal function values correspond to better solving
     public final ComponentStructure structure;
     public final boolean mustDetermineCandidates;
 

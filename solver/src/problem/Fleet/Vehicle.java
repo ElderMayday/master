@@ -9,7 +9,7 @@ public class Vehicle
     public final double length;
     public final boolean hasLengthRestriction;
 
-    protected double capacityLeft;   // solution-time current vehicle values
+    protected double capacityLeft;   // solving-time current vehicle values
     protected double lengthLeft;
 
     public Vehicle(double capacity, double length, boolean hasLengthRestriction)

@@ -1,4 +1,4 @@
-package solution.selectors;
+package solving.selectors;
 
 import org.junit.Test;
 import problem.componentStructure.ComponentStructure2dStandard;
@@ -25,7 +25,7 @@ public class TestProblemVRP
 
         try
         {
-            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(null), true);
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), true);
             problem.load(new File("problem-samples/vrp-unit-test.json"));
 
             Iterator<Vehicle> vehicleIterator = problem.fleet.getVehiclesIterator();

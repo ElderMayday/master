@@ -1,4 +1,4 @@
-package solution.globalUpdate;
+package solving.globalUpdate;
 
 /**
  * Created by Aldar on 16-Oct-17.

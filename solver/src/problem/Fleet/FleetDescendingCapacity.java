@@ -8,12 +8,6 @@ import java.util.List;
  */
 public class FleetDescendingCapacity extends Fleet
 {
-
-    public FleetDescendingCapacity(List<Vehicle> vehicles)
-    {
-        super(vehicles);
-    }
-
     @Override
     protected void orderVehicles()
     {

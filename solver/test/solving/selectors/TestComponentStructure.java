@@ -1,4 +1,4 @@
-package solution.selectors;
+package solving.selectors;
 
 import org.junit.Test;
 import problem.componentStructure.*;

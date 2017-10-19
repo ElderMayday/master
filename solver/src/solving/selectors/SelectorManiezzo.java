@@ -1,4 +1,4 @@
-package solution.selectors;
+package solving.selectors;
 
 import problem.component.Component;
 

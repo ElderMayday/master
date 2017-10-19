@@ -1,23 +1,20 @@
-package solution.selectors;
+package solving.selectors;
 
 import org.junit.Test;
 import problem.componentStructure.ComponentStructure2dStandard;
 import problem.fleet.FleetDescendingCapacity;
 import problem.problemFormulation.Problem;
 import problem.problemFormulation.ProblemVRP;
-import solution.globalUpdate.AntSystem;
-import solution.globalUpdate.GlobalUpdate;
-import solution.localSearch.LocalSearch;
-import solution.localSearch.LocalSearchNone;
-import solution.solvers.Solver;
-import solution.solvers.SolverStandard;
-import solution.terminationCriteria.TerminationCriteria;
-import solution.terminationCriteria.TerminationCriteriaCounter;
+import solving.globalUpdate.AntSystem;
+import solving.globalUpdate.GlobalUpdate;
+import solving.localSearch.LocalSearch;
+import solving.localSearch.LocalSearchNone;
+import solving.solvers.Solver;
+import solving.solvers.SolverStandard;
+import solving.terminationCriteria.TerminationCriteria;
+import solving.terminationCriteria.TerminationCriteriaCounter;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-
-import static org.junit.Assert.*;
 
 
 /**
@@ -30,7 +27,7 @@ public class TestSolverStandard
     {
         try
         {
-            Problem problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(null), true);
+            Problem problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), true);
             problem.load(new File("problem-samples/vrp-unit-test.json"));
 
 

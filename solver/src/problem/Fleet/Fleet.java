@@ -13,11 +13,6 @@ public abstract class Fleet
     protected List<Vehicle> vehicles;
 
 
-    public Fleet(List<Vehicle> vehicles)
-    {
-        this.setVehicles(vehicles);
-    }
-
     public void setVehicles(List<Vehicle> vehicles)
     {
         this.vehicles = vehicles;
@@ -38,7 +33,10 @@ public abstract class Fleet
             vehicle.reset();
     }
 
-
+    public List<Vehicle> getVehicles()
+    {
+        return vehicles;
+    }
 
 
     public Iterator<Vehicle> getVehiclesIterator()

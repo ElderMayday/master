@@ -1,4 +1,4 @@
-package solution.selectors;
+package solving.selectors;
 
 import org.junit.Test;
 import problem.fleet.Fleet;
@@ -26,7 +26,8 @@ public class TestFleet
             vehicleList.add(new Vehicle(1.0, 2.0, true));
             vehicleList.add(new Vehicle(2.0, 3.0, true));
 
-            Fleet fleet = new FleetDescendingCapacity(vehicleList);
+            Fleet fleet = new FleetDescendingCapacity();
+            fleet.setVehicles(vehicleList);
 
             Iterator<Vehicle> iterator = fleet.getVehiclesIterator();
 

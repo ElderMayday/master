@@ -1,12 +1,17 @@
-package solution.selectors;
+package solving.selectors;
 
 import org.junit.Test;
 import problem.component.Component;
 import problem.component.Component2d;
-import solution.Solution;
-import solution.SolutionVRP;
+import problem.componentStructure.ComponentStructure2dStandard;
+import problem.fleet.FleetDescendingCapacity;
+import problem.problemFormulation.Problem;
+import problem.problemFormulation.ProblemVRP;
+import solving.solution.Solution;
+import solving.solution.SolutionVRP;
 
 
+import java.io.File;
 import java.util.Iterator;
 
 import static org.junit.Assert.*;
@@ -19,12 +24,25 @@ public class TestSolutionVrp
     @Test
     public void testSolutionVrpIterator()
     {
-        Solution solution = new SolutionVRP();
+        Problem problem = null;
+        SolutionVRP solution = null;
+
+        try
+        {
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), true);
+            problem.load(new File("problem-samples/vrp-unit-test.json"));
+            solution = new SolutionVRP(problem);
+        }
+        catch (Exception e)
+        {
+            assertTrue(false);
+        }
 
         Component2d c1 = new Component2d(0, 0, 1.0, 1.0);
         Component2d c2 = new Component2d(0, 0, 1.0, 2.0);
         Component2d c3 = new Component2d(0, 0, 1.0, 3.0);
 
+        solution.startNewTour(null);
         solution.addComponent(c1);
         solution.addComponent(c2);
         solution.addComponent(c3);
@@ -49,7 +67,19 @@ public class TestSolutionVrp
     @Test
     public void testSolutionVrpObjective()
     {
-        Solution solution = new SolutionVRP();
+        Problem problem = null;
+        SolutionVRP solution = null;
+
+        try
+        {
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), true);
+            problem.load(new File("problem-samples/vrp-unit-test.json"));
+            solution = new SolutionVRP(problem);
+        }
+        catch (Exception e)
+        {
+            assertTrue(false);
+        }
 
         Component2d c1 = new Component2d(0, 0, 1.0, 1.0);
         c1.setDistance(1.0);
@@ -60,10 +90,17 @@ public class TestSolutionVrp
         Component2d c3 = new Component2d(0, 0, 1.0, 3.0);
         c3.setDistance(3.0);
 
+        solution.startNewTour(null);
         solution.addComponent(c1);
         solution.addComponent(c2);
         solution.addComponent(c3);
 
         assertEquals(solution.objective(), 6.0, 0.001);
+    }
+
+    @Test
+    public void testSolutionVrpFilling()
+    {
+
     }
 }

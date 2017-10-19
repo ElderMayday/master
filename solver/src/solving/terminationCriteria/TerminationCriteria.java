@@ -1,4 +1,4 @@
-package solution.terminationCriteria;
+package solving.terminationCriteria;
 
 /**
  * Created by Aldar on 16-Oct-17.

@@ -1,7 +1,7 @@
-package solution.localSearch;
+package solving.localSearch;
 
 import problem.problemFormulation.Problem;
-import solution.Solution;
+import solving.solution.Solution;
 
 /**
  * Created by Aldar on 16-Oct-17.
