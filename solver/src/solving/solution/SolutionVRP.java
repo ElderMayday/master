@@ -17,6 +17,9 @@ public class SolutionVRP extends Solution
 {
     protected List<Component2d> components2d;   // Chosen components2d list
     protected ProblemVRP problemVRP;            // The problem this solving belongs to
+
+
+
     protected boolean[] visited;                // Flag array of whether the corresponding custumer has been visited
 
     protected Tour currentTour;                 // The tour where the new components will be added
@@ -35,6 +38,7 @@ public class SolutionVRP extends Solution
             visited = new boolean[problemVRP.getVertexNum()];
             for (int i = 0; i < visited.length; i++)
                 visited[i] = false;
+            visited[((ProblemVRP) problem).getDepotId()] = true;
 
             tours = new ArrayList<Tour>();
             currentTour = null;
@@ -63,6 +67,12 @@ public class SolutionVRP extends Solution
         currentTour = tour;
     }
 
+    public void finishCurrentTour()
+    {
+        currentTour.setFinished(true);
+        currentTour = null;
+    }
+
     /**
      * Adding a component to the current tour
      * REMARKS!!!
@@ -83,9 +93,7 @@ public class SolutionVRP extends Solution
 
             visited[column] = true;
 
-            if (problemVRP.getDepotId() == component2d.getRow())
-                 currentTour.getCustomers().add(component2d.getColumn());
-
+            currentTour.getCustomers().add(component2d.getColumn());
         }
     }
 
@@ -101,7 +109,10 @@ public class SolutionVRP extends Solution
         return objective;
     }
 
-
+    public boolean getVisited(int index)
+    {
+        return visited[index];
+    }
 
 
 

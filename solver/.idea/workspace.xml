@@ -18,11 +18,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TestSolutionVrp.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TestSolutionVrp.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/solving/selectors/TestSolutionVrp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="44" column="36" lean-forward="false" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
+            <state relative-caret-position="809">
+              <caret line="141" column="34" lean-forward="true" selection-start-line="141" selection-start-column="34" selection-end-line="141" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -30,13 +30,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestProblemVRP.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/solving/selectors/TestProblemVRP.java">
+      <file leaf-file-name="SolutionVRP.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/solving/solution/SolutionVRP.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="27" column="12" lean-forward="false" selection-start-line="27" selection-start-column="12" selection-end-line="28" selection-end-column="73" />
+            <state relative-caret-position="589">
+              <caret line="40" column="64" lean-forward="false" selection-start-line="40" selection-start-column="64" selection-end-line="40" selection-end-column="64" />
               <folding>
-                <element signature="imports" expanded="false" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2823#2824#0" expanded="true" />
+                <element signature="e#2860#2861#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -45,23 +47,9 @@
       <file leaf-file-name="TestSolverStandard.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/solving/selectors/TestSolverStandard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
+            <state relative-caret-position="300">
               <caret line="29" column="109" lean-forward="false" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SolutionVRP.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/solving/solution/SolutionVRP.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1360">
-              <caret line="71" column="7" lean-forward="true" selection-start-line="71" selection-start-column="7" selection-end-line="71" selection-end-column="7" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2796#2797#0" expanded="true" />
-                <element signature="e#2824#2825#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -69,11 +57,10 @@
       <file leaf-file-name="Tour.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/solving/solution/Tour.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="14" column="92" lean-forward="false" selection-start-line="14" selection-start-column="92" selection-end-line="14" selection-end-column="92" />
+            <state relative-caret-position="529">
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#990#991#0" expanded="true" />
                 <element signature="e#1022#1023#0" expanded="true" />
               </folding>
             </state>
@@ -83,18 +70,67 @@
       <file leaf-file-name="ArrayList.java" pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/util/ArrayList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
+            <state relative-caret-position="2980">
               <caret line="176" column="0" lean-forward="false" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="e#0#54151#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#6252#6253#0" expanded="false" />
+                <element signature="e#6320#6321#0" expanded="false" />
+                <element signature="e#10189#10190#0" expanded="false" />
+                <element signature="e#10216#10217#0" expanded="false" />
+                <element signature="e#10398#10399#0" expanded="false" />
+                <element signature="e#10430#10431#0" expanded="false" />
+                <element signature="e#10907#10908#0" expanded="false" />
+                <element signature="e#10945#10946#0" expanded="false" />
+                <element signature="e#13541#13542#0" expanded="false" />
+                <element signature="e#13596#13597#0" expanded="false" />
+                <element signature="e#15414#15415#0" expanded="false" />
+                <element signature="e#15459#15460#0" expanded="false" />
+                <element signature="e#24549#24550#0" expanded="false" />
+                <element signature="e#24603#24604#0" expanded="false" />
+                <element signature="e#30347#30348#0" expanded="false" />
+                <element signature="e#30384#30385#0" expanded="false" />
+                <element signature="e#30684#30685#0" expanded="false" />
+                <element signature="e#30716#30717#0" expanded="false" />
+                <element signature="e#31041#31042#0" expanded="false" />
+                <element signature="e#31086#31087#0" expanded="false" />
+                <element signature="e#33262#33263#0" expanded="false" />
+                <element signature="e#33304#33305#0" expanded="false" />
+                <element signature="e#33338#33339#0" expanded="false" />
+                <element signature="e#33375#33376#0" expanded="false" />
+                <element signature="e#33413#33414#0" expanded="false" />
+                <element signature="e#33454#33455#0" expanded="false" />
+                <element signature="e#38943#38944#0" expanded="false" />
+                <element signature="e#38994#38995#0" expanded="false" />
+                <element signature="e#39436#39437#0" expanded="false" />
+                <element signature="e#39481#39482#0" expanded="false" />
+                <element signature="e#39886#39887#0" expanded="false" />
+                <element signature="e#39960#39961#0" expanded="false" />
+                <element signature="e#40600#40601#0" expanded="false" />
+                <element signature="e#40658#40659#0" expanded="false" />
+                <element signature="e#42227#42228#0" expanded="false" />
+                <element signature="e#42280#42281#0" expanded="false" />
+                <element signature="e#42326#42327#0" expanded="false" />
+                <element signature="e#42383#42384#0" expanded="false" />
+                <element signature="e#44775#44776#0" expanded="false" />
+                <element signature="e#44842#44843#0" expanded="false" />
+                <element signature="e#46390#46391#0" expanded="false" />
+                <element signature="e#46455#46456#0" expanded="false" />
+                <element signature="e#51499#51500#0" expanded="false" />
+                <element signature="e#51557#51558#0" expanded="false" />
+                <element signature="e#51597#51598#0" expanded="false" />
+                <element signature="e#51690#51691#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Solution.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Solution.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/solving/solution/Solution.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="19" column="59" lean-forward="false" selection-start-line="19" selection-start-column="59" selection-end-line="19" selection-end-column="59" />
+            <state relative-caret-position="460">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -106,7 +142,17 @@
         <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="260">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParentRunner.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/runners/ParentRunner.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="202" column="0" lean-forward="false" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -127,11 +173,11 @@
       <file leaf-file-name="Component2d.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/problem/component/Component2d.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+            <state relative-caret-position="209">
+              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding>
-                <element signature="e#797#798#0" expanded="true" />
                 <element signature="e#823#824#0" expanded="true" />
+                <element signature="e#926#927#0" expanded="true" />
                 <element signature="e#955#956#0" expanded="true" />
               </folding>
             </state>
@@ -205,9 +251,9 @@
         <option value="$PROJECT_DIR$/test/solving/selectors/TestSolverStandard.java" />
         <option value="$PROJECT_DIR$/src/solving/SolutionVRP.java" />
         <option value="$PROJECT_DIR$/src/solving/solution/Solution.java" />
-        <option value="$PROJECT_DIR$/test/solving/selectors/TestSolutionVrp.java" />
-        <option value="$PROJECT_DIR$/src/solving/solution/SolutionVRP.java" />
         <option value="$PROJECT_DIR$/src/solving/solution/Tour.java" />
+        <option value="$PROJECT_DIR$/src/solving/solution/SolutionVRP.java" />
+        <option value="$PROJECT_DIR$/test/solving/selectors/TestSolutionVrp.java" />
       </list>
     </option>
   </component>
@@ -232,7 +278,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -455,8 +501,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -484,23 +530,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.Test">
-    <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="general.Main" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="solver" />
-      <envs />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
     <configuration default="false" name="TestProblemVRP.testProblemVRPLoadInstance" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -592,6 +621,32 @@
       <option name="PACKAGE_NAME" value="solving.selectors" />
       <option name="MAIN_CLASS_NAME" value="solving.selectors.TestSolutionVrp" />
       <option name="METHOD_NAME" value="testSolutionVrpObjective" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestSolutionVrp.testSolutionVrpFilling" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="solving.selectors.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="solver" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="solving.selectors" />
+      <option name="MAIN_CLASS_NAME" value="solving.selectors.TestSolutionVrp" />
+      <option name="METHOD_NAME" value="testSolutionVrpFilling" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
@@ -809,19 +864,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="JUnit.Test" />
-      <item index="1" class="java.lang.String" itemvalue="Application.Main" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.TestProblemVRP.testProblemVRPLoadInstance" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.TestSolutionVrp.testSolutionVrpIterator" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.TestSolverStandard.testSolverStandard" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.TestSolutionVrp.testSolutionVrpObjective" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.TestProblemVRP.testProblemVRPLoadInstance" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.TestSolutionVrp.testSolutionVrpIterator" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.TestSolverStandard.testSolverStandard" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.TestSolutionVrp.testSolutionVrpObjective" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.TestSolutionVrp.testSolutionVrpFilling" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.TestSolutionVrp.testSolutionVrpObjective" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.TestSolverStandard.testSolverStandard" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.TestSolutionVrp.testSolutionVrpIterator" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.TestProblemVRP.testProblemVRPLoadInstance" />
-        <item index="4" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.TestSolutionVrp.testSolutionVrpFilling" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.TestSolutionVrp.testSolutionVrpObjective" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.TestSolverStandard.testSolverStandard" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.TestSolutionVrp.testSolutionVrpIterator" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.TestProblemVRP.testProblemVRPLoadInstance" />
       </list>
     </recent_temporary>
   </component>
@@ -839,35 +894,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test - 2017.10.19 at 01h 59m 31s.xml">
+    <history-entry file="Test - 2017.10.19 at 21h 40m 09s.xml">
       <configuration name="Test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test - 2017.10.19 at 02h 00m 16s.xml">
-      <configuration name="Test" configurationId="JUnit" />
+    <history-entry file="TestSolutionVrp_testSolutionVrpFilling - 2017.10.19 at 20h 58m 28s.xml">
+      <configuration name="TestSolutionVrp.testSolutionVrpFilling" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test - 2017.10.19 at 02h 00m 55s.xml">
-      <configuration name="Test" configurationId="JUnit" />
+    <history-entry file="TestSolutionVrp_testSolutionVrpFilling - 2017.10.19 at 20h 58m 36s.xml">
+      <configuration name="TestSolutionVrp.testSolutionVrpFilling" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test - 2017.10.19 at 02h 04m 10s.xml">
-      <configuration name="Test" configurationId="JUnit" />
+    <history-entry file="TestSolutionVrp_testSolutionVrpFilling - 2017.10.19 at 20h 59m 46s.xml">
+      <configuration name="TestSolutionVrp.testSolutionVrpFilling" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test - 2017.10.19 at 02h 04m 54s.xml">
-      <configuration name="Test" configurationId="JUnit" />
+    <history-entry file="TestSolutionVrp_testSolutionVrpFilling - 2017.10.19 at 20h 59m 52s.xml">
+      <configuration name="TestSolutionVrp.testSolutionVrpFilling" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test - 2017.10.19 at 02h 12m 54s.xml">
-      <configuration name="Test" configurationId="JUnit" />
+    <history-entry file="TestSolutionVrp_testSolutionVrpFilling - 2017.10.19 at 21h 00m 09s.xml">
+      <configuration name="TestSolutionVrp.testSolutionVrpFilling" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestSolutionVrp_testSolutionVrpObjective - 2017.10.19 at 02h 01m 49s.xml">
-      <configuration name="TestSolutionVrp.testSolutionVrpObjective" configurationId="JUnit" />
+    <history-entry file="TestSolutionVrp_testSolutionVrpFilling - 2017.10.19 at 21h 00m 22s.xml">
+      <configuration name="TestSolutionVrp.testSolutionVrpFilling" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestSolutionVrp_testSolutionVrpObjective - 2017.10.19 at 02h 03m 05s.xml">
-      <configuration name="TestSolutionVrp.testSolutionVrpObjective" configurationId="JUnit" />
+    <history-entry file="TestSolutionVrp_testSolutionVrpFilling - 2017.10.19 at 21h 32m 38s.xml">
+      <configuration name="TestSolutionVrp.testSolutionVrpFilling" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestSolutionVrp_testSolutionVrpObjective - 2017.10.19 at 02h 04m 02s.xml">
-      <configuration name="TestSolutionVrp.testSolutionVrpObjective" configurationId="JUnit" />
+    <history-entry file="TestSolutionVrp_testSolutionVrpFilling - 2017.10.19 at 21h 32m 55s.xml">
+      <configuration name="TestSolutionVrp.testSolutionVrpFilling" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestSolutionVrp_testSolutionVrpObjective - 2017.10.19 at 02h 04m 05s.xml">
-      <configuration name="TestSolutionVrp.testSolutionVrpObjective" configurationId="JUnit" />
+    <history-entry file="TestSolutionVrp_testSolutionVrpFilling - 2017.10.19 at 21h 38m 19s.xml">
+      <configuration name="TestSolutionVrp.testSolutionVrpFilling" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -883,8 +938,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35117492" sideWeight="0.5025" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34203655" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -894,8 +949,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35117492" sideWeight="0.4975" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -910,20 +965,16 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/solving/selectors/TestSolverStandard.java</url>
-          <line>29</line>
-          <properties />
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="39" />
+      <option name="time" value="40" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="currentTour.getCustomers()" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -1160,13 +1211,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/runners/ParentRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3040">
-          <caret line="205" column="0" lean-forward="false" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/model/EachTestNotifier.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="780">
@@ -1235,8 +1279,73 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="27" column="12" lean-forward="false" selection-start-line="27" selection-start-column="12" selection-end-line="28" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2980">
+          <caret line="176" column="0" lean-forward="false" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
           <folding>
+            <element signature="e#0#54151#0" expanded="false" />
             <element signature="imports" expanded="false" />
+            <element signature="e#6252#6253#0" expanded="false" />
+            <element signature="e#6320#6321#0" expanded="false" />
+            <element signature="e#10189#10190#0" expanded="false" />
+            <element signature="e#10216#10217#0" expanded="false" />
+            <element signature="e#10398#10399#0" expanded="false" />
+            <element signature="e#10430#10431#0" expanded="false" />
+            <element signature="e#10907#10908#0" expanded="false" />
+            <element signature="e#10945#10946#0" expanded="false" />
+            <element signature="e#13541#13542#0" expanded="false" />
+            <element signature="e#13596#13597#0" expanded="false" />
+            <element signature="e#15414#15415#0" expanded="false" />
+            <element signature="e#15459#15460#0" expanded="false" />
+            <element signature="e#24549#24550#0" expanded="false" />
+            <element signature="e#24603#24604#0" expanded="false" />
+            <element signature="e#30347#30348#0" expanded="false" />
+            <element signature="e#30384#30385#0" expanded="false" />
+            <element signature="e#30684#30685#0" expanded="false" />
+            <element signature="e#30716#30717#0" expanded="false" />
+            <element signature="e#31041#31042#0" expanded="false" />
+            <element signature="e#31086#31087#0" expanded="false" />
+            <element signature="e#33262#33263#0" expanded="false" />
+            <element signature="e#33304#33305#0" expanded="false" />
+            <element signature="e#33338#33339#0" expanded="false" />
+            <element signature="e#33375#33376#0" expanded="false" />
+            <element signature="e#33413#33414#0" expanded="false" />
+            <element signature="e#33454#33455#0" expanded="false" />
+            <element signature="e#38943#38944#0" expanded="false" />
+            <element signature="e#38994#38995#0" expanded="false" />
+            <element signature="e#39436#39437#0" expanded="false" />
+            <element signature="e#39481#39482#0" expanded="false" />
+            <element signature="e#39886#39887#0" expanded="false" />
+            <element signature="e#39960#39961#0" expanded="false" />
+            <element signature="e#40600#40601#0" expanded="false" />
+            <element signature="e#40658#40659#0" expanded="false" />
+            <element signature="e#42227#42228#0" expanded="false" />
+            <element signature="e#42280#42281#0" expanded="false" />
+            <element signature="e#42326#42327#0" expanded="false" />
+            <element signature="e#42383#42384#0" expanded="false" />
+            <element signature="e#44775#44776#0" expanded="false" />
+            <element signature="e#44842#44843#0" expanded="false" />
+            <element signature="e#46390#46391#0" expanded="false" />
+            <element signature="e#46455#46456#0" expanded="false" />
+            <element signature="e#51499#51500#0" expanded="false" />
+            <element signature="e#51557#51558#0" expanded="false" />
+            <element signature="e#51597#51598#0" expanded="false" />
+            <element signature="e#51690#51691#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/solving/solution/Solution.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1244,23 +1353,15 @@
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/solving/selectors/TestSolverStandard.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/runners/ParentRunner.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="29" column="109" lean-forward="false" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="176" column="0" lean-forward="false" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
+        <state relative-caret-position="369">
+          <caret line="202" column="0" lean-forward="false" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1277,33 +1378,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/problem/component/Component2d.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        <state relative-caret-position="209">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding>
-            <element signature="e#797#798#0" expanded="true" />
             <element signature="e#823#824#0" expanded="true" />
+            <element signature="e#926#927#0" expanded="true" />
             <element signature="e#955#956#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/solving/selectors/TestSolutionVrp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="44" column="36" lean-forward="false" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/solving/solution/Tour.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" column="92" lean-forward="false" selection-start-line="14" selection-start-column="92" selection-end-line="14" selection-end-column="92" />
+        <state relative-caret-position="529">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#990#991#0" expanded="true" />
             <element signature="e#1022#1023#0" expanded="true" />
           </folding>
         </state>
@@ -1311,20 +1401,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/solving/solution/SolutionVRP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="71" column="7" lean-forward="true" selection-start-line="71" selection-start-column="7" selection-end-line="71" selection-end-column="7" />
+        <state relative-caret-position="589">
+          <caret line="40" column="64" lean-forward="false" selection-start-line="40" selection-start-column="64" selection-end-line="40" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2796#2797#0" expanded="true" />
-            <element signature="e#2824#2825#0" expanded="true" />
+            <element signature="e#2823#2824#0" expanded="true" />
+            <element signature="e#2860#2861#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/solving/solution/Solution.java">
+    <entry file="file://$PROJECT_DIR$/test/solving/selectors/TestSolverStandard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="19" column="59" lean-forward="false" selection-start-line="19" selection-start-column="59" selection-end-line="19" selection-end-column="59" />
+        <state relative-caret-position="300">
+          <caret line="29" column="109" lean-forward="false" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/solving/selectors/TestSolutionVrp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="809">
+          <caret line="141" column="34" lean-forward="true" selection-start-line="141" selection-start-column="34" selection-end-line="141" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
