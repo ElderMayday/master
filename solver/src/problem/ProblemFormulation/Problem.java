@@ -2,6 +2,7 @@ package problem.problemFormulation;
 
 import problem.component.Component;
 import problem.componentStructure.ComponentStructure;
+import solving.candidateDeterminer.CandidateDeterminer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,13 +14,13 @@ public abstract class Problem
 {
     public final boolean lowerIsBetter;   // lower goal function values correspond to better solving
     public final ComponentStructure structure;
-    public final boolean mustDetermineCandidates;
+    public final CandidateDeterminer candidateDeterminer;
 
-    public Problem(ComponentStructure structure, boolean lowerIsBetter, boolean mustDetermineCandidates) throws FileNotFoundException
+    public Problem(ComponentStructure structure, boolean lowerIsBetter, CandidateDeterminer candidateDeterminer) throws FileNotFoundException
     {
         this.lowerIsBetter = lowerIsBetter;
         this.structure = structure;
-        this.mustDetermineCandidates = mustDetermineCandidates;
+        this.candidateDeterminer = candidateDeterminer;
 
     }
 
@@ -29,8 +30,8 @@ public abstract class Problem
 
         if (checkFeasibility())
         {
-            if (mustDetermineCandidates)
-                determineCandidates();
+            if (candidateDeterminer != null)
+                candidateDeterminer.determine(this);
         }
         else
             throw new Exception("Non-feasible instance");
@@ -47,8 +48,4 @@ public abstract class Problem
     protected abstract void readDataFromFile(File file) throws Exception;
 
     protected abstract boolean checkFeasibility();
-
-    protected abstract void determineCandidates();
-
-
 }

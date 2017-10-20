@@ -27,7 +27,7 @@ public class TestSolverStandard
     {
         try
         {
-            Problem problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), true);
+            Problem problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
             problem.load(new File("problem-samples/vrp-unit-test.json"));
 
 

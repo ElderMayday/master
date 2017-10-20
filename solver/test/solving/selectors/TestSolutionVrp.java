@@ -31,7 +31,7 @@ public class TestSolutionVrp
 
         try
         {
-            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), true);
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
             problem.load(new File("problem-samples/vrp-unit-test.json"));
             solution = new SolutionVRP(problem);
         }
@@ -74,7 +74,7 @@ public class TestSolutionVrp
 
         try
         {
-            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), true);
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
             problem.load(new File("problem-samples/vrp-unit-test.json"));
             solution = new SolutionVRP(problem);
         }
@@ -108,7 +108,7 @@ public class TestSolutionVrp
 
         try
         {
-            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), true);
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
             problem.load(new File("problem-samples/vrp-unit-test.json"));
             solution = new SolutionVRP(problem);
         }

@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import problem.componentStructure.ComponentStructure2d;
 import problem.fleet.Fleet;
 import problem.fleet.Vehicle;
+import solving.candidateDeterminer.CandidateDeterminer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,9 +25,9 @@ public class ProblemVRP extends Problem2d
     protected int depotId;             // number of the vertex that represents depot
 
 
-    public ProblemVRP(ComponentStructure2d structure2d, Fleet fleet, boolean mustDetermineCandidates) throws FileNotFoundException
+    public ProblemVRP(ComponentStructure2d structure2d, Fleet fleet, CandidateDeterminer candidateDeterminer) throws FileNotFoundException
     {
-        super(structure2d, true, mustDetermineCandidates);
+        super(structure2d, true, candidateDeterminer);
 
         this.fleet = fleet;
     }
@@ -83,11 +84,8 @@ public class ProblemVRP extends Problem2d
         return true;
     }
 
-    @Override
-    protected void determineCandidates()
-    {
 
-    }
+
 
 
     abstract class ParserVrp

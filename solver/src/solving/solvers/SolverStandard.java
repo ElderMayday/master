@@ -21,7 +21,7 @@ public class SolverStandard extends Solver
 
     public SolverStandard(Problem problem, Selector selector, boolean precomputeValues, TerminationCriteria terminationCriteria, LocalSearch localSearch, GlobalUpdate update, int antNum)
     {
-        super(problem, selector, precomputeValues, terminationCriteria);
+        super(problem, selector, localSearch, precomputeValues, terminationCriteria);
 
         this.localSearch = localSearch;
         this.update = update;
