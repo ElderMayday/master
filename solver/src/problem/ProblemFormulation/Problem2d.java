@@ -1,7 +1,7 @@
 package problem.problemFormulation;
 
 import problem.componentStructure.*;
-import solving.candidateDeterminer.CandidateDeterminer;
+import solving.candidateList.CandidateDeterminer;
 
 import java.io.FileNotFoundException;
 

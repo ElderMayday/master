@@ -4,7 +4,7 @@ import org.json.JSONObject;
 import problem.componentStructure.ComponentStructure2d;
 import problem.fleet.Fleet;
 import problem.fleet.Vehicle;
-import solving.candidateDeterminer.CandidateDeterminer;
+import solving.candidateList.CandidateDeterminer;
 
 import java.io.File;
 import java.io.FileNotFoundException;

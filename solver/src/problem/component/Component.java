@@ -31,15 +31,12 @@ public class Component
     protected double pheromone;                   // T-value
     protected double value;                       // t^alpha x h^beta value (if has been precomputed)
     protected boolean isPrecomputed;              // true if the current <value> corresponds to the value of t^alpha x h^beta
-    protected final List<Component> candidates;   // List of the solving components that have been chosen as candidates
-
 
     public Component(double heuristic, double pheromone)
     {
         this.heuristic = heuristic;
         this.pheromone = pheromone;
         this.isPrecomputed = false;
-        this.candidates = new ArrayList<Component>();
     }
 
     public void precompute()

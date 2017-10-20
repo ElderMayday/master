@@ -2,7 +2,7 @@ package problem.problemFormulation;
 
 import problem.component.Component;
 import problem.componentStructure.ComponentStructure;
-import solving.candidateDeterminer.CandidateDeterminer;
+import solving.candidateList.CandidateDeterminer;
 
 import java.io.File;
 import java.io.FileNotFoundException;

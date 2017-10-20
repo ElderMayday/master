@@ -1,4 +1,4 @@
-package solving.candidateDeterminer;
+package solving.candidateList;
 
 import problem.problemFormulation.Problem;
 
@@ -7,5 +7,5 @@ import problem.problemFormulation.Problem;
  */
 public abstract class CandidateDeterminer
 {
-    public abstract void determine(Problem problem) throws Exception;
+    public abstract CandidateList determine(Problem problem) throws Exception;
 }
