@@ -17,7 +17,7 @@ public abstract class Solution implements Iterable<Component>
     {
     }
 
-    public abstract void addComponent(Component component);
+    public abstract void addComponent(Component component) throws Exception;
 
     public abstract double objective();
 }

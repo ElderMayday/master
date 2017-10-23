@@ -1,15 +1,19 @@
 package solving.selectors;
 
 import org.junit.Test;
+import problem.component.Component;
 import problem.componentStructure.ComponentStructure2dStandard;
-import problem.fleet.FleetDescendingCapacity;
-import problem.fleet.Vehicle;
+import problem.fleet.*;
 import problem.problemFormulation.ProblemVRP;
+import solving.solution.Solution;
+import solving.solution.SolutionVRP;
+import solving.solvers.*;
 
 import static org.junit.Assert.*;
 
 import java.io.File;
 import java.util.Iterator;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,7 +23,7 @@ import static org.junit.Assert.assertEquals;
 public class TestProblemVRP
 {
     @Test
-    public void testProblemVRPLoadInstance()
+    public void testProblemVrpLoadInstance()
     {
         ProblemVRP problem;
 
@@ -45,7 +49,45 @@ public class TestProblemVRP
             e.printStackTrace();
             assertTrue(false);
         }
+    }
 
 
+    /**
+     *  Integration test of how does ProblemVrp define possible components based on the current SolutionVRP
+     */
+    @Test
+    public void testProblemVrpGetNextComponents_WithoutCandidates()
+    {
+        ProblemVRP problem;
+
+        try
+        {
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
+            problem.load(new File("problem-samples/vrp-unit-test.json"));
+
+            Solution solution = new SolutionVRP(problem);
+
+            List<Component> candidateList = problem.getNextComponents(solution);
+
+            assertEquals(candidateList.size(), 3);
+            assertEquals(candidateList.get(0), problem.structure2d.get(0, 1));
+            assertEquals(candidateList.get(1), problem.structure2d.get(0, 2));
+            assertEquals(candidateList.get(2), problem.structure2d.get(0, 3));
+
+            solution.addComponent(problem.structure2d.get(0, 2));
+            candidateList = problem.getNextComponents(solution);
+
+            assertEquals(candidateList.get(0), problem.structure2d.get(2, 1));
+            assertEquals(candidateList.get(1), problem.structure2d.get(2, 3));
+
+            solution.addComponent(problem.structure2d.get(0, 2));
+            candidateList = problem.getNextComponents(solution);
+
+            int a = 1;
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            assertTrue(false);
+        }
     }
 }

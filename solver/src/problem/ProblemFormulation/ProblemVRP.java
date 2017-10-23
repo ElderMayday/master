@@ -2,6 +2,7 @@ package problem.problemFormulation;
 
 import org.json.JSONObject;
 import problem.component.Component;
+import problem.component.Component2d;
 import problem.componentStructure.ComponentStructure2d;
 import problem.fleet.Fleet;
 import problem.fleet.Vehicle;
@@ -47,14 +48,12 @@ public class ProblemVRP extends Problem2d
 
         if (candidateDeterminer == null)     // return all components non-constrainted by the current solution, or depot-edge if none
         {
-            int currentCustomerId = solutionVRP.getCurrentCustomerId();
+            int row = solutionVRP.getCurrentCustomerId();
 
-            List<Integer> currentList = candidateListVrp.list.get(currentCustomerId);
-
-            for (Integer column : currentList)
+            for (int column = 0; column < vertexNum; column++)
             {
-                if (solutionVRP.getVisited(column))                                   // TO-DO  Test, test and test!!!
-                    result.add(structure2d.get(currentCustomerId, column));
+                if (!solutionVRP.getVisited(column) && (row != column) && (column != depotId))
+                    result.add(structure2d.get(row, column));
             }
         }
         else  // return all components from the corresponding candidate list non-constrainted by the current solution, or the closest customer-edge if none, or depot-edge if none

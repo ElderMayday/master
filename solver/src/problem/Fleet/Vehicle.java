@@ -54,7 +54,7 @@ public class Vehicle
     {
         lengthLeft -= distance;
 
-        if (capacity < 0)
+        if (hasLengthRestriction && (capacity < 0))
             throw new Exception("Cannot distract such a distance from the vehicle length");
     }
 }

@@ -9,6 +9,8 @@ import solving.globalUpdate.AntSystem;
 import solving.globalUpdate.GlobalUpdate;
 import solving.localSearch.LocalSearch;
 import solving.localSearch.LocalSearchNone;
+import solving.pheromoneInitializer.PheromoneInitializer;
+import solving.pheromoneInitializer.PheromoneInitializerRange;
 import solving.solvers.Solver;
 import solving.solvers.SolverStandard;
 import solving.terminationCriteria.TerminationCriteria;
@@ -39,7 +41,9 @@ public class TestSolverStandard
 
             GlobalUpdate update = new AntSystem();
 
-            Solver solver = new SolverStandard(problem, selector, true, terminationCriteria, localSearch, update, 3);
+            PheromoneInitializer initializer = new PheromoneInitializerRange(1.0, 2.0);
+
+            Solver solver = new SolverStandard(problem, selector, true, terminationCriteria, initializer, localSearch, update, 3);
 
             solver.solve();
         } catch (Exception e)

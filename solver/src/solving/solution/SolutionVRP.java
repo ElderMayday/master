@@ -22,39 +22,39 @@ public class SolutionVRP extends Solution
     protected Tour currentTour;                 // The tour where the new components will be added
     protected List<Tour> tours;                 // Every tour of the solution
     protected int currentCustomerId;            // the id of the customer that was added
+    protected Iterator<Vehicle> vehicleIterator; // The iterator, that automatically fetches the vehicles from the problemVrp fleet
 
 
-    public SolutionVRP(Problem problem) throws Exception
+    public SolutionVRP(Problem problem)
     {
         super(problem);
 
-        if (problem instanceof ProblemVRP)
-        {
-            problemVRP = (ProblemVRP) problem;
+        problemVRP = (ProblemVRP) problem;
 
-            visited = new boolean[problemVRP.getVertexNum()];
-            for (int i = 0; i < visited.length; i++)
-                visited[i] = false;
+        visited = new boolean[problemVRP.getVertexNum()];
+        for (int i = 0; i < visited.length; i++)
+            visited[i] = false;
 
-            currentCustomerId = ((ProblemVRP) problem).getDepotId();
-            visited[currentCustomerId] = true;
+        currentCustomerId = 0;                                 // to ensure the creation of a first new tour for the first component
+        visited[((ProblemVRP) problem).getDepotId()] = true;
 
-            tours = new ArrayList<Tour>();
-            currentTour = null;
+        components2d = new ArrayList<Component2d>();
+        vehicleIterator = problemVRP.fleet.getVehiclesIterator();
 
-            components2d = new ArrayList<Component2d>();
-        }
-        else
-            throw new Exception("Type mismatch");
+        tours = new ArrayList<Tour>();
+        currentTour = null;
     }
+
 
     public SolutionVRP()
     {
         components2d = new ArrayList<Component2d>();
     }
 
-    public void startNewTour(Vehicle vehicle)
+    protected void startNewTour()
     {
+        Vehicle vehicle = vehicleIterator.next();
+
         Tour tour = new Tour(vehicle);
 
         tours.add(tour);
@@ -62,38 +62,41 @@ public class SolutionVRP extends Solution
         if (currentTour != null)
             currentTour.setFinished(true);
 
-
         currentTour = tour;
     }
 
-    public void finishCurrentTour()
-    {
-        currentTour.setFinished(true);
-        currentTour = null;
-    }
 
     /**
      * Adding a component to the current tour
      * REMARKS!!!
-     * - Does not check whether the customer was already passed
-     * - Does not check whether neighbour components2d match each other
+     * - Does not check whether the component is really from the problem components structure
+     * - Does not check whether the customer was already passed (must be ensured at correct pre-selecting)
+     * - Does not check whether vehicle capacity or length constraint are violated, however distracts those values
      * @param component
      */
     @Override
-    public void addComponent(Component component)
+    public void addComponent(Component component) throws Exception
     {
-        if (component instanceof Component2d)
+        Component2d component2d = (Component2d) component;
+
+        components2d.add(component2d);
+
+        if (component2d.getRow() == problemVRP.getDepotId())
+            startNewTour();
+        else if (component2d.getRow() != currentCustomerId)
+            throw new Exception("New component neither finishes the current tour, nor starts a new one");
+
+        currentCustomerId = component2d.getColumn();
+        visited[currentCustomerId] = true;
+
+        currentTour.getCustomers().add(component2d.getColumn());
+        currentTour.addCapacity(problemVRP.getDemands()[currentCustomerId]);
+        currentTour.addDistance(component2d.getDistance());
+
+        if (currentCustomerId == problemVRP.getDepotId())
         {
-            Component2d component2d = (Component2d) component;
-
-            components2d.add(component2d);
-
-            int column = component2d.getColumn();
-
-            visited[column] = true;
-
-            currentTour.getCustomers().add(component2d.getColumn());
-            currentCustomerId = column;
+            currentTour.setFinished(true);
+            currentTour = null;
         }
     }
 

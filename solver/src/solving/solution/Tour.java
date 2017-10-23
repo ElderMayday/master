@@ -14,17 +14,47 @@ public class Tour
     protected Vehicle vehicle;            // the vehicle used for passing the tour
     protected List<Integer> customers;    // IDs of the customers in order of their visiting
 
+    protected double totalDistance, leftDistance;
+    protected double totalCapacity, leftCapacity;
 
     public Tour(Vehicle vehicle)
     {
         this.finished = false;
         this.vehicle = vehicle;
         this.customers = new ArrayList<Integer>();
+
+        totalDistance = 0.0;
+        totalCapacity = 0.0;
+
+        leftDistance = vehicle.length;
+        leftCapacity = vehicle.capacity;
     }
 
 
+    public void addDistance(double distance)
+    {
+        this.totalDistance += distance;
+
+        if (vehicle.hasLengthRestriction)
+            leftDistance -= distance;
+    }
+
+    public void addCapacity(double capacity)
+    {
+        if (capacity > 0.0)   // if not arrive to a depot
+            this.totalCapacity += capacity;
+    }
 
 
+    public double getTotalDistance()
+    {
+        return totalDistance;
+    }
+
+    public double getTotalCapacity()
+    {
+        return totalCapacity;
+    }
 
     public boolean isFinished()
     {
