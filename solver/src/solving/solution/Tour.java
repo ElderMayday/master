@@ -31,12 +31,17 @@ public class Tour
     }
 
 
-    public void addDistance(double distance)
+    public void addDistance(double distance) throws Exception
     {
         this.totalDistance += distance;
 
         if (vehicle.hasLengthRestriction)
+        {
             leftDistance -= distance;
+
+            if (distance < 0)
+                throw new Exception("Distance constraint violation");
+        }
     }
 
     public void addCapacity(double capacity)

@@ -31,25 +31,20 @@ public class TestFleet
 
             Iterator<Vehicle> iterator = fleet.getVehiclesIterator();
 
-            iterator.next().distractCapacity(20.0);
-            iterator.next().distractLength(30.0);
-
-            fleet.resetVehicleParameters();
-
             Vehicle current;
             iterator = fleet.getVehiclesIterator();
 
             current = iterator.next();
-            assertEquals(current.getCapacityLeft(), 3.0, 0.001);
-            assertEquals(current.getLengthLeft(), 1.0, 0.001);
+            assertEquals(current.capacity, 3.0, 0.001);
+            assertEquals(current.length, 1.0, 0.001);
 
             current = iterator.next();
-            assertEquals(current.getCapacityLeft(), 2.0, 0.001);
-            assertEquals(current.getLengthLeft(), 3.0, 0.001);
+            assertEquals(current.capacity, 2.0, 0.001);
+            assertEquals(current.length, 3.0, 0.001);
 
             current = iterator.next();
-            assertEquals(current.getCapacityLeft(), 1.0, 0.001);
-            assertEquals(current.getLengthLeft(), 2.0, 0.001);
+            assertEquals(current.capacity, 1.0, 0.001);
+            assertEquals(current.length, 2.0, 0.001);
         }
         catch (Exception exception)
         {

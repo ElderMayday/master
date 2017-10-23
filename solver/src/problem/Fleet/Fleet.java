@@ -26,13 +26,6 @@ public abstract class Fleet
     protected abstract void orderVehicles();
 
 
-
-    public void resetVehicleParameters()
-    {
-        for (Vehicle vehicle : vehicles)
-            vehicle.reset();
-    }
-
     public List<Vehicle> getVehicles()
     {
         return vehicles;
