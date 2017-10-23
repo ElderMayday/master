@@ -1,10 +1,14 @@
 package problem.problemFormulation;
 
 import org.json.JSONObject;
+import problem.component.Component;
 import problem.componentStructure.ComponentStructure2d;
 import problem.fleet.Fleet;
 import problem.fleet.Vehicle;
 import solving.candidateList.CandidateDeterminer;
+import solving.candidateList.CandidateListVRP;
+import solving.solution.Solution;
+import solving.solution.SolutionVRP;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,6 +34,36 @@ public class ProblemVRP extends Problem2d
         super(structure2d, true, candidateDeterminer);
 
         this.fleet = fleet;
+    }
+
+    @Override
+    public List<Component> getNextComponents(Solution solution)
+    {
+        List<Component> result = new ArrayList<Component>();
+
+        CandidateListVRP candidateListVrp = (CandidateListVRP) this.candidateList;
+
+        SolutionVRP solutionVRP = (SolutionVRP) solution;
+
+        if (candidateDeterminer == null)     // return all components non-constrainted by the current solution, or depot-edge if none
+        {
+            int currentCustomerId = solutionVRP.getCurrentCustomerId();
+
+            List<Integer> currentList = candidateListVrp.list.get(currentCustomerId);
+
+            for (Integer column : currentList)
+            {
+                if (solutionVRP.getVisited(column))                                   // TO-DO  Test, test and test!!!
+                    result.add(structure2d.get(currentCustomerId, column));
+            }
+        }
+        else  // return all components from the corresponding candidate list non-constrainted by the current solution, or the closest customer-edge if none, or depot-edge if none
+        {
+
+        }
+
+
+        return result;
     }
 
     @Override

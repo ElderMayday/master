@@ -1,6 +1,7 @@
 package solving.solvers;
 
 import problem.problemFormulation.Problem;
+import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.solution.Solution;
 import solving.globalUpdate.GlobalUpdate;
 import solving.localSearch.LocalSearch;
@@ -19,9 +20,11 @@ public class SolverStandard extends Solver
     protected GlobalUpdate update;
     protected int antNum;
 
-    public SolverStandard(Problem problem, Selector selector, boolean precomputeValues, TerminationCriteria terminationCriteria, LocalSearch localSearch, GlobalUpdate update, int antNum)
+
+
+    public SolverStandard(Problem problem, Selector selector, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, GlobalUpdate update, int antNum)
     {
-        super(problem, selector, localSearch, precomputeValues, terminationCriteria);
+        super(problem, selector, localSearch, precomputeValues, terminationCriteria, initializer);
 
         this.localSearch = localSearch;
         this.update = update;
@@ -29,16 +32,13 @@ public class SolverStandard extends Solver
     }
 
 
-    @Override
-    public void pheromonePreset()
-    {
-
-    }
 
     @Override
     public List<Solution> solve()
     {
         List<Solution> solutions;
+
+        initializer.initialize(problem.structure);
 
         do
         {
