@@ -14,8 +14,12 @@ public class Tour
     protected Vehicle vehicle;            // the vehicle used for passing the tour
     protected List<Integer> customers;    // IDs of the customers in order of their visiting
 
-    protected double totalDistance, leftDistance;
-    protected double totalCapacity, leftCapacity;
+    protected double usedDistance;
+
+
+
+    protected double leftDistance;
+    protected double usedCapacity, leftCapacity;
 
     public Tour(Vehicle vehicle)
     {
@@ -23,8 +27,8 @@ public class Tour
         this.vehicle = vehicle;
         this.customers = new ArrayList<Integer>();
 
-        totalDistance = 0.0;
-        totalCapacity = 0.0;
+        usedDistance = 0.0;
+        usedCapacity = 0.0;
 
         leftDistance = vehicle.length;
         leftCapacity = vehicle.capacity;
@@ -33,7 +37,7 @@ public class Tour
 
     public void addDistance(double distance) throws Exception
     {
-        this.totalDistance += distance;
+        this.usedDistance += distance;
 
         if (vehicle.hasLengthRestriction)
         {
@@ -44,21 +48,39 @@ public class Tour
         }
     }
 
-    public void addCapacity(double capacity)
+    public void addCapacity(double capacity) throws Exception
     {
-        if (capacity > 0.0)   // if not arrive to a depot
-            this.totalCapacity += capacity;
+        if (capacity > 0.0)   // if did not arrive to the depot
+        {
+            this.usedCapacity += capacity;
+            this.leftCapacity -= capacity;
+
+            if (capacity < 0)
+                throw new Exception("Distance constraint violation");
+        }
     }
 
 
-    public double getTotalDistance()
+
+
+    public double getLeftDistance()
     {
-        return totalDistance;
+        return leftDistance;
     }
 
-    public double getTotalCapacity()
+    public double getLeftCapacity()
     {
-        return totalCapacity;
+        return leftCapacity;
+    }
+
+    public double getUsedDistance()
+    {
+        return usedDistance;
+    }
+
+    public double getUsedCapacity()
+    {
+        return usedCapacity;
     }
 
     public boolean isFinished()

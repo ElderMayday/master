@@ -51,7 +51,7 @@ public abstract class Problem
 
 
     /**
-     * Derives components to choose at the current step based on the current solution status
+     * Pre-selects components to choose at the current step based on the current solution status
      * @param solution
      * @return
      */

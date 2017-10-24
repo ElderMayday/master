@@ -7,7 +7,6 @@ import problem.fleet.*;
 import problem.problemFormulation.ProblemVRP;
 import solving.solution.Solution;
 import solving.solution.SolutionVRP;
-import solving.solvers.*;
 
 import static org.junit.Assert.*;
 
@@ -74,16 +73,13 @@ public class TestProblemVRP
             assertEquals(candidateList.get(1), problem.structure2d.get(0, 2));
             assertEquals(candidateList.get(2), problem.structure2d.get(0, 3));
 
-            solution.addComponent(problem.structure2d.get(0, 2));
+            solution.addCurrentTourComponent(problem.structure2d.get(0, 2));
             candidateList = problem.getNextComponents(solution);
 
             assertEquals(candidateList.get(0), problem.structure2d.get(2, 1));
             assertEquals(candidateList.get(1), problem.structure2d.get(2, 3));
 
-            solution.addComponent(problem.structure2d.get(0, 2));
             candidateList = problem.getNextComponents(solution);
-
-            int a = 1;
         } catch (Exception e)
         {
             e.printStackTrace();

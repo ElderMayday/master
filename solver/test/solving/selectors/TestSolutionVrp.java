@@ -5,10 +5,8 @@ import problem.component.Component;
 import problem.component.Component2d;
 import problem.componentStructure.ComponentStructure2dStandard;
 import problem.fleet.FleetDescendingCapacity;
-import problem.fleet.Vehicle;
 import problem.problemFormulation.Problem;
 import problem.problemFormulation.ProblemVRP;
-import solving.solution.Solution;
 import solving.solution.SolutionVRP;
 import solving.solution.Tour;
 
@@ -40,9 +38,9 @@ public class TestSolutionVrp
             Component2d c2 = new Component2d(1, 2, 1.0, 2.0);
             Component2d c3 = new Component2d(2, 3, 1.0, 3.0);
 
-            solution.addComponent(c1);
-            solution.addComponent(c2);
-            solution.addComponent(c3);
+            solution.addCurrentTourComponent(c1);
+            solution.addCurrentTourComponent(c2);
+            solution.addCurrentTourComponent(c3);
 
             Iterator<Component> componentIterator = solution.iterator();
             for (int i = 0; i < 3; i++)
@@ -88,9 +86,9 @@ public class TestSolutionVrp
             Component2d c3 = new Component2d(2, 3, 1.0, 3.0);
             c3.setDistance(3.0);
 
-            solution.addComponent(c1);
-            solution.addComponent(c2);
-            solution.addComponent(c3);
+            solution.addCurrentTourComponent(c1);
+            solution.addCurrentTourComponent(c2);
+            solution.addCurrentTourComponent(c3);
 
             assertEquals(solution.objective(), 6.0, 0.001);
         }
@@ -113,49 +111,57 @@ public class TestSolutionVrp
             solution = new SolutionVRP(problem);
 
             Component2d c1 = problem.structure2d.get(0, 3);
-
             Component2d c2 = problem.structure2d.get(3, 2);
+            Component2d c3 = problem.structure2d.get(2, 0);
 
-            Component2d c3 = problem.structure2d.get(0, 1);
-
-            Component2d c4 = problem.structure2d.get(1, 0);
+            Component2d c4 = problem.structure2d.get(0, 1);
+            Component2d c5 = problem.structure2d.get(1, 0);
 
             assertEquals(solution.getVisited(0), true);
             assertEquals(solution.getVisited(1), false);
             assertEquals(solution.getVisited(2), false);
             assertEquals(solution.getVisited(3), false);
 
-            solution.addComponent(c1);
+            solution.addCurrentTourComponent(c1);
             assertEquals(solution.getVisited(3), true);
+            assertEquals(solution.getCurrentTour().getLeftCapacity(), 80.0, 0.001);
+            assertEquals(solution.getCurrentTour().getUsedDistance(), 45.0, 0.001);
+            assertEquals(solution.getCurrentTour().isFinished(), false);
 
-            solution.addComponent(c2);
+            solution.addCurrentTourComponent(c2);
             assertEquals(solution.getVisited(2), true);
+            assertEquals(solution.getCurrentTour().isFinished(), false);
 
-            solution.addComponent(c3);
-            assertEquals(solution.getVisited(1), true);
+            solution.addCurrentTourComponent(c3);
+            assertEquals(solution.getTours().get(0).isFinished(), true);
 
-            assertEquals(solution.getTours().size(), 2);
+            assertEquals(solution.getTours().size(), 2);  // one finished and new pre-prepared
 
-            Tour tour1 = solution.getTours().get(0);
-            assertEquals(tour1.isFinished(), true);
-            assertEquals(tour1.getCustomers().get(0).intValue(), 3);
-            assertEquals(tour1.getCustomers().get(1).intValue(), 2);
-            assertEquals(tour1.getTotalCapacity(), 70.0, 0.001); // only capacity restriction
+
+            solution.addCurrentTourComponent(c4);
 
             Tour tour2 = solution.getTours().get(1);
             assertEquals(tour2.isFinished(), false);
-            assertEquals(tour2.getTotalCapacity(), 20.0, 0.001);
-            assertEquals(tour2.getTotalDistance(), 30.0, 0.001);
-
+            assertEquals(tour2.getUsedCapacity(), 20.0, 0.001);
+            assertEquals(tour2.getUsedDistance(), 30.0, 0.001);
             assertEquals(tour2.getCustomers().get(0).intValue(), 1);
             assertEquals(tour2.isFinished(), false);
+            assertEquals(solution.isComplete(), false);
 
-            solution.addComponent(c4);
-
-            assertEquals(tour2.getCustomers().get(1).intValue(), 0);
+            solution.addCurrentTourComponent(c5);
+            assertEquals(tour2.getCustomers().size(), 1);
             assertEquals(tour2.isFinished(), true);
-            assertEquals(tour2.getTotalCapacity(), 20.0, 0.001);
-            assertEquals(tour2.getTotalDistance(), 80.0, 0.001);
+            assertEquals(tour2.getUsedCapacity(), 20.0, 0.001);
+            assertEquals(tour2.getUsedDistance(), 80.0, 0.001);
+            assertEquals(solution.isComplete(), true);
+
+
+            Tour tour1 = solution.getTours().get(0);
+            assertEquals(tour1.isFinished(), true);
+            assertEquals(tour1.getCustomers().size(), 2);
+            assertEquals(tour1.getCustomers().get(0).intValue(), 3);
+            assertEquals(tour1.getCustomers().get(1).intValue(), 2);
+            assertEquals(tour1.getUsedCapacity(), 70.0, 0.001); // only capacity restriction
         }
         catch (Exception e)
         {

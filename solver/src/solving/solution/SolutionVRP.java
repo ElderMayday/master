@@ -19,11 +19,15 @@ public class SolutionVRP extends Solution
     protected ProblemVRP problemVRP;            // The problem this solving belongs to
 
     protected boolean[] visited;                // Flag array of whether the corresponding custumer has been visited
+    protected int visitedNum;                   // Number of visited customers
+
+
+
+    protected boolean isComplete;               // Flag: visitedNum == problem customer number
     protected Tour currentTour;                 // The tour where the new components will be added
     protected List<Tour> tours;                 // Every tour of the solution
-    protected int currentCustomerId;            // the id of the customer that was added
+    protected int currentCustomerId;            // The ID of the customer that was added
     protected Iterator<Vehicle> vehicleIterator; // The iterator, that automatically fetches the vehicles from the problemVrp fleet
-
 
     public SolutionVRP(Problem problem)
     {
@@ -37,12 +41,15 @@ public class SolutionVRP extends Solution
 
         currentCustomerId = 0;                                 // to ensure the creation of a first new tour for the first component
         visited[((ProblemVRP) problem).getDepotId()] = true;
+        visitedNum = 1;
 
         components2d = new ArrayList<Component2d>();
         vehicleIterator = problemVRP.fleet.getVehiclesIterator();
 
         tours = new ArrayList<Tour>();
         currentTour = null;
+
+        startNewTour();
     }
 
 
@@ -71,32 +78,46 @@ public class SolutionVRP extends Solution
      * REMARKS!!!
      * - Does not check whether the component is really from the problem components structure
      * - Does not check whether the customer was already passed (must be ensured at correct pre-selecting)
-     * - Does not check whether vehicle capacity or length constraint are violated, however distracts those values
      * @param component
      */
     @Override
-    public void addComponent(Component component) throws Exception
+    public void addCurrentTourComponent(Component component) throws Exception
     {
         Component2d component2d = (Component2d) component;
 
         components2d.add(component2d);
 
-        if (component2d.getRow() == problemVRP.getDepotId())
-            startNewTour();
-        else if (component2d.getRow() != currentCustomerId)
-            throw new Exception("New component neither finishes the current tour, nor starts a new one");
+        if (component2d.getRow() != problemVRP.getDepotId())
+            if (component2d.getRow() != currentCustomerId)
+                throw new Exception("New component neither finishes the current tour, nor starts a new one");
 
         currentCustomerId = component2d.getColumn();
+
+        if (currentCustomerId != problemVRP.getDepotId())
+        {
+            visitedNum++;
+            currentTour.getCustomers().add(component2d.getColumn());
+
+            if (visited[currentCustomerId] == true)
+                throw new Exception();
+        }
+
         visited[currentCustomerId] = true;
 
-        currentTour.getCustomers().add(component2d.getColumn());
         currentTour.addCapacity(problemVRP.getDemands()[currentCustomerId]);
         currentTour.addDistance(component2d.getDistance());
 
         if (currentCustomerId == problemVRP.getDepotId())
         {
             currentTour.setFinished(true);
-            currentTour = null;
+
+            if (visitedNum != problemVRP.getVertexNum())
+                startNewTour();
+            else
+            {
+                isComplete = true;
+                currentTour = null;
+            }
         }
     }
 
@@ -140,7 +161,10 @@ public class SolutionVRP extends Solution
         return currentCustomerId;
     }
 
-
+    public boolean isComplete()
+    {
+        return isComplete;
+    }
 
     @Override
     public Iterator<Component> iterator()

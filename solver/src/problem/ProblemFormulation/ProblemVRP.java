@@ -10,6 +10,7 @@ import solving.candidateList.CandidateDeterminer;
 import solving.candidateList.CandidateListVRP;
 import solving.solution.Solution;
 import solving.solution.SolutionVRP;
+import solving.solution.Tour;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -53,8 +54,17 @@ public class ProblemVRP extends Problem2d
             for (int column = 0; column < vertexNum; column++)
             {
                 if (!solutionVRP.getVisited(column) && (row != column) && (column != depotId))
-                    result.add(structure2d.get(row, column));
+                {
+                    Tour currentTour = solutionVRP.getCurrentTour();
+
+                    if (currentTour.getLeftCapacity() >= this.demands[column])
+                        //if (currentTour.getCurrentTour() )                      // TO-DO !!! Add tour check of return possibility and TEST, damn it!
+                            result.add(structure2d.get(row, column));
+                }
             }
+
+            if (result.size() == 0)
+                result.add(structure2d.get(row, depotId));
         }
         else  // return all components from the corresponding candidate list non-constrainted by the current solution, or the closest customer-edge if none, or depot-edge if none
         {
