@@ -57,8 +57,9 @@ public class ProblemVRP extends Problem2d
                 {
                     Tour currentTour = solutionVRP.getCurrentTour();
 
-                    if (currentTour.getLeftCapacity() >= this.demands[column])
-                        //if (currentTour.getCurrentTour() )                      // TO-DO !!! Add tour check of return possibility and TEST, damn it!
+                    if (currentTour.getLeftCapacity() >= this.demands[column]) // if can satisfy that customer
+                        if (!currentTour.getVehicle().hasLengthRestriction ||
+                                (currentTour.getLeftDistance() >= structure2d.get(row, column).getDistance() + structure2d.get(column, depotId).getDistance()))  // relies on triangle inequality in the graph
                             result.add(structure2d.get(row, column));
                 }
             }

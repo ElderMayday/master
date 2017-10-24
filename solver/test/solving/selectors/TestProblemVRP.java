@@ -55,14 +55,14 @@ public class TestProblemVRP
      *  Integration test of how does ProblemVrp define possible components based on the current SolutionVRP
      */
     @Test
-    public void testProblemVrpGetNextComponents_WithoutCandidates()
+    public void testProblemVrpGetNextComponents_WithoutCandidates_WithCapacityRestriction()
     {
         ProblemVRP problem;
 
         try
         {
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
-            problem.load(new File("problem-samples/vrp-unit-test.json"));
+            problem.load(new File("problem-samples/vrp-unit-test-2.json"));
 
             Solution solution = new SolutionVRP(problem);
 
@@ -79,8 +79,49 @@ public class TestProblemVRP
             assertEquals(candidateList.get(0), problem.structure2d.get(2, 1));
             assertEquals(candidateList.get(1), problem.structure2d.get(2, 3));
 
+            solution.addCurrentTourComponent(problem.structure2d.get(2, 3));
             candidateList = problem.getNextComponents(solution);
-        } catch (Exception e)
+
+            assertEquals(candidateList.size(), 1);
+            assertEquals(candidateList.get(0), problem.structure2d.get(3, 0));   // Customer #1 is still unvisited but cannot be selected due to capacity constraint
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            assertTrue(false);
+        }
+    }
+
+
+    @Test
+    public void testProblemVrpGetNextComponents_WithoutCandidates_WithLengthRestriction()
+    {
+        ProblemVRP problem;
+
+        try
+        {
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
+            problem.load(new File("problem-samples/vrp-unit-test-3.json"));
+
+            Solution solution = new SolutionVRP(problem);
+
+            List<Component> candidateList = problem.getNextComponents(solution);
+
+            assertEquals(candidateList.size(), 3);
+            assertEquals(candidateList.get(0), problem.structure2d.get(0, 1));
+            assertEquals(candidateList.get(1), problem.structure2d.get(0, 2));
+            assertEquals(candidateList.get(2), problem.structure2d.get(0, 3));
+
+            solution.addCurrentTourComponent(problem.structure2d.get(0, 2));
+            candidateList = problem.getNextComponents(solution);
+
+            // cannot move to #1 cause won't be able to return to the depot then
+            // but can move to #3 cause have 50 spare length units, which is more than 49 + 0
+
+            assertEquals(candidateList.size(), 1);
+            assertEquals(candidateList.get(0), problem.structure2d.get(2, 3));
+        }
+        catch (Exception e)
         {
             e.printStackTrace();
             assertTrue(false);

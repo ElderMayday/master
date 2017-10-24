@@ -1,0 +1,176 @@
+{
+	"vehicles" :
+	{
+		"1":
+		{
+			"capacity" : 80.0,
+			"length" : 150.0
+		},
+		
+		"2":
+		{
+			"capacity" : 100.0,
+			"length" : 100.0
+		},
+		
+		"3":
+		{
+			"capacity" : 120.0,
+			"length" : -1.0
+		}
+	},
+	
+	
+	"map" : {
+		"vertexNum" : 4,
+		
+		"vertexes" :
+		{
+		
+			"vertex#0" :
+			{
+				"id": 0,
+				
+				"demand": -1.0,
+				
+				"targets" :
+				{
+				
+					"target#0" :
+					{
+						"id" : 0,
+						"distance" : -1.0,
+						"heuristic" : 1.2
+					},
+					
+					"target#1" : 
+					{
+						"id" : 1,
+						"distance" : 30.0
+					},
+					
+					"target#2" :
+					{
+						"id" : 2,
+						"distance" : 50.0,
+						"heuristic" : 0.8
+					},
+					
+					"target#3" :
+					{
+						"id" : 3,
+						"distance" : 45.0
+					}
+					
+				}
+			},
+			
+			"vertex#1" :
+			{
+				"id": 1,
+				
+				"demand": 20.0,
+				
+				"targets" :
+				{
+				
+					"target#0" :
+					{
+						"id" : 0,
+						"distance" : 50.0
+					},
+					
+					"target#1" : 
+					{
+						"id" : 1,
+						"distance" : -1.0
+					},
+					
+					"target#2" :
+					{
+						"id" : 2,
+						"distance" : 38.0
+					},
+					
+					"target#3" :
+					{
+						"id" : 3,
+						"distance" : 34.0
+					}
+					
+				}
+			},
+			
+			"vertex#2" :
+			{
+				"id": 2,
+				
+				"demand": 50.0,
+				
+				"targets" :
+				{
+				
+					"target#0" :
+					{
+						"id" : 0,
+						"distance" : 25.0
+					},
+					
+					"target#1" : 
+					{
+						"id" : 1,
+						"distance" : 42.0
+					},
+					
+					"target#2" :
+					{
+						"id" : 2,
+						"distance" : -1.0
+					},
+					
+					"target#3" :
+					{
+						"id" : 3,
+						"distance" : 49.0
+					}
+					
+				}
+			},
+			
+			"vertex#3" :
+			{
+				"id": 3,
+				
+				"demand": 60.0,
+				
+				"targets" :
+				{
+				
+					"target#0" :
+					{
+						"id" : 0,
+						"distance" : 33.0
+					},
+					
+					"target#1" : 
+					{
+						"id" : 1,
+						"distance" : 35.0
+					},
+					
+					"target#2" :
+					{
+						"id" : 2,
+						"distance" : 27.0
+					},
+					
+					"target#3" :
+					{
+						"id" : 3,
+						"distance" : -1.0
+					}
+				}
+			}
+		}
+	}
+}
