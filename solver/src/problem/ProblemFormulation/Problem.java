@@ -27,7 +27,7 @@ public abstract class Problem
         this.lowerIsBetter = lowerIsBetter;
         this.structure = structure;
         this.candidateDeterminer = candidateDeterminer;
-
+        this.candidateList = null;
     }
 
     public void load(File file) throws Exception

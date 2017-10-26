@@ -26,7 +26,8 @@ public class CandidateDeterminerVrpSorting extends CandidateDeterminer
     /**
      * Uses QuickSort to get the customers
      * @param problem
-     * @return candidateList based on the <numberOfCandidates> closest customers for each customes
+     * @return candidateList based on the <numberOfCandidates> closest customers for each customers
+     * Does not include edge to back-to-the-depot and self-loop edges
      * @throws Exception
      */
     @Override

@@ -11,6 +11,7 @@ import java.util.Map;
 /**
  * Created by Aldar on 06-Oct-17.
  * Instances of this class with different columnNumbers may cause collisions for each other due to using same static multiplier values for hashing
+ * Generally it is a relatively useless class since components are most likely to be dense, and access gain is not formidable
  */
 public class ComponentStructure2dHash extends ComponentStructure2d
 {
