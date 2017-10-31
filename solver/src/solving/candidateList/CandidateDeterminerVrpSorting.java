@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * Created by Aldar on 20-Oct-17.
- * If one uses O(n^2) sorting and then selecting top-K elements then the whole list determination algorithm will consume O(n^3)
+ * If one uses O(n^2) sorting and then selecting top-K elements then the whole candidates determination algorithm will consume O(n^3)
  */
 public class CandidateDeterminerVrpSorting extends CandidateDeterminer
 {
@@ -44,9 +44,11 @@ public class CandidateDeterminerVrpSorting extends CandidateDeterminer
 
             for (int row = 0; row < problemVRP.getVertexNum(); row++)
             {
-                ArrayList<Integer> listRow = new ArrayList<Integer>();
+                ArrayList<Integer> candidateRow = new ArrayList<Integer>();
+                ArrayList<Integer> restRow = new ArrayList<Integer>();
 
-                candidateList.list.add(listRow);
+                candidateList.candidates.add(candidateRow);
+                candidateList.rest.add(restRow);
 
                 List<Component2d> allPossibleComponents = new ArrayList<Component2d>();
 
@@ -59,7 +61,10 @@ public class CandidateDeterminerVrpSorting extends CandidateDeterminer
                 allPossibleComponents.sort(new Component2dComparatorByDistance());
 
                 for (int column = 0; column < numberOfCandidates; column++)
-                    listRow.add(allPossibleComponents.get(column).getColumn());
+                    candidateRow.add(allPossibleComponents.get(column).getColumn());   // get for ArrayList is O(1), so it's fine
+
+                for (int column = numberOfCandidates; column < allPossibleComponents.size(); column++)
+                    restRow.add(allPossibleComponents.get(column).getColumn());
             }
 
             return candidateList;

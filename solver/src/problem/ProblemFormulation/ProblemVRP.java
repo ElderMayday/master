@@ -258,7 +258,7 @@ public class ProblemVRP extends Problem2d
 
             int row = solutionVRP.getCurrentCustomerId();
 
-            List<Integer> currentCandidateListVRP = allCandidateListsVRP.list.get(row);
+            List<Integer> currentCandidateListVRP = allCandidateListsVRP.candidates.get(row);
 
             Tour currentTour = solutionVRP.getCurrentTour();
 

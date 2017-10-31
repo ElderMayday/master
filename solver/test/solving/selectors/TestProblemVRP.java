@@ -147,7 +147,7 @@ public class TestProblemVRP
             List<Component> preselected = problem.getNextComponents(solution);
 
             assertEquals(preselected.size(), 2);
-            assertEquals(preselected.get(0), problem.structure2d.get(0, 1));  // c[0;2] must drop off since not in candidate-list
+            assertEquals(preselected.get(0), problem.structure2d.get(0, 1));  // c[0;2] must drop off since not in candidate-candidates
             assertEquals(preselected.get(1), problem.structure2d.get(0, 3));
 
             solution.addCurrentTourComponent(problem.structure2d.get(0, 2)); // disobeys the advice (not what will happen IRL, but for tests will go)
@@ -185,13 +185,13 @@ public class TestProblemVRP
             List<Component> preselected = problem.getNextComponents(solution);
 
             assertEquals(preselected.size(), 2);
-            assertEquals(preselected.get(0), problem.structure2d.get(0, 1));     // c[0;2] must drop off since not in candidate-list
+            assertEquals(preselected.get(0), problem.structure2d.get(0, 1));     // c[0;2] must drop off since not in candidate-candidates
             assertEquals(preselected.get(1), problem.structure2d.get(0, 3));
 
             solution.addCurrentTourComponent(problem.structure2d.get(0, 2));
             preselected = problem.getNextComponents(solution);
 
-            // cannot move to #1 cause won't be able to return to the depot then, despite being in the candidate list
+            // cannot move to #1 cause won't be able to return to the depot then, despite being in the candidate candidates
             // but can move to #3 cause have 50 spare length units, which is more than 49 + 0
 
             assertEquals(preselected.size(), 1);

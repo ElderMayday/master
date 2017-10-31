@@ -9,9 +9,12 @@ public class CandidateListVRP extends CandidateList
 {
     public CandidateListVRP()
     {
-        list = new ArrayList<ArrayList<Integer>>();
+        candidates = new ArrayList<ArrayList<Integer>>();
+        rest = new ArrayList<ArrayList<Integer>>();
     }
 
 
-    public ArrayList<ArrayList<Integer>> list;     // matrix of indexes of the candidates for each of the customers
+    public ArrayList<ArrayList<Integer>> candidates;     // matrix of indexes of the candidates for each of the customers (sorted by preference)
+
+    public ArrayList<ArrayList<Integer>> rest;     // edges that did were not selected as candidates (sorted y preference)
 }

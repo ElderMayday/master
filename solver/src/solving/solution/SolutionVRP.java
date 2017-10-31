@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class SolutionVRP extends Solution
 {
-    protected List<Component2d> components2d;   // Chosen components2d list
+    protected List<Component2d> components2d;   // Chosen components2d candidates
     protected ProblemVRP problemVRP;            // The problem this solving belongs to
 
     protected boolean[] visited;                // Flag array of whether the corresponding custumer has been visited

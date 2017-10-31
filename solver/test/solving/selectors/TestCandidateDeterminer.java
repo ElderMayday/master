@@ -4,15 +4,12 @@ import org.junit.Test;
 
 import problem.componentStructure.ComponentStructure2dStandard;
 import problem.fleet.FleetDescendingCapacity;
-import problem.problemFormulation.Problem;
 import problem.problemFormulation.ProblemVRP;
 import solving.candidateList.CandidateDeterminer;
 import solving.candidateList.CandidateDeterminerVrpSorting;
-import solving.candidateList.CandidateList;
 import solving.candidateList.CandidateListVRP;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -40,26 +37,39 @@ public class TestCandidateDeterminer
 
         CandidateListVRP allLists = (CandidateListVRP) problem.getCandidateList();
 
-        assertEquals(allLists.list.size(), 4);
+        assertEquals(allLists.candidates.size(), 4);
 
-        List<Integer> list0 = allLists.list.get(0);
+        List<Integer> list0 = allLists.candidates.get(0);
         assertEquals(list0.size(), 2);
         assertEquals(list0.get(0).intValue(), 1);
         assertEquals(list0.get(1).intValue(), 3);
 
-        List<Integer> list1 = allLists.list.get(1);
+        list0 = allLists.rest.get(0);
+        assertEquals(list0.size(), 1);
+        assertEquals(list0.get(0).intValue(), 2);
+
+        List<Integer> list1 = allLists.candidates.get(1);
         assertEquals(list1.size(), 2);
         assertEquals(list1.get(0).intValue(), 3);
         assertEquals(list1.get(1).intValue(), 2);
 
-        List<Integer> list2 = allLists.list.get(2);
+        list1 = allLists.rest.get(1);
+        assertEquals(list1.size(), 0);
+
+        List<Integer> list2 = allLists.candidates.get(2);
         assertEquals(list2.size(), 2);
         assertEquals(list2.get(0).intValue(), 1);
         assertEquals(list2.get(1).intValue(), 3);
 
-        List<Integer> list3 = allLists.list.get(3);
+        list1 = allLists.rest.get(2);
+        assertEquals(list1.size(), 0);
+
+        List<Integer> list3 = allLists.candidates.get(3);
         assertEquals(list3.size(), 2);
         assertEquals(list3.get(0).intValue(), 2);
         assertEquals(list3.get(1).intValue(), 1);
+
+        list1 = allLists.rest.get(3);
+        assertEquals(list1.size(), 0);
     }
 }
