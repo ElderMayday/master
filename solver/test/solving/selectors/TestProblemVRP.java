@@ -203,4 +203,38 @@ public class TestProblemVRP
             assertTrue(false);
         }
     }
+
+    @Test
+    public void testProblemVrpGetNextComponents_WithCandidates_WithCandidateListExhausting()
+    {
+        ProblemVRP problem;
+
+        try
+        {
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(2));
+            problem.load(new File("problem-samples/vrp-unit-test-4.json"));
+
+            Solution solution = new SolutionVRP(problem);
+
+            List<Component> preselected = problem.getNextComponents(solution);
+
+            assertEquals(preselected.size(), 2);
+            assertEquals(preselected.get(0), problem.structure2d.get(0, 1));     // c[0;2] must drop off since not in candidate-candidates
+            assertEquals(preselected.get(1), problem.structure2d.get(0, 3));
+
+            solution.addCurrentTourComponent(problem.structure2d.get(0, 3));
+            preselected = problem.getNextComponents(solution);
+
+            solution.addCurrentTourComponent(problem.structure2d.get(3, 0));
+            preselected = problem.getNextComponents(solution);
+
+            assertEquals(preselected.size(), 1);
+            assertEquals(preselected.get(0), problem.structure2d.get(0, 2));  // for #1 capacity is not enough, #3 was already visited, so the only choice is to take the closest from the rest-list
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            assertTrue(false);
+        }
+    }
 }

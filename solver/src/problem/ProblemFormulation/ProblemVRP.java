@@ -269,6 +269,21 @@ public class ProblemVRP extends Problem2d
                                 (currentTour.getLeftDistance() >= structure2d.get(row, column).getDistance() + structure2d.get(column, depotId).getDistance()))  // relies on triangle inequality in the graph
                             result.add(structure2d.get(row, column));
 
+            if (result.size() == 0)      // if none of candidates was selected, then pick first-fitting from the rest
+            {
+                List<Integer> currentRestListVRR = allCandidateListsVRP.rest.get(row);
+
+                for (Integer column : currentRestListVRR)
+                    if (!solutionVRP.getVisited(column))  // supposing back-to-the-depot and loop edges are excluded
+                        if (currentTour.getLeftCapacity() >= demands[column]) // if can satisfy that customer
+                            if (!currentTour.getVehicle().hasLengthRestriction ||
+                                    (currentTour.getLeftDistance() >= structure2d.get(row, column).getDistance() + structure2d.get(column, depotId).getDistance()))  // relies on triangle inequality in the graph
+                            {
+                                result.add(structure2d.get(row, column));
+                                break;
+                            }
+            }
+
             if (result.size() == 0)
                 result.add(structure2d.get(row, depotId));
 
