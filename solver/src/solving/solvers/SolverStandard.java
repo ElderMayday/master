@@ -1,11 +1,13 @@
 package solving.solvers;
 
+import problem.component.Component;
 import problem.problemFormulation.Problem;
 import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.solution.Solution;
 import solving.globalUpdate.GlobalUpdate;
 import solving.localSearch.LocalSearch;
 import solving.selectors.Selector;
+import solving.solution.SolutionVRP;
 import solving.terminationCriteria.TerminationCriteria;
 
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ public class SolverStandard extends Solver
 
 
     @Override
-    public List<Solution> solve()
+    public List<Solution> solve() throws Exception
     {
         List<Solution> solutions;
 
@@ -53,24 +55,29 @@ public class SolverStandard extends Solver
 
 
 
-    protected List<Solution> constructAllSolutions()
+    protected List<Solution> constructAllSolutions() throws Exception
     {
         List<Solution> solutions = new ArrayList<Solution>();
 
         for (int i = 0; i < antNum; i++)
-        {
             solutions.add(constructOneSolution());
-        }
 
         return solutions;
     }
 
 
-    protected Solution constructOneSolution()
+    protected Solution constructOneSolution() throws Exception
     {
-        Solution solution = null;
+        Solution solution = problem.createSolution();
 
+        while (!solution.isComplete())
+        {
+            List<Component> components = problem.getNextComponents(solution);
 
+            Component component = selector.select(components);
+
+            solution.addCurrentTourComponent(component);
+        }
 
         return solution;
     }

@@ -48,6 +48,12 @@ public class ProblemVRP extends Problem2d
     }
 
     @Override
+    public Solution createSolution()
+    {
+        return new SolutionVRP(this);
+    }
+
+    @Override
     protected void readDataFromFile(File file) throws Exception
     {
         String text = new Scanner(file).useDelimiter("\\Z").next();

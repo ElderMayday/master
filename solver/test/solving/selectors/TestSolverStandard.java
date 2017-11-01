@@ -11,12 +11,14 @@ import solving.localSearch.LocalSearch;
 import solving.localSearch.LocalSearchNone;
 import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.pheromoneInitializer.PheromoneInitializerRange;
+import solving.solution.Solution;
 import solving.solvers.Solver;
 import solving.solvers.SolverStandard;
 import solving.terminationCriteria.TerminationCriteria;
 import solving.terminationCriteria.TerminationCriteriaCounter;
 
 import java.io.File;
+import java.util.List;
 
 
 /**
@@ -45,7 +47,7 @@ public class TestSolverStandard
 
             Solver solver = new SolverStandard(problem, selector, true, terminationCriteria, initializer, localSearch, update, 3);
 
-            solver.solve();
+            List<Solution> solutions = solver.solve();
         } catch (Exception e)
         {
             e.printStackTrace();

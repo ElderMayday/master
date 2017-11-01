@@ -58,6 +58,11 @@ public abstract class Problem
     public abstract List<Component> getNextComponents(Solution solution);
 
 
+    /**
+     * Factory method generating a solution of the corresponding problem variation (for the sake of generality in Solver class)
+     * @return
+     */
+    public abstract Solution createSolution();
 
 
 

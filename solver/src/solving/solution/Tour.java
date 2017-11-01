@@ -105,4 +105,17 @@ public class Tour
     {
         return customers;
     }
+
+
+    public String toString()
+    {
+        String result = "{";
+
+        for (int i = 0; i < customers.size() - 1; i++)
+            result += customers.get(i).toString() + "-";
+
+        result += customers.get(customers.size() - 1).toString() + "}";
+
+        return result;
+    }
 }

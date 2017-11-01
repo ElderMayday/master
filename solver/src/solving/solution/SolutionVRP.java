@@ -21,9 +21,6 @@ public class SolutionVRP extends Solution
     protected boolean[] visited;                // Flag array of whether the corresponding custumer has been visited
     protected int visitedNum;                   // Number of visited customers
 
-
-
-    protected boolean isComplete;               // Flag: visitedNum == problem customer number
     protected Tour currentTour;                 // The tour where the new components will be added
     protected List<Tour> tours;                 // Every tour of the solution
     protected int currentCustomerId;            // The ID of the customer that was added
@@ -163,10 +160,7 @@ public class SolutionVRP extends Solution
         return currentCustomerId;
     }
 
-    public boolean isComplete()
-    {
-        return isComplete;
-    }
+
 
     @Override
     public Iterator<Component> iterator()
@@ -196,5 +190,19 @@ public class SolutionVRP extends Solution
         {
             return component2dIterator.next();
         }
+    }
+
+
+
+
+
+    public String toString()
+    {
+        String result = "";
+
+        for (Tour tour : tours)
+            result += tour.toString() + " ";
+
+        return result;
     }
 }

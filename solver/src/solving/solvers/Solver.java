@@ -40,7 +40,7 @@ public abstract class Solver
             problem.precomputeValues();
     }
 
-    public abstract List<Solution> solve();
+    public abstract List<Solution> solve() throws Exception;
 
 
 }
