@@ -237,4 +237,35 @@ public class TestProblemVRP
             assertTrue(false);
         }
     }
+
+    @Test
+    public void testProblemVrpGetNextComponents_WithCandidates_()
+    {
+        ProblemVRP problem;
+
+        try
+        {
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
+            problem.load(new File("problem-samples/vrp-unit-test-5.json"));
+
+            SolutionVRP solution = new SolutionVRP(problem);
+
+            List<Component> preselected = problem.getNextComponents(solution);
+
+            assertEquals(preselected.size(), 1);
+            assertEquals(preselected.get(0), problem.structure2d.get(0, 0));
+
+            solution.addCurrentTourComponent(preselected.get(0));
+
+            assertEquals(solution.getTours().size(), 2);
+            assertEquals(solution.getTours().get(0).getCustomers().size(), 0);
+            assertEquals(solution.getTours().get(0).getLeftCapacity(), 201.0, 0.001);
+            assertEquals(solution.getTours().get(0).getLeftDistance(), 1.0, 0.001);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            assertTrue(false);
+        }
+    }
 }

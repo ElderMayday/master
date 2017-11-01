@@ -37,14 +37,17 @@ public class Tour
 
     public void addDistance(double distance) throws Exception
     {
-        this.usedDistance += distance;
-
-        if (vehicle.hasLengthRestriction)
+        if (distance > 0.0)
         {
-            leftDistance -= distance;
+            this.usedDistance += distance;
 
-            if (distance < 0)
-                throw new Exception("Distance constraint violation");
+            if (vehicle.hasLengthRestriction)
+            {
+                leftDistance -= distance;
+
+                if (distance < 0)
+                    throw new Exception("Distance constraint violation");
+            }
         }
     }
 

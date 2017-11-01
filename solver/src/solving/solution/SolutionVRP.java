@@ -87,9 +87,8 @@ public class SolutionVRP extends Solution
 
         components2d.add(component2d);
 
-        if (component2d.getRow() != problemVRP.getDepotId())
-            if (component2d.getRow() != currentCustomerId)
-                throw new Exception("New component neither finishes the current tour, nor starts a new one");
+        if (component2d.getRow() != currentCustomerId)
+            throw new Exception("New component does not procede the current tour");
 
         currentCustomerId = component2d.getColumn();
 
@@ -98,8 +97,8 @@ public class SolutionVRP extends Solution
             visitedNum++;
             currentTour.getCustomers().add(component2d.getColumn());
 
-            if (visited[currentCustomerId] == true)
-                throw new Exception();
+            if (visited[currentCustomerId])
+                throw new Exception("Vehicle has revisited a customer");
         }
 
         visited[currentCustomerId] = true;
@@ -107,13 +106,16 @@ public class SolutionVRP extends Solution
         currentTour.addCapacity(problemVRP.getDemands()[currentCustomerId]);
         currentTour.addDistance(component2d.getDistance());
 
-        if (currentCustomerId == problemVRP.getDepotId())
+        if (currentCustomerId == problemVRP.getDepotId())    // if returned to the depot
         {
             currentTour.setFinished(true);
 
-            if (visitedNum != problemVRP.getVertexNum())
+            if (component2d.getRow() == problemVRP.getDepotId()) // could not even start a tour (vehicle stays in the depot)
+                currentTour.getCustomers().clear();              // delete the only component c[depotId;depotId] since it is not necessary
+
+            if (visitedNum != problemVRP.getVertexNum())    // if more tours expected to finish the solution
                 startNewTour();
-            else
+            else                                            // if visited everyhting
             {
                 isComplete = true;
                 currentTour = null;
