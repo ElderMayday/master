@@ -146,14 +146,14 @@ public class TestSolutionVrp
             assertEquals(tour2.getUsedDistance(), 30.0, 0.001);
             assertEquals(tour2.getCustomers().get(0).intValue(), 1);
             assertEquals(tour2.isFinished(), false);
-            assertEquals(solution.isComplete(), false);
+            assertEquals(solution.getComplete(), false);
 
             solution.addCurrentTourComponent(c5);
             assertEquals(tour2.getCustomers().size(), 1);
             assertEquals(tour2.isFinished(), true);
             assertEquals(tour2.getUsedCapacity(), 20.0, 0.001);
             assertEquals(tour2.getUsedDistance(), 80.0, 0.001);
-            assertEquals(solution.isComplete(), true);
+            assertEquals(solution.getComplete(), true);
 
 
             Tour tour1 = solution.getTours().get(0);

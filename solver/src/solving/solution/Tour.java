@@ -27,6 +27,12 @@ public class Tour
         this.vehicle = vehicle;
         this.customers = new ArrayList<Integer>();
 
+        resetTourParameters();
+    }
+
+
+    public void resetTourParameters()
+    {
         usedDistance = 0.0;
         usedCapacity = 0.0;
 
@@ -114,8 +120,9 @@ public class Tour
         for (int i = 0; i < customers.size() - 1; i++)
             result += customers.get(i).toString() + "-";
 
-        result += customers.get(customers.size() - 1).toString() + "}";
+        if (customers.size() > 0)
+            result += customers.get(customers.size() - 1).toString();
 
-        return result;
+        return result + "}";
     }
 }

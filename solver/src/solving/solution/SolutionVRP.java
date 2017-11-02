@@ -80,6 +80,9 @@ public class SolutionVRP extends Solution
     @Override
     public void addCurrentTourComponent(Component component) throws Exception
     {
+        if (isPartiallyDestroyed)
+            throw new Exception("Cannot use construction method for partially destroyed solution");
+
         Component2d component2d = (Component2d) component;
 
         components2d.add(component2d);
@@ -132,13 +135,36 @@ public class SolutionVRP extends Solution
         return objective;
     }
 
+
+
+
+    @Override
+    public void reconstruct() throws Exception
+    {
+        if (!isPartiallyDestroyed)
+            throw new Exception("Cannot reconstruct not partially destroyed solution");
+
+        // TO-DO reconstruct here
+
+        isPartiallyDestroyed = false;
+        isComplete = true;
+    }
+
+
     public boolean getVisited(int index)
     {
         return visited[index];
     }
 
+    public void setVisited(int index, boolean value)
+    {
+        visited[index] = value;
+    }
 
-
+    public ProblemVRP getProblemVRP()
+    {
+        return problemVRP;
+    }
 
     public List<Component2d> getComponents2d()
     {

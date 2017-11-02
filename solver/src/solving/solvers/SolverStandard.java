@@ -7,7 +7,6 @@ import solving.solution.Solution;
 import solving.globalUpdate.GlobalUpdate;
 import solving.localSearch.LocalSearch;
 import solving.selectors.Selector;
-import solving.solution.SolutionVRP;
 import solving.terminationCriteria.TerminationCriteria;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import java.util.List;
 public class SolverStandard extends Solver
 {
     protected LocalSearch localSearch;
-    protected GlobalUpdate update;
+    protected GlobalUpdate globalUpdate;
     protected int antNum;
 
 
@@ -29,7 +28,7 @@ public class SolverStandard extends Solver
         super(problem, selector, localSearch, precomputeValues, terminationCriteria, initializer);
 
         this.localSearch = localSearch;
-        this.update = update;
+        this.globalUpdate = update;
         this.antNum = antNum;
     }
 
@@ -45,13 +44,25 @@ public class SolverStandard extends Solver
         do
         {
             solutions = constructAllSolutions();
+
+            solutions = executeLocalSearch(solutions);
+
+            globalUpdate.update(solutions);
         }
         while (!terminationCriteria.isFullfilled());
 
         return solutions;
     }
 
+    protected List<Solution> executeLocalSearch(List<Solution> solutions)
+    {
+        List<Solution> solutionsLocalSearched = new ArrayList<Solution>();
 
+        for (Solution solution : solutions)
+            solutionsLocalSearched.add(localSearch.search(problem, solution));
+
+        return solutionsLocalSearched;
+    }
 
 
 
@@ -70,7 +81,7 @@ public class SolverStandard extends Solver
     {
         Solution solution = problem.createSolution();
 
-        while (!solution.isComplete())
+        while (!solution.getComplete())
         {
             List<Component> components = problem.getNextComponents(solution);
 

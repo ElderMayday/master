@@ -9,6 +9,7 @@ import problem.problemFormulation.Problem;
 public abstract class Solution implements Iterable<Component>
 {
     protected boolean isComplete;               // Flag: visitedNum == problem customer number
+    protected boolean isPartiallyDestroyed;
     protected Problem problem;
 
 
@@ -20,18 +21,36 @@ public abstract class Solution implements Iterable<Component>
     {
         this.problem = problem;
         isComplete = false;
+        isPartiallyDestroyed = false;
     }
 
     public abstract void addCurrentTourComponent(Component component) throws Exception;
 
     public abstract double objective();
 
+    public abstract void reconstruct() throws Exception;
 
 
 
 
 
-    public boolean isComplete()
+
+    public void setComplete(boolean complete)
+    {
+        isComplete = complete;
+    }
+
+    public boolean isPartiallyDestroyed()
+    {
+        return isPartiallyDestroyed;
+    }
+
+    public void setPartiallyDestroyed(boolean partiallyDestroyed)
+    {
+        isPartiallyDestroyed = partiallyDestroyed;
+    }
+
+    public boolean getComplete()
     {
         return isComplete;
     }

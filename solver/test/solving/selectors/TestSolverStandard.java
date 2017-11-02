@@ -5,6 +5,7 @@ import problem.componentStructure.ComponentStructure2dStandard;
 import problem.fleet.FleetDescendingCapacity;
 import problem.problemFormulation.Problem;
 import problem.problemFormulation.ProblemVRP;
+import solving.candidateList.CandidateDeterminerVrpSorting;
 import solving.globalUpdate.AntSystem;
 import solving.globalUpdate.GlobalUpdate;
 import solving.localSearch.LocalSearch;
@@ -31,8 +32,8 @@ public class TestSolverStandard
     {
         try
         {
-            Problem problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
-            problem.load(new File("problem-samples/vrp-unit-test.json"));
+            Problem problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(2));
+            problem.load(new File("problem-samples/vrp-unit-test-2.json"));
 
 
             Selector selector = new SelectorStandard(1.0, 1.0);
