@@ -10,16 +10,14 @@ import solving.globalUpdate.AntSystem;
 import solving.globalUpdate.GlobalUpdate;
 import solving.localSearch.LocalSearch;
 import solving.localSearch.LocalSearchNone;
-import solving.pheromoneInitializer.PheromoneInitializer;
-import solving.pheromoneInitializer.PheromoneInitializerRange;
+import solving.pheromoneInitializer.*;
 import solving.solution.Solution;
-import solving.solvers.Solver;
-import solving.solvers.SolverStandard;
-import solving.terminationCriteria.TerminationCriteria;
-import solving.terminationCriteria.TerminationCriteriaCounter;
+import solving.solvers.*;
+import solving.terminationCriteria.*;
 
 import java.io.File;
 import java.util.List;
+import static org.junit.Assert.*;
 
 
 /**
@@ -35,7 +33,6 @@ public class TestSolverStandard
             Problem problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(2));
             problem.load(new File("problem-samples/vrp-unit-test-2.json"));
 
-
             Selector selector = new SelectorStandard(1.0, 1.0);
 
             TerminationCriteria terminationCriteria = new TerminationCriteriaCounter(5);
@@ -49,6 +46,12 @@ public class TestSolverStandard
             Solver solver = new SolverStandard(problem, selector, true, terminationCriteria, initializer, localSearch, update, 3);
 
             List<Solution> solutions = solver.solve();
+
+            assertEquals(solutions.size(), 3);
+
+            assertEquals(solutions.get(0).getComplete(), true);
+            assertEquals(solutions.get(1).getComplete(), true);
+            assertEquals(solutions.get(2).getComplete(), true);
         } catch (Exception e)
         {
             e.printStackTrace();
