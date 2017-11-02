@@ -58,4 +58,10 @@ public class Component2d extends Component
     {
         this.distance = distance;
     }
+
+
+    public String toString()
+    {
+        return "(" + row + ";" + column + ")";
+    }
 }

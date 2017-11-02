@@ -57,6 +57,14 @@ public class TestSolutionDestroyer
 
             assertEquals(tours.get(1).getLeftCapacity(), 100.0, 0.001);
             assertEquals(tours.get(1).getLeftDistance(), 100.0, 0.001);
+
+            // components should have also been removed
+
+            assertTrue(!solutionVRP.getComponents2d().contains(problem.structure2d.get(0, 3)));
+            assertTrue(!solutionVRP.getComponents2d().contains(problem.structure2d.get(3, 0)));
+
+            assertTrue(!solutionVRP.getComponents2d().contains(problem.structure2d.get(1, 0)));
+            assertTrue(!solutionVRP.getComponents2d().contains(problem.structure2d.get(2, 1)));
         }
         catch (Exception e)
         {

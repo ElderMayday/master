@@ -1,5 +1,6 @@
 package solving.solutionDestroyer;
 
+import problem.component.Component2d;
 import problem.componentStructure.ComponentStructure2d;
 import problem.problemFormulation.Problem;
 import problem.problemFormulation.ProblemVRP;
@@ -36,6 +37,7 @@ public class SolutionDestroyerVRP extends SolutionDestroyer
         SolutionVRP solutionVRP = (SolutionVRP) solution;
         ComponentStructure2d structure2d = solutionVRP.getProblemVRP().structure2d;
         ProblemVRP problemVRP = solutionVRP.getProblemVRP();
+        List<Component2d> components = solutionVRP.getComponents2d();
 
         for (Tour tour : solutionVRP.getTours())
         {
@@ -47,8 +49,19 @@ public class SolutionDestroyerVRP extends SolutionDestroyer
 
                 int toLeave = random.nextInt(customers.size()) + 1;  // how many first visited customers to leave
 
+                // remove the last tour-edge to the depot
+                Component2d toRemove = structure2d.get(customers.get(customers.size() - 1), problemVRP.getDepotId());
+                components.remove(toRemove);
+
                 for (int index = 0; index < toLeave ; index++)
                 {
+                    // remove the component preceding to the current customer deleted
+                    if (customers.size() > 1)
+                        toRemove = structure2d.get(customers.get(customers.size() - 2), customers.size() - 1);
+                    else
+                        toRemove = structure2d.get(problemVRP.getDepotId(), customers.get(customers.size() - 1));
+                    components.remove(toRemove);
+
                     solutionVRP.setVisited(customers.get(customers.size() - 1), false);   // tag as non-visited
                     customers.remove(customers.size() - 1);  // remove last customer
                 }
