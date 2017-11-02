@@ -1,5 +1,6 @@
 package solving.solvers;
 
+import problem.component.Component;
 import problem.problemFormulation.Problem;
 import solving.localSearch.LocalSearch;
 import solving.pheromoneInitializer.PheromoneInitializer;
@@ -42,5 +43,19 @@ public abstract class Solver
 
     public abstract List<Solution> solve() throws Exception;
 
+    protected Solution constructOneSolution() throws Exception
+    {
+        Solution solution = problem.createSolution();
 
+        while (!solution.getComplete())
+        {
+            List<Component> components = problem.getNextComponents(solution);
+
+            Component component = selector.select(components);
+
+            solution.addCurrentTourComponent(component);
+        }
+
+        return solution;
+    }
 }

@@ -17,21 +17,17 @@ import java.util.List;
  */
 public class SolverStandard extends Solver
 {
-    protected LocalSearch localSearch;
     protected GlobalUpdate globalUpdate;
     protected int antNum;
-
 
 
     public SolverStandard(Problem problem, Selector selector, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, GlobalUpdate update, int antNum)
     {
         super(problem, selector, localSearch, precomputeValues, terminationCriteria, initializer);
 
-        this.localSearch = localSearch;
         this.globalUpdate = update;
         this.antNum = antNum;
     }
-
 
 
     @Override
@@ -65,7 +61,6 @@ public class SolverStandard extends Solver
     }
 
 
-
     protected List<Solution> constructAllSolutions() throws Exception
     {
         List<Solution> solutions = new ArrayList<Solution>();
@@ -74,22 +69,5 @@ public class SolverStandard extends Solver
             solutions.add(constructOneSolution());
 
         return solutions;
-    }
-
-
-    protected Solution constructOneSolution() throws Exception
-    {
-        Solution solution = problem.createSolution();
-
-        while (!solution.getComplete())
-        {
-            List<Component> components = problem.getNextComponents(solution);
-
-            Component component = selector.select(components);
-
-            solution.addCurrentTourComponent(component);
-        }
-
-        return solution;
     }
 }

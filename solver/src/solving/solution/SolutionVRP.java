@@ -5,6 +5,7 @@ import problem.component.Component2d;
 import problem.fleet.Vehicle;
 import problem.problemFormulation.Problem;
 import problem.problemFormulation.ProblemVRP;
+import solving.selectors.Selector;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -139,7 +140,7 @@ public class SolutionVRP extends Solution
 
 
     @Override
-    public void reconstruct() throws Exception
+    public void reconstruct(Selector selector) throws Exception
     {
         if (!isPartiallyDestroyed)
             throw new Exception("Cannot reconstruct not partially destroyed solution");
