@@ -8,6 +8,7 @@ import problem.problemFormulation.ProblemVRP;
 import solving.selectors.Selector;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -220,7 +221,40 @@ public class SolutionVRP extends Solution
     }
 
 
+    /**
+     * Performs deep copy of the solution include all its tour.
+     * !!! REMARK, the vehicle iterator is not copied
+     * @return
+     */
+    @Override
+    public Solution deepCopy()
+    {
+        SolutionVRP solutionVRP = new SolutionVRP(problem);
 
+        solutionVRP.isComplete = this.isComplete;
+        solutionVRP.isPartiallyDestroyed = this.isPartiallyDestroyed;
+
+        solutionVRP.components2d = new ArrayList<Component2d>(this.components2d); // only list is copied, the instances are the same from the problem definition
+
+        solutionVRP.visited = Arrays.copyOf(this.visited, this.visited.length);
+
+        solutionVRP.visitedNum = this.visitedNum;
+
+        solutionVRP.tours = new ArrayList<Tour>();
+
+        for (Tour tour : this.tours)
+            solutionVRP.tours.add(tour.deepCopy());  // every tour has to be copied
+
+        if (currentTour != null)
+        {
+            int index = tours.indexOf(currentTour);
+            solutionVRP.currentTour = solutionVRP.tours.get(index);
+        }
+
+        solutionVRP.currentCustomerId = this.currentCustomerId;
+
+        return solutionVRP;
+    }
 
 
     public String toString()

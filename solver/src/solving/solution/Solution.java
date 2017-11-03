@@ -34,6 +34,8 @@ public abstract class Solution implements Iterable<Component>
 
 
 
+    public abstract Solution deepCopy();
+
 
 
     public void setComplete(boolean complete)
@@ -54,5 +56,20 @@ public abstract class Solution implements Iterable<Component>
     public boolean getComplete()
     {
         return isComplete;
+    }
+
+
+
+    /**
+     * Compares this and that solution
+     * @param that
+     * @return True if is better than that
+     */
+    public boolean betterThan(Solution that)
+    {
+        if (problem.lowerIsBetter)
+            return this.objective() < that.objective();
+        else
+            return this.objective() > that.objective();
     }
 }

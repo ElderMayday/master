@@ -12,14 +12,34 @@ public class Tour
 {
     protected boolean finished;           // flag if the tour is finished. At construction stage solution may have only one non-finished tour, but in iterated-greedy one may have several non-finished
     protected Vehicle vehicle;            // the vehicle used for passing the tour
+
+
+
     protected List<Integer> customers;    // IDs of the customers in order of their visiting
 
-    protected double usedDistance;
 
-
-
-    protected double leftDistance;
+    protected double usedDistance, leftDistance;
     protected double usedCapacity, leftCapacity;
+
+
+    public Tour deepCopy()
+    {
+        Tour tour = new Tour(vehicle);
+
+        List<Integer> newCustomers = new ArrayList<Integer>();
+        for (Integer integer : this.customers)
+            newCustomers.add(new Integer(integer));
+        tour.setCustomers(newCustomers);
+
+        tour.finished = this.finished;
+        tour.usedDistance = this.usedDistance;
+        tour.leftDistance = this.leftDistance;
+        tour.usedCapacity = this.usedCapacity;
+        tour.leftCapacity = this.leftCapacity;
+
+        return tour;
+    }
+
 
     public Tour(Vehicle vehicle)
     {
@@ -112,6 +132,10 @@ public class Tour
         return customers;
     }
 
+    public void setCustomers(List<Integer> customers)
+    {
+        this.customers = customers;
+    }
 
     public String toString()
     {
