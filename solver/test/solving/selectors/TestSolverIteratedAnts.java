@@ -1,6 +1,7 @@
 package solving.selectors;
 
 import org.junit.Test;
+import problem.component.Component2d;
 import problem.componentStructure.ComponentStructure2dStandard;
 import problem.fleet.FleetDescendingCapacity;
 import problem.problemFormulation.Problem;
@@ -10,21 +11,28 @@ import solving.globalUpdate.AntSystem;
 import solving.globalUpdate.GlobalUpdate;
 import solving.localSearch.LocalSearch;
 import solving.localSearch.LocalSearchNone;
-import solving.pheromoneInitializer.*;
+import solving.pheromoneInitializer.PheromoneInitializer;
+import solving.pheromoneInitializer.PheromoneInitializerRange;
 import solving.solution.Solution;
-import solving.solvers.*;
-import solving.terminationCriteria.*;
+import solving.solution.SolutionVRP;
+import solving.solutionDestroyer.SolutionDestroyer;
+import solving.solutionDestroyer.SolutionDestroyerVRP;
+import solving.solvers.Solver;
+import solving.solvers.SolverIteratedAnts;
+import solving.terminationCriteria.TerminationCriteria;
+import solving.terminationCriteria.TerminationCriteriaCounter;
 
 import java.io.File;
 import java.util.List;
+
 import static org.junit.Assert.*;
 
-
 /**
- * Created by Aldar on 17-Oct-17.
+ * Created by Aldar on 03-Nov-17.
  */
-public class TestSolverStandard
+public class TestSolverIteratedAnts
 {
+
     @Test
     public void testSolverStandard()
     {
@@ -38,22 +46,17 @@ public class TestSolverStandard
             LocalSearch localSearch = new LocalSearchNone();
             GlobalUpdate update = new AntSystem();
             PheromoneInitializer initializer = new PheromoneInitializerRange(1.0, 2.0);
+            SolutionDestroyer destroyer = new SolutionDestroyerVRP(1.0);
 
-            Solver solver = new SolverStandard(problem, selector, true, terminationCriteria, initializer, localSearch, update, 3);
+            Solver solver = new SolverIteratedAnts(problem, selector, true, terminationCriteria, initializer, localSearch, destroyer, 3, true);
 
             List<Solution> solutions = solver.solve();
 
-            assertEquals(solutions.size(), 3);
-
-            assertEquals(solutions.get(0).getComplete(), true);
-            assertEquals(solutions.get(1).getComplete(), true);
-            assertEquals(solutions.get(2).getComplete(), true);
-        } catch (Exception e)
-        {
-            e.printStackTrace();
+            // TO-DO some testing
         }
-
-
-
+        catch (Exception e)
+        {
+            assertTrue(false);
+        }
     }
 }

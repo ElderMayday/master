@@ -1,6 +1,5 @@
 package solving.solvers;
 
-import problem.component.Component;
 import problem.problemFormulation.Problem;
 import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.solution.Solution;
@@ -9,7 +8,6 @@ import solving.localSearch.LocalSearch;
 import solving.selectors.Selector;
 import solving.terminationCriteria.TerminationCriteria;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,9 +37,9 @@ public class SolverStandard extends Solver
 
         do
         {
-            solutions = constructAllSolutions();
+            solutions = constructSolutionList(antNum);
 
-            solutions = executeLocalSearch(solutions);
+            solutions = executeMultipleLocalSearch(solutions);
 
             globalUpdate.update(solutions);
         }
@@ -50,24 +48,5 @@ public class SolverStandard extends Solver
         return solutions;
     }
 
-    protected List<Solution> executeLocalSearch(List<Solution> solutions)
-    {
-        List<Solution> solutionsLocalSearched = new ArrayList<Solution>();
 
-        for (Solution solution : solutions)
-            solutionsLocalSearched.add(localSearch.search(problem, solution));
-
-        return solutionsLocalSearched;
-    }
-
-
-    protected List<Solution> constructAllSolutions() throws Exception
-    {
-        List<Solution> solutions = new ArrayList<Solution>();
-
-        for (int i = 0; i < antNum; i++)
-            solutions.add(constructOneSolution());
-
-        return solutions;
-    }
 }

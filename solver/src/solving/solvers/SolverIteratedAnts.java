@@ -18,13 +18,16 @@ import java.util.List;
 public class SolverIteratedAnts extends Solver
 {
     protected SolutionDestroyer destroyer;
+    protected int antNum;
+    protected boolean mustExecuteIntermediateSearch;
 
-
-    public SolverIteratedAnts(Problem problem, Selector selector, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, SolutionDestroyer destroyer)
+    public SolverIteratedAnts(Problem problem, Selector selector, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, SolutionDestroyer destroyer, int antNum, boolean mustExecuteIntermediateSearch)
     {
         super(problem, selector, localSearch, precomputeValues, terminationCriteria, initializer);
 
         this.destroyer = destroyer;
+        this.antNum = antNum;
+        this.mustExecuteIntermediateSearch = mustExecuteIntermediateSearch;
     }
 
 
@@ -34,7 +37,27 @@ public class SolverIteratedAnts extends Solver
     @Override
     public List<Solution> solve() throws Exception
     {
-        List<Solution> solutions = new ArrayList<Solution>();
+        List<Solution> solutions = constructSolutionList(antNum);
+        List<Solution> newSolutions;
+
+        solutions = executeMultipleLocalSearch(solutions);
+
+        do
+        {
+            newSolutions = new ArrayList<Solution>();
+            for (Solution solution : solutions)
+                newSolutions.add(solution.deepCopy());
+
+            for (int index = 0; index < solutions.size(); index++)
+                solutions.set(index, destroyer.destroy(solutions.get(index)));
+
+            for (int index = 0; index < solutions.size(); index++)
+                solutions.get(index).reconstruct(selector);
+
+            if (mustExecuteIntermediateSearch)
+                solutions = executeMultipleLocalSearch(solutions);
+        }
+        while (!terminationCriteria.isFullfilled());
 
         return solutions;
     }

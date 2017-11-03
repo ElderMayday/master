@@ -8,6 +8,7 @@ import solving.solution.Solution;
 import solving.selectors.Selector;
 import solving.terminationCriteria.TerminationCriteria;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +16,6 @@ import java.util.List;
  */
 public abstract class Solver
 {
-
     protected Problem problem;
     protected Selector selector;
     protected TerminationCriteria terminationCriteria;
@@ -57,5 +57,25 @@ public abstract class Solver
         }
 
         return solution;
+    }
+
+    protected List<Solution> constructSolutionList(int antNum) throws Exception
+    {
+        List<Solution> solutions = new ArrayList<Solution>();
+
+        for (int i = 0; i < antNum; i++)
+            solutions.add(constructOneSolution());
+
+        return solutions;
+    }
+
+    protected List<Solution> executeMultipleLocalSearch(List<Solution> solutions)
+    {
+        List<Solution> solutionsLocalSearched = new ArrayList<Solution>();
+
+        for (Solution solution : solutions)
+            solutionsLocalSearched.add(localSearch.search(problem, solution));
+
+        return solutionsLocalSearched;
     }
 }
