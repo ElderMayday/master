@@ -38,9 +38,9 @@ public class TestSolutionVrp
             Component2d c2 = new Component2d(1, 2, 1.0, 2.0);
             Component2d c3 = new Component2d(2, 3, 1.0, 3.0);
 
-            solution.addCurrentTourComponent(c1);
-            solution.addCurrentTourComponent(c2);
-            solution.addCurrentTourComponent(c3);
+            solution.addConstructionComponent(c1);
+            solution.addConstructionComponent(c2);
+            solution.addConstructionComponent(c3);
 
             Iterator<Component> componentIterator = solution.iterator();
             for (int i = 0; i < 3; i++)
@@ -86,9 +86,9 @@ public class TestSolutionVrp
             Component2d c3 = new Component2d(2, 3, 1.0, 3.0);
             c3.setDistance(3.0);
 
-            solution.addCurrentTourComponent(c1);
-            solution.addCurrentTourComponent(c2);
-            solution.addCurrentTourComponent(c3);
+            solution.addConstructionComponent(c1);
+            solution.addConstructionComponent(c2);
+            solution.addConstructionComponent(c3);
 
             assertEquals(solution.objective(), 6.0, 0.001);
         }
@@ -122,23 +122,23 @@ public class TestSolutionVrp
             assertEquals(solution.getVisited(2), false);
             assertEquals(solution.getVisited(3), false);
 
-            solution.addCurrentTourComponent(c1);
+            solution.addConstructionComponent(c1);
             assertEquals(solution.getVisited(3), true);
             assertEquals(solution.getCurrentTour().getLeftCapacity(), 80.0, 0.001);
             assertEquals(solution.getCurrentTour().getUsedDistance(), 45.0, 0.001);
             assertEquals(solution.getCurrentTour().isFinished(), false);
 
-            solution.addCurrentTourComponent(c2);
+            solution.addConstructionComponent(c2);
             assertEquals(solution.getVisited(2), true);
             assertEquals(solution.getCurrentTour().isFinished(), false);
 
-            solution.addCurrentTourComponent(c3);
+            solution.addConstructionComponent(c3);
             assertEquals(solution.getTours().get(0).isFinished(), true);
 
             assertEquals(solution.getTours().size(), 2);  // one finished and new pre-prepared
 
 
-            solution.addCurrentTourComponent(c4);
+            solution.addConstructionComponent(c4);
 
             Tour tour2 = solution.getTours().get(1);
             assertEquals(tour2.isFinished(), false);
@@ -148,7 +148,7 @@ public class TestSolutionVrp
             assertEquals(tour2.isFinished(), false);
             assertEquals(solution.getComplete(), false);
 
-            solution.addCurrentTourComponent(c5);
+            solution.addConstructionComponent(c5);
             assertEquals(tour2.getCustomers().size(), 1);
             assertEquals(tour2.isFinished(), true);
             assertEquals(tour2.getUsedCapacity(), 20.0, 0.001);

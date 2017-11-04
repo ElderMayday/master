@@ -30,7 +30,7 @@ public class ProblemVRP extends Problem2d
     protected int depotId;             // number of the vertex that represents depot
 
     protected ConstructionPreselectorVRP constructionPreselector; // nested class single instance to construct solutions depending on the mode
-
+    protected ReconstructionPreselectorVRP reconstructionPreselector;
 
     public ProblemVRP(ComponentStructure2d structure2d, Fleet fleet, CandidateDeterminer candidateDeterminer) throws FileNotFoundException
     {
@@ -39,12 +39,19 @@ public class ProblemVRP extends Problem2d
         this.fleet = fleet;
 
         constructionPreselector = candidateDeterminer == null ? new ConstructionPreselectorVrpNoCandidates() : new ConstructionPreselectorVrpCandidates();
+        reconstructionPreselector = candidateDeterminer == null ? new ReconstructionPreselectorVrpNoCandidates() : new ReconstructionPreselectorVrpCandidates();
     }
 
     @Override
-    public List<Component> getNextComponents(Solution solution)
+    public List<Component> getConstructionComponents(Solution solution)
     {
-        return constructionPreselector.getNextComponents((SolutionVRP) solution);
+        return constructionPreselector.getConstructionComponents((SolutionVRP) solution);
+    }
+
+    @Override
+    public List<Component> getReconstructionComponents(Solution solution)
+    {
+        return reconstructionPreselector.getReconstructionComponents((SolutionVRP) solution);
     }
 
     @Override
@@ -223,14 +230,13 @@ public class ProblemVRP extends Problem2d
      */
     interface ConstructionPreselectorVRP
     {
-        List<Component> getNextComponents(SolutionVRP solutionVRP);
+        List<Component> getConstructionComponents(SolutionVRP solutionVRP);
     }
 
     class ConstructionPreselectorVrpNoCandidates implements ConstructionPreselectorVRP
     {
-
         @Override
-        public List<Component> getNextComponents(SolutionVRP solutionVRP)
+        public List<Component> getConstructionComponents(SolutionVRP solutionVRP)
         {
             List<Component> result = new ArrayList<Component>();
 
@@ -256,7 +262,7 @@ public class ProblemVRP extends Problem2d
     {
 
         @Override
-        public List<Component> getNextComponents(SolutionVRP solutionVRP)
+        public List<Component> getConstructionComponents(SolutionVRP solutionVRP)
         {
             List<Component> result = new ArrayList<Component>();
 
@@ -294,6 +300,81 @@ public class ProblemVRP extends Problem2d
                 result.add(structure2d.get(row, depotId));
 
             return result;
+        }
+    }
+
+
+    /**
+     * Preselects components for the next reconstruction step (!NOT CONSTRUCTION), depending on the construction mode
+     */
+    interface ReconstructionPreselectorVRP
+    {
+        List<Component> getReconstructionComponents(SolutionVRP solutionVRP);
+    }
+
+    class ReconstructionPreselectorVrpNoCandidates implements ReconstructionPreselectorVRP
+    {
+        @Override
+        public List<Component> getReconstructionComponents(SolutionVRP solutionVRP)
+        {
+            List<Component> result = new ArrayList<Component>();
+
+            // find first non-finished tour
+
+            Tour tour = null;
+            for (Tour searchTour : solutionVRP.getTours())
+                if (!searchTour.isFinished())
+                    tour = searchTour;
+
+            if (tour != null) // if has a tour to finish
+            {
+                List<Integer> tourCustomers = tour.getCustomers();
+                solutionVRP.setCurrentTour(tour);
+                int row = tourCustomers.get(tourCustomers.size() - 1);
+                solutionVRP.setCurrentCustomerId(row);
+
+                Tour currentTour = solutionVRP.getCurrentTour();
+
+                for (int column = 0; column < vertexNum; column++)
+                    if (!solutionVRP.getVisited(column) && (row != column) && (column != depotId))
+                        if (currentTour.getLeftCapacity() >= demands[column]) // if can satisfy that customer
+                            if (!currentTour.getVehicle().hasLengthRestriction ||
+                                    (currentTour.getLeftDistance() >= structure2d.get(row, column).getDistance() + structure2d.get(column, depotId).getDistance()))  // relies on triangle inequality in the graph
+                                result.add(structure2d.get(row, column));
+
+                if (result.size() == 0)
+                    result.add(structure2d.get(row, depotId));
+            }
+            else  // if has no tour to finish, but the solution is still incomplete, so requires a new vehicle
+            {
+                solutionVRP.setCurrentTour(null);
+                solutionVRP.setCurrentCustomerId(depotId);
+                int row = depotId;
+                Tour currentTour = solutionVRP.startNewTour();
+
+                for (int column = 0; column < vertexNum; column++)
+                    if (!solutionVRP.getVisited(column) && (row != column) && (column != depotId))
+                        if (currentTour.getLeftCapacity() >= demands[column]) // if can satisfy that customer
+                            if (!currentTour.getVehicle().hasLengthRestriction ||
+                                    (currentTour.getLeftDistance() >= structure2d.get(row, column).getDistance() + structure2d.get(column, depotId).getDistance()))  // relies on triangle inequality in the graph
+                                result.add(structure2d.get(row, column));
+
+                if (result.size() == 0)
+                    result.add(structure2d.get(row, depotId));
+            }
+
+            return null;
+        }
+    }
+
+
+
+    class ReconstructionPreselectorVrpCandidates implements ReconstructionPreselectorVRP
+    {
+        @Override
+        public List<Component> getReconstructionComponents(SolutionVRP solutionVRP)
+        {
+            return null;
         }
     }
 }

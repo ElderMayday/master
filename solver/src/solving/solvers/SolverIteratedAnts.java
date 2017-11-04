@@ -51,8 +51,8 @@ public class SolverIteratedAnts extends Solver
             for (int index = 0; index < solutions.size(); index++)
                 solutions.set(index, destroyer.destroy(solutions.get(index)));
 
-            for (int index = 0; index < solutions.size(); index++)
-                solutions.get(index).reconstruct(selector);
+            //for (int index = 0; index < solutions.size(); index++)
+            //    solutions.get(index).reconstruct(selector);
 
             if (mustExecuteIntermediateSearch)
                 solutions = executeMultipleLocalSearch(solutions);

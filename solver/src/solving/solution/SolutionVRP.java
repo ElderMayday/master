@@ -22,9 +22,9 @@ public class SolutionVRP extends Solution
 
     protected boolean[] visited;                // Flag array of whether the corresponding custumer has been visited
     protected int visitedNum;                   // Number of visited customers
+    protected List<Tour> tours;                 // Every tour of the solution
 
     protected Tour currentTour;                 // The tour where the new components will be added
-    protected List<Tour> tours;                 // Every tour of the solution
     protected int currentCustomerId;            // The ID of the customer that was added
     protected Iterator<Vehicle> vehicleIterator; // The iterator, that automatically fetches the vehicles from the problemVrp fleet
 
@@ -57,7 +57,7 @@ public class SolutionVRP extends Solution
         components2d = new ArrayList<Component2d>();
     }
 
-    protected void startNewTour()
+    public Tour startNewTour()
     {
         Vehicle vehicle = vehicleIterator.next();
 
@@ -69,6 +69,16 @@ public class SolutionVRP extends Solution
             currentTour.setFinished(true);
 
         currentTour = tour;
+
+        return tour;
+    }
+
+    public void setVehicleIteratorToIndex(int numberOfUsed)
+    {
+        vehicleIterator = problemVRP.fleet.getVehiclesIterator();
+
+        for (int i = 0; i < numberOfUsed; i++)
+            vehicleIterator.next();
     }
 
 
@@ -80,13 +90,12 @@ public class SolutionVRP extends Solution
      * @param component
      */
     @Override
-    public void addCurrentTourComponent(Component component) throws Exception
+    public void addConstructionComponent(Component component) throws Exception
     {
         if (isPartiallyDestroyed)
             throw new Exception("Cannot use construction method for partially destroyed solution");
 
         Component2d component2d = (Component2d) component;
-
         components2d.add(component2d);
 
         if (component2d.getRow() != currentCustomerId)
@@ -101,9 +110,9 @@ public class SolutionVRP extends Solution
 
             if (visited[currentCustomerId])
                 throw new Exception("Vehicle has revisited a customer");
-        }
 
-        visited[currentCustomerId] = true;
+            visited[currentCustomerId] = true;
+        }
 
         currentTour.addCapacity(problemVRP.getDemands()[currentCustomerId]);
         currentTour.addDistance(component2d.getDistance());
@@ -117,7 +126,73 @@ public class SolutionVRP extends Solution
 
             if (visitedNum != problemVRP.getVertexNum())    // if more tours expected to finish the solution
                 startNewTour();
-            else                                            // if visited everyhting
+            else                                            // if visited everything
+            {
+                isComplete = true;
+                currentTour = null;
+            }
+        }
+    }
+
+
+    /**
+     * Adding a component to the current tour
+     * REMARKS!!!
+     * - Does not check whether the component is really from the problem components structure
+     * - Does not check whether the customer was already passed (must be ensured at correct pre-selecting)
+     * - Must add new tours if not finished
+     * - Must prune empty tours if finished with them
+     * REQUIREMENTS!!
+     * - currentTour must be correctly set by the ProblemVRP while pre-selecting
+     * - currentCustomerId must be correcly set by the ProblemVRP (corresponding to the currentTour last customer or to the depotId
+     * @param component
+     */
+    @Override
+    public void addReconstructionComponent(Component component) throws Exception
+    {
+        if (!isPartiallyDestroyed)
+            throw new Exception("Cannot use construction method for partially non-destroyed solution");
+
+        Component2d component2d = (Component2d) component;
+        components2d.add(component2d);
+
+        int depotId = problemVRP.getDepotId();
+
+        if (currentTour == null)  // reconstruction status requires to involve an additional vehicle
+        {
+            if (component2d.getRow() != depotId)
+                throw new Exception("Component that is supposed to start a new tour does not start it");
+
+            startNewTour();
+        }
+
+        if (component2d.getRow() != currentCustomerId)
+            throw new Exception("New component does not procede the current tour");
+
+        currentCustomerId = component2d.getColumn();
+
+        if (currentCustomerId != problemVRP.getDepotId())
+        {
+            visitedNum++;
+            currentTour.getCustomers().add(component2d.getColumn());
+
+            if (visited[currentCustomerId])
+                throw new Exception("Vehicle has revisited a customer");
+
+            visited[currentCustomerId] = true;
+        }
+
+        currentTour.addCapacity(problemVRP.getDemands()[currentCustomerId]);
+        currentTour.addDistance(component2d.getDistance());
+
+        if (currentCustomerId == problemVRP.getDepotId())    // if returned to the depot
+        {
+            currentTour.setFinished(true);
+
+            if (component2d.getRow() == problemVRP.getDepotId()) // could not even start a tour (vehicle stays in the depot)
+                currentTour.getCustomers().clear();              // delete the only component c[depotId;depotId] since it is not necessary
+
+            if (visitedNum == problemVRP.getVertexNum())  // if visited everything (does not cause a new tour, preselection should cause it, as it is written higher)
             {
                 isComplete = true;
                 currentTour = null;
@@ -138,19 +213,6 @@ public class SolutionVRP extends Solution
     }
 
 
-
-
-    @Override
-    public void reconstruct(Selector selector) throws Exception
-    {
-        if (!isPartiallyDestroyed)
-            throw new Exception("Cannot reconstruct not partially destroyed solution");
-
-        // TO-DO reconstruct here
-
-        isPartiallyDestroyed = false;
-        isComplete = true;
-    }
 
 
     public boolean getVisited(int index)
@@ -188,6 +250,15 @@ public class SolutionVRP extends Solution
         return currentCustomerId;
     }
 
+    public void setCurrentTour(Tour currentTour)
+    {
+        this.currentTour = currentTour;
+    }
+
+    public void setCurrentCustomerId(int currentCustomerId)
+    {
+        this.currentCustomerId = currentCustomerId;
+    }
 
 
     @Override
@@ -223,7 +294,6 @@ public class SolutionVRP extends Solution
 
     /**
      * Performs deep copy of the solution include all its tour.
-     * !!! REMARK, the vehicle iterator is not copied
      * @return
      */
     @Override
@@ -252,6 +322,9 @@ public class SolutionVRP extends Solution
         }
 
         solutionVRP.currentCustomerId = this.currentCustomerId;
+
+        if (solutionVRP.isComplete)
+            solutionVRP.setVehicleIteratorToIndex(tours.size()); // to set the vehicle iterator at the respective position
 
         return solutionVRP;
     }

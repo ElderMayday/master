@@ -31,12 +31,12 @@ public class TestSolutionDestroyer
 
             SolutionVRP solutionVRP = new SolutionVRP(problem);
 
-            solutionVRP.addCurrentTourComponent(problem.structure2d.get(0, 2));
-            solutionVRP.addCurrentTourComponent(problem.structure2d.get(2, 1));
-            solutionVRP.addCurrentTourComponent(problem.structure2d.get(1, 0));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(0, 2));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(2, 1));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(1, 0));
 
-            solutionVRP.addCurrentTourComponent(problem.structure2d.get(0, 3));
-            solutionVRP.addCurrentTourComponent(problem.structure2d.get(3, 0));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(0, 3));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(3, 0));
 
             SolutionDestroyer destroyer = new SolutionDestroyerVRP(1.0);
 

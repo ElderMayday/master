@@ -25,13 +25,11 @@ public abstract class Solution implements Iterable<Component>
         isPartiallyDestroyed = false;
     }
 
-    public abstract void addCurrentTourComponent(Component component) throws Exception;
+    public abstract void addConstructionComponent(Component component) throws Exception;
+
+    public abstract void addReconstructionComponent(Component component) throws Exception;
 
     public abstract double objective();
-
-    public abstract void reconstruct(Selector selector) throws Exception;  // reconstructs the solution using given selector, if it was partially destroyed before
-
-
 
 
     public abstract Solution deepCopy();

@@ -49,12 +49,26 @@ public abstract class Solver
 
         while (!solution.getComplete())
         {
-            List<Component> components = problem.getNextComponents(solution);
+            List<Component> components = problem.getConstructionComponents(solution);
 
             Component component = selector.select(components);
 
-            solution.addCurrentTourComponent(component);
+            solution.addConstructionComponent(component);
         }
+
+        return solution;
+    }
+
+    protected Solution reconstructOneSolution(Solution solution) throws Exception
+    {
+        if (!solution.isPartiallyDestroyed())
+            throw new Exception("Cannot reconstruct not partially destroyed solution");
+
+
+
+
+        solution.setPartiallyDestroyed(false);
+        solution.setComplete(true);
 
         return solution;
     }

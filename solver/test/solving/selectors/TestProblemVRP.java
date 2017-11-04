@@ -67,21 +67,21 @@ public class TestProblemVRP
 
             Solution solution = new SolutionVRP(problem);
 
-            List<Component> preselected = problem.getNextComponents(solution);
+            List<Component> preselected = problem.getConstructionComponents(solution);
 
             assertEquals(preselected.size(), 3);
             assertEquals(preselected.get(0), problem.structure2d.get(0, 1));
             assertEquals(preselected.get(1), problem.structure2d.get(0, 2));
             assertEquals(preselected.get(2), problem.structure2d.get(0, 3));
 
-            solution.addCurrentTourComponent(problem.structure2d.get(0, 2));
-            preselected = problem.getNextComponents(solution);
+            solution.addConstructionComponent(problem.structure2d.get(0, 2));
+            preselected = problem.getConstructionComponents(solution);
 
             assertEquals(preselected.get(0), problem.structure2d.get(2, 1));
             assertEquals(preselected.get(1), problem.structure2d.get(2, 3));
 
-            solution.addCurrentTourComponent(problem.structure2d.get(2, 3));
-            preselected = problem.getNextComponents(solution);
+            solution.addConstructionComponent(problem.structure2d.get(2, 3));
+            preselected = problem.getConstructionComponents(solution);
 
             assertEquals(preselected.size(), 1);
             assertEquals(preselected.get(0), problem.structure2d.get(3, 0));   // Customer #1 is still unvisited but cannot be selected due to capacity constraint
@@ -106,15 +106,15 @@ public class TestProblemVRP
 
             Solution solution = new SolutionVRP(problem);
 
-            List<Component> preselected = problem.getNextComponents(solution);
+            List<Component> preselected = problem.getConstructionComponents(solution);
 
             assertEquals(preselected.size(), 3);
             assertEquals(preselected.get(0), problem.structure2d.get(0, 1));
             assertEquals(preselected.get(1), problem.structure2d.get(0, 2));
             assertEquals(preselected.get(2), problem.structure2d.get(0, 3));
 
-            solution.addCurrentTourComponent(problem.structure2d.get(0, 2));
-            preselected = problem.getNextComponents(solution);
+            solution.addConstructionComponent(problem.structure2d.get(0, 2));
+            preselected = problem.getConstructionComponents(solution);
 
             // cannot move to #1 cause won't be able to return to the depot then
             // but can move to #3 cause have 50 spare length units, which is more than 49 + 0
@@ -144,20 +144,20 @@ public class TestProblemVRP
 
             Solution solution = new SolutionVRP(problem);
 
-            List<Component> preselected = problem.getNextComponents(solution);
+            List<Component> preselected = problem.getConstructionComponents(solution);
 
             assertEquals(preselected.size(), 2);
             assertEquals(preselected.get(0), problem.structure2d.get(0, 1));  // c[0;2] must drop off since not in candidate-candidates
             assertEquals(preselected.get(1), problem.structure2d.get(0, 3));
 
-            solution.addCurrentTourComponent(problem.structure2d.get(0, 2)); // disobeys the advice (not what will happen IRL, but for tests will go)
-            preselected = problem.getNextComponents(solution);
+            solution.addConstructionComponent(problem.structure2d.get(0, 2)); // disobeys the advice (not what will happen IRL, but for tests will go)
+            preselected = problem.getConstructionComponents(solution);
 
             assertEquals(preselected.get(0), problem.structure2d.get(2, 1));
             assertEquals(preselected.get(1), problem.structure2d.get(2, 3));
 
-            solution.addCurrentTourComponent(problem.structure2d.get(2, 3));
-            preselected = problem.getNextComponents(solution);
+            solution.addConstructionComponent(problem.structure2d.get(2, 3));
+            preselected = problem.getConstructionComponents(solution);
 
             assertEquals(preselected.size(), 1);
             assertEquals(preselected.get(0), problem.structure2d.get(3, 0));   // Customer #1 is still unvisited but cannot be selected due to capacity constraint
@@ -182,14 +182,14 @@ public class TestProblemVRP
 
             Solution solution = new SolutionVRP(problem);
 
-            List<Component> preselected = problem.getNextComponents(solution);
+            List<Component> preselected = problem.getConstructionComponents(solution);
 
             assertEquals(preselected.size(), 2);
             assertEquals(preselected.get(0), problem.structure2d.get(0, 1));     // c[0;2] must drop off since not in candidate-candidates
             assertEquals(preselected.get(1), problem.structure2d.get(0, 3));
 
-            solution.addCurrentTourComponent(problem.structure2d.get(0, 2));
-            preselected = problem.getNextComponents(solution);
+            solution.addConstructionComponent(problem.structure2d.get(0, 2));
+            preselected = problem.getConstructionComponents(solution);
 
             // cannot move to #1 cause won't be able to return to the depot then, despite being in the candidate candidates
             // but can move to #3 cause have 50 spare length units, which is more than 49 + 0
@@ -216,17 +216,17 @@ public class TestProblemVRP
 
             Solution solution = new SolutionVRP(problem);
 
-            List<Component> preselected = problem.getNextComponents(solution);
+            List<Component> preselected = problem.getConstructionComponents(solution);
 
             assertEquals(preselected.size(), 2);
             assertEquals(preselected.get(0), problem.structure2d.get(0, 1));     // c[0;2] must drop off since not in candidate-candidates
             assertEquals(preselected.get(1), problem.structure2d.get(0, 3));
 
-            solution.addCurrentTourComponent(problem.structure2d.get(0, 3));
-            preselected = problem.getNextComponents(solution);
+            solution.addConstructionComponent(problem.structure2d.get(0, 3));
+            preselected = problem.getConstructionComponents(solution);
 
-            solution.addCurrentTourComponent(problem.structure2d.get(3, 0));
-            preselected = problem.getNextComponents(solution);
+            solution.addConstructionComponent(problem.structure2d.get(3, 0));
+            preselected = problem.getConstructionComponents(solution);
 
             assertEquals(preselected.size(), 1);
             assertEquals(preselected.get(0), problem.structure2d.get(0, 2));  // for #1 capacity is not enough, #3 was already visited, so the only choice is to take the closest from the rest-list
@@ -250,12 +250,12 @@ public class TestProblemVRP
 
             SolutionVRP solution = new SolutionVRP(problem);
 
-            List<Component> preselected = problem.getNextComponents(solution);
+            List<Component> preselected = problem.getConstructionComponents(solution);
 
             assertEquals(preselected.size(), 1);
             assertEquals(preselected.get(0), problem.structure2d.get(0, 0));
 
-            solution.addCurrentTourComponent(preselected.get(0));
+            solution.addConstructionComponent(preselected.get(0));
 
             assertEquals(solution.getTours().size(), 2);
             assertEquals(solution.getTours().get(0).getCustomers().size(), 0);

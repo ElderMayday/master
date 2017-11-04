@@ -55,7 +55,12 @@ public abstract class Problem
      * @param solution
      * @return
      */
-    public abstract List<Component> getNextComponents(Solution solution);
+    public abstract List<Component> getConstructionComponents(Solution solution);
+
+
+    public abstract List<Component> getReconstructionComponents(Solution solution);
+
+
 
 
     /**
