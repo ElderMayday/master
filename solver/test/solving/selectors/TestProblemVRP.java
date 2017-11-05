@@ -173,7 +173,6 @@ public class TestProblemVRP
         }
     }
 
-
     @Test
     public void testProblemVrp_getConstructionComponents_withCandidates_checkLengthRestriction()
     {
@@ -351,7 +350,6 @@ public class TestProblemVRP
             assertEquals(components.size(), 2);
             assertEquals(components.get(0), problem.structure2d.get(0, 1));
             assertEquals(components.get(1), problem.structure2d.get(0, 3));
-
         } catch (Exception e)
         {
             assertTrue(false);
@@ -361,12 +359,159 @@ public class TestProblemVRP
     @Test
     public void testProblemVrp_getReconstructionComponents_withoutCandidates_withTourPruning()
     {
+        ProblemVRP problem;
 
+        try
+        {
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
+            problem.load(new File("problem-samples/vrp-unit-test.json"));
+
+            SolutionVRP solutionVRP = new SolutionVRP(problem);
+
+            solutionVRP.addConstructionComponent(problem.structure2d.get(0, 2));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(2, 0));
+
+            solutionVRP.addConstructionComponent(problem.structure2d.get(0, 3));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(3, 0));
+
+            solutionVRP.addConstructionComponent(problem.structure2d.get(0, 1));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(1, 0));
+
+            SolutionDestroyer destroyer = new SolutionDestroyerVrpFixed(0);
+
+            solutionVRP = (SolutionVRP) destroyer.destroy(solutionVRP);
+
+            List<Component> components = problem.getReconstructionComponents(solutionVRP);
+
+            assertEquals(components.size(), 3);
+            assertEquals(components.get(0), problem.structure2d.get(0, 1));
+            assertEquals(components.get(1), problem.structure2d.get(0, 2));
+            assertEquals(components.get(2), problem.structure2d.get(0, 3));
+
+            solutionVRP.addReconstructionComponent(components.get(1));
+
+            components = problem.getReconstructionComponents(solutionVRP);
+
+            assertEquals(components.size(), 2);
+            assertEquals(components.get(0), problem.structure2d.get(2, 1));
+            assertEquals(components.get(1), problem.structure2d.get(2, 3));
+
+            solutionVRP.addReconstructionComponent(components.get(1));
+
+            components = problem.getReconstructionComponents(solutionVRP);
+
+            assertEquals(components.size(), 1);
+            assertEquals(components.get(0), problem.structure2d.get(3, 1));
+
+            solutionVRP.addReconstructionComponent(components.get(0));
+
+            components = problem.getReconstructionComponents(solutionVRP);
+
+            assertEquals(components.size(), 1);
+            assertEquals(components.get(0), problem.structure2d.get(1, 0));
+
+            solutionVRP.addReconstructionComponent(components.get(0));
+
+            assertEquals(solutionVRP.getTours().size(), 1);  // so the tours #1 and #2 were pruned since they were empty
+            assertEquals(solutionVRP.getTours().get(0).getUsedDistance(), 184.0 , 0.001);
+            assertEquals(solutionVRP.getTours().get(0).getUsedCapacity(), 90.0 , 0.001);
+            assertEquals(solutionVRP.getTours().get(0).getLeftDistance(), 0.0 , 0.001);
+            assertEquals(solutionVRP.getTours().get(0).getLeftCapacity(), 30.0 , 0.001);
+        }
+        catch (Exception e)
+        {
+            assertTrue(false);
+        }
     }
 
     @Test
     public void testProblemVrp_getReconstructionComponents_withoutCandidates_withCandidates()
     {
+        ProblemVRP problem;
 
+        try
+        {
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(1));
+            problem.load(new File("problem-samples/vrp-unit-test.json"));
+
+            SolutionVRP solutionVRP = new SolutionVRP(problem);
+
+            solutionVRP.addConstructionComponent(problem.structure2d.get(0, 2));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(2, 3));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(3, 1));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(1, 0));
+
+            SolutionDestroyer destroyer = new SolutionDestroyerVrpFixed(1);
+            solutionVRP = (SolutionVRP) destroyer.destroy(solutionVRP);
+
+            List<Component> components = problem.getReconstructionComponents(solutionVRP);
+
+            assertEquals(solutionVRP.getTours().size(), 1);
+            assertEquals(components.get(0), problem.structure2d.get(2, 1));
+
+            solutionVRP.addReconstructionComponent(problem.structure2d.get(2, 1));
+
+            components = problem.getReconstructionComponents(solutionVRP);
+
+            assertEquals(solutionVRP.getTours().size(), 1);
+            assertEquals(components.get(0), problem.structure2d.get(1, 3));
+
+            solutionVRP.addReconstructionComponent(problem.structure2d.get(1, 3));
+
+            components = problem.getReconstructionComponents(solutionVRP);
+
+            assertEquals(solutionVRP.getTours().size(), 1);
+            assertEquals(components.get(0), problem.structure2d.get(3, 0));
+
+            solutionVRP.addReconstructionComponent(problem.structure2d.get(3, 0));
+
+            assertEquals(solutionVRP.isPartiallyDestroyed(), false);
+            assertEquals(solutionVRP.getComplete(), true);
+        }
+        catch (Exception e)
+        {
+            assertTrue(false);
+        }
+    }
+
+
+    @Test
+    public void testProblemVrp_getReconstructionComponents_withoutCandidates_withCandidatesExhausting()
+    {
+        ProblemVRP problem;
+
+        try
+        {
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(1));
+            problem.load(new File("problem-samples/vrp-unit-test-4.json"));
+
+            SolutionVRP solutionVRP = new SolutionVRP(problem);
+
+            solutionVRP.addConstructionComponent(problem.structure2d.get(0, 2));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(2, 3));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(3, 1));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(1, 0));
+
+            SolutionDestroyer destroyer = new SolutionDestroyerVrpFixed(0);
+            solutionVRP = (SolutionVRP) destroyer.destroy(solutionVRP);
+
+            List<Component> preselected = problem.getReconstructionComponents(solutionVRP);
+            assertEquals(preselected.size(), 1);
+            assertEquals(preselected.get(0), problem.structure2d.get(0, 1));
+            solutionVRP.addReconstructionComponent(problem.structure2d.get(0, 3)); // disobeying preselection
+
+            preselected = problem.getReconstructionComponents(solutionVRP);
+            assertEquals(preselected.size(), 1);
+            assertEquals(preselected.get(0), problem.structure2d.get(3, 2));
+            solutionVRP.addReconstructionComponent(problem.structure2d.get(3, 0));
+
+            preselected = problem.getReconstructionComponents(solutionVRP);
+            assertEquals(preselected.size(), 1);
+            assertEquals(preselected.get(0), problem.structure2d.get(0, 2));  // for #1 capacity is not enough, #3 was already visited, so the only choice is to take the closest from the rest-list
+        }
+        catch (Exception e)
+        {
+            assertTrue(false);
+        }
     }
 }
