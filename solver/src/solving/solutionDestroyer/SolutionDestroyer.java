@@ -3,6 +3,7 @@ package solving.solutionDestroyer;
 import problem.problemFormulation.Problem;
 import solving.solution.Solution;
 
+import java.lang.ref.Reference;
 import java.util.Random;
 
 /**
