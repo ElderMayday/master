@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Created by Aldar on 14-Oct-17.
@@ -189,6 +190,8 @@ public class SolutionVRP extends Solution
         {
             currentTour.setFinished(true);
 
+            // solution is reconstructed, now let us remove the tours which have been left empty (no need to reconstruct them) if such exist
+
             if (component2d.getRow() == problemVRP.getDepotId()) // could not even start a tour (vehicle stays in the depot)
                 currentTour.getCustomers().clear();              // delete the only component c[depotId;depotId] since it is not necessary
 
@@ -196,6 +199,15 @@ public class SolutionVRP extends Solution
             {
                 isComplete = true;
                 currentTour = null;
+
+                tours.removeIf(new Predicate<Tour>()
+                {
+                    @Override
+                    public boolean test(Tour tour)
+                    {
+                        return tour.getCustomers().size() == 0;
+                    }
+                });
             }
         }
     }
@@ -220,9 +232,30 @@ public class SolutionVRP extends Solution
         return visited[index];
     }
 
+    /**
+     * if visited is set by external caller, then visitedNum is automatically incremented/decremented, interior methods should care themselves
+     * @param index
+     * @param value
+     */
     public void setVisited(int index, boolean value)
     {
-        visited[index] = value;
+        if (value)
+        {
+            if (!visited[index])
+            {
+                visitedNum++;
+                visited[index] = true;
+            }
+        }
+        else
+        {
+            if (visited[index])
+            {
+                visitedNum--;
+                visited[index] = false;
+            }
+        }
+
     }
 
     public ProblemVRP getProblemVRP()

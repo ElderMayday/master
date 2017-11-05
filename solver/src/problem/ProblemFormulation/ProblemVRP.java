@@ -13,6 +13,7 @@ import solving.solution.Tour;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.ref.Reference;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -309,7 +310,7 @@ public class ProblemVRP extends Problem2d
      */
     interface ReconstructionPreselectorVRP
     {
-        List<Component> getReconstructionComponents(SolutionVRP solutionVRP);
+        List<Component> getReconstructionComponents(SolutionVRP solutionRef);
     }
 
     class ReconstructionPreselectorVrpNoCandidates implements ReconstructionPreselectorVRP
@@ -347,7 +348,6 @@ public class ProblemVRP extends Problem2d
             }
             else  // if has no tour to finish, but the solution is still incomplete, so requires a new vehicle
             {
-                solutionVRP.setCurrentTour(null);
                 solutionVRP.setCurrentCustomerId(depotId);
                 int row = depotId;
                 Tour currentTour = solutionVRP.startNewTour();
@@ -363,7 +363,7 @@ public class ProblemVRP extends Problem2d
                     result.add(structure2d.get(row, depotId));
             }
 
-            return null;
+            return result;
         }
     }
 
@@ -372,7 +372,7 @@ public class ProblemVRP extends Problem2d
     class ReconstructionPreselectorVrpCandidates implements ReconstructionPreselectorVRP
     {
         @Override
-        public List<Component> getReconstructionComponents(SolutionVRP solutionVRP)
+        public List<Component> getReconstructionComponents(SolutionVRP solutionRef)
         {
             return null;
         }

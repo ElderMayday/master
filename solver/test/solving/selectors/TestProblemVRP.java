@@ -8,10 +8,14 @@ import problem.problemFormulation.ProblemVRP;
 import solving.candidateList.CandidateDeterminerVrpSorting;
 import solving.solution.Solution;
 import solving.solution.SolutionVRP;
+import solving.solution.Tour;
+import solving.solutionDestroyer.SolutionDestroyer;
+import solving.solutionDestroyer.SolutionDestroyerVrpFixed;
 
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.lang.ref.WeakReference;
 import java.util.Iterator;
 import java.util.List;
 
@@ -56,7 +60,7 @@ public class TestProblemVRP
      *  Integration test of how does ProblemVrp define possible components based on the current SolutionVRP
      */
     @Test
-    public void testProblemVrpGetNextComponents_WithoutCandidates_WithCapacityRestriction()
+    public void testProblemVrp_getConstructionComponents_withoutCandidates_checkCapacityRestriction()
     {
         ProblemVRP problem;
 
@@ -95,7 +99,7 @@ public class TestProblemVRP
 
 
     @Test
-    public void testProblemVrpGetNextComponents_WithoutCandidates_WithLengthRestriction()
+    public void testProblemVrp_getConstructionComponents_withoutCandidates_checkLengthRestriction()
     {
         ProblemVRP problem;
 
@@ -133,7 +137,7 @@ public class TestProblemVRP
      *  Integration test of how does ProblemVrp define possible components based on the current SolutionVRP
      */
     @Test
-    public void testProblemVrpGetNextComponents_WithCandidates_WithCapacityRestriction()
+    public void testProblemVrp_getConstructionComponents__withCandidates_checkCapacityRestriction()
     {
         ProblemVRP problem;
 
@@ -171,7 +175,7 @@ public class TestProblemVRP
 
 
     @Test
-    public void testProblemVrpGetNextComponents_WithCandidates_WithLengthRestriction()
+    public void testProblemVrp_getConstructionComponents_withCandidates_checkLengthRestriction()
     {
         ProblemVRP problem;
 
@@ -205,7 +209,7 @@ public class TestProblemVRP
     }
 
     @Test
-    public void testProblemVrpGetNextComponents_WithCandidates_WithCandidateListExhausting()
+    public void testProblemVrp_getConstructionComponent_withCandidates_checkCandidateListExhausting()
     {
         ProblemVRP problem;
 
@@ -239,7 +243,7 @@ public class TestProblemVRP
     }
 
     @Test
-    public void testProblemVrpGetNextComponents_WithCandidates_()
+    public void testProblemVrp_getConstructionComponents_withoutCandidates_checkEmptyTourSolutionAdditionToSolution()
     {
         ProblemVRP problem;
 
@@ -267,5 +271,102 @@ public class TestProblemVRP
             e.printStackTrace();
             assertTrue(false);
         }
+    }
+
+    @Test
+    public void testProblemVrp_getReconstructionComponents_withoutCandidates_justFinishTheOldTours()
+    {
+        ProblemVRP problem;
+
+        try
+        {
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
+            problem.load(new File("problem-samples/vrp-unit-test.json"));
+
+            SolutionVRP solutionVRP = new SolutionVRP(problem);
+
+            solutionVRP.addConstructionComponent(problem.structure2d.get(0, 2));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(2, 3));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(3, 1));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(1, 0));
+
+            SolutionDestroyer destroyer = new SolutionDestroyerVrpFixed(1);
+
+            solutionVRP = (SolutionVRP) destroyer.destroy(solutionVRP);
+
+            List<Component> components = problem.getReconstructionComponents(solutionVRP);
+
+            assertEquals(components.size(), 2);
+            assertEquals(components.get(0), problem.structure2d.get(2, 1));
+            assertEquals(components.get(1), problem.structure2d.get(2, 3));
+            assertEquals(solutionVRP.getCurrentTour(), solutionVRP.getTours().get(0));
+            assertEquals(solutionVRP.getCurrentCustomerId(), 2);
+
+            solutionVRP.addReconstructionComponent(components.get(0));
+
+            assertEquals(solutionVRP.getTours().size(), 1);
+            Tour tour0 = solutionVRP.getTours().get(0);
+            assertEquals(tour0.isFinished(), false);
+            assertEquals(tour0.getCustomers().size(), 2);
+            assertEquals(tour0.getCustomers().get(0).intValue(), 2);
+            assertEquals(tour0.getCustomers().get(1).intValue(), 1);
+            assertEquals(tour0.getLeftCapacity(), 70.0, 0.001);
+            assertEquals(tour0.getLeftDistance(), 0.0, 0.001);
+        }
+        catch (Exception e)
+        {
+            assertTrue(false);
+        }
+    }
+
+
+
+    @Test
+    public void testProblemVrp_getReconstructionComponents_withoutCandidates_addNewTour()
+    {
+        ProblemVRP problem;
+
+        try
+        {
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
+            problem.load(new File("problem-samples/vrp-unit-test.json"));
+
+            SolutionVRP solutionVRP = new SolutionVRP(problem);
+
+            solutionVRP.addConstructionComponent(problem.structure2d.get(0, 2));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(2, 3));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(3, 1));
+            solutionVRP.addConstructionComponent(problem.structure2d.get(1, 0));
+
+            SolutionDestroyer destroyer = new SolutionDestroyerVrpFixed(1);
+
+            solutionVRP = (SolutionVRP) destroyer.destroy(solutionVRP);
+
+            List<Component> components = problem.getReconstructionComponents(solutionVRP);
+
+            solutionVRP.addReconstructionComponent(problem.structure2d.get(2, 0));
+
+            components = problem.getReconstructionComponents(solutionVRP);
+
+            assertEquals(components.size(), 2);
+            assertEquals(components.get(0), problem.structure2d.get(0, 1));
+            assertEquals(components.get(1), problem.structure2d.get(0, 3));
+
+        } catch (Exception e)
+        {
+            assertTrue(false);
+        }
+    }
+
+    @Test
+    public void testProblemVrp_getReconstructionComponents_withoutCandidates_withTourPruning()
+    {
+
+    }
+
+    @Test
+    public void testProblemVrp_getReconstructionComponents_withoutCandidates_withCandidates()
+    {
+
     }
 }
