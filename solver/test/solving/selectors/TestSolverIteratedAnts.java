@@ -1,7 +1,6 @@
 package solving.selectors;
 
 import org.junit.Test;
-import problem.component.Component2d;
 import problem.componentStructure.ComponentStructure2dStandard;
 import problem.fleet.FleetDescendingCapacity;
 import problem.problemFormulation.Problem;
@@ -14,9 +13,8 @@ import solving.localSearch.LocalSearchNone;
 import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.pheromoneInitializer.PheromoneInitializerRange;
 import solving.solution.Solution;
-import solving.solution.SolutionVRP;
 import solving.solutionDestroyer.SolutionDestroyer;
-import solving.solutionDestroyer.SolutionDestroyerVRP;
+import solving.solutionDestroyer.SolutionDestroyerVrpRandom;
 import solving.solvers.Solver;
 import solving.solvers.SolverIteratedAnts;
 import solving.terminationCriteria.TerminationCriteria;
@@ -46,7 +44,7 @@ public class TestSolverIteratedAnts
             LocalSearch localSearch = new LocalSearchNone();
             GlobalUpdate update = new AntSystem();
             PheromoneInitializer initializer = new PheromoneInitializerRange(1.0, 2.0);
-            SolutionDestroyer destroyer = new SolutionDestroyerVRP(1.0);
+            SolutionDestroyer destroyer = new SolutionDestroyerVrpRandom(1.0);
 
             Solver solver = new SolverIteratedAnts(problem, selector, true, terminationCriteria, initializer, localSearch, destroyer, 3, true);
 
