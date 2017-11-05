@@ -198,6 +198,7 @@ public class SolutionVRP extends Solution
             if (visitedNum == problemVRP.getVertexNum())  // if visited everything (does not cause a new tour, preselection should cause it, as it is written higher)
             {
                 isComplete = true;
+                isPartiallyDestroyed = false;
                 currentTour = null;
 
                 tours.removeIf(new Predicate<Tour>()
