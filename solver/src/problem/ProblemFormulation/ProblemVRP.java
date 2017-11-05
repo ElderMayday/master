@@ -307,6 +307,7 @@ public class ProblemVRP extends Problem2d
 
     /**
      * Preselects components for the next reconstruction step (!NOT CONSTRUCTION), depending on the construction mode
+     * REMARK: this pre-selector MUST be called before the component addition to the solution, since it sets current tour and customer (always the first possible)
      */
     interface ReconstructionPreselectorVRP
     {
@@ -325,13 +326,16 @@ public class ProblemVRP extends Problem2d
             Tour tour = null;
             for (Tour searchTour : solutionVRP.getTours())
                 if (!searchTour.isFinished())
+                {
                     tour = searchTour;
+                    break;
+                }
 
             if (tour != null) // if has a tour to finish
             {
                 List<Integer> tourCustomers = tour.getCustomers();
                 solutionVRP.setCurrentTour(tour);
-                int row = tourCustomers.get(tourCustomers.size() - 1);
+                int row = tourCustomers.size() > 0 ? tourCustomers.get(tourCustomers.size() - 1) : depotId;
                 solutionVRP.setCurrentCustomerId(row);
 
                 Tour currentTour = solutionVRP.getCurrentTour();
@@ -372,9 +376,93 @@ public class ProblemVRP extends Problem2d
     class ReconstructionPreselectorVrpCandidates implements ReconstructionPreselectorVRP
     {
         @Override
-        public List<Component> getReconstructionComponents(SolutionVRP solutionRef)
+        public List<Component> getReconstructionComponents(SolutionVRP solutionVRP)
         {
-            return null;
+            List<Component> result = new ArrayList<Component>();
+
+            // find first non-finished tour
+
+            Tour tour = null;
+            for (Tour searchTour : solutionVRP.getTours())
+                if (!searchTour.isFinished())
+                {
+                    tour = searchTour;
+                    break;
+                }
+
+            if (tour != null) // if has a tour to finish
+            {
+                List<Integer> tourCustomers = tour.getCustomers();
+                solutionVRP.setCurrentTour(tour);
+                int row = tourCustomers.size() > 0 ? tourCustomers.get(tourCustomers.size() - 1) : depotId;
+                solutionVRP.setCurrentCustomerId(row);
+
+                Tour currentTour = solutionVRP.getCurrentTour();
+
+                CandidateListVRP allCandidateListsVRP = (CandidateListVRP)  ProblemVRP.this.candidateList;
+                List<Integer> currentCandidateListVRP = allCandidateListsVRP.candidates.get(row);
+
+                for (Integer column : currentCandidateListVRP)
+                    if (!solutionVRP.getVisited(column))  // supposing back-to-the-depot and loop edges are excluded
+                        if (currentTour.getLeftCapacity() >= demands[column]) // if can satisfy that customer
+                            if (!currentTour.getVehicle().hasLengthRestriction ||
+                                    (currentTour.getLeftDistance() >= structure2d.get(row, column).getDistance() + structure2d.get(column, depotId).getDistance()))  // relies on triangle inequality in the graph
+                                result.add(structure2d.get(row, column));
+
+                if (result.size() == 0)      // if none of candidates was selected, then pick first-fitting from the rest
+                {
+                    List<Integer> currentRestListVRR = allCandidateListsVRP.rest.get(row);
+
+                    for (Integer column : currentRestListVRR)
+                        if (!solutionVRP.getVisited(column))  // supposing back-to-the-depot and loop edges are excluded
+                            if (currentTour.getLeftCapacity() >= demands[column]) // if can satisfy that customer
+                                if (!currentTour.getVehicle().hasLengthRestriction ||
+                                        (currentTour.getLeftDistance() >= structure2d.get(row, column).getDistance() + structure2d.get(column, depotId).getDistance()))  // relies on triangle inequality in the graph
+                                {
+                                    result.add(structure2d.get(row, column));
+                                    break;
+                                }
+                }
+
+                if (result.size() == 0)
+                    result.add(structure2d.get(row, depotId));
+            }
+            else  // if has no tour to finish, but the solution is still incomplete, so requires a new vehicle
+            {
+                solutionVRP.setCurrentCustomerId(depotId);
+                int row = depotId;
+                Tour currentTour = solutionVRP.startNewTour();
+
+                CandidateListVRP allCandidateListsVRP = (CandidateListVRP)  ProblemVRP.this.candidateList;
+                List<Integer> currentCandidateListVRP = allCandidateListsVRP.candidates.get(row);
+
+                for (Integer column : currentCandidateListVRP)
+                    if (!solutionVRP.getVisited(column))  // supposing back-to-the-depot and loop edges are excluded
+                        if (currentTour.getLeftCapacity() >= demands[column]) // if can satisfy that customer
+                            if (!currentTour.getVehicle().hasLengthRestriction ||
+                                    (currentTour.getLeftDistance() >= structure2d.get(row, column).getDistance() + structure2d.get(column, depotId).getDistance()))  // relies on triangle inequality in the graph
+                                result.add(structure2d.get(row, column));
+
+                if (result.size() == 0)      // if none of candidates was selected, then pick first-fitting from the rest
+                {
+                    List<Integer> currentRestListVRR = allCandidateListsVRP.rest.get(row);
+
+                    for (Integer column : currentRestListVRR)
+                        if (!solutionVRP.getVisited(column))  // supposing back-to-the-depot and loop edges are excluded
+                            if (currentTour.getLeftCapacity() >= demands[column]) // if can satisfy that customer
+                                if (!currentTour.getVehicle().hasLengthRestriction ||
+                                        (currentTour.getLeftDistance() >= structure2d.get(row, column).getDistance() + structure2d.get(column, depotId).getDistance()))  // relies on triangle inequality in the graph
+                                {
+                                    result.add(structure2d.get(row, column));
+                                    break;
+                                }
+                }
+
+                if (result.size() == 0)
+                    result.add(structure2d.get(row, depotId));
+            }
+
+            return result;
         }
     }
 }
