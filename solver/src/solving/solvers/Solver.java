@@ -59,16 +59,24 @@ public abstract class Solver
         return solution;
     }
 
+
+
     protected Solution reconstructOneSolution(Solution solution) throws Exception
     {
-        if (!solution.isPartiallyDestroyed())
-            throw new Exception("Cannot reconstruct not partially destroyed solution");
+        if (solution.isPartiallyDestroyed()) // reconstruct only of it was partially destroyed, otherwise leave it same
+        {
+            while (!solution.getComplete())
+            {
+                List<Component> components = problem.getReconstructionComponents(solution);
 
+                Component component = selector.select(components);
 
+                solution.addReconstructionComponent(component);
+            }
 
-
-        solution.setPartiallyDestroyed(false);
-        solution.setComplete(true);
+            solution.setPartiallyDestroyed(false);
+            solution.setComplete(true);
+        }
 
         return solution;
     }
