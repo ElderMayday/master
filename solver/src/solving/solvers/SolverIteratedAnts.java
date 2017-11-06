@@ -48,14 +48,18 @@ public class SolverIteratedAnts extends Solver
             for (Solution solution : solutions)
                 newSolutions.add(solution.deepCopy());
 
-            for (int index = 0; index < solutions.size(); index++)
-                solutions.set(index, destroyer.destroy(solutions.get(index)));
+            for (int index = 0; index < newSolutions.size(); index++)
+                newSolutions.set(index, destroyer.destroy(newSolutions.get(index)));
 
-            //for (int index = 0; index < solutions.size(); index++)
-            //    solutions.get(index).reconstruct(selector);
+            for (int index = 0; index < newSolutions.size(); index++)
+                reconstructOneSolution(newSolutions.get(index));
 
             if (mustExecuteIntermediateSearch)
-                solutions = executeMultipleLocalSearch(solutions);
+                newSolutions = executeMultipleLocalSearch(newSolutions);
+
+            for (int index = 0; index < solutions.size(); index++)
+                if (newSolutions.get(index).betterThan(solutions.get(index)))
+                    solutions.set(index, newSolutions.get(index));
         }
         while (!terminationCriteria.isFullfilled());
 

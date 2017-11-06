@@ -44,16 +44,20 @@ public class TestSolverIteratedAnts
             LocalSearch localSearch = new LocalSearchNone();
             GlobalUpdate update = new AntSystem();
             PheromoneInitializer initializer = new PheromoneInitializerRange(1.0, 2.0);
-            SolutionDestroyer destroyer = new SolutionDestroyerVrpRandom(1.0);
+            SolutionDestroyer destroyer = new SolutionDestroyerVrpRandom(0.5);
 
             Solver solver = new SolverIteratedAnts(problem, selector, true, terminationCriteria, initializer, localSearch, destroyer, 3, true);
 
             List<Solution> solutions = solver.solve();
 
-            // TO-DO some testing
+            assertEquals(solutions.size(), 3);
+            assertEquals(solutions.get(0).getComplete(), true);
+            assertEquals(solutions.get(1).getComplete(), true);
+            assertEquals(solutions.get(2).getComplete(), true);
         }
         catch (Exception e)
         {
+            e.printStackTrace();
             assertTrue(false);
         }
     }
