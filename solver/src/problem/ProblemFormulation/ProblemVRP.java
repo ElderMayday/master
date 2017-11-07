@@ -245,9 +245,9 @@ public class ProblemVRP extends Problem2d
             // demands ------------------
 
             vertexNum = customerNum + 1;
-            demands = new double[customerNum];
+            demands = new double[vertexNum];
 
-            for (int i = 0; i < customerNum; i++, index++)
+            for (int i = 1; i < vertexNum; i++, index++)
                 demands[i] = Double.parseDouble(token[index]);
 
             index++;
