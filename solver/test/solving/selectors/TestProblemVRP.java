@@ -27,7 +27,7 @@ import static org.junit.Assert.assertEquals;
 public class TestProblemVRP
 {
     @Test
-    public void testProblemVrpLoadInstance()
+    public void testProblemVrpLoadInstanceJson()
     {
         ProblemVRP problem;
 
@@ -55,6 +55,43 @@ public class TestProblemVRP
         }
     }
 
+    @Test
+    public void testProblemVrpLoadInstanceTxt()
+    {
+        ProblemVRP problem;
+
+        try
+        {
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
+            problem.load(new File("problem-samples/vrp-10-customers.txt"));
+
+            assertEquals(problem.fleet.getVehicles().size(), 5);
+            assertEquals(problem.fleet.getVehicles().get(0).capacity, 99.4, 0.0001);
+            assertEquals(problem.fleet.getVehicles().get(0).length, 53.0, 0.0001);
+
+            assertEquals(problem.lowerIsBetter, true);
+
+            assertEquals(problem.getDepotId(), 0);
+
+            assertEquals(problem.getVertexNum(), 11);
+            assertEquals(problem.getDemands().length, 10);
+            assertEquals(problem.getDemands()[0], 32.2, 0.001);
+            assertEquals(problem.getDemands()[9], 34.7, 0.0001);
+
+            assertEquals(problem.structure2d.get(0, 0).getDistance(), -1.0, 0.0001);
+            assertEquals(problem.structure2d.get(0, 0).getHeuristic(), 1.0, 0.0001);
+
+            assertEquals(problem.structure2d.get(0, 1).getDistance(), 7.1, 0.0001);
+            assertEquals(problem.structure2d.get(0, 1).getHeuristic(), 1.0, 0.0001);
+
+            assertEquals(problem.structure2d.get(10, 9).getDistance(), 41.7, 0.0001);
+            assertEquals(problem.structure2d.get(10, 9).getHeuristic(), 1.0, 0.0001);
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
 
     /**
      *  Integration test of how does ProblemVrp define possible components based on the current SolutionVRP

@@ -14,10 +14,7 @@ import solving.solution.Tour;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.ref.Reference;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Created by Aldar on 09-Oct-17.
@@ -71,7 +68,7 @@ public class ProblemVRP extends Problem2d
         if (file.getAbsolutePath().endsWith(".json"))
             parserVrp = new ParserVrpJson();
         else
-            throw new Exception("File format is not expected");
+            parserVrp = new ParserVrpTxt();
 
         parserVrp.parseVRP(text);
     }
@@ -206,7 +203,85 @@ public class ProblemVRP extends Problem2d
         }
     }
 
+    class ParserVrpTxt extends ParserVrp
+    {
 
+        @Override
+        public void parseVRP(String text) throws Exception
+        {
+            String token[] = text.split("(\\s|\\n)+");
+
+            depotId = 0;
+
+            // vehicle number -----------------------------
+
+            int vehicleNum = Integer.parseInt(token[0]);
+
+            int index = 2;
+
+            // vehicles parameters -------------------------------------------
+
+            List<Vehicle> vehicleList = new ArrayList<Vehicle>();
+            for (int i = 0; i < vehicleNum; i++)
+            {
+                double capacity = Double.parseDouble(token[index]);
+                double length = Double.parseDouble(token[index + 1]);     // negative length is considered as missing of length restriction
+
+                Vehicle newVehicle = new Vehicle(capacity, length >= 0 ? length : 0.0, length > 0);
+                vehicleList.add(newVehicle);
+
+                index += 2;
+            }
+            fleet.setVehicles(vehicleList);
+
+            index++;
+
+            // customer number ----------------------------
+
+            int customerNum = Integer.parseInt(token[index]);
+
+            index += 2;
+
+            // demands ------------------
+
+            vertexNum = customerNum + 1;
+            demands = new double[customerNum];
+
+            for (int i = 0; i < customerNum; i++, index++)
+                demands[i] = Double.parseDouble(token[index]);
+
+            index++;
+
+            // distances -----------------------------
+
+            structure2d.allocate(vertexNum, vertexNum);
+
+            for (int i = 0; i < vertexNum; i++)
+                for (int j = 0; j < vertexNum; j++)
+                {
+                    double distance = Double.parseDouble(token[index]);
+
+                    structure2d.setDistance(i, j, distance);
+
+                    if (i == j)
+                        if (distance >= 0.0)
+                            throw new Exception("Self path should be marked by negative distance");
+
+                    index++;
+                }
+
+            index++;
+
+            // heuristics -----------------------------------
+
+            for (int i = 0; i < vertexNum; i++)
+                for (int j = 0; j < vertexNum; j++)
+                {
+                    structure2d.setH(i, j, Double.parseDouble(token[index]));
+                    index++;
+                }
+        }
+    }
 
 
 
@@ -370,8 +445,6 @@ public class ProblemVRP extends Problem2d
             return result;
         }
     }
-
-
 
     class ReconstructionPreselectorVrpCandidates implements ReconstructionPreselectorVRP
     {

@@ -18,6 +18,10 @@ public class GeneratorVrpMain
             System.out.println("--max_vehicle_capacity [max_vehicle_capacity]");
             System.out.println("--min_vehicle_length [min_vehicle_length]");
             System.out.println("--max_vehicle_length [max_vehicle_length]");
+            System.out.println("--min_demand [min_demand]");
+            System.out.println("--max_demand [max_demand]");
+            System.out.println("--min_heuristics [min_heuristics]");
+            System.out.println("--max_heuristics [max_heuristics]");
             System.out.println("--probability_length_nonrestricted [probability_length_nonrestricted]");
             System.out.println("--customers_num [customers_num]");
             System.out.println("--area_size [area_size]");
@@ -30,6 +34,8 @@ public class GeneratorVrpMain
             int vehicleNum = 10;
             double minVehicleCapacity = 10.0, maxVehicleCapacity = 100.0, rangeVehicleCapacity = 90.0;
             double minVehicleLength = 50.0, maxVehicleLength = 100.0, rangeVehicleLength = 50.0;
+            double minDemand = 10.0, maxDemand = 50.0, rangeDemand = 40.0;
+            double minHeuristic = 1.0, maxHeuristic = 1.0, rangeHeuristic = 0.0;
             double probabilityLengthNonrestricted = 0.0;
             int customersNum = 10;
             double areaSize = 10.0;
@@ -57,6 +63,12 @@ public class GeneratorVrpMain
                 if (args[index].equals("--max_vehicle_length"))
                     maxVehicleLength = Double.parseDouble(args[index + 1]);
 
+                if (args[index].equals("--min_heuristic"))
+                    minHeuristic = Double.parseDouble(args[index + 1]);
+
+                if (args[index].equals("--max_heuristic"))
+                    maxHeuristic = Double.parseDouble(args[index + 1]);
+
                 if (args[index].equals("--probability_length_nonrestricted"))
                     probabilityLengthNonrestricted = Double.parseDouble(args[index + 1]);
 
@@ -66,8 +78,16 @@ public class GeneratorVrpMain
                 if (args[index].equals("--area_size"))
                     areaSize = Double.parseDouble(args[index + 1]);
 
+                if (args[index].equals("--min_demand"))
+                    minDemand = Double.parseDouble(args[index + 1]);
+
+                if (args[index].equals("--max_demand"))
+                    maxDemand = Double.parseDouble(args[index + 1]);
+
                 rangeVehicleCapacity = maxVehicleCapacity - minVehicleCapacity;
                 rangeVehicleLength = maxVehicleLength - minVehicleLength;
+                rangeDemand = maxDemand - minDemand;
+                rangeHeuristic = maxHeuristic - minHeuristic;
             }
 
             System.out.println("filename=" + filename);
@@ -85,7 +105,12 @@ public class GeneratorVrpMain
             {
                 PrintWriter writer = new PrintWriter(filename, "UTF-8");
 
+                // vehicle number -----------------------------------------------
+
                 writer.write(Integer.toString(vehicleNum) + "\n");
+                writer.write("---\n");
+
+                // vehicles --------------------------------------------------
 
                 for (int index = 0; index < vehicleNum; index++)
                 {
@@ -99,6 +124,23 @@ public class GeneratorVrpMain
                     writer.write("\n");
                 }
 
+                writer.write("---\n");
+
+                // customer number -------------------------------
+
+                writer.write(Integer.toString(customersNum) + "\n");
+                writer.write("---\n");
+
+
+                // demands ------------------------------------
+
+                for (int i = 0; i < customersNum; i++)
+                    writer.write(String.format("%1$,.1f", random.nextDouble() * rangeDemand + minDemand) + "\n");
+                writer.write("---\n");
+
+
+                // distances -------------------------------------------------
+
                 double[] x = new double[customersNum + 1];
                 double[] y = new double[customersNum + 1];
 
@@ -107,8 +149,6 @@ public class GeneratorVrpMain
                     x[index] = random.nextDouble() * areaSize;
                     y[index] = random.nextDouble() * areaSize;
                 }
-
-                writer.write(Integer.toString(customersNum) + "\n");
 
                 for (int i = 0; i < customersNum + 1; i++)
                 {
@@ -125,6 +165,18 @@ public class GeneratorVrpMain
 
                         }
 
+                        writer.write(" ");
+                    }
+                    writer.write("\n");
+                }
+
+                writer.write("---\n");
+
+                for (int i = 0; i < customersNum + 1; i++)
+                {
+                    for (int j = 0; j < customersNum + 1; j++)
+                    {
+                        writer.write(String.format("%1$,.1f", random.nextDouble() * rangeHeuristic + minHeuristic));
                         writer.write(" ");
                     }
                     writer.write("\n");
