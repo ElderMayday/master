@@ -36,8 +36,8 @@ public class TestSolverIteratedAnts
     {
         try
         {
-            Problem problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(2));
-            problem.load(new File("problem-samples/vrp-unit-test-2.json"));
+            Problem problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
+            problem.load(new File("problem-samples/vrp-10-customers.txt"));
 
             Selector selector = new SelectorStandard(1.0, 1.0);
             TerminationCriteria terminationCriteria = new TerminationCriteriaCounter(5);
@@ -46,14 +46,16 @@ public class TestSolverIteratedAnts
             PheromoneInitializer initializer = new PheromoneInitializerRange(1.0, 2.0);
             SolutionDestroyer destroyer = new SolutionDestroyerVrpRandom(0.5);
 
-            Solver solver = new SolverIteratedAnts(problem, selector, true, terminationCriteria, initializer, localSearch, destroyer, 3, true);
+            Solver solver = new SolverIteratedAnts(problem, selector, true, terminationCriteria, initializer, localSearch, destroyer, 5, true);
 
             List<Solution> solutions = solver.solve();
 
-            assertEquals(solutions.size(), 3);
+            assertEquals(solutions.size(), 5);
             assertEquals(solutions.get(0).getComplete(), true);
             assertEquals(solutions.get(1).getComplete(), true);
             assertEquals(solutions.get(2).getComplete(), true);
+            assertEquals(solutions.get(3).getComplete(), true);
+            assertEquals(solutions.get(4).getComplete(), true);
         }
         catch (Exception e)
         {

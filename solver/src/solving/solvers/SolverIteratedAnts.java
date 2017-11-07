@@ -37,6 +37,10 @@ public class SolverIteratedAnts extends Solver
     @Override
     public List<Solution> solve() throws Exception
     {
+        double minObjective = -1.0;
+
+        initializer.initialize(problem.structure);
+
         List<Solution> solutions = constructSolutionList(antNum);
         List<Solution> newSolutions;
 
@@ -60,6 +64,23 @@ public class SolverIteratedAnts extends Solver
             for (int index = 0; index < solutions.size(); index++)
                 if (newSolutions.get(index).betterThan(solutions.get(index)))
                     solutions.set(index, newSolutions.get(index));
+
+
+            /* // statistics optional part
+
+            for (int index = 0; index < solutions.size(); index++)
+            {
+                if (minObjective < 0)
+                    minObjective = solutions.get(index).objective();
+                else
+                {
+                    double newObjective = solutions.get(index).objective();
+                    if (minObjective > newObjective)
+                        minObjective = newObjective;
+                }
+            }
+            */
+
         }
         while (!terminationCriteria.isFullfilled());
 

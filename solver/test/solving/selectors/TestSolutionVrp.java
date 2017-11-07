@@ -137,7 +137,6 @@ public class TestSolutionVrp
 
             assertEquals(solution.getTours().size(), 2);  // one finished and new pre-prepared
 
-
             solution.addConstructionComponent(c4);
 
             Tour tour2 = solution.getTours().get(1);
@@ -154,7 +153,6 @@ public class TestSolutionVrp
             assertEquals(tour2.getUsedCapacity(), 20.0, 0.001);
             assertEquals(tour2.getUsedDistance(), 80.0, 0.001);
             assertEquals(solution.getComplete(), true);
-
 
             Tour tour1 = solution.getTours().get(0);
             assertEquals(tour1.isFinished(), true);
