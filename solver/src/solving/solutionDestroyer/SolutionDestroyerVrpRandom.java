@@ -39,6 +39,7 @@ public class SolutionDestroyerVrpRandom extends SolutionDestroyer
         ComponentStructure2d structure2d = solutionVRP.getProblemVRP().structure2d;
         ProblemVRP problemVRP = solutionVRP.getProblemVRP();
         List<Component2d> components = solutionVRP.getComponents2d();
+        solution.memorizeLastObjective();
 
         for (Tour tour : solutionVRP.getTours())
         {

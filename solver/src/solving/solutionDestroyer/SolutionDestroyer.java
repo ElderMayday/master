@@ -21,6 +21,7 @@ public abstract class SolutionDestroyer
 
     /**
      * Partially destroys the given solution according to a certain algorithm
+     * REMARK!!! MUST call solution.memorizeLastObjective() before everything
      * @param solution
      * @return
      */

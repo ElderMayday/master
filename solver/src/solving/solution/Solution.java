@@ -12,7 +12,7 @@ public abstract class Solution implements Iterable<Component>
     protected boolean isComplete;               // Flag: visitedNum == problem customer number
     protected boolean isPartiallyDestroyed;
     protected Problem problem;
-
+    protected double lastObjective;  // objective value before destroying (only effective if destroyed)
 
     public Solution()
     {
@@ -30,7 +30,6 @@ public abstract class Solution implements Iterable<Component>
     public abstract void addReconstructionComponent(Component component) throws Exception;
 
     public abstract double objective();
-
 
     public abstract Solution deepCopy();
 
@@ -56,7 +55,10 @@ public abstract class Solution implements Iterable<Component>
         return isComplete;
     }
 
-
+    public void memorizeLastObjective()
+    {
+        lastObjective = this.objective();
+    }
 
     /**
      * Compares this and that solution
