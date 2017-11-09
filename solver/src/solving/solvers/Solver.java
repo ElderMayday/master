@@ -3,6 +3,7 @@ package solving.solvers;
 import problem.component.Component;
 import problem.problemFormulation.Problem;
 import solving.localSearch.LocalSearch;
+import solving.localUpdate.LocalUpdate;
 import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.solution.Solution;
 import solving.selectors.Selector;
@@ -21,7 +22,7 @@ public abstract class Solver
     protected TerminationCriteria terminationCriteria;
     protected LocalSearch localSearch;
     protected PheromoneInitializer initializer;
-
+    protected LocalUpdate localUpdate;
 
     /**
      *
@@ -29,10 +30,11 @@ public abstract class Solver
      * @param selector
      * @param precomputeValues
      */
-    public Solver(Problem problem, Selector selector, LocalSearch localSearch, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer)
+    public Solver(Problem problem, Selector selector, LocalUpdate localUpdate, LocalSearch localSearch, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer)
     {
         this.problem = problem;
         this.selector = selector;
+        this.localUpdate = localUpdate;
         this.terminationCriteria = terminationCriteria;
         this.localSearch = localSearch;
         this.initializer = initializer;
@@ -54,6 +56,8 @@ public abstract class Solver
             Component component = selector.select(components);
 
             solution.addConstructionComponent(component);
+
+            localUpdate.update(component);
         }
 
         return solution;
@@ -72,6 +76,8 @@ public abstract class Solver
                 Component component = selector.select(components);
 
                 solution.addReconstructionComponent(component);
+
+                localUpdate.update(component);
             }
 
             solution.setPartiallyDestroyed(false);

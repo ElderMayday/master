@@ -10,6 +10,8 @@ import solving.globalUpdate.AntSystem;
 import solving.globalUpdate.GlobalUpdate;
 import solving.localSearch.LocalSearch;
 import solving.localSearch.LocalSearchNone;
+import solving.localUpdate.LocalUpdate;
+import solving.localUpdate.LocalUpdateNone;
 import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.pheromoneInitializer.PheromoneInitializerRange;
 import solving.solution.Solution;
@@ -41,12 +43,13 @@ public class TestSolverIteratedAnts
 
             Selector selector = new SelectorStandard(1.0, 1.0);
             TerminationCriteria terminationCriteria = new TerminationCriteriaCounter(5);
+            LocalUpdate localUpdate = new LocalUpdateNone();
             LocalSearch localSearch = new LocalSearchNone();
             GlobalUpdate update = new AntSystem();
             PheromoneInitializer initializer = new PheromoneInitializerRange(1.0, 2.0);
             SolutionDestroyer destroyer = new SolutionDestroyerVrpRandom(0.5);
 
-            Solver solver = new SolverIteratedAnts(problem, selector, true, terminationCriteria, initializer, localSearch, destroyer, 5, true);
+            Solver solver = new SolverIteratedAnts(problem, selector, localUpdate, true, terminationCriteria, initializer, localSearch, destroyer, 5, true);
 
             List<Solution> solutions = solver.solve();
 

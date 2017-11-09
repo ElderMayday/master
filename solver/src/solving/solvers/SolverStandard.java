@@ -1,6 +1,7 @@
 package solving.solvers;
 
 import problem.problemFormulation.Problem;
+import solving.localUpdate.LocalUpdate;
 import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.solution.Solution;
 import solving.globalUpdate.GlobalUpdate;
@@ -19,9 +20,9 @@ public class SolverStandard extends Solver
     protected int antNum;
 
 
-    public SolverStandard(Problem problem, Selector selector, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, GlobalUpdate update, int antNum)
+    public SolverStandard(Problem problem, Selector selector, LocalUpdate localUpdate, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, GlobalUpdate update, int antNum)
     {
-        super(problem, selector, localSearch, precomputeValues, terminationCriteria, initializer);
+        super(problem, selector, localUpdate, localSearch, precomputeValues, terminationCriteria, initializer);
 
         this.globalUpdate = update;
         this.antNum = antNum;

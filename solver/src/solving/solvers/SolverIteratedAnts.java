@@ -3,6 +3,7 @@ package solving.solvers;
 import problem.problemFormulation.Problem;
 import solving.globalUpdate.GlobalUpdate;
 import solving.localSearch.LocalSearch;
+import solving.localUpdate.LocalUpdate;
 import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.selectors.Selector;
 import solving.solution.Solution;
@@ -21,9 +22,9 @@ public class SolverIteratedAnts extends Solver
     protected int antNum;
     protected boolean mustExecuteIntermediateSearch;
 
-    public SolverIteratedAnts(Problem problem, Selector selector, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, SolutionDestroyer destroyer, int antNum, boolean mustExecuteIntermediateSearch)
+    public SolverIteratedAnts(Problem problem, Selector selector, LocalUpdate localUpdate, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, SolutionDestroyer destroyer, int antNum, boolean mustExecuteIntermediateSearch)
     {
-        super(problem, selector, localSearch, precomputeValues, terminationCriteria, initializer);
+        super(problem, selector, localUpdate, localSearch, precomputeValues, terminationCriteria, initializer);
 
         this.destroyer = destroyer;
         this.antNum = antNum;
