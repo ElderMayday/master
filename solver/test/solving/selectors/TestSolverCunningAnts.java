@@ -43,7 +43,7 @@ public class TestSolverCunningAnts
             TerminationCriteria terminationCriteria = new TerminationCriteriaCounter(5);
             LocalUpdate localUpdate = new LocalUpdateNone();
             LocalSearch localSearch = new LocalSearchNone();
-            GlobalUpdate update = new AntSystem();
+            GlobalUpdate update = new AntSystem(problem, 0.9);
             PheromoneInitializerConstant initializer = new PheromoneInitializerConstant(10.0);
 
             Solver solver = new SolverCunningAnts(problem, selector, localUpdate, true, terminationCriteria, initializer, localSearch, update, 3);

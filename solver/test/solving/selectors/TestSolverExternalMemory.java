@@ -44,7 +44,7 @@ public class TestSolverExternalMemory
             TerminationCriteria terminationCriteria = new TerminationCriteriaCounter(5);
             LocalUpdate localUpdate = new LocalUpdateNone();
             LocalSearch localSearch = new LocalSearchNone();
-            GlobalUpdate update = new AntSystem();
+            GlobalUpdate update = new AntSystem(problem, 0.9);
             PheromoneInitializer initializer = new PheromoneInitializerRange(1.0, 2.0);
             SolutionDestroyer destroyer = new SolutionDestroyerVrpRandom(0.5);
 

@@ -59,6 +59,12 @@ public class ProblemVRP extends Problem2d
     }
 
     @Override
+    public int ProblemSize()
+    {
+        return vertexNum;
+    }
+
+    @Override
     protected void readDataFromFile(File file) throws Exception
     {
         String text = new Scanner(file).useDelimiter("\\Z").next();

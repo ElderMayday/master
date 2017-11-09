@@ -7,27 +7,29 @@ import solving.solution.Solution;
 import java.util.List;
 
 /**
- * Created by Aldar on 17-Oct-17.
+ * Created by Aldar on 09-Nov-17.
  */
-public class AntSystem extends GlobalUpdate
+public class MinMaxAntSystem extends GlobalUpdate
 {
     protected ComponentStructure structure;
     protected double evaporationStrength;    // aka Ro
+    protected double tMin, tMax;
+    protected double problemSize; // aka-n, aka vertex number
 
-    public AntSystem(ComponentStructure structure, double evaporationRate)
-    {
-        super(structure, evaporationRate);
-    }
 
-    public AntSystem(Problem problem, double evaporationRate)
+
+    public MinMaxAntSystem(Problem problem, double evaporationRate)
     {
         super(problem, evaporationRate);
+        this.problemSize = problem.ProblemSize();
     }
 
 
     @Override
     public void update(List<Solution> solutions)
     {
-        // TO-DO
+        executeStandardEvaporationAll();
+
+
     }
 }
