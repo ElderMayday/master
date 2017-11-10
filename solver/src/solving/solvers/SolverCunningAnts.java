@@ -2,12 +2,14 @@ package solving.solvers;
 
 import problem.problemFormulation.Problem;
 import solving.globalUpdate.GlobalUpdate;
+import solving.globalUpdate.MinMaxAntSystem;
 import solving.localSearch.LocalSearch;
 import solving.localUpdate.LocalUpdate;
 import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.pheromoneInitializer.PheromoneInitializerConstant;
 import solving.selectors.Selector;
 import solving.solution.Solution;
+import solving.solutionDestroyer.SolutionDestroyer;
 import solving.terminationCriteria.TerminationCriteria;
 
 import java.util.ArrayList;
@@ -19,14 +21,16 @@ import java.util.List;
  */
 public class SolverCunningAnts extends Solver
 {
+    protected SolutionDestroyer destroyer;
     protected GlobalUpdate globalUpdate;
     protected int antNum;
 
 
-    public SolverCunningAnts(Problem problem, Selector selector, LocalUpdate localUpdate, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializerConstant initializer, LocalSearch localSearch, GlobalUpdate update, int antNum)
+    public SolverCunningAnts(Problem problem, Selector selector, LocalUpdate localUpdate, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializerConstant initializer, LocalSearch localSearch, MinMaxAntSystem update, int antNum, SolutionDestroyer destroyer)
     {
         super(problem, selector, localUpdate, localSearch, precomputeValues, terminationCriteria, initializer);
 
+        this.destroyer = destroyer;
         this.globalUpdate = update;
         this.antNum = antNum;
     }
@@ -36,6 +40,7 @@ public class SolverCunningAnts extends Solver
     public List<Solution> solve() throws Exception
     {
         List<Solution> solutions = new ArrayList<Solution>();
+        List<Solution> newSolutions = new ArrayList<Solution>();
 
         initializer.initialize(problem.structure);
 
@@ -46,6 +51,33 @@ public class SolverCunningAnts extends Solver
 
             solutions.add(solution1.betterThan(solution2) ? solution1 : solution2);
         }
+
+        do
+        {
+            globalUpdate.update(solutions);
+
+            newSolutions = new ArrayList<Solution>();
+            for (Solution solution : solutions)
+                newSolutions.add(solution.deepCopy());
+
+            // c-ant construction
+
+            for (int index = 0; index < newSolutions.size(); index++)
+                newSolutions.set(index, destroyer.destroy(newSolutions.get(index)));
+
+            for (int index = 0; index < newSolutions.size(); index++)
+                reconstructOneSolution(newSolutions.get(index));
+
+            // local-search for c-ant
+
+            for (int index = 0; index < newSolutions.size(); index++)
+                localSearch.search(problem, newSolutions.get(index));
+
+            for (int index = 0; index < solutions.size(); index++)
+                if (newSolutions.get(index).betterThan(solutions.get(index)))
+                    solutions.set(index, newSolutions.get(index));
+        }
+        while (!terminationCriteria.isFullfilled());
 
         return solutions;
     }

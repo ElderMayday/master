@@ -363,6 +363,17 @@ public class SolutionVRP extends Solution
         return solutionVRP;
     }
 
+    @Override
+    public List<Component> getComponents()
+    {
+        List<Component> result = new ArrayList<Component>();
+
+        for (Component2d component2d : components2d)
+            result.add(component2d);
+
+        return result;
+    }
+
 
     public String toString()
     {

@@ -7,6 +7,7 @@ import problem.problemFormulation.Problem;
 import problem.problemFormulation.ProblemVRP;
 import solving.globalUpdate.AntSystem;
 import solving.globalUpdate.GlobalUpdate;
+import solving.globalUpdate.MinMaxAntSystem;
 import solving.localSearch.LocalSearch;
 import solving.localSearch.LocalSearchNone;
 import solving.localUpdate.LocalUpdate;
@@ -15,6 +16,8 @@ import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.pheromoneInitializer.PheromoneInitializerConstant;
 import solving.pheromoneInitializer.PheromoneInitializerRange;
 import solving.solution.Solution;
+import solving.solutionDestroyer.SolutionDestroyer;
+import solving.solutionDestroyer.SolutionDestroyerVrpRandom;
 import solving.solvers.Solver;
 import solving.solvers.SolverCunningAnts;
 import solving.solvers.SolverStandard;
@@ -43,12 +46,18 @@ public class TestSolverCunningAnts
             TerminationCriteria terminationCriteria = new TerminationCriteriaCounter(5);
             LocalUpdate localUpdate = new LocalUpdateNone();
             LocalSearch localSearch = new LocalSearchNone();
-            GlobalUpdate update = new AntSystem(problem, 0.9);
+            MinMaxAntSystem update = new MinMaxAntSystem(problem, 0.9, 1.0);
             PheromoneInitializerConstant initializer = new PheromoneInitializerConstant(10.0);
+            SolutionDestroyer destroyer = new SolutionDestroyerVrpRandom(0.5);
 
-            Solver solver = new SolverCunningAnts(problem, selector, localUpdate, true, terminationCriteria, initializer, localSearch, update, 3);
+            Solver solver = new SolverCunningAnts(problem, selector, localUpdate, true, terminationCriteria, initializer, localSearch, update, 3, destroyer);
 
             List<Solution> solutions = solver.solve();
+
+            assertEquals(solutions.size(), 3);
+            assertEquals(solutions.get(0).getComplete(), true);
+            assertEquals(solutions.get(1).getComplete(), true);
+            assertEquals(solutions.get(2).getComplete(), true);
         }
         catch (Exception e)
         {

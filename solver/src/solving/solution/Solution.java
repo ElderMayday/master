@@ -4,6 +4,8 @@ import problem.component.Component;
 import problem.problemFormulation.Problem;
 import solving.selectors.Selector;
 
+import java.util.List;
+
 /**
  * Created by Aldar on 14-Oct-17.
  */
@@ -59,6 +61,8 @@ public abstract class Solution implements Iterable<Component>
     {
         lastObjective = this.objective();
     }
+
+    public abstract List<Component> getComponents();
 
     /**
      * Compares this and that solution
