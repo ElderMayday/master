@@ -12,7 +12,6 @@ import java.util.List;
 public class AntSystem extends GlobalUpdate
 {
     protected ComponentStructure structure;
-    protected double evaporationStrength;    // aka Ro
 
     public AntSystem(ComponentStructure structure, double evaporationRate)
     {
