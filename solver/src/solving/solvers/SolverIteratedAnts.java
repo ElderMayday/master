@@ -19,12 +19,11 @@ import java.util.List;
 public class SolverIteratedAnts extends Solver
 {
     protected SolutionDestroyer destroyer;
-    protected int antNum;
     protected boolean mustExecuteIntermediateSearch;
 
-    public SolverIteratedAnts(Problem problem, Selector selector, LocalUpdate localUpdate, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, SolutionDestroyer destroyer, int antNum, boolean mustExecuteIntermediateSearch)
+    public SolverIteratedAnts(Problem problem, Selector selector, GlobalUpdate globalUpdate, LocalUpdate localUpdate, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, SolutionDestroyer destroyer, int antNum, boolean mustExecuteIntermediateSearch)
     {
-        super(problem, selector, localUpdate, localSearch, precomputeValues, terminationCriteria, initializer);
+        super(problem, selector, antNum, globalUpdate, localUpdate, localSearch, precomputeValues, terminationCriteria, initializer);
 
         this.destroyer = destroyer;
         this.antNum = antNum;

@@ -42,7 +42,7 @@ public class TestSolverStandard
             GlobalUpdate update = new AntSystem(problem, 0.9);
             PheromoneInitializer initializer = new PheromoneInitializerRange(1.0, 2.0);
 
-            Solver solver = new SolverStandard(problem, selector, localUpdate, true, terminationCriteria, initializer, localSearch, update, 3);
+            Solver solver = new SolverStandard(problem, selector, update, localUpdate, true, terminationCriteria, initializer, localSearch, update, 3);
 
             List<Solution> solutions = solver.solve();
 

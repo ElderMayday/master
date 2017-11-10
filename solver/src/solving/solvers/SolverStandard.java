@@ -16,15 +16,10 @@ import java.util.List;
  */
 public class SolverStandard extends Solver
 {
-    protected GlobalUpdate globalUpdate;
-    protected int antNum;
-
-
-    public SolverStandard(Problem problem, Selector selector, LocalUpdate localUpdate, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, GlobalUpdate update, int antNum)
+    public SolverStandard(Problem problem, Selector selector, GlobalUpdate globalUpdate, LocalUpdate localUpdate, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, GlobalUpdate update, int antNum)
     {
-        super(problem, selector, localUpdate, localSearch, precomputeValues, terminationCriteria, initializer);
+        super(problem, selector, antNum, globalUpdate, localUpdate, localSearch, precomputeValues, terminationCriteria, initializer);
 
-        this.globalUpdate = update;
         this.antNum = antNum;
     }
 
@@ -48,6 +43,4 @@ public class SolverStandard extends Solver
 
         return solutions;
     }
-
-
 }

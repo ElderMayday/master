@@ -2,6 +2,7 @@ package solving.solvers;
 
 import problem.component.Component;
 import problem.problemFormulation.Problem;
+import solving.globalUpdate.GlobalUpdate;
 import solving.localSearch.LocalSearch;
 import solving.localUpdate.LocalUpdate;
 import solving.pheromoneInitializer.PheromoneInitializer;
@@ -23,6 +24,8 @@ public abstract class Solver
     protected LocalSearch localSearch;
     protected PheromoneInitializer initializer;
     protected LocalUpdate localUpdate;
+    protected GlobalUpdate globalUpdate;
+    protected int antNum;
 
     /**
      *
@@ -30,10 +33,12 @@ public abstract class Solver
      * @param selector
      * @param precomputeValues
      */
-    public Solver(Problem problem, Selector selector, LocalUpdate localUpdate, LocalSearch localSearch, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer)
+    public Solver(Problem problem, Selector selector, int antNum, GlobalUpdate globalUpdate, LocalUpdate localUpdate, LocalSearch localSearch, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer)
     {
         this.problem = problem;
         this.selector = selector;
+        this.antNum = antNum;
+        this.globalUpdate = globalUpdate;
         this.localUpdate = localUpdate;
         this.terminationCriteria = terminationCriteria;
         this.localSearch = localSearch;

@@ -22,17 +22,13 @@ import java.util.List;
 public class SolverCunningAnts extends Solver
 {
     protected SolutionDestroyer destroyer;
-    protected GlobalUpdate globalUpdate;
-    protected int antNum;
 
 
-    public SolverCunningAnts(Problem problem, Selector selector, LocalUpdate localUpdate, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializerConstant initializer, LocalSearch localSearch, MinMaxAntSystem update, int antNum, SolutionDestroyer destroyer)
+    public SolverCunningAnts(Problem problem, Selector selector, LocalUpdate localUpdate, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializerConstant initializer, LocalSearch localSearch, MinMaxAntSystem globalUpdate, int antNum, SolutionDestroyer destroyer)
     {
-        super(problem, selector, localUpdate, localSearch, precomputeValues, terminationCriteria, initializer);
+        super(problem, selector, antNum, globalUpdate, localUpdate, localSearch, precomputeValues, terminationCriteria, initializer);
 
         this.destroyer = destroyer;
-        this.globalUpdate = update;
-        this.antNum = antNum;
     }
 
 

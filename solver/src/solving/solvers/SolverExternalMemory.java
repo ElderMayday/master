@@ -20,19 +20,16 @@ import java.util.List;
 public class SolverExternalMemory extends Solver
 {
     protected SolutionDestroyer destroyer;
-    protected int antNum;
     protected int memorySize;
-    protected GlobalUpdate update;
     protected int topK;
 
-    public SolverExternalMemory(Problem problem, Selector selector, LocalUpdate localUpdate, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, SolutionDestroyer destroyer, GlobalUpdate update, int antNum, int memorySize, int topK)
+    public SolverExternalMemory(Problem problem, Selector selector, LocalUpdate localUpdate, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, SolutionDestroyer destroyer, GlobalUpdate globalUpdate, int antNum, int memorySize, int topK)
     {
-        super(problem, selector, localUpdate, localSearch, precomputeValues, terminationCriteria, initializer);
+        super(problem, selector, antNum, globalUpdate, localUpdate, localSearch, precomputeValues, terminationCriteria, initializer);
 
         this.destroyer = destroyer;
-        this.antNum = antNum;
         this.memorySize = memorySize;
-        this.update = update;
+        this.globalUpdate = globalUpdate;
         this.topK = topK;
     }
 
@@ -53,7 +50,7 @@ public class SolverExternalMemory extends Solver
 
             segments.addAll(newComponents);
 
-            update.update(segments);
+            globalUpdate.update(segments);
         }
         while (segments.size() < memorySize);       // until the memory is full
 

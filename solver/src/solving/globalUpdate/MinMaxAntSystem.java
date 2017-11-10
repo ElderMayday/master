@@ -13,10 +13,7 @@ import java.util.*;
  */
 public class MinMaxAntSystem extends GlobalUpdate
 {
-    protected ComponentStructure structure;
     protected double tMin, tMax;
-    protected double problemSize; // aka-n, aka vertex number
-    protected double pBest;       // minimum value control parameter
 
     protected double tMaxCoefficient;  //    1 / (1 - evaporationStrength)
     protected double tMinCoefficient;  // (1 - pow(pBest, 1/n)) / ((n/2-1) x pow(pBest, 1/n))
@@ -24,11 +21,9 @@ public class MinMaxAntSystem extends GlobalUpdate
     public MinMaxAntSystem(Problem problem, double evaporationRate, double pBest)
     {
         super(problem, evaporationRate);
-        this.problemSize = problem.ProblemSize();
-        this.structure = problem.structure;
-        this.pBest = pBest;
-        tMaxCoefficient = 1 / (1 - evaporationStrength);
-        tMinCoefficient = (1 - Math.pow(pBest, 1 / problemSize)) / ((problemSize / 2 - 1) * Math.pow(pBest, 1 / problemSize));
+        int problemSize = problem.ProblemSize(); // aka-n, aka vertex number
+        tMaxCoefficient = 1.0 / (1.0 - evaporationStrength);
+        tMinCoefficient = (1.0 - Math.pow(pBest, 1.0 / problemSize)) / ((problemSize / 2.0 - 1.0) * Math.pow(pBest, 1.0 / problemSize));
     }
 
 
