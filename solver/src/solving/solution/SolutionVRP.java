@@ -2,6 +2,7 @@ package solving.solution;
 
 import problem.component.Component;
 import problem.component.Component2d;
+import problem.componentStructure.ComponentStructure2d;
 import problem.fleet.Vehicle;
 import problem.problemFormulation.Problem;
 import problem.problemFormulation.ProblemVRP;
@@ -23,6 +24,7 @@ public class SolutionVRP extends Solution
 
     protected boolean[] visited;                // Flag array of whether the corresponding custumer has been visited
     protected int visitedNum;                   // Number of visited customers
+
     protected List<Tour> tours;                 // Every tour of the solution
 
     protected Tour currentTour;                 // The tour where the new components will be added
@@ -168,7 +170,7 @@ public class SolutionVRP extends Solution
         }
 
         if (component2d.getRow() != currentCustomerId)
-            throw new Exception("New component does not procede the current tour");
+            throw new Exception("New component does not proceed the current tour");
 
         currentCustomerId = component2d.getColumn();
 
@@ -256,7 +258,19 @@ public class SolutionVRP extends Solution
                 visited[index] = false;
             }
         }
+    }
 
+    /**
+     * Sets all visited to false, except the depotId
+     */
+    public void unsetAllVisited()
+    {
+        for (int i = 0; i < visited.length; i++)
+            visited[i] = false;
+
+        visited[problemVRP.getDepotId()] = true;
+
+        visitedNum = 1;
     }
 
     public ProblemVRP getProblemVRP()
@@ -272,6 +286,39 @@ public class SolutionVRP extends Solution
     public List<Tour> getTours()
     {
         return tours;
+    }
+
+    public int getVisitedNum()
+    {
+        return visitedNum;
+    }
+
+    public void setTours(List<Tour> tours) throws Exception
+    {
+        this.tours = tours;
+
+        this.unsetAllVisited();
+
+        for (Tour tour : tours)
+            for (Integer index : tour.getCustomers())
+                this.setVisited(index, true);
+
+        components2d = new ArrayList<Component2d>();
+        for (Tour tour : tours)
+        {
+            List<Integer> customers = tour.getCustomers();
+            ComponentStructure2d structure2d = problemVRP.structure2d;
+
+            components2d.add(structure2d.get(problemVRP.getDepotId(), customers.get(0)));
+
+            for (int i = 0; i < customers.size(); i++)
+            {
+                int nextCustomer = i == customers.size() - 1 ? problemVRP.getDepotId() : customers.get(i + 1);
+
+                Component2d component2d = structure2d.get(customers.get(i), nextCustomer);
+                components2d.add(structure2d.get(customers.get(i), nextCustomer));
+            }
+        }
     }
 
     public Tour getCurrentTour()

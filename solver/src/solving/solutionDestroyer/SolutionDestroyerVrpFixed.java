@@ -50,7 +50,6 @@ public class SolutionDestroyerVrpFixed extends SolutionDestroyer
             {
                 solution.setPartiallyDestroyed(true); // solutionVRP is destroyed when at least one tour is destroyed
                 solution.setComplete(false);
-
                 tour.setFinished(false);
 
                 int numberOfCustomersToRemove = customers.size() - toLeave;
