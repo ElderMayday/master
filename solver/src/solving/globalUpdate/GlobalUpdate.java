@@ -13,7 +13,7 @@ import java.util.List;
 public abstract class GlobalUpdate
 {
     protected ComponentStructure structure;
-    protected double evaporationStrength;
+    protected double evaporationStrength;  // what fraction of pheromone remains
 
     public GlobalUpdate(ComponentStructure structure, double evaporationRate)
     {
@@ -21,10 +21,10 @@ public abstract class GlobalUpdate
         this.evaporationStrength = evaporationRate;
     }
 
-    public GlobalUpdate(Problem problem, double evaporationRate)
+    public GlobalUpdate(Problem problem, double evaporationStrength)
     {
         this.structure = problem.structure;
-        this.evaporationStrength = evaporationRate;
+        this.evaporationStrength = evaporationStrength;
     }
 
     public abstract void update(List<Solution> solutions);

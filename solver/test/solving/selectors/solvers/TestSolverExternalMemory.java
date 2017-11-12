@@ -1,11 +1,10 @@
-package solving.selectors;
+package solving.selectors.solvers;
 
 import org.junit.Test;
 import problem.componentStructure.ComponentStructure2dStandard;
 import problem.fleet.FleetDescendingCapacity;
 import problem.problemFormulation.Problem;
 import problem.problemFormulation.ProblemVRP;
-import solving.candidateList.CandidateDeterminerVrpSorting;
 import solving.globalUpdate.AntSystem;
 import solving.globalUpdate.GlobalUpdate;
 import solving.localSearch.LocalSearch;
@@ -14,11 +13,13 @@ import solving.localUpdate.LocalUpdate;
 import solving.localUpdate.LocalUpdateNone;
 import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.pheromoneInitializer.PheromoneInitializerRange;
+import solving.selectors.Selector;
+import solving.selectors.SelectorStandard;
 import solving.solution.Solution;
 import solving.solutionDestroyer.SolutionDestroyer;
 import solving.solutionDestroyer.SolutionDestroyerVrpRandom;
 import solving.solvers.Solver;
-import solving.solvers.SolverIteratedAnts;
+import solving.solvers.SolverExternalMemory;
 import solving.terminationCriteria.TerminationCriteria;
 import solving.terminationCriteria.TerminationCriteriaCounter;
 
@@ -27,14 +28,14 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Aldar on 03-Nov-17.
- */
-public class TestSolverIteratedAnts
-{
 
+/**
+ * Created by Aldar on 08-Nov-17.
+ */
+public class TestSolverExternalMemory
+{
     @Test
-    public void testSolverStandard()
+    public void testSolverExternalMemory()
     {
         try
         {
@@ -49,18 +50,13 @@ public class TestSolverIteratedAnts
             PheromoneInitializer initializer = new PheromoneInitializerRange(1.0, 2.0);
             SolutionDestroyer destroyer = new SolutionDestroyerVrpRandom(0.5);
 
-            Solver solver = new SolverIteratedAnts(problem, selector, update, localUpdate, true, terminationCriteria, initializer, localSearch, destroyer, 5, true);
+            Solver solver = new SolverExternalMemory(problem, selector, localUpdate, true, terminationCriteria, initializer, localSearch, destroyer, update, 5, 5, 2);
 
             List<Solution> solutions = solver.solve();
 
-            assertEquals(solutions.size(), 5);
-            assertEquals(solutions.get(0).getComplete(), true);
-            assertEquals(solutions.get(1).getComplete(), true);
-            assertEquals(solutions.get(2).getComplete(), true);
-            assertEquals(solutions.get(3).getComplete(), true);
-            assertEquals(solutions.get(4).getComplete(), true);
-        }
-        catch (Exception e)
+            int a = 1;
+
+        } catch (Exception e)
         {
             e.printStackTrace();
             assertTrue(false);

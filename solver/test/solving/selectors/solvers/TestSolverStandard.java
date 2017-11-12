@@ -1,4 +1,4 @@
-package solving.selectors;
+package solving.selectors.solvers;
 
 import org.junit.Test;
 import problem.componentStructure.ComponentStructure2dStandard;
@@ -13,6 +13,8 @@ import solving.localSearch.LocalSearchNone;
 import solving.localUpdate.LocalUpdate;
 import solving.localUpdate.LocalUpdateNone;
 import solving.pheromoneInitializer.*;
+import solving.selectors.Selector;
+import solving.selectors.SelectorStandard;
 import solving.solution.Solution;
 import solving.solvers.*;
 import solving.terminationCriteria.*;
