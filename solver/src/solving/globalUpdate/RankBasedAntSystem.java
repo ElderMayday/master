@@ -17,9 +17,9 @@ public class RankBasedAntSystem extends GlobalUpdate
 
     protected Solution globalBest;
 
-    public RankBasedAntSystem(Problem problem, double evaporationStrength, int numberOfDepositing)
+    public RankBasedAntSystem(Problem problem, double evaporationRemains, int numberOfDepositing)
     {
-        super(problem, evaporationStrength);
+        super(problem, evaporationRemains);
         this.numberOfDepositing = numberOfDepositing;
         this.globalBest = null;
     }

@@ -13,18 +13,20 @@ import java.util.List;
 public abstract class GlobalUpdate
 {
     protected ComponentStructure structure;
-    protected double evaporationStrength;  // what fraction of pheromone remains
+    protected double evaporationRemains;  // what fraction of pheromone remains (aka Ro)
+    protected double evaporationStrength; // what fraction of pheromone is evaporated (1 - Ro)
 
-    public GlobalUpdate(ComponentStructure structure, double evaporationRate)
+    public GlobalUpdate(ComponentStructure structure, double evaporationRemains)
     {
         this.structure = structure;
-        this.evaporationStrength = evaporationRate;
+        this.evaporationRemains = evaporationRemains;
     }
 
-    public GlobalUpdate(Problem problem, double evaporationStrength)
+    public GlobalUpdate(Problem problem, double evaporationRemains)
     {
         this.structure = problem.structure;
-        this.evaporationStrength = evaporationStrength;
+        this.evaporationRemains = evaporationRemains;
+        this.evaporationStrength = 1.0 - evaporationRemains;
     }
 
     public abstract void update(List<Solution> solutions);
@@ -37,6 +39,6 @@ public abstract class GlobalUpdate
     protected void executeStandardEvaporationAll()
     {
         for (Component component : structure)
-            component.setPheromone(evaporationStrength * component.getPheromone());
+            component.setPheromone(evaporationRemains * component.getPheromone());
     }
 }

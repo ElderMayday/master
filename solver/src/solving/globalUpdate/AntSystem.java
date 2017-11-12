@@ -14,14 +14,14 @@ public class AntSystem extends GlobalUpdate
 {
     protected ComponentStructure structure;
 
-    public AntSystem(ComponentStructure structure, double evaporationRate)
+    public AntSystem(ComponentStructure structure, double evaporationRemains)
     {
-        super(structure, evaporationRate);
+        super(structure, evaporationRemains);
     }
 
-    public AntSystem(Problem problem, double evaporationRate)
+    public AntSystem(Problem problem, double evaporationRemains)
     {
-        super(problem, evaporationRate);
+        super(problem, evaporationRemains);
     }
 
 

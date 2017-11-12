@@ -15,14 +15,14 @@ public class MinMaxAntSystem extends GlobalUpdate
 {
     protected double tMin, tMax;
 
-    protected double tMaxCoefficient;  //    1 / (1 - evaporationStrength)
+    protected double tMaxCoefficient;  //    1 / (1 - evaporationRemains)
     protected double tMinCoefficient;  // (1 - pow(pBest, 1/n)) / ((n/2-1) x pow(pBest, 1/n))
 
-    public MinMaxAntSystem(Problem problem, double evaporationRate, double pBest)
+    public MinMaxAntSystem(Problem problem, double evaporationRemains, double pBest)
     {
-        super(problem, evaporationRate);
+        super(problem, evaporationRemains);
         int problemSize = problem.ProblemSize(); // aka-n, aka vertex number
-        tMaxCoefficient = 1.0 / (1.0 - evaporationStrength);
+        tMaxCoefficient = 1.0 / this.evaporationStrength;
         tMinCoefficient = (1.0 - Math.pow(pBest, 1.0 / problemSize)) / ((problemSize / 2.0 - 1.0) * Math.pow(pBest, 1.0 / problemSize));
     }
 
@@ -75,7 +75,7 @@ public class MinMaxAntSystem extends GlobalUpdate
     {
         for (Component component : structure)
         {
-            double newPheromone = evaporationStrength * component.getPheromone();
+            double newPheromone = evaporationRemains * component.getPheromone();
 
             if (newPheromone > tMax)
                 newPheromone = tMax;
