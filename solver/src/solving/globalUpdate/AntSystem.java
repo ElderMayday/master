@@ -1,5 +1,6 @@
 package solving.globalUpdate;
 
+import problem.component.Component;
 import problem.componentStructure.ComponentStructure;
 import problem.problemFormulation.Problem;
 import solving.solution.Solution;
@@ -27,6 +28,21 @@ public class AntSystem extends GlobalUpdate
     @Override
     public void update(List<Solution> solutions)
     {
-        // TO-DO
+        executeStandardEvaporationAll();
+
+        executeDepositAll(solutions);
+    }
+
+
+
+    protected void executeDepositAll(List<Solution> solutions)
+    {
+        for (Solution solution : solutions)
+        {
+            double addedValue = 1.0 / solution.objective();
+
+            for (Component component : solution.getComponents())
+                component.setPheromone(component.getPheromone() + addedValue);
+        }
     }
 }
