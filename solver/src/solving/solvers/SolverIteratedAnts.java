@@ -8,6 +8,7 @@ import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.selectors.Selector;
 import solving.solution.Solution;
 import solving.solutionDestroyer.SolutionDestroyer;
+import solving.solvers.IteratedCriteria.IteratedCriteria;
 import solving.terminationCriteria.TerminationCriteria;
 
 import java.util.ArrayList;
@@ -20,14 +21,16 @@ public class SolverIteratedAnts extends Solver
 {
     protected SolutionDestroyer destroyer;
     protected boolean mustExecuteIntermediateSearch;
+    protected IteratedCriteria criteria;
 
-    public SolverIteratedAnts(Problem problem, Selector selector, GlobalUpdate globalUpdate, LocalUpdate localUpdate, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, SolutionDestroyer destroyer, int antNum, boolean mustExecuteIntermediateSearch)
+    public SolverIteratedAnts(Problem problem, Selector selector, GlobalUpdate globalUpdate, LocalUpdate localUpdate, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, SolutionDestroyer destroyer, int antNum, boolean mustExecuteIntermediateSearch, IteratedCriteria criteria)
     {
         super(problem, selector, antNum, globalUpdate, localUpdate, localSearch, precomputeValues, terminationCriteria, initializer);
 
         this.destroyer = destroyer;
         this.antNum = antNum;
         this.mustExecuteIntermediateSearch = mustExecuteIntermediateSearch;
+        this.criteria = criteria;
     }
 
 
@@ -61,10 +64,9 @@ public class SolverIteratedAnts extends Solver
             if (mustExecuteIntermediateSearch)
                 newSolutions = executeMultipleLocalSearch(newSolutions);
 
-            for (int index = 0; index < solutions.size(); index++)
-                if (newSolutions.get(index).betterThan(solutions.get(index)))
-                    solutions.set(index, newSolutions.get(index));
+            solutions = criteria.Decide(solutions, newSolutions);
 
+            globalUpdate.update(solutions);
 
             /* // statistics optional part
 
