@@ -7,14 +7,19 @@ import solving.localUpdate.LocalUpdate;
 import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.selectors.Selector;
 import solving.solution.ComparatorSolution;
+import solving.solution.ComparatorSolutionLast;
 import solving.solution.Solution;
 import solving.solutionDestroyer.SolutionDestroyer;
+import solving.solvers.tournamentSelector.TournamentSelector;
 import solving.terminationCriteria.TerminationCriteria;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * REMARK!!! Deviates from the paper version
+ * Does not perform concatenation due to unclear consistency assurance
+ * Appends all new solutions to the segments, sorts and trims instead of diversification
  * Created by Aldar on 08-Nov-17.
  */
 public class SolverExternalMemory extends Solver
@@ -22,8 +27,12 @@ public class SolverExternalMemory extends Solver
     protected SolutionDestroyer destroyer;
     protected int memorySize;
     protected int topK;
+    protected TournamentSelector tournamentSelector;
 
-    public SolverExternalMemory(Problem problem, Selector selector, LocalUpdate localUpdate, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, SolutionDestroyer destroyer, GlobalUpdate globalUpdate, int antNum, int memorySize, int topK)
+    public SolverExternalMemory(Problem problem, Selector selector, LocalUpdate localUpdate, boolean precomputeValues,
+                                TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch,
+                                SolutionDestroyer destroyer, GlobalUpdate globalUpdate, int antNum, int memorySize,
+                                int topK, TournamentSelector tournamentSelector)
     {
         super(problem, selector, antNum, globalUpdate, localUpdate, localSearch, precomputeValues, terminationCriteria, initializer);
 
@@ -31,8 +40,18 @@ public class SolverExternalMemory extends Solver
         this.memorySize = memorySize;
         this.globalUpdate = globalUpdate;
         this.topK = topK;
+        this.tournamentSelector = tournamentSelector;
+
+        if (antNum > memorySize)
+            throw new IllegalArgumentException("Ant num cannot be larger than the memory size");
     }
 
+
+    /**
+     * REMARK!!! The destruction comes after the first loop (slight deviation from the paper)
+     * @return
+     * @throws Exception
+     */
     @Override
     public List<Solution> solve() throws Exception
     {
@@ -58,12 +77,45 @@ public class SolverExternalMemory extends Solver
 
         segments.sort(new ComparatorSolution());
 
+        for (int index = 0; index < segments.size(); index++)
+            destroyer.destroy(segments.get(index));
+
+        List<Solution> solutions = new ArrayList<Solution>();
+
         do
         {
-            // to do Concatenation and Tournament selection before doing this
+            List<Solution> selectedSolutions = tournamentSelector.select(segments, antNum);
+
+            // must copy segments, because they are not a subject to reconstruction
+
+            solutions = new ArrayList<Solution>();
+            for (Solution solution : selectedSolutions)
+                solutions.add(solution.deepCopy());
+
+            for (int index = 0; index < solutions.size(); index++)
+                reconstructOneSolution(solutions.get(index));
+
+            // update pheromone matrix
+
+            globalUpdate.update(solutions);
+
+            // update memory
+
+            List<Solution> newSegments = new ArrayList<Solution>();    // we copy, so we return complete solutions if we finish
+            for (Solution solution : solutions)
+                newSegments.add(solution.deepCopy());
+
+            for (int index = 0; index < newSegments.size(); index++)
+                destroyer.destroy(newSegments.get(index));
+
+            segments.addAll(newSegments);
+
+            segments.sort(new ComparatorSolutionLast());
+
+            segments = segments.subList(0, memorySize);
         }
         while (!terminationCriteria.isFullfilled());
 
-        return null;
+        return solutions;
     }
 }

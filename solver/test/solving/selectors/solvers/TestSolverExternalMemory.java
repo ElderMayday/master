@@ -20,6 +20,7 @@ import solving.solutionDestroyer.SolutionDestroyer;
 import solving.solutionDestroyer.SolutionDestroyerVrpRandom;
 import solving.solvers.Solver;
 import solving.solvers.SolverExternalMemory;
+import solving.solvers.tournamentSelector.TournamentSelectorBag;
 import solving.terminationCriteria.TerminationCriteria;
 import solving.terminationCriteria.TerminationCriteriaCounter;
 
@@ -50,11 +51,16 @@ public class TestSolverExternalMemory
             PheromoneInitializer initializer = new PheromoneInitializerRange(1.0, 2.0);
             SolutionDestroyer destroyer = new SolutionDestroyerVrpRandom(0.5);
 
-            Solver solver = new SolverExternalMemory(problem, selector, localUpdate, true, terminationCriteria, initializer, localSearch, destroyer, update, 5, 5, 2);
+            Solver solver = new SolverExternalMemory(problem, selector, localUpdate, true, terminationCriteria, initializer, localSearch, destroyer, update, 5, 5, 2, new TournamentSelectorBag(3));
 
             List<Solution> solutions = solver.solve();
 
-            int a = 1;
+            assertEquals(solutions.size(), 5);
+            assertEquals(solutions.get(0).getComplete(), true);
+            assertEquals(solutions.get(1).getComplete(), true);
+            assertEquals(solutions.get(2).getComplete(), true);
+            assertEquals(solutions.get(3).getComplete(), true);
+            assertEquals(solutions.get(4).getComplete(), true);
 
         } catch (Exception e)
         {

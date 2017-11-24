@@ -401,6 +401,10 @@ public class SolutionVRP extends Solution
             int index = tours.indexOf(currentTour);
             solutionVRP.currentTour = solutionVRP.tours.get(index);
         }
+        else
+            solutionVRP.currentTour = null;
+
+        solutionVRP.lastObjective = this.lastObjective;
 
         solutionVRP.currentCustomerId = this.currentCustomerId;
 

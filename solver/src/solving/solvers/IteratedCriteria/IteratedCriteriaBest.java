@@ -1,7 +1,6 @@
-package solving.solvers.IteratedCriteria;
+package solving.solvers.iteratedCriteria;
 
 import solving.solution.Solution;
-import solving.solvers.IteratedCriteria.IteratedCriteria;
 
 import java.util.ArrayList;
 import java.util.List;

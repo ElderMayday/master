@@ -8,7 +8,7 @@ import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.selectors.Selector;
 import solving.solution.Solution;
 import solving.solutionDestroyer.SolutionDestroyer;
-import solving.solvers.IteratedCriteria.IteratedCriteria;
+import solving.solvers.iteratedCriteria.IteratedCriteria;
 import solving.terminationCriteria.TerminationCriteria;
 
 import java.util.ArrayList;

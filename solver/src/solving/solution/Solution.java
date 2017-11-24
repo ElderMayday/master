@@ -76,4 +76,19 @@ public abstract class Solution implements Iterable<Component>
         else
             return this.objective() > that.objective();
     }
+
+
+
+    /**
+     * Compares this and that solution according to the last captured objectives (useful for partially destroyed solutions comparison)
+     * @param that
+     * @return True if is better than that
+     */
+    public boolean betterThanLast(Solution that)
+    {
+        if (problem.lowerIsBetter)
+            return this.lastObjective < that.lastObjective;
+        else
+            return this.lastObjective > that.lastObjective;
+    }
 }

@@ -1,4 +1,4 @@
-package solving.solvers.IteratedCriteria;
+package solving.solvers.iteratedCriteria;
 
 import solving.solution.Solution;
 
