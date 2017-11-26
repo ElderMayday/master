@@ -19,8 +19,14 @@ public abstract class ComponentStructure2d extends ComponentStructure
     }
 
 
+    public int numberOfComponents()
+    {
+        return rowNumber * columnNumber;
+    }
+
+
     /**
-     * Normally called after construction
+     * Allocates the data blocks in heap for the specified implementation. Supposed to be called manually after construction
      */
     public void allocate(int rowNumber, int columnNumber)
     {

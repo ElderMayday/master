@@ -3,6 +3,7 @@ package solving.globalUpdate;
 import problem.component.Component;
 import problem.componentStructure.ComponentStructure;
 import problem.problemFormulation.Problem;
+import solving.globalUpdate.pheromoneTrailSmoothing.PheromoneTrailSmoothing;
 import solving.solution.ComparatorSolution;
 import solving.solution.Solution;
 
@@ -18,12 +19,17 @@ public class MinMaxAntSystem extends GlobalUpdate
     protected double tMaxCoefficient;  //    1 / (1 - evaporationRemains)
     protected double tMinCoefficient;  // (1 - pow(pBest, 1/n)) / ((n/2-1) x pow(pBest, 1/n))
 
-    public MinMaxAntSystem(Problem problem, double evaporationRemains, double pBest)
+    protected PheromoneTrailSmoothing pts;
+
+    public MinMaxAntSystem(Problem problem, double evaporationRemains, double pBest, PheromoneTrailSmoothing pts)
     {
         super(problem, evaporationRemains);
+
         int problemSize = problem.ProblemSize(); // aka-n, aka vertex number
         tMaxCoefficient = 1.0 / this.evaporationStrength;
         tMinCoefficient = (1.0 - Math.pow(pBest, 1.0 / problemSize)) / ((problemSize / 2.0 - 1.0) * Math.pow(pBest, 1.0 / problemSize));
+
+        this.pts = pts;
     }
 
 
@@ -35,13 +41,14 @@ public class MinMaxAntSystem extends GlobalUpdate
         executeStandardEvaporationAll();
 
         executeCumulativeDeposit(solutions);
+
+        pts.doIfRequired(structure, tMin, tMax);
     }
 
 
 
     protected void defineBounds(List<Solution> solutions)
     {
-
         /*  Max case
         double max = solutions.get(0).objective();
 

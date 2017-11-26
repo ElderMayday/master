@@ -8,6 +8,7 @@ import problem.problemFormulation.ProblemVRP;
 import solving.globalUpdate.AntSystem;
 import solving.globalUpdate.GlobalUpdate;
 import solving.globalUpdate.MinMaxAntSystem;
+import solving.globalUpdate.pheromoneTrailSmoothing.PheromoneTrailSmoothingNone;
 import solving.localSearch.LocalSearch;
 import solving.localSearch.LocalSearchNone;
 import solving.localUpdate.LocalUpdate;
@@ -48,7 +49,7 @@ public class TestSolverCunningAnts
             TerminationCriteria terminationCriteria = new TerminationCriteriaCounter(5);
             LocalUpdate localUpdate = new LocalUpdateNone();
             LocalSearch localSearch = new LocalSearchNone();
-            MinMaxAntSystem update = new MinMaxAntSystem(problem, 0.9, 1.0);
+            MinMaxAntSystem update = new MinMaxAntSystem(problem, 0.9, 1.0, new PheromoneTrailSmoothingNone());
             PheromoneInitializerConstant initializer = new PheromoneInitializerConstant(10.0);
             SolutionDestroyer destroyer = new SolutionDestroyerVrpRandom(0.5);
 

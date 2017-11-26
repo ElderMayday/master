@@ -8,5 +8,5 @@ import problem.component.Component;
  */
 public abstract class ComponentStructure implements Iterable<Component>
 {
-
+    public abstract int numberOfComponents();
 }
