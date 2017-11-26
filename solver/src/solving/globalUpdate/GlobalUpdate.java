@@ -29,6 +29,11 @@ public abstract class GlobalUpdate
         this.evaporationStrength = 1.0 - evaporationRemains;
     }
 
+
+    /**
+     * Performs pheromone update (normally evaporation and deposition)
+     * @param solutions The solutions obtained at the last iteration. If one wants to implement global/reset best solutions, one has to memorize those inside of the sub-classes
+     */
     public abstract void update(List<Solution> solutions);
 
 

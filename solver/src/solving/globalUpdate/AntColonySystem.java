@@ -33,12 +33,15 @@ public class AntColonySystem extends GlobalUpdate
     {
         // no total evaporation is applied
 
-        executeGlobalBestDeposit(solutions);
+        executeAcsUpdate(solutions);
     }
 
 
-
-    protected void executeGlobalBestDeposit(List<Solution> solutions)
+    /**
+     * Evaporates and deposits the global-best components according to the ACS rule
+     * @param solutions
+     */
+    protected void executeAcsUpdate(List<Solution> solutions)
     {
         // determine the global best
 

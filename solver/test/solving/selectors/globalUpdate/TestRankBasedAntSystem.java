@@ -65,12 +65,12 @@ public class TestRankBasedAntSystem
             solution3.addConstructionComponent(structure2d.get(3, 0));
             solutionList.add(solution3);
 
-            GlobalUpdate update = new RankBasedAntSystem(problem, 0.9, 2);
+            GlobalUpdate update = new RankBasedAntSystem(problem, 0.9, 3);
 
             update.update(solutionList);
 
             assertEquals(structure2d.get(0, 0).getPheromone(), 0.9, 0.0001);
-            assertEquals(structure2d.get(0, 1).getPheromone(), 0.92, 0.0001);
+            assertEquals(structure2d.get(0, 1).getPheromone(), 0.94, 0.0001);
             assertEquals(structure2d.get(0, 2).getPheromone(), 0.9, 0.0001);
             assertEquals(structure2d.get(0, 3).getPheromone(), 0.9, 0.0001);
 

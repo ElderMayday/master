@@ -30,12 +30,12 @@ public class RankBasedAntSystem extends GlobalUpdate
     {
         executeStandardEvaporationAll();
 
-        executeRankBasedDeposition(solutions);
+        executeRankBasedDeposit(solutions);
     }
 
 
 
-    protected void executeRankBasedDeposition(List<Solution> solutions)
+    protected void executeRankBasedDeposit(List<Solution> solutions)
     {
         List<Solution> sorted = new ArrayList<Solution>(solutions);
 
@@ -43,17 +43,17 @@ public class RankBasedAntSystem extends GlobalUpdate
 
         // depositing to top [numberOfDepositing - 1] iterated-best solutions
 
-        int index = 0;
-        for (int factor = numberOfDepositing - 1; factor > 0; factor--)
+        int factor = numberOfDepositing - 1;
+        for (int index = 0; index < numberOfDepositing - 1; index++)
         {
             Solution solution = sorted.get(index);
 
-            double addValue = factor / solution.objective();
+            double addValue = (double) factor / solution.objective();
 
             for (Component component : solution.getComponents())
                 component.setPheromone(component.getPheromone() + addValue);
 
-            index--;
+            factor--;
         }
 
         // check whether global best has changed
