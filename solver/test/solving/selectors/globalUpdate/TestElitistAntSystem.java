@@ -1,11 +1,11 @@
 package solving.selectors.globalUpdate;
 
 import org.junit.Test;
-import problem.component.Component2d;
 import problem.componentStructure.ComponentStructure2d;
 import problem.componentStructure.ComponentStructure2dStandard;
 import problem.fleet.FleetDescendingCapacity;
 import problem.problemFormulation.ProblemVRP;
+import solving.globalUpdate.ElitistAntSystem;
 import solving.globalUpdate.GlobalUpdate;
 import solving.globalUpdate.RankBasedAntSystem;
 import solving.pheromoneInitializer.PheromoneInitializer;
@@ -20,12 +20,12 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- * Created by Aldar on 12-Nov-17.
+ * Created by Aldar on 26-Nov-17.
  */
-public class TestRankBasedAntSystem
+public class TestElitistAntSystem
 {
     @Test
-    public void testRankBasedAntSystem()
+    public void testElitistAntSystem()
     {
         ProblemVRP problem = null;
         SolutionVRP solution1 = null, solution2 = null, solution3 = null;
@@ -65,21 +65,21 @@ public class TestRankBasedAntSystem
             solution3.addConstructionComponent(structure2d.get(3, 0));
             solutionList.add(solution3);
 
-            GlobalUpdate update = new RankBasedAntSystem(problem, 0.9, 3);
+            GlobalUpdate update = new ElitistAntSystem(problem, 0.9, 1.5);
 
             update.update(solutionList);
 
             assertEquals(structure2d.get(0, 0).getPheromone(), 0.9, 0.0001);
-            assertEquals(structure2d.get(0, 1).getPheromone(), 0.94, 0.0001);
+            assertEquals(structure2d.get(0, 1).getPheromone(), 0.929, 0.0001);
             assertEquals(structure2d.get(0, 2).getPheromone(), 0.9, 0.0001);
-            assertEquals(structure2d.get(0, 3).getPheromone(), 0.9, 0.0001);
+            assertEquals(structure2d.get(0, 3).getPheromone(), 0.9056, 0.0001);
 
             update.update(solutionList);
 
             assertEquals(structure2d.get(0, 0).getPheromone(), 0.81, 0.0001);
-            assertEquals(structure2d.get(0, 1).getPheromone(), 0.886, 0.0001);
+            assertEquals(structure2d.get(0, 1).getPheromone(), 0.8651, 0.0001);
             assertEquals(structure2d.get(0, 2).getPheromone(), 0.81, 0.0001);
-            assertEquals(structure2d.get(0, 3).getPheromone(), 0.81, 0.0001);
+            assertEquals(structure2d.get(0, 3).getPheromone(), 0.8207, 0.0001);
         }
         catch (Exception e)
         {
