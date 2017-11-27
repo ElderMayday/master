@@ -20,6 +20,10 @@ public abstract class GlobalUpdate
     {
         this.structure = structure;
         this.evaporationRemains = evaporationRemains;
+        this.evaporationStrength = 1.0 - evaporationRemains;
+
+        if ((evaporationRemains < 0.0) || (evaporationRemains > 1.0))
+            throw new IllegalArgumentException("Wrong evaporation factor");
     }
 
     public GlobalUpdate(Problem problem, double evaporationRemains)
@@ -27,6 +31,9 @@ public abstract class GlobalUpdate
         this.structure = problem.structure;
         this.evaporationRemains = evaporationRemains;
         this.evaporationStrength = 1.0 - evaporationRemains;
+
+        if ((evaporationRemains < 0.0) || (evaporationRemains > 1.0))
+            throw new IllegalArgumentException("Wrong evaporation factor");
     }
 
 

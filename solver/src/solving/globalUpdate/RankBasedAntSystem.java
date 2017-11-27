@@ -22,6 +22,9 @@ public class RankBasedAntSystem extends GlobalUpdate
         super(problem, evaporationRemains);
         this.numberOfDepositing = numberOfDepositing;
         this.globalBest = null;
+
+        if (numberOfDepositing < 1)
+            throw new IllegalArgumentException("Wrong number of depositing");
     }
 
 
