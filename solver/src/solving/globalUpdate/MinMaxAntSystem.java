@@ -1,10 +1,8 @@
 package solving.globalUpdate;
 
 import problem.component.Component;
-import problem.componentStructure.ComponentStructure;
 import problem.problemFormulation.Problem;
 import solving.globalUpdate.pheromoneTrailSmoothing.PheromoneTrailSmoothing;
-import solving.solution.ComparatorSolution;
 import solving.solution.Solution;
 
 import java.util.*;
@@ -21,7 +19,12 @@ public class MinMaxAntSystem extends GlobalUpdate
 
     protected PheromoneTrailSmoothing pts;
 
-    public MinMaxAntSystem(Problem problem, double evaporationRemains, double pBest, PheromoneTrailSmoothing pts)
+    protected int iterationsBetweenGlobal; // how many iterated-best are used between two global-best usages, -1 for no global
+    protected int scheduleCount;
+
+    protected Solution globalBest;
+
+    public MinMaxAntSystem(Problem problem, double evaporationRemains, double pBest, PheromoneTrailSmoothing pts, int iterationsBetweenGlobal)
     {
         super(problem, evaporationRemains);
 
@@ -30,6 +33,8 @@ public class MinMaxAntSystem extends GlobalUpdate
         tMinCoefficient = (1.0 - Math.pow(pBest, 1.0 / problemSize)) / ((problemSize / 2.0 - 1.0) * Math.pow(pBest, 1.0 / problemSize));
 
         this.pts = pts;
+        this.iterationsBetweenGlobal = iterationsBetweenGlobal;
+        this.scheduleCount = iterationsBetweenGlobal + 1;
     }
 
 
@@ -101,18 +106,80 @@ public class MinMaxAntSystem extends GlobalUpdate
      */
     protected void executeCumulativeDeposit(List<Solution> solutions)
     {
-        for (Solution solution : solutions)
-        {
-            double addedValue = 1.0 / solution.objective();
+        // find iteration-best
 
-            for (Component component : solution.getComponents())
+        Solution iterationBest;
+
+        iterationBest = solutions.get(0);
+
+        for (int index = 1; index < solutions.size(); index++)
+        {
+            Solution current = solutions.get(index);
+
+            if (current.betterThan(iterationBest))
+                iterationBest = current;
+        }
+
+
+        if (iterationsBetweenGlobal >= 0)  // switch is applied
+        {
+            if ((globalBest == null) || iterationBest.betterThan(globalBest))
+                globalBest = iterationBest;
+
+            scheduleCount--;
+
+            if (scheduleCount <= 0)
+            {
+                scheduleCount = iterationsBetweenGlobal + 1;
+
+                // deposit global best
+
+                double addedValue = 1.0 / globalBest.objective();
+
+                for (Component component : globalBest.getComponents())
+                {
+                    double newPheromone = component.getPheromone() + addedValue;
+
+                    if (newPheromone > tMax)
+                        newPheromone = tMax;
+                    else if (newPheromone < tMin)
+                        newPheromone = tMin;
+
+                    component.setPheromone(newPheromone);
+                }
+            }
+            else
+            {
+                // deposit iterated best
+
+                double addedValue = 1.0 / iterationBest.objective();
+
+                for (Component component : iterationBest.getComponents())
+                {
+                    double newPheromone = component.getPheromone() + addedValue;
+
+                    if (newPheromone > tMax)
+                        newPheromone = tMax;
+                    else if (newPheromone < tMin)
+                        newPheromone = tMin;
+
+                    component.setPheromone(newPheromone);
+                }
+            }
+        }
+        else
+        {
+            // deposit iterated best
+
+            double addedValue = 1.0 / iterationBest.objective();
+
+            for (Component component : iterationBest.getComponents())
             {
                 double newPheromone = component.getPheromone() + addedValue;
 
                 if (newPheromone > tMax)
                     newPheromone = tMax;
-                else
-                if (newPheromone < tMin)
+                else if (newPheromone < tMin)
                     newPheromone = tMin;
 
                 component.setPheromone(newPheromone);

@@ -66,7 +66,7 @@ public class TestMinMaxAntSystem
             solution3.addConstructionComponent(structure2d.get(3, 0));
             solutionList.add(solution3);
 
-            GlobalUpdate update = new MinMaxAntSystem(problem, 0.9, 2, new PheromoneTrailSmoothingMMAS(0.9, 0.1, 0.8));
+            GlobalUpdate update = new MinMaxAntSystem(problem, 0.9, 2, new PheromoneTrailSmoothingMMAS(0.9, 0.1, 0.8), 1);
 
             update.update(solutionList);
 
@@ -78,9 +78,9 @@ public class TestMinMaxAntSystem
             update.update(solutionList);
 
             assertEquals(structure2d.get(0, 0).getPheromone(), 0.1860, 0.0001);
-            assertEquals(structure2d.get(0, 1).getPheromone(), 0.1898, 0.0001);
+            assertEquals(structure2d.get(0, 1).getPheromone(), 0.1874, 0.0001);
             assertEquals(structure2d.get(0, 2).getPheromone(), 0.1860, 0.0001);
-            assertEquals(structure2d.get(0, 3).getPheromone(), 0.1872, 0.0001);
+            assertEquals(structure2d.get(0, 3).getPheromone(), 0.1860, 0.0001);
         }
         catch (Exception e)
         {
