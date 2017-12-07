@@ -20,11 +20,14 @@ public class MinMaxAntSystem extends GlobalUpdate
     protected PheromoneTrailSmoothing pts;
 
     protected int iterationsBetweenGlobal; // how many iterated-best are used between two global-best usages, -1 for no global
-    protected int scheduleCount;
+    protected int countSchedule;
+
+    protected int iterationsBetweenPTS; // how many iterations do not apply PTS between two iterations with applying of PTS, -1 for no applying
+    protected int countPTS;
 
     protected Solution globalBest;
 
-    public MinMaxAntSystem(Problem problem, double evaporationRemains, double pBest, PheromoneTrailSmoothing pts, int iterationsBetweenGlobal)
+    public MinMaxAntSystem(Problem problem, double evaporationRemains, double pBest, PheromoneTrailSmoothing pts, int iterationsBetweenGlobal, int iterationsBetweenPTS)
     {
         super(problem, evaporationRemains);
 
@@ -33,8 +36,12 @@ public class MinMaxAntSystem extends GlobalUpdate
         tMinCoefficient = (1.0 - Math.pow(pBest, 1.0 / problemSize)) / ((problemSize / 2.0 - 1.0) * Math.pow(pBest, 1.0 / problemSize));
 
         this.pts = pts;
+
         this.iterationsBetweenGlobal = iterationsBetweenGlobal;
-        this.scheduleCount = iterationsBetweenGlobal + 1;
+        this.iterationsBetweenPTS = iterationsBetweenPTS;
+
+        this.countSchedule = iterationsBetweenGlobal + 1;
+        this.countPTS = iterationsBetweenPTS + 1;
     }
 
 
@@ -47,8 +54,21 @@ public class MinMaxAntSystem extends GlobalUpdate
 
         executeCumulativeDeposit(solutions);
 
-        pts.doIfRequired(structure, tMin, tMax);
+        // do PTS if iteration has come and criteria is fulfilled
+
+        if (iterationsBetweenPTS > 0)
+        {
+            countPTS--;
+
+            if (countPTS <= 0)
+            {
+                countPTS = iterationsBetweenPTS + 1;
+
+                pts.doIfRequired(structure, tMin, tMax);
+            }
+        }
     }
+
 
 
 
@@ -126,11 +146,11 @@ public class MinMaxAntSystem extends GlobalUpdate
             if ((globalBest == null) || iterationBest.betterThan(globalBest))
                 globalBest = iterationBest;
 
-            scheduleCount--;
+            countSchedule--;
 
-            if (scheduleCount <= 0)
+            if (countSchedule <= 0)
             {
-                scheduleCount = iterationsBetweenGlobal + 1;
+                countSchedule = iterationsBetweenGlobal + 1;
 
                 // deposit global best
 

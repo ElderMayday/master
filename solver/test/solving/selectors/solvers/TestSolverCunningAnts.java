@@ -49,7 +49,7 @@ public class TestSolverCunningAnts
             TerminationCriteria terminationCriteria = new TerminationCriteriaCounter(5);
             LocalUpdate localUpdate = new LocalUpdateNone();
             LocalSearch localSearch = new LocalSearchNone();
-            MinMaxAntSystem update = new MinMaxAntSystem(problem, 0.9, 1.0, new PheromoneTrailSmoothingNone(), 1);
+            MinMaxAntSystem update = new MinMaxAntSystem(problem, 0.9, 1.0, new PheromoneTrailSmoothingNone(), 1, 1);
             PheromoneInitializerConstant initializer = new PheromoneInitializerConstant(10.0);
             SolutionDestroyer destroyer = new SolutionDestroyerVrpRandom(0.5);
 
