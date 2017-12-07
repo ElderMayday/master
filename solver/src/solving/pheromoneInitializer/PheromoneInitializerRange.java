@@ -1,5 +1,6 @@
 package solving.pheromoneInitializer;
 
+import general.Main;
 import problem.component.Component;
 import problem.componentStructure.ComponentStructure;
 
@@ -24,6 +25,6 @@ public class PheromoneInitializerRange extends PheromoneInitializer
     public void initialize(ComponentStructure structure)
     {
         for (Iterator<Component> iterator = structure.iterator(); iterator.hasNext();)
-            iterator.next().setPheromone(min + range * random.nextDouble());
+            iterator.next().setPheromone(min + range * Main.random.nextDouble());
     }
 }

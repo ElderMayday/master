@@ -11,14 +11,6 @@ import java.util.Random;
  */
 public abstract class SolutionDestroyer
 {
-    protected Random random;
-
-    public SolutionDestroyer()
-    {
-        random = new Random();
-    }
-
-
     /**
      * Partially destroys the given solution according to a certain algorithm
      * REMARK!!! MUST call solution.memorizeLastObjective() before everything

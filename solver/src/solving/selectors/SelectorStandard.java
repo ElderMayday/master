@@ -1,5 +1,6 @@
 package solving.selectors;
 
+import general.Main;
 import problem.component.Component;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class SelectorStandard extends Selector
         for (Component component : components)
             sum += component.getValue();
 
-        double dice = random.nextDouble() * sum;      // a value from [0-sum)
+        double dice = Main.random.nextDouble() * sum;      // a value from [0-sum)
 
         int componentsLeft = components.size();
         for (Component component : components)

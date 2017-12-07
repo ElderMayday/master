@@ -1,5 +1,6 @@
 package solving.solvers.iteratedCriteria;
 
+import general.Main;
 import solving.solution.Solution;
 
 import java.util.ArrayList;
@@ -12,13 +13,11 @@ import java.util.Random;
  */
 public class IteratedCriteriaProbabilistic extends IteratedCriteria
 {
-    protected Random random;
     protected double probabilityBest;
 
     public IteratedCriteriaProbabilistic(double probabilityBest)
     {
         this.probabilityBest = probabilityBest;
-        random = new Random();
     }
 
     @Override
@@ -34,7 +33,7 @@ public class IteratedCriteriaProbabilistic extends IteratedCriteria
             Solution one = listOne.get(i);
             Solution two = listTwo.get(i);
 
-            if (random.nextDouble() < probabilityBest)
+            if (Main.random.nextDouble() < probabilityBest)
                 result.add(one.betterThan(two) ? one : two);
             else
                 result.add(one.betterThan(two) ? two : one);

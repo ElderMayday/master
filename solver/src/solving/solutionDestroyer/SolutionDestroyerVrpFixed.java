@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * Trims every tour to the fixed number of customers if it is longer
- * This destroyer is more created for testing purposes rather than practical
+ * This destroyer is created for testing purposes rather than practical
  * Created by Aldar on 04-Nov-17.
  */
 public class SolutionDestroyerVrpFixed extends SolutionDestroyer

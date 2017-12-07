@@ -13,7 +13,7 @@ public class ElitistAntSystem extends GlobalUpdate
 {
     protected Problem problem;
 
-    protected double elitistFactor;   // aka m_elite
+    protected double elitistFactor;   // aka m_elite, aka elitist ant number
 
     protected Solution globalBest;
 

@@ -1,5 +1,6 @@
 package solving.selectors;
 
+import general.Main;
 import problem.component.Component;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class SelectorManiezzo extends Selector
         for (Component component : components)
             sum += alpha * component.getPheromone() + alphaComplement * component.getHeuristic();
 
-        double dice = random.nextDouble() * sum;      // a value from [0-sum)
+        double dice = Main.random.nextDouble() * sum;      // a value from [0-sum)
 
         int componentsLeft = components.size();
         for (Component component : components)

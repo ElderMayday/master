@@ -1,5 +1,6 @@
 package solving.solutionDestroyer;
 
+import general.Main;
 import problem.component.Component2d;
 import problem.componentStructure.ComponentStructure2d;
 import problem.problemFormulation.ProblemVRP;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
+ * Destroys solution by leaving one of the initial tours
  * Created by Aldar on 11-Nov-17.
  */
 public class SolutionDestroyerVrpByTour extends SolutionDestroyer
@@ -35,7 +37,7 @@ public class SolutionDestroyerVrpByTour extends SolutionDestroyer
             solution.setPartiallyDestroyed(true); // solutionVRP is destroyed when at least one tour is destroyed
             solution.setComplete(false);
 
-            int dice = random.nextInt(tours.size());
+            int dice = Main.random.nextInt(tours.size());
             Tour newTour = tours.get(dice);
             List<Tour> newTours = new ArrayList<Tour>();
             newTours.add(newTour);

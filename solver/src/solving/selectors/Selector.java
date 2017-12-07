@@ -9,13 +9,6 @@ import java.util.Random;
  */
 public abstract class Selector
 {
-    protected final Random random;
-
-    public Selector()
-    {
-        random = new Random();
-    }
-
     public abstract Component select(List<Component> components) throws Exception;
 }
 

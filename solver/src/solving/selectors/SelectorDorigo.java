@@ -1,5 +1,6 @@
 package solving.selectors;
 
+import general.Main;
 import problem.component.Component;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class SelectorDorigo extends Selector
     @Override
     public Component select(List<Component> components) throws Exception
     {
-        double dice = random.nextDouble();
+        double dice = Main.random.nextDouble();
 
         if (dice <= probabilityOfBest)      // argmax
         {
@@ -57,7 +58,7 @@ public class SelectorDorigo extends Selector
             for (Component component : components)
                 sum += component.getValue();
 
-            dice = random.nextDouble() * sum;      // a value from [0-sum)
+            dice = Main.random.nextDouble() * sum;      // a value from [0-sum)
 
             int componentsLeft = components.size();
             for (Component component : components)

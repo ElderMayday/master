@@ -1,5 +1,6 @@
 package solving.solutionDestroyer;
 
+import general.Main;
 import problem.component.Component2d;
 import problem.componentStructure.ComponentStructure2d;
 import problem.problemFormulation.Problem;
@@ -12,6 +13,7 @@ import java.lang.ref.Reference;
 import java.util.List;
 
 /**
+ * Removes random number of final customers from every tours with certain probability
  * Created by Aldar on 02-Nov-17.
  */
 public class SolutionDestroyerVrpRandom extends SolutionDestroyer
@@ -45,14 +47,14 @@ public class SolutionDestroyerVrpRandom extends SolutionDestroyer
         {
             List<Integer> customers = tour.getCustomers();
 
-            if ((customers.size() > 0) && (random.nextDouble() <= tourDestructionProbability))
+            if ((customers.size() > 0) && (Main.random.nextDouble() <= tourDestructionProbability))
             {
                 solution.setPartiallyDestroyed(true); // solutionVRP is destroyed when at least one tour is destroyed
                 solution.setComplete(false);
 
                 tour.setFinished(false);
 
-                int numberOfCustomersToRemove = random.nextInt(customers.size()) + 1;  // how many first visited customers to leave
+                int numberOfCustomersToRemove = Main.random.nextInt(customers.size()) + 1;  // how many first visited customers to leave
 
                 // remove the last tour-edge to the depot
                 Component2d toRemove = structure2d.get(customers.get(customers.size() - 1), problemVRP.getDepotId());

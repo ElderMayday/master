@@ -9,13 +9,5 @@ import java.util.Random;
  */
 public abstract class PheromoneInitializer
 {
-    protected Random random;
-
-    public PheromoneInitializer()
-    {
-        random = new Random();
-    }
-
-
     public abstract void initialize(ComponentStructure structure);
 }

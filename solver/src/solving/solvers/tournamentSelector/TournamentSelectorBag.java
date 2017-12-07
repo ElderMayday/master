@@ -1,5 +1,6 @@
 package solving.solvers.tournamentSelector;
 
+import general.Main;
 import solving.solution.Solution;
 
 import java.util.ArrayList;
@@ -13,13 +14,10 @@ import java.util.Random;
 public class TournamentSelectorBag extends TournamentSelector
 {
     protected int bagSize;    // aka BS
-    protected Random random;
 
     public TournamentSelectorBag(int bagSize)
     {
         this.bagSize = bagSize;
-
-        random = new Random();
     }
 
     @Override
@@ -36,7 +34,7 @@ public class TournamentSelectorBag extends TournamentSelector
 
             for (int bagIndex = 0; bagIndex < bagSize; bagIndex++)
             {
-                int dice = random.nextInt(leftCandidates.size());
+                int dice = Main.random.nextInt(leftCandidates.size());
 
                 bag.add(leftCandidates.get(dice));
                 leftCandidates.remove(dice);
