@@ -12,25 +12,77 @@ import java.util.List;
  */
 public class AntSystem extends GlobalUpdate
 {
-    protected ComponentStructure structure;
+    protected boolean isBounded;
+    protected double kFactor;           // aka k,    min = max / (k x problemSize)
 
-    public AntSystem(ComponentStructure structure, double evaporationRemains)
+    protected double maxToMinFactor;    // min = max x maxToMinFactor,   maxToMinFactor = 1 / (k x problemSize)
+    protected double maxP, minP;
+    protected double rhoToMaxFactor;
+
+
+    public AntSystem(ComponentStructure structure, double evaporationRemains, boolean isBounded, double kFactor)
     {
         super(structure, evaporationRemains);
+
+        this.isBounded = isBounded;
+        this.kFactor = kFactor;
+
+        rhoToMaxFactor = 1.0 / (1.0 - evaporationRemains);
+        maxToMinFactor = 1.0 / (kFactor * structure.numberOfComponents());
+
+        if ((kFactor < 0.0) || (kFactor > 1.0))
+            throw new IllegalArgumentException("Wrong maxToMinFactor value");
     }
 
-    public AntSystem(Problem problem, double evaporationRemains)
+    public AntSystem(Problem problem, double evaporationRemains, boolean isBounded, double kFactor)
     {
-        super(problem, evaporationRemains);
+        this(problem.structure, evaporationRemains, isBounded, kFactor);
     }
 
 
     @Override
     public void update(List<Solution> solutions)
     {
+        // find min and max pheromone values
+
+        double minObjective = solutions.get(0).objective();
+        for (int index = 1; index < solutions.size(); index++)
+        {
+            double newObjective = solutions.get(index).objective();
+
+            if (minObjective > newObjective)
+                minObjective = newObjective;
+        }
+
+        maxP = rhoToMaxFactor / minObjective;
+        minP = maxP * maxToMinFactor;
+
         executeStandardEvaporationAll();
 
         executeDepositAll(solutions);
+    }
+
+
+    /**
+     * Executes linear rho-based evaporation to ALL components of the structure with respect to min and max
+     */
+    @Override
+    protected void executeStandardEvaporationAll()
+    {
+        for (Component component : structure)
+        {
+            double newPheromone = evaporationRemains * component.getPheromone();
+
+            if (isBounded)
+            {
+                if (newPheromone > maxP)
+                    newPheromone = maxP;
+                else if (newPheromone < minP)
+                    newPheromone = minP;
+            }
+
+            component.setPheromone(newPheromone);
+        }
     }
 
 
@@ -42,7 +94,19 @@ public class AntSystem extends GlobalUpdate
             double addedValue = 1.0 / solution.objective();
 
             for (Component component : solution.getComponents())
-                component.setPheromone(component.getPheromone() + addedValue);
+            {
+                double newPheromone = component.getPheromone() + addedValue;
+
+                if (isBounded)
+                {
+                    if (newPheromone > maxP)
+                        newPheromone = maxP;
+                    else if (newPheromone < minP)
+                        newPheromone = minP;
+                }
+
+                component.setPheromone(newPheromone);
+            }
         }
     }
 }

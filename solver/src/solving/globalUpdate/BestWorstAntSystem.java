@@ -12,7 +12,6 @@ import java.util.List;
  */
 public class BestWorstAntSystem extends GlobalUpdate
 {
-    protected ComponentStructure structure;
     protected Solution globalBest;
 
     public BestWorstAntSystem(ComponentStructure structure, double evaporationRemains)
