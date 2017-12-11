@@ -46,7 +46,7 @@ public abstract class GlobalUpdate
 
     /**
      * Executes linear rho-based evaporation to ALL components of the structure
-     * Can be overridden (e.g. in MMAS to check the bounds)
+     * Can be overridden (e.g. in MMAS, AS, RAS, EAS to check the bounds)
      */
     protected void executeStandardEvaporationAll()
     {

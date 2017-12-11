@@ -12,12 +12,12 @@ import java.util.List;
  */
 public class AntSystem extends GlobalUpdate
 {
-    protected boolean isBounded;
+    protected boolean isBounded;        // defines whether min and max bounds are applied
     protected double kFactor;           // aka k,    min = max / (k x problemSize)
 
     protected double maxToMinFactor;    // min = max x maxToMinFactor,   maxToMinFactor = 1 / (k x problemSize)
-    protected double maxP, minP;
-    protected double rhoToMaxFactor;
+    protected double maxP, minP;        // max and min pheromone values
+    protected double rhoToMaxFactor;    // max = ? x [1 / f_opt] x [1 / (1 - rho)]
 
 
     public AntSystem(ComponentStructure structure, double evaporationRemains, boolean isBounded, double kFactor)
@@ -29,9 +29,6 @@ public class AntSystem extends GlobalUpdate
 
         rhoToMaxFactor = 1.0 / (1.0 - evaporationRemains);
         maxToMinFactor = 1.0 / (kFactor * structure.numberOfComponents());
-
-        if ((kFactor < 0.0) || (kFactor > 1.0))
-            throw new IllegalArgumentException("Wrong maxToMinFactor value");
     }
 
     public AntSystem(Problem problem, double evaporationRemains, boolean isBounded, double kFactor)
@@ -54,7 +51,7 @@ public class AntSystem extends GlobalUpdate
                 minObjective = newObjective;
         }
 
-        maxP = rhoToMaxFactor / minObjective;
+        maxP = solutions.size() * rhoToMaxFactor / minObjective;   // m * (1 / f_opt) * (1 / (1 - rho))
         minP = maxP * maxToMinFactor;
 
         executeStandardEvaporationAll();

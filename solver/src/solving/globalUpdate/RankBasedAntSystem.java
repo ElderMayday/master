@@ -15,9 +15,16 @@ public class RankBasedAntSystem extends GlobalUpdate
 {
     protected int numberOfDepositing; // aka w
 
+    protected boolean isBounded;        // defines whether min and max bounds are applied
+    protected double kFactor;           // aka k,    min = max / (k x problemSize)
+
+    protected double maxToMinFactor;    // min = max x maxToMinFactor,   maxToMinFactor = 1 / (k x problemSize)
+    protected double maxP, minP;        // max and min pheromone values
+    protected double rhoToMaxFactor;    // max = [w x (w + 1) / 2] x [1 / f_opt] x [1 / (1 - rho)]
+
     protected Solution globalBest;
 
-    public RankBasedAntSystem(Problem problem, double evaporationRemains, int numberOfDepositing)
+    public RankBasedAntSystem(Problem problem, double evaporationRemains, int numberOfDepositing, boolean isBounded, double kFactor)
     {
         super(problem, evaporationRemains);
         this.numberOfDepositing = numberOfDepositing;
@@ -25,25 +32,77 @@ public class RankBasedAntSystem extends GlobalUpdate
 
         if (numberOfDepositing < 1)
             throw new IllegalArgumentException("Wrong number of depositing");
+
+        this.isBounded = isBounded;
+        this.kFactor = kFactor;
+
+        rhoToMaxFactor = 1.0 / (1.0 - evaporationRemains) * numberOfDepositing * (numberOfDepositing + 1.0) / 2.0;
+        maxToMinFactor = 1.0 / (kFactor * structure.numberOfComponents());
     }
 
 
     @Override
     public void update(List<Solution> solutions)
     {
-        executeStandardEvaporationAll();
+        // find min and max pheromone values
 
-        executeRankBasedDeposit(solutions);
-    }
+        double minObjective = solutions.get(0).objective();
+        for (int index = 1; index < solutions.size(); index++)
+        {
+            double newObjective = solutions.get(index).objective();
 
+            if (minObjective > newObjective)
+                minObjective = newObjective;
+        }
 
+        // sort the solutions
 
-    protected void executeRankBasedDeposit(List<Solution> solutions)
-    {
         List<Solution> sorted = new ArrayList<Solution>(solutions);
 
         sorted.sort(new ComparatorSolution());
 
+        // check whether global best has changed
+
+        if (globalBest == null)
+            globalBest = sorted.get(0);
+        else
+        if (sorted.get(0).betterThan(globalBest))
+            globalBest = sorted.get(0);
+
+        maxP = rhoToMaxFactor / globalBest.objective();   // m * (1 / f_opt) * (1 / (1 - rho))
+        minP = maxP * maxToMinFactor;
+
+        executeStandardEvaporationAll();
+
+        executeRankBasedDeposit(sorted);
+    }
+
+
+    /**
+     * Executes linear rho-based evaporation to ALL components of the structure with respect to min and max
+     */
+    @Override
+    protected void executeStandardEvaporationAll()
+    {
+        for (Component component : structure)
+        {
+            double newPheromone = evaporationRemains * component.getPheromone();
+
+            if (isBounded)
+            {
+                if (newPheromone > maxP)
+                    newPheromone = maxP;
+                else if (newPheromone < minP)
+                    newPheromone = minP;
+            }
+
+            component.setPheromone(newPheromone);
+        }
+    }
+
+
+    protected void executeRankBasedDeposit(List<Solution> sorted)
+    {
         // depositing to top [numberOfDepositing - 1] iterated-best solutions
 
         int factor = numberOfDepositing - 1;
@@ -59,19 +118,23 @@ public class RankBasedAntSystem extends GlobalUpdate
             factor--;
         }
 
-        // check whether global best has changed
-
-        if (globalBest == null)
-            globalBest = sorted.get(0);
-        else
-            if (sorted.get(0).betterThan(globalBest))
-                globalBest = sorted.get(0);
-
         // deposit to the global best
 
         double addValue = numberOfDepositing / globalBest.objective();
 
         for (Component component : globalBest.getComponents())
-            component.setPheromone(component.getPheromone() + addValue);
+        {
+            double newPheromone = component.getPheromone() + addValue;
+
+            if (isBounded)
+            {
+                if (newPheromone > maxP)
+                    newPheromone = maxP;
+                else if (newPheromone < minP)
+                    newPheromone = minP;
+            }
+
+            component.setPheromone(newPheromone);
+        }
     }
 }

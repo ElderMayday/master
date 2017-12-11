@@ -69,17 +69,17 @@ public class TestAntSystem
 
             update.update(solutionList);
 
-            assertEquals(solution2.getComponents().get(0).getPheromone(), 0.033333, 0.01);
-            assertEquals(solution2.getComponents().get(1).getPheromone(), 0.033333, 0.01);
-            assertEquals(solution2.getComponents().get(2).getPheromone(), 0.033333, 0.01);
-            assertEquals(solution2.getComponents().get(3).getPheromone(), 0.033333, 0.01);
+            assertEquals(solution2.getComponents().get(0).getPheromone(), 0.1, 0.01);
+            assertEquals(solution2.getComponents().get(1).getPheromone(), 0.1, 0.01);
+            assertEquals(solution2.getComponents().get(2).getPheromone(), 0.1, 0.01);
+            assertEquals(solution2.getComponents().get(3).getPheromone(), 0.1, 0.01);
 
             update.update(solutionList);
 
-            assertEquals(solution2.getComponents().get(0).getPheromone(), 0.033333, 0.01);
-            assertEquals(solution2.getComponents().get(1).getPheromone(), 0.033333, 0.01);
-            assertEquals(solution2.getComponents().get(2).getPheromone(), 0.033333, 0.01);
-            assertEquals(solution2.getComponents().get(3).getPheromone(), 0.033333, 0.01);
+            assertEquals(solution2.getComponents().get(0).getPheromone(), 0.0990, 0.01);
+            assertEquals(solution2.getComponents().get(1).getPheromone(), 0.0933, 0.01);
+            assertEquals(solution2.getComponents().get(2).getPheromone(), 0.0933, 0.01);
+            assertEquals(solution2.getComponents().get(3).getPheromone(), 0.0933, 0.01);
         }
         catch (Exception e)
         {
