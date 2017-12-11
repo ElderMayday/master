@@ -65,21 +65,21 @@ public class TestElitistAntSystem
             solution3.addConstructionComponent(structure2d.get(3, 0));
             solutionList.add(solution3);
 
-            GlobalUpdate update = new ElitistAntSystem(problem, 0.9, 1.5);
+            GlobalUpdate update = new ElitistAntSystem(problem, 0.9, 1.5, true, 0.5);
 
             update.update(solutionList);
 
-            assertEquals(structure2d.get(0, 0).getPheromone(), 0.9, 0.0001);
-            assertEquals(structure2d.get(0, 1).getPheromone(), 0.929, 0.0001);
-            assertEquals(structure2d.get(0, 2).getPheromone(), 0.9, 0.0001);
-            assertEquals(structure2d.get(0, 3).getPheromone(), 0.9056, 0.0001);
+            assertEquals(structure2d.get(0, 0).getPheromone(), 0.3, 0.0001);
+            assertEquals(structure2d.get(0, 1).getPheromone(), 0.3, 0.0001);
+            assertEquals(structure2d.get(0, 2).getPheromone(), 0.3, 0.0001);
+            assertEquals(structure2d.get(0, 3).getPheromone(), 0.3, 0.0001);
 
             update.update(solutionList);
 
-            assertEquals(structure2d.get(0, 0).getPheromone(), 0.81, 0.0001);
-            assertEquals(structure2d.get(0, 1).getPheromone(), 0.8651, 0.0001);
-            assertEquals(structure2d.get(0, 2).getPheromone(), 0.81, 0.0001);
-            assertEquals(structure2d.get(0, 3).getPheromone(), 0.8207, 0.0001);
+            assertEquals(structure2d.get(0, 0).getPheromone(), 0.27, 0.0001);
+            assertEquals(structure2d.get(0, 1).getPheromone(), 0.299, 0.0001);
+            assertEquals(structure2d.get(0, 2).getPheromone(), 0.27, 0.0001);
+            assertEquals(structure2d.get(0, 3).getPheromone(), 0.2756, 0.0001);
         }
         catch (Exception e)
         {
