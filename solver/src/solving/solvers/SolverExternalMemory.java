@@ -114,7 +114,7 @@ public class SolverExternalMemory extends Solver
 
             segments = segments.subList(0, memorySize);
         }
-        while (!terminationCriteria.isFullfilled());
+        while (!terminationCriteria.isFulfilled());
 
         return solutions;
     }

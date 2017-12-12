@@ -13,10 +13,33 @@ public class TerminationCriteriaCounter extends TerminationCriteria
     }
 
     @Override
-    public boolean isFullfilled()
+    public void initialize()
+    {
+
+    }
+
+    @Override
+    public boolean needReinitialize()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isFulfilled()
     {
         count--;
 
         return count == 0;
+    }
+
+
+    /**
+     * Does not return actual milliseconds, and therefore cannot be used for BWAS (because of pheromone mutation dependency of execution time)
+     * @return
+     */
+    @Override
+    public long millisecondsAfterLastReinitialization()
+    {
+        return 0;
     }
 }

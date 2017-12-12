@@ -84,7 +84,7 @@ public class SolverIteratedAnts extends Solver
             */
 
         }
-        while (!terminationCriteria.isFullfilled());
+        while (!terminationCriteria.isFulfilled());
 
         return solutions;
     }

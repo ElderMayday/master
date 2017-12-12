@@ -5,5 +5,27 @@ package solving.terminationCriteria;
  */
 public abstract class TerminationCriteria
 {
-    public abstract boolean isFullfilled();
+
+    /**
+     * Must be called once in the beginning of the solving
+     */
+    public abstract void initialize();
+
+
+    /**
+     * Can be called during the iteration to checkout whether reinitialization should be done
+     * @return
+     */
+    public abstract boolean needReinitialize();
+
+
+    /**
+     * Must be called once in the end of every iteration as the loop condition
+     * @return
+     */
+    public abstract boolean isFulfilled();
+
+
+
+    public abstract long millisecondsAfterLastReinitialization();
 }

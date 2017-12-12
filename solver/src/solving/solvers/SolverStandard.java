@@ -39,7 +39,7 @@ public class SolverStandard extends Solver
 
             globalUpdate.update(solutions);
         }
-        while (!terminationCriteria.isFullfilled());
+        while (!terminationCriteria.isFulfilled());
 
         return solutions;
     }

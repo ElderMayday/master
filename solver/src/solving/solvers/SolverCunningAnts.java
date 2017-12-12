@@ -1,11 +1,9 @@
 package solving.solvers;
 
 import problem.problemFormulation.Problem;
-import solving.globalUpdate.GlobalUpdate;
 import solving.globalUpdate.MinMaxAntSystem;
 import solving.localSearch.LocalSearch;
 import solving.localUpdate.LocalUpdate;
-import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.pheromoneInitializer.PheromoneInitializerConstant;
 import solving.selectors.Selector;
 import solving.solution.Solution;
@@ -73,7 +71,7 @@ public class SolverCunningAnts extends Solver
                 if (newSolutions.get(index).betterThan(solutions.get(index)))
                     solutions.set(index, newSolutions.get(index));
         }
-        while (!terminationCriteria.isFullfilled());
+        while (!terminationCriteria.isFulfilled());
 
         return solutions;
     }
