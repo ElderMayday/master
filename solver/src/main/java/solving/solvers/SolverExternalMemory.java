@@ -17,9 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * REMARK!!! Deviates from the paper version
- * Does not perform concatenation due to unclear consistency assurance
- * Appends all new solutions to the segments, sorts and trims instead of diversification
+ * REMARK!!! No local search is used in this Solver
+ * REMARK!!! Deviates from the paper version:
+ * - The destruction comes after the phase one
+ * - Does not perform concatenation due to unclear consistency assurance
+ * - Appends all new solutions to the segments, sorts and trims instead of diversification
  * Created by Aldar on 08-Nov-17.
  */
 public class SolverExternalMemory extends Solver
@@ -48,13 +50,15 @@ public class SolverExternalMemory extends Solver
 
 
     /**
-     * REMARK!!! The destruction comes after the first loop (slight deviation from the paper)
      * @return
      * @throws Exception
      */
+    @SuppressWarnings("Since15")
     @Override
     public List<Solution> solve() throws Exception
     {
+        terminationCriteria.initialize();
+
         initializer.initialize(problem.structure);
 
         List<Solution> segments = new ArrayList<Solution>();
@@ -113,6 +117,9 @@ public class SolverExternalMemory extends Solver
             segments.sort(new ComparatorSolutionLast());
 
             segments = segments.subList(0, memorySize);
+
+            if (terminationCriteria.needReinitialize())
+                initializer.initialize(problem.structure);
         }
         while (!terminationCriteria.isFulfilled());
 

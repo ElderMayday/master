@@ -150,6 +150,7 @@ public class SolutionVRP extends Solution
      * - currentCustomerId must be correcly set by the ProblemVRP (corresponding to the currentTour last customer or to the depotId
      * @param component
      */
+    @SuppressWarnings("Since15")
     @Override
     public void addReconstructionComponent(Component component) throws Exception
     {
@@ -205,7 +206,6 @@ public class SolutionVRP extends Solution
 
                 tours.removeIf(new Predicate<Tour>()
                 {
-                    @Override
                     public boolean test(Tour tour)
                     {
                         return tour.getCustomers().size() == 0;
@@ -342,7 +342,6 @@ public class SolutionVRP extends Solution
     }
 
 
-    @Override
     public Iterator<Component> iterator()
     {
         return new SolutionVrpIterator();
@@ -423,6 +422,11 @@ public class SolutionVRP extends Solution
             result.add(component2d);
 
         return result;
+    }
+
+    public int getNumberOfComponents()
+    {
+        return components2d.size();
     }
 
 

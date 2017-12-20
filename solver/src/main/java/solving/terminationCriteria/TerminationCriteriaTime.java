@@ -7,15 +7,16 @@ public class TerminationCriteriaTime extends TerminationCriteria
 {
     protected long tStart;
     protected long tLastReinitialization;
+    protected long tEndExpected; // does not mean the precise execution instance
 
-    protected long timeExecution;
-    protected long timeBetweenReinitializations;
+    protected long spanExecution;
+    protected long spanBetweenReinitializations;
 
 
-    public TerminationCriteriaTime(long timeExecution, long timeBetweenReinitializations)
+    public TerminationCriteriaTime(long spanExecution, long spanBetweenReinitializations)
     {
-        this.timeExecution = timeExecution;
-        this.timeBetweenReinitializations = timeBetweenReinitializations;
+        this.spanExecution = spanExecution;
+        this.spanBetweenReinitializations = spanBetweenReinitializations;
     }
 
     @Override
@@ -23,6 +24,7 @@ public class TerminationCriteriaTime extends TerminationCriteria
     {
         tStart = System.currentTimeMillis();
         tLastReinitialization = System.currentTimeMillis();
+        tEndExpected = tStart + spanExecution;
     }
 
     /**
@@ -34,7 +36,7 @@ public class TerminationCriteriaTime extends TerminationCriteria
     {
         long timeSpan = System.currentTimeMillis() - tLastReinitialization;
 
-        if (timeSpan > timeBetweenReinitializations)
+        if (timeSpan > spanBetweenReinitializations)
         {
             tLastReinitialization = System.currentTimeMillis();
 
@@ -47,12 +49,13 @@ public class TerminationCriteriaTime extends TerminationCriteria
     @Override
     public boolean isFulfilled()
     {
-        return System.currentTimeMillis() - tStart > timeExecution;
+        return System.currentTimeMillis() - tStart > spanExecution;
     }
 
-    @Override
-    public long timeAfterLastReinitialization()
+
+
+    public double mutationBwasFactor()
     {
-        return System.currentTimeMillis() - tLastReinitialization;
+        return (System.currentTimeMillis() - tLastReinitialization) / (tEndExpected - tLastReinitialization + 0.0001); // 0.0001 allows to prevent 0-division
     }
 }

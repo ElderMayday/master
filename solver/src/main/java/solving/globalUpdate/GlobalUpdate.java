@@ -41,7 +41,7 @@ public abstract class GlobalUpdate
      * Performs pheromone update (normally evaporation and deposition)
      * @param solutions The solutions obtained at the last iteration. If one wants to implement global/reset best solutions, one has to memorize those inside of the sub-classes
      */
-    public abstract void update(List<Solution> solutions);
+    public abstract void update(List<Solution> solutions) throws Exception;
 
 
     /**

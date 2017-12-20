@@ -23,7 +23,6 @@ public class TestTerminationCriteriaTime
         {
             boolean needReinitialize = timer.needReinitialize();
             boolean needTerminate = timer.isFulfilled();
-            long millisecondsSinceLastReinitialize = timer.timeAfterLastReinitialization();
             int b = 1;   // stub-line for debugging, put a break-point here
         }
     }

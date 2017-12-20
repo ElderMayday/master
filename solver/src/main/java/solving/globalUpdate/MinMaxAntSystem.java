@@ -74,19 +74,6 @@ public class MinMaxAntSystem extends GlobalUpdate
 
     protected void defineBounds(List<Solution> solutions)
     {
-        /*  Max case
-        double max = solutions.get(0).objective();
-
-        for (int i = 1; 1 < solutions.size(); i++)
-        {
-            double objective = solutions.get(i).objective();
-
-            if (max < objective)
-                max = objective;
-        }
-
-        tMax = tMaxCoefficient / max    */
-
         double sum = 0.0;
 
         for (int index = 0; index < solutions.size(); index++)

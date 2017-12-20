@@ -26,9 +26,10 @@ public abstract class TerminationCriteria
     public abstract boolean isFulfilled();
 
 
+
     /**
-     * Time that has passed after the last call of initialize()
+     * Multiplier that is applied for computing mutation strength in BWAS
      * @return
      */
-    public abstract long timeAfterLastReinitialization();
+    public abstract double mutationBwasFactor();
 }

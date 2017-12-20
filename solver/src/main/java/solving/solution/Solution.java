@@ -35,6 +35,10 @@ public abstract class Solution implements Iterable<Component>
 
     public abstract Solution deepCopy();
 
+    public abstract List<Component> getComponents();
+
+    public abstract int getNumberOfComponents();
+
 
 
     public void setComplete(boolean complete)
@@ -62,7 +66,23 @@ public abstract class Solution implements Iterable<Component>
         lastObjective = this.objective();
     }
 
-    public abstract List<Component> getComponents();
+
+    /**
+     *
+     * @return sum of all solution components pheromone trails
+     */
+    public double sumPheromone()
+    {
+        double result = 0.0;
+
+        List<Component> components = getComponents();
+
+        for (Component component : components)
+            result += component.getPheromone();
+
+        return result;
+    }
+
 
     /**
      * Compares this and that solution

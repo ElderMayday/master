@@ -33,13 +33,14 @@ public class TerminationCriteriaCounter extends TerminationCriteria
     }
 
 
+
+
     /**
-     * Does not return actual milliseconds, and therefore cannot be used for BWAS (because of pheromone mutation dependency of execution time)
+     * Does not return actual factor, and therefore cannot be used for BWAS
      * @return
      */
-    @Override
-    public long timeAfterLastReinitialization()
+    public double mutationBwasFactor()
     {
-        return 0;
+        return 1.0;
     }
 }

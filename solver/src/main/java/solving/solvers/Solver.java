@@ -2,6 +2,7 @@ package solving.solvers;
 
 import problem.component.Component;
 import problem.problemFormulation.Problem;
+import solving.globalUpdate.BestWorstAntSystem;
 import solving.globalUpdate.GlobalUpdate;
 import solving.localSearch.LocalSearch;
 import solving.localUpdate.LocalUpdate;
@@ -43,6 +44,12 @@ public abstract class Solver
         this.terminationCriteria = terminationCriteria;
         this.localSearch = localSearch;
         this.initializer = initializer;
+
+        if (globalUpdate instanceof BestWorstAntSystem)
+        {
+            BestWorstAntSystem bwas = (BestWorstAntSystem) globalUpdate;
+            bwas.setTerminationCriteria(terminationCriteria);
+        }
 
         if (precomputeValues)
             problem.precomputeValues();

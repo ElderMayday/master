@@ -1,6 +1,13 @@
 package globalUpdate;
 
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+import general.Main;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InOrder;
+import org.mockito.Mockito;
 import problem.componentStructure.ComponentStructure2d;
 import problem.componentStructure.ComponentStructure2dStandard;
 import problem.fleet.FleetDescendingCapacity;
@@ -11,10 +18,13 @@ import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.pheromoneInitializer.PheromoneInitializerConstant;
 import solving.solution.Solution;
 import solving.solution.SolutionVRP;
+import solving.terminationCriteria.TerminationCriteria;
+import solving.terminationCriteria.TerminationCriteriaTime;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.Assert.*;
 
@@ -23,6 +33,12 @@ import static org.junit.Assert.*;
  */
 public class TestBestWorthAntSystem
 {
+    @Before
+    public void setUp()
+    {
+        Main.random = new Random(28);
+    }
+
     @Test
     public void testBestWorthAntSystem()
     {
@@ -64,21 +80,26 @@ public class TestBestWorthAntSystem
             solution3.addConstructionComponent(structure2d.get(3, 0));
             solutionList.add(solution3);
 
-            GlobalUpdate update = new BestWorstAntSystem(problem, 0.9);
+            //TerminationCriteria terminationCriteria = new TerminationCriteriaTime(2000, 100);
+            TerminationCriteria terminationCriteria = Mockito.mock(TerminationCriteria.class);
+            when(terminationCriteria.mutationBwasFactor()).thenReturn(0.05);
+            terminationCriteria.initialize();
+            BestWorstAntSystem update = new BestWorstAntSystem(problem, 0.9, 0.3);
+            update.setTerminationCriteria(terminationCriteria);
 
             update.update(solutionList);
 
             assertEquals(structure2d.get(0, 0).getPheromone(), 1.0, 0.0001);
             assertEquals(structure2d.get(0, 1).getPheromone(), 1.0007, 0.0001);
             assertEquals(structure2d.get(0, 2).getPheromone(), 1.0, 0.0001);
-            assertEquals(structure2d.get(0, 3).getPheromone(), 0.9, 0.0001);
+            assertEquals(structure2d.get(0, 3).getPheromone(), 0.7061, 0.0001);
 
             update.update(solutionList);
 
             assertEquals(structure2d.get(0, 0).getPheromone(), 1.0, 0.0001);
             assertEquals(structure2d.get(0, 1).getPheromone(), 1.0013, 0.0001);
             assertEquals(structure2d.get(0, 2).getPheromone(), 1.0, 0.0001);
-            assertEquals(structure2d.get(0, 3).getPheromone(), 0.81, 0.0001);
+            assertEquals(structure2d.get(0, 3).getPheromone(), 0.4502, 0.0001);
         }
         catch (Exception e)
         {

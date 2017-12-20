@@ -36,6 +36,8 @@ public class SolverCunningAnts extends Solver
         List<Solution> solutions = new ArrayList<Solution>();
         List<Solution> newSolutions = new ArrayList<Solution>();
 
+        terminationCriteria.initialize();
+
         initializer.initialize(problem.structure);
 
         for (int i = 0; i < antNum; i++)
@@ -67,9 +69,14 @@ public class SolverCunningAnts extends Solver
             for (int index = 0; index < newSolutions.size(); index++)
                 localSearch.search(problem, newSolutions.get(index));
 
+            // pained result comparison
+
             for (int index = 0; index < solutions.size(); index++)
                 if (newSolutions.get(index).betterThan(solutions.get(index)))
                     solutions.set(index, newSolutions.get(index));
+
+            if (terminationCriteria.needReinitialize())
+                initializer.initialize(problem.structure);
         }
         while (!terminationCriteria.isFulfilled());
 
