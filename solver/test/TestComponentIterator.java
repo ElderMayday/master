@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 public class TestComponentIterator
 {
     @Test
-    public void testComponentStructure2dStandartIterator()
+    public void testComponentStructure2dStandardIterator()
     {
         ComponentStructure2d structure2d = new ComponentStructure2dStandard();
         structure2d.allocate(2, 2);

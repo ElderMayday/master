@@ -36,7 +36,7 @@ public class TestSolverIteratedAnts
 {
 
     @Test
-    public void testSolverStandard()
+    public void testSolverIteratedAnts()
     {
         try
         {
@@ -44,7 +44,7 @@ public class TestSolverIteratedAnts
             problem.load(new File("problem-samples/vrp-10-customers.txt"));
 
             Selector selector = new SelectorStandard(1.0, 1.0);
-            TerminationCriteria terminationCriteria = new TerminationCriteriaCounter(5);
+            TerminationCriteria terminationCriteria = new TerminationCriteriaCounter(3);
             LocalUpdate localUpdate = new LocalUpdateNone();
             LocalSearch localSearch = new LocalSearchNone();
             GlobalUpdate update = new AntSystem(problem, 0.9, false, 0.0);
@@ -61,6 +61,10 @@ public class TestSolverIteratedAnts
             assertEquals(solutions.get(2).getComplete(), true);
             assertEquals(solutions.get(3).getComplete(), true);
             assertEquals(solutions.get(4).getComplete(), true);
+
+            double objective = solutions.get(0).objective;    // black-box check whether the new objective was computed after copying
+            solutions.get(0).recomputeObjective();
+            assertEquals(objective, solutions.get(0).objective, 0.0001);
         }
         catch (Exception e)
         {

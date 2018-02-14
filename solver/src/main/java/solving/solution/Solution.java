@@ -14,7 +14,17 @@ public abstract class Solution implements Iterable<Component>
     protected boolean isComplete;               // Flag: visitedNum == problem customer number
     protected boolean isPartiallyDestroyed;
     protected Problem problem;
+
+    /**
+     * Consistency not guaranteed, exterior use has to maintain it.
+     * Made for optimization sake in local search. Local search computes the new objective without overall recomputing
+     */
+    public double objective;
+
     protected double lastObjective;  // objective value before destroying (only effective if destroyed)
+
+
+
 
     public Solution()
     {
@@ -27,17 +37,20 @@ public abstract class Solution implements Iterable<Component>
         isPartiallyDestroyed = false;
     }
 
+
+
+
     public abstract void addConstructionComponent(Component component) throws Exception;
 
     public abstract void addReconstructionComponent(Component component) throws Exception;
-
-    public abstract double objective();
 
     public abstract Solution deepCopy();
 
     public abstract List<Component> getComponents();
 
     public abstract int getNumberOfComponents();
+
+    public abstract void recomputeObjective();
 
 
 
@@ -63,7 +76,7 @@ public abstract class Solution implements Iterable<Component>
 
     public void memorizeLastObjective()
     {
-        lastObjective = this.objective();
+        lastObjective = objective;
     }
 
 
@@ -92,9 +105,9 @@ public abstract class Solution implements Iterable<Component>
     public boolean betterThan(Solution that)
     {
         if (problem.lowerIsBetter)
-            return this.objective() < that.objective();
+            return this.objective < that.objective;
         else
-            return this.objective() > that.objective();
+            return this.objective > that.objective;
     }
 
 

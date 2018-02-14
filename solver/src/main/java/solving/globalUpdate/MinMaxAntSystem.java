@@ -77,7 +77,7 @@ public class MinMaxAntSystem extends GlobalUpdate
         double sum = 0.0;
 
         for (int index = 0; index < solutions.size(); index++)
-            sum += 1 / solutions.get(index).objective();
+            sum += 1.0 / solutions.get(index).objective;
 
         tMax = tMaxCoefficient * sum;
 
@@ -141,7 +141,7 @@ public class MinMaxAntSystem extends GlobalUpdate
 
                 // deposit global best
 
-                double addedValue = 1.0 / globalBest.objective();
+                double addedValue = 1.0 / globalBest.objective;
 
                 for (Component component : globalBest.getComponents())
                 {
@@ -159,7 +159,7 @@ public class MinMaxAntSystem extends GlobalUpdate
             {
                 // deposit iterated best
 
-                double addedValue = 1.0 / iterationBest.objective();
+                double addedValue = 1.0 / iterationBest.objective;
 
                 for (Component component : iterationBest.getComponents())
                 {
@@ -178,7 +178,7 @@ public class MinMaxAntSystem extends GlobalUpdate
         {
             // deposit iterated best
 
-            double addedValue = 1.0 / iterationBest.objective();
+            double addedValue = 1.0 / iterationBest.objective;
 
             for (Component component : iterationBest.getComponents())
             {

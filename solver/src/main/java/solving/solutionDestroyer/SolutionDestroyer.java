@@ -13,9 +13,19 @@ public abstract class SolutionDestroyer
 {
     /**
      * Partially destroys the given solution according to a certain algorithm
-     * REMARK!!! MUST call solution.memorizeLastObjective() before everything
+     * REMARK!!! all implementation MUST call destroyCommon() method
      * @param solution
      * @return
      */
     public abstract Solution destroy(Solution solution) throws Exception;
+
+
+    /**
+     * Common part of all destroyers
+     */
+    public void destroyCommon(Solution solution)
+    {
+        solution.memorizeLastObjective();
+        solution.objective = -1.0;
+    }
 }

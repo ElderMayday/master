@@ -62,6 +62,10 @@ public class TestSolverExternalMemory
             assertEquals(solutions.get(3).getComplete(), true);
             assertEquals(solutions.get(4).getComplete(), true);
 
+            double objective = solutions.get(0).objective;    // black-box check whether the new objective was computed after copying
+            solutions.get(0).recomputeObjective();
+            assertEquals(objective, solutions.get(0).objective, 0.0001);
+
         } catch (Exception e)
         {
             e.printStackTrace();

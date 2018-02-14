@@ -28,14 +28,17 @@ public class SolutionDestroyerVrpByTour extends SolutionDestroyer
         ComponentStructure2d structure2d = solutionVRP.getProblemVRP().structure2d;
         ProblemVRP problemVRP = solutionVRP.getProblemVRP();
         List<Component2d> components = solutionVRP.getComponents2d();
-        solution.memorizeLastObjective();
 
         List<Tour> tours = solutionVRP.getTours();
 
         if (tours.size() > 1)
         {
-            solution.setPartiallyDestroyed(true); // solutionVRP is destroyed when at least one tour is destroyed
-            solution.setComplete(false);
+            if (!solution.isPartiallyDestroyed())
+            {
+                super.destroyCommon(solution);
+                solution.setPartiallyDestroyed(true); // solutionVRP is destroyed when at least one tour is destroyed
+                solution.setComplete(false);
+            }
 
             int dice = Main.random.nextInt(tours.size());
             Tour newTour = tours.get(dice);

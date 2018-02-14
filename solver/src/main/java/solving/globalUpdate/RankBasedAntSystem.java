@@ -46,10 +46,10 @@ public class RankBasedAntSystem extends GlobalUpdate
     {
         // find min and max pheromone values
 
-        double minObjective = solutions.get(0).objective();
+        double minObjective = solutions.get(0).objective;
         for (int index = 1; index < solutions.size(); index++)
         {
-            double newObjective = solutions.get(index).objective();
+            double newObjective = solutions.get(index).objective;
 
             if (minObjective > newObjective)
                 minObjective = newObjective;
@@ -69,7 +69,7 @@ public class RankBasedAntSystem extends GlobalUpdate
         if (sorted.get(0).betterThan(globalBest))
             globalBest = sorted.get(0);
 
-        maxP = rhoToMaxFactor / globalBest.objective();   // m * (1 / f_opt) * (1 / (1 - rho))
+        maxP = rhoToMaxFactor / globalBest.objective;   // m * (1 / f_opt) * (1 / (1 - rho))
         minP = maxP * maxToMinFactor;
 
         executeStandardEvaporationAll();
@@ -110,7 +110,7 @@ public class RankBasedAntSystem extends GlobalUpdate
         {
             Solution solution = sorted.get(index);
 
-            double addValue = (double) factor / solution.objective();
+            double addValue = (double) factor / solution.objective;
 
             for (Component component : solution.getComponents())
                 component.setPheromone(component.getPheromone() + addValue);
@@ -120,7 +120,7 @@ public class RankBasedAntSystem extends GlobalUpdate
 
         // deposit to the global best
 
-        double addValue = numberOfDepositing / globalBest.objective();
+        double addValue = numberOfDepositing / globalBest.objective;
 
         for (Component component : globalBest.getComponents())
         {

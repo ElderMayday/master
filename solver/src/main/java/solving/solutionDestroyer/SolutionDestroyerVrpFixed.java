@@ -40,7 +40,6 @@ public class SolutionDestroyerVrpFixed extends SolutionDestroyer
         ComponentStructure2d structure2d = solutionVRP.getProblemVRP().structure2d;
         ProblemVRP problemVRP = solutionVRP.getProblemVRP();
         List<Component2d> components = solutionVRP.getComponents2d();
-        solution.memorizeLastObjective();
 
         for (Tour tour : solutionVRP.getTours())
         {
@@ -48,8 +47,13 @@ public class SolutionDestroyerVrpFixed extends SolutionDestroyer
 
             if ((customers.size() > 0) && (customers.size() > toLeave))
             {
-                solution.setPartiallyDestroyed(true); // solutionVRP is destroyed when at least one tour is destroyed
-                solution.setComplete(false);
+                if (!solution.isPartiallyDestroyed())
+                {
+                    super.destroyCommon(solution);
+                    solution.setPartiallyDestroyed(true); // solutionVRP is destroyed when at least one tour is destroyed
+                    solution.setComplete(false);
+                }
+
                 tour.setFinished(false);
 
                 int numberOfCustomersToRemove = customers.size() - toLeave;

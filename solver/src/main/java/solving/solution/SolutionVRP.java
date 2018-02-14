@@ -42,7 +42,7 @@ public class SolutionVRP extends Solution
             visited[i] = false;
 
         currentCustomerId = 0;                                 // to ensure the creation of a first new tour for the first component
-        visited[((ProblemVRP) problem).getDepotId()] = true;
+        visited[problemVRP.getDepotId()] = true;
         visitedNum = 1;
 
         components2d = new ArrayList<Component2d>();
@@ -133,6 +133,7 @@ public class SolutionVRP extends Solution
             {
                 isComplete = true;
                 currentTour = null;
+                recomputeObjective();
             }
         }
     }
@@ -203,6 +204,7 @@ public class SolutionVRP extends Solution
                 isComplete = true;
                 isPartiallyDestroyed = false;
                 currentTour = null;
+                recomputeObjective();
 
                 tours.removeIf(new Predicate<Tour>()
                 {
@@ -217,14 +219,12 @@ public class SolutionVRP extends Solution
 
 
     @Override
-    public double objective()
+    public void recomputeObjective()
     {
-        double objective = 0.0;
+        objective = 0.0;
 
         for (Component2d component2d : components2d)
             objective += component2d.getDistance();
-
-        return objective;
     }
 
 
@@ -403,6 +403,7 @@ public class SolutionVRP extends Solution
         else
             solutionVRP.currentTour = null;
 
+        solutionVRP.objective = this.objective;
         solutionVRP.lastObjective = this.lastObjective;
 
         solutionVRP.currentCustomerId = this.currentCustomerId;
@@ -436,6 +437,8 @@ public class SolutionVRP extends Solution
 
         for (Tour tour : tours)
             result += tour.toString() + " ";
+
+        result += "obj=" + String.format("%.2f", objective);
 
         return result;
     }

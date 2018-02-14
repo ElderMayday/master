@@ -42,10 +42,10 @@ public class AntSystem extends GlobalUpdate
     {
         // find min and max pheromone values
 
-        double minObjective = solutions.get(0).objective();
+        double minObjective = solutions.get(0).objective;
         for (int index = 1; index < solutions.size(); index++)
         {
-            double newObjective = solutions.get(index).objective();
+            double newObjective = solutions.get(index).objective;
 
             if (minObjective > newObjective)
                 minObjective = newObjective;
@@ -88,7 +88,7 @@ public class AntSystem extends GlobalUpdate
     {
         for (Solution solution : solutions)
         {
-            double addedValue = 1.0 / solution.objective();
+            double addedValue = 1.0 / solution.objective;
 
             for (Component component : solution.getComponents())
             {

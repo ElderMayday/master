@@ -50,7 +50,7 @@ public class ElitistAntSystem extends GlobalUpdate
     {
         defineGlobalBest(solutions);
 
-        maxP = (elitistFactor + solutions.size()) * rhoToMaxFactor / globalBest.objective();   // (e + m) * (1 / f_opt) * (1 / (1 - rho))
+        maxP = (elitistFactor + solutions.size()) * rhoToMaxFactor / globalBest.objective;   // (e + m) * (1 / f_opt) * (1 / (1 - rho))
         minP = maxP * maxToMinFactor;
 
         executeStandardEvaporationAll();
@@ -117,7 +117,7 @@ public class ElitistAntSystem extends GlobalUpdate
     {
         for (Solution solution : solutions)
         {
-            double addedValue = 1.0 / solution.objective();
+            double addedValue = 1.0 / solution.objective;
 
             for (Component component : solution.getComponents())
             {
@@ -139,7 +139,7 @@ public class ElitistAntSystem extends GlobalUpdate
 
     protected void executeEasDeposit()
     {
-        double lengthMultiply = 1.0 / globalBest.objective();
+        double lengthMultiply = 1.0 / globalBest.objective;
 
         for (Component component : globalBest.getComponents())
         {

@@ -33,7 +33,7 @@ import static org.junit.Assert.*;
 public class TestSolverCunningAnts
 {
     @Test
-    public void testSolverExternalMemory()
+    public void testSolverCunningAnts()
     {
         try
         {
@@ -56,6 +56,10 @@ public class TestSolverCunningAnts
             assertEquals(solutions.get(0).getComplete(), true);
             assertEquals(solutions.get(1).getComplete(), true);
             assertEquals(solutions.get(2).getComplete(), true);
+
+            double objective = solutions.get(0).objective;    // black-box check whether the new objective was computed after copying
+            solutions.get(0).recomputeObjective();
+            assertEquals(objective, solutions.get(0).objective, 0.0001);
         }
         catch (Exception e)
         {

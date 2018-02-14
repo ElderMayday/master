@@ -61,6 +61,6 @@ public class AntColonySystem extends GlobalUpdate
         }
 
         for (Component component : globalBest.getComponents())
-            component.setPheromone(this.evaporationRemains * component.getPheromone() + this.evaporationStrength / globalBest.objective());
+            component.setPheromone(this.evaporationRemains * component.getPheromone() + this.evaporationStrength / globalBest.objective);
     }
 }

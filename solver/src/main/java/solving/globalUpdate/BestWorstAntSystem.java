@@ -122,7 +122,7 @@ public class BestWorstAntSystem extends GlobalUpdate
             }
         }
 
-        double addedValue = evaporationStrength / globalBest.objective();
+        double addedValue = evaporationStrength / globalBest.objective;
 
         for (Component component : globalBest)
             component.setPheromone(component.getPheromone() + addedValue);

@@ -87,8 +87,9 @@ public class TestSolutionVrp
             solution.addConstructionComponent(c1);
             solution.addConstructionComponent(c2);
             solution.addConstructionComponent(c3);
+            solution.recomputeObjective();
 
-            assertEquals(solution.objective(), 6.0, 0.001);
+            assertEquals(solution.objective, 6.0, 0.001);
         }
         catch (Exception e)
         {
