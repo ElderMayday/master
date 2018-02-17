@@ -11,6 +11,7 @@ import solving.solution.Tour;
 
 import java.lang.ref.Reference;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Removes random number of final customers from every tours with certain probability
@@ -47,33 +48,28 @@ public class SolutionDestroyerVrpRandom extends SolutionDestroyer
         {
             List<Integer> customers = tour.getCustomers();
 
-            if ((customers.size() > 0) && (Main.random.nextDouble() <= tourDestructionProbability))
+            if ((customers.size() > 2) && (Main.random.nextDouble() <= tourDestructionProbability))  // at least one client is visited
             {
                 if (!solution.isPartiallyDestroyed())
-                {
                     super.destroyCommon(solution);
-                    solution.setPartiallyDestroyed(true); // solutionVRP is destroyed when at least one tour is destroyed
-                    solution.setComplete(false);
-                }
 
                 tour.setFinished(false);
 
-                int numberOfCustomersToRemove = Main.random.nextInt(customers.size()) + 1;  // how many first visited customers to leave
+                int numberOfCustomersToRemove = Main.random.nextInt(customers.size() - 1) + 1;  // how many first visited customers to leave [1; N-1]
 
-                // remove the last tour-edge to the depot
-                Component2d toRemove = structure2d.get(customers.get(customers.size() - 1), problemVRP.getDepotId());
-                components.remove(toRemove);
+                Component2d toRemove;
 
                 for (int index = 0; index < numberOfCustomersToRemove ; index++)
                 {
-                    // remove the component preceding to the current customer deleted
-                    if (customers.size() > 1)
-                        toRemove = structure2d.get(customers.get(customers.size() - 2), customers.get(customers.size() - 1));
-                    else
-                        toRemove = structure2d.get(problemVRP.getDepotId(), customers.get(customers.size() - 1));
+                    toRemove = structure2d.get(customers.get(customers.size() - 2), customers.get(customers.size() - 1));
+
                     components.remove(toRemove);
 
-                    solutionVRP.setVisited(customers.get(customers.size() - 1), false);   // tag as non-visited
+                    int customerToRemove = customers.get(customers.size() - 1);
+
+                    if (customerToRemove != problemVRP.getDepotId())           // tag as non-visited if not depot
+                        solutionVRP.setVisited(customerToRemove, false);
+
                     customers.remove(customers.size() - 1);  // remove last customer
                 }
 
@@ -93,7 +89,6 @@ public class SolutionDestroyerVrpRandom extends SolutionDestroyer
                 }
             }
         }
-
 
         return solution;
     }

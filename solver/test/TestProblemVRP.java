@@ -324,7 +324,7 @@ public class TestProblemVRP
             solutionVRP.addConstructionComponent(problem.structure2d.get(3, 1));
             solutionVRP.addConstructionComponent(problem.structure2d.get(1, 0));
 
-            SolutionDestroyer destroyer = new SolutionDestroyerVrpFixed(1);
+            SolutionDestroyer destroyer = new SolutionDestroyerVrpFixed(2);
 
             solutionVRP = (SolutionVRP) destroyer.destroy(solutionVRP);
 
@@ -341,9 +341,10 @@ public class TestProblemVRP
             assertEquals(solutionVRP.getTours().size(), 1);
             Tour tour0 = solutionVRP.getTours().get(0);
             assertEquals(tour0.isFinished(), false);
-            assertEquals(tour0.getCustomers().size(), 2);
-            assertEquals(tour0.getCustomers().get(0).intValue(), 2);
-            assertEquals(tour0.getCustomers().get(1).intValue(), 1);
+            assertEquals(tour0.getCustomers().size(), 3);
+            assertEquals(tour0.getCustomers().get(0).intValue(), 0);
+            assertEquals(tour0.getCustomers().get(1).intValue(), 2);
+            assertEquals(tour0.getCustomers().get(2).intValue(), 1);
             assertEquals(tour0.getLeftCapacity(), 70.0, 0.001);
             assertEquals(tour0.getLeftDistance(), 0.0, 0.001);
         }
@@ -372,7 +373,7 @@ public class TestProblemVRP
             solutionVRP.addConstructionComponent(problem.structure2d.get(3, 1));
             solutionVRP.addConstructionComponent(problem.structure2d.get(1, 0));
 
-            SolutionDestroyer destroyer = new SolutionDestroyerVrpFixed(1);
+            SolutionDestroyer destroyer = new SolutionDestroyerVrpFixed(2);
 
             solutionVRP = (SolutionVRP) destroyer.destroy(solutionVRP);
 
@@ -412,7 +413,7 @@ public class TestProblemVRP
             solutionVRP.addConstructionComponent(problem.structure2d.get(0, 1));
             solutionVRP.addConstructionComponent(problem.structure2d.get(1, 0));
 
-            SolutionDestroyer destroyer = new SolutionDestroyerVrpFixed(0);
+            SolutionDestroyer destroyer = new SolutionDestroyerVrpFixed(1);
 
             solutionVRP = (SolutionVRP) destroyer.destroy(solutionVRP);
 
@@ -476,7 +477,7 @@ public class TestProblemVRP
             solutionVRP.addConstructionComponent(problem.structure2d.get(3, 1));
             solutionVRP.addConstructionComponent(problem.structure2d.get(1, 0));
 
-            SolutionDestroyer destroyer = new SolutionDestroyerVrpFixed(1);
+            SolutionDestroyer destroyer = new SolutionDestroyerVrpFixed(2);
             solutionVRP = (SolutionVRP) destroyer.destroy(solutionVRP);
 
             List<Component> components = problem.getReconstructionComponents(solutionVRP);
@@ -527,7 +528,7 @@ public class TestProblemVRP
             solutionVRP.addConstructionComponent(problem.structure2d.get(3, 1));
             solutionVRP.addConstructionComponent(problem.structure2d.get(1, 0));
 
-            SolutionDestroyer destroyer = new SolutionDestroyerVrpFixed(0);
+            SolutionDestroyer destroyer = new SolutionDestroyerVrpFixed(1);
             solutionVRP = (SolutionVRP) destroyer.destroy(solutionVRP);
 
             List<Component> preselected = problem.getReconstructionComponents(solutionVRP);

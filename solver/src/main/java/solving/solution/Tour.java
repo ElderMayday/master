@@ -147,6 +147,9 @@ public class Tour
         if (customers.size() > 0)
             result += customers.get(customers.size() - 1).toString();
 
-        return result + "}";
+        if (this.finished)
+            return result + "}";
+        else
+            return result + "-...}";
     }
 }

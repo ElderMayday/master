@@ -1,3 +1,5 @@
+import general.Main;
+import org.junit.Before;
 import org.junit.Test;
 import problem.componentStructure.ComponentStructure2dStandard;
 import problem.fleet.FleetDescendingCapacity;
@@ -13,6 +15,7 @@ import solving.solutionDestroyer.SolutionDestroyerVrpRandom;
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.Assert.*;
 
@@ -21,6 +24,13 @@ import static org.junit.Assert.*;
  */
 public class TestSolutionDestroyer
 {
+
+    @Before
+    public void init() {
+        Main.random = new Random();
+    }
+
+
     @Test
     public void testSolutionDestroyerVrpRandom()
     {
@@ -44,29 +54,23 @@ public class TestSolutionDestroyer
 
             solutionVRP = (SolutionVRP) destroyer.destroy(solutionVRP);
 
-            assertEquals(solutionVRP.getVisited(1), false);
-            assertEquals(solutionVRP.getVisited(3), false);
+            assertTrue(solutionVRP.getVisited(0));
 
-            assertEquals(solutionVRP.getTours().size(), 2);
+            int size = solutionVRP.getTours().get(0).getCustomers().size();
+            assertTrue((1 <= size) && (size <= 3));
+
+            size = solutionVRP.getTours().get(1).getCustomers().size();
+            assertTrue((1 <= size) && (size <= 2));
 
             List<Tour> tours = solutionVRP.getTours();
-
-            assertTrue(tours.get(0).getCustomers().size() < 2);
-            assertEquals(tours.get(1).getCustomers().size(), 0);
 
             assertEquals(tours.get(0).isFinished(), false);
             assertEquals(tours.get(1).isFinished(), false);
 
-            assertEquals(tours.get(1).getLeftCapacity(), 100.0, 0.001);
-            assertEquals(tours.get(1).getLeftDistance(), 100.0, 0.001);
+            // components that must have been removed (not all possibly)
 
-            // components should have also been removed
-
-            assertTrue(!solutionVRP.getComponents2d().contains(problem.structure2d.get(0, 3)));
             assertTrue(!solutionVRP.getComponents2d().contains(problem.structure2d.get(3, 0)));
-
             assertTrue(!solutionVRP.getComponents2d().contains(problem.structure2d.get(1, 0)));
-            assertTrue(!solutionVRP.getComponents2d().contains(problem.structure2d.get(2, 1)));
         } catch (Exception e)
         {
             assertTrue(false);
@@ -92,11 +96,11 @@ public class TestSolutionDestroyer
             solutionVRP.addConstructionComponent(problem.structure2d.get(0, 3));
             solutionVRP.addConstructionComponent(problem.structure2d.get(3, 0));
 
-            SolutionDestroyer destroyer = new SolutionDestroyerVrpFixed(1);
+            SolutionDestroyer destroyer = new SolutionDestroyerVrpFixed(2);
 
             solutionVRP = (SolutionVRP) destroyer.destroy(solutionVRP);
 
-            assertEquals(solutionVRP.getVisitedNum(), 3);
+            assertEquals(solutionVRP.getVisitedNum(), 2);
             assertEquals(solutionVRP.getVisited(0), true);
             assertEquals(solutionVRP.getVisited(1), false);
             assertEquals(solutionVRP.getVisited(2), true);
@@ -106,16 +110,15 @@ public class TestSolutionDestroyer
 
             List<Tour> tours = solutionVRP.getTours();
 
-            assertEquals(tours.get(0).getCustomers().size(), 1);
-            assertEquals(tours.get(1).getCustomers().size(), 1);
+            assertEquals(tours.get(0).getCustomers().size(), 2);
+            assertEquals(tours.get(1).getCustomers().size(), 2);
 
             assertEquals(tours.get(0).isFinished(), false);
-            assertEquals(tours.get(1).isFinished(), true);
+            assertEquals(tours.get(1).isFinished(), false);
 
-            assertEquals(solutionVRP.getComponents2d().size(), 3);
+            assertEquals(solutionVRP.getComponents2d().size(), 2);
             assertEquals(solutionVRP.getComponents2d().get(0), problem.structure2d.get(0, 2));
             assertEquals(solutionVRP.getComponents2d().get(1), problem.structure2d.get(0, 3));
-            assertEquals(solutionVRP.getComponents2d().get(2), problem.structure2d.get(3, 0));
         } catch (Exception e)
         {
             assertTrue(false);
@@ -147,9 +150,9 @@ public class TestSolutionDestroyer
 
             Tour tour = solutionVRP.getTours().get(0);
 
-            if (tour.getCustomers().size() == 2)  // {2-1} is left
+            if (tour.getCustomers().size() == 4)  // {0-2-1-0} is left
             {
-                assertEquals(solutionVRP.getVisitedNum(), 3);
+                assertEquals(solutionVRP.getVisitedNum(), 2);
                 assertEquals(solutionVRP.getVisited(0), true);
                 assertEquals(solutionVRP.getVisited(1), true);
                 assertEquals(solutionVRP.getVisited(2), true);
@@ -163,9 +166,9 @@ public class TestSolutionDestroyer
                 assertEquals(solutionVRP.getComponents2d().get(1), problem.structure2d.get(2, 1));
                 assertEquals(solutionVRP.getComponents2d().get(2), problem.structure2d.get(1, 0));
             }
-            else   // {1} is left
+            else   // {0-3-0} is left
             {
-                assertEquals(solutionVRP.getVisitedNum(), 2);
+                assertEquals(solutionVRP.getVisitedNum(), 1);
                 assertEquals(solutionVRP.getVisited(0), true);
                 assertEquals(solutionVRP.getVisited(1), false);
                 assertEquals(solutionVRP.getVisited(2), false);
@@ -182,8 +185,6 @@ public class TestSolutionDestroyer
             assertEquals(tour.isFinished(), true);
             assertEquals(solutionVRP.getComplete(), false);
             assertEquals(solutionVRP.isPartiallyDestroyed(), true);
-
-            int a = 1;
         } catch (Exception e)
         {
             e.printStackTrace();

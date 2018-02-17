@@ -34,11 +34,7 @@ public class SolutionDestroyerVrpByTour extends SolutionDestroyer
         if (tours.size() > 1)
         {
             if (!solution.isPartiallyDestroyed())
-            {
                 super.destroyCommon(solution);
-                solution.setPartiallyDestroyed(true); // solutionVRP is destroyed when at least one tour is destroyed
-                solution.setComplete(false);
-            }
 
             int dice = Main.random.nextInt(tours.size());
             Tour newTour = tours.get(dice);

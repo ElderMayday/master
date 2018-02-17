@@ -27,5 +27,7 @@ public abstract class SolutionDestroyer
     {
         solution.memorizeLastObjective();
         solution.objective = -1.0;
+        solution.setPartiallyDestroyed(true); // solutionVRP is destroyed when at least one tour is destroyed
+        solution.setComplete(false);
     }
 }

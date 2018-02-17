@@ -23,7 +23,7 @@ public class SolutionVRP extends Solution
     protected ProblemVRP problemVRP;            // The problem this solving belongs to
 
     protected boolean[] visited;                // Flag array of whether the corresponding custumer has been visited
-    protected int visitedNum;                   // Number of visited customers
+    protected int visitedNum;                   // Number of visited customers (except depot) max = N - 1
 
     protected List<Tour> tours;                 // Every tour of the solution
 
@@ -43,7 +43,7 @@ public class SolutionVRP extends Solution
 
         currentCustomerId = 0;                                 // to ensure the creation of a first new tour for the first component
         visited[problemVRP.getDepotId()] = true;
-        visitedNum = 1;
+        visitedNum = 0;
 
         components2d = new ArrayList<Component2d>();
         vehicleIterator = problemVRP.fleet.getVehiclesIterator();
@@ -65,6 +65,7 @@ public class SolutionVRP extends Solution
         Vehicle vehicle = vehicleIterator.next();
 
         Tour tour = new Tour(vehicle);
+        tour.getCustomers().add(problemVRP.getDepotId());
 
         tours.add(tour);
 
@@ -102,14 +103,15 @@ public class SolutionVRP extends Solution
         components2d.add(component2d);
 
         if (component2d.getRow() != currentCustomerId)
-            throw new Exception("New component does not procede the current tour");
+            throw new Exception("New component does not proceed the current tour");
 
         currentCustomerId = component2d.getColumn();
+
+        currentTour.getCustomers().add(component2d.getColumn());
 
         if (currentCustomerId != problemVRP.getDepotId())
         {
             visitedNum++;
-            currentTour.getCustomers().add(component2d.getColumn());
 
             if (visited[currentCustomerId])
                 throw new Exception("Vehicle has revisited a customer");
@@ -127,7 +129,7 @@ public class SolutionVRP extends Solution
             if (component2d.getRow() == problemVRP.getDepotId()) // could not even start a tour (vehicle stays in the depot)
                 currentTour.getCustomers().clear();              // delete the only component c[depotId;depotId] since it is not necessary
 
-            if (visitedNum != problemVRP.getVertexNum())    // if more tours expected to finish the solution
+            if (visitedNum != (problemVRP.getVertexNum() - 1))    // if more tours expected to finish the solution
                 startNewTour();
             else                                            // if visited everything
             {
@@ -199,10 +201,11 @@ public class SolutionVRP extends Solution
             if (component2d.getRow() == problemVRP.getDepotId()) // could not even start a tour (vehicle stays in the depot)
                 currentTour.getCustomers().clear();              // delete the only component c[depotId;depotId] since it is not necessary
 
-            if (visitedNum == problemVRP.getVertexNum())  // if visited everything (does not cause a new tour, preselection should cause it, as it is written higher)
+            if (visitedNum == problemVRP.getVertexNum() - 1)  // if visited everything (does not cause a new tour, preselection should cause it, as it is written higher)
             {
                 isComplete = true;
                 isPartiallyDestroyed = false;
+                currentTour.getCustomers().add(problemVRP.getDepotId());
                 currentTour = null;
                 recomputeObjective();
 
@@ -210,7 +213,7 @@ public class SolutionVRP extends Solution
                 {
                     public boolean test(Tour tour)
                     {
-                        return tour.getCustomers().size() == 0;
+                        return tour.getCustomers().size() == 1;
                     }
                 });
             }
@@ -270,7 +273,7 @@ public class SolutionVRP extends Solution
 
         visited[problemVRP.getDepotId()] = true;
 
-        visitedNum = 1;
+        visitedNum = 0;
     }
 
     public ProblemVRP getProblemVRP()
@@ -309,11 +312,11 @@ public class SolutionVRP extends Solution
             List<Integer> customers = tour.getCustomers();
             ComponentStructure2d structure2d = problemVRP.structure2d;
 
-            components2d.add(structure2d.get(problemVRP.getDepotId(), customers.get(0)));
+            //components2d.add(structure2d.get(problemVRP.getDepotId(), customers.get(0)));
 
-            for (int i = 0; i < customers.size(); i++)
+            for (int i = 0; i < customers.size() - 1; i++)
             {
-                int nextCustomer = i == customers.size() - 1 ? problemVRP.getDepotId() : customers.get(i + 1);
+                int nextCustomer = customers.get(i + 1);
 
                 Component2d component2d = structure2d.get(customers.get(i), nextCustomer);
                 components2d.add(structure2d.get(customers.get(i), nextCustomer));

@@ -142,12 +142,12 @@ public class TestSolutionVrp
             assertEquals(tour2.isFinished(), false);
             assertEquals(tour2.getUsedCapacity(), 20.0, 0.001);
             assertEquals(tour2.getUsedDistance(), 30.0, 0.001);
-            assertEquals(tour2.getCustomers().get(0).intValue(), 1);
+            assertEquals(tour2.getCustomers().get(1).intValue(), 1);
             assertEquals(tour2.isFinished(), false);
             assertEquals(solution.getComplete(), false);
 
             solution.addConstructionComponent(c5);
-            assertEquals(tour2.getCustomers().size(), 1);
+            assertEquals(tour2.getCustomers().size(), 3);
             assertEquals(tour2.isFinished(), true);
             assertEquals(tour2.getUsedCapacity(), 20.0, 0.001);
             assertEquals(tour2.getUsedDistance(), 80.0, 0.001);
@@ -155,9 +155,9 @@ public class TestSolutionVrp
 
             Tour tour1 = solution.getTours().get(0);
             assertEquals(tour1.isFinished(), true);
-            assertEquals(tour1.getCustomers().size(), 2);
-            assertEquals(tour1.getCustomers().get(0).intValue(), 3);
-            assertEquals(tour1.getCustomers().get(1).intValue(), 2);
+            assertEquals(tour1.getCustomers().size(), 4);
+            assertEquals(tour1.getCustomers().get(1).intValue(), 3);
+            assertEquals(tour1.getCustomers().get(2).intValue(), 2);
             assertEquals(tour1.getUsedCapacity(), 70.0, 0.001); // only capacity restriction
         }
         catch (Exception e)
