@@ -1,16 +1,24 @@
+import general.Main;
+import org.junit.Before;
 import org.junit.Test;
 import problem.componentStructure.ComponentStructure2d;
 import problem.componentStructure.ComponentStructure2dStandard;
 import problem.fleet.FleetDescendingCapacity;
 import problem.problemFormulation.Problem;
 import problem.problemFormulation.ProblemVRP;
+import solving.perturbation.DoubleBridge;
+import solving.perturbation.Perturbation;
 import solving.solution.Solution;
 import solving.solution.SolutionVRP;
+import solving.solution.Tour;
 
 
 import java.io.File;
+import java.util.List;
+import java.util.Random;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 
 /**
@@ -18,6 +26,11 @@ import static org.junit.Assert.*;
  */
 public class TestDoubleBridge
 {
+    @Before
+    public void init() {
+        Main.random = new Random();
+    }
+
     @Test
     public void testDoubleBridge_NoLengthLimit()
     {
@@ -39,6 +52,25 @@ public class TestDoubleBridge
             solution.addConstructionComponent(structure2d.get(8, 9));
             solution.addConstructionComponent(structure2d.get(9, 10));
             solution.addConstructionComponent(structure2d.get(10, 0));
+
+            Perturbation perturbation = new DoubleBridge();
+
+            solution = (SolutionVRP) perturbation.perturbate(solution);
+
+            assertEquals(solution.getTours().size(), 1);
+
+            Tour tour = solution.getTours().get(0);
+            List<Integer> customers = tour.getCustomers();
+
+            assertEquals(customers.size(), 12);
+
+            boolean[] visited = new boolean[customers.size() - 1];
+
+            for (Integer i : customers)
+                visited[i] = true;
+
+            for (Integer i : customers)
+                assertTrue(visited[i]);
 
             int a = 1;
         }

@@ -7,5 +7,5 @@ import solving.solution.Solution;
  */
 public abstract class Perturbation
 {
-    public abstract void perturbate(Solution solution);
+    public abstract Solution perturbate(Solution solution);
 }

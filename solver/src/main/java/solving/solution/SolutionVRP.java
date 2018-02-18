@@ -19,7 +19,7 @@ import java.util.function.Predicate;
  */
 public class SolutionVRP extends Solution
 {
-    protected List<Component2d> components2d;   // Chosen components2d candidates
+    public List<Component2d> components2d;      // Chosen components2d candidates (while constructing and reconstructing, use the corresponding methods)
     protected ProblemVRP problemVRP;            // The problem this solving belongs to
 
     protected boolean[] visited;                // Flag array of whether the corresponding custumer has been visited
