@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class TestLocalUpdateStandard
 {
     @Test
-    public void testLocalUpdateStadard()
+    public void testLocalUpdateStandard()
     {
         Component component = new Component2d(1, 1, 1.0, 1.0);
 

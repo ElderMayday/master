@@ -9,6 +9,11 @@ import solving.solution.Solution;
  */
 public class LocalSearchNone extends LocalSearch
 {
+    public LocalSearchNone()
+    {
+        super(null);
+    }
+
     @Override
     public Solution search(Problem problem, Solution solution)
     {

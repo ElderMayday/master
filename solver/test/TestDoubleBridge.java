@@ -4,11 +4,9 @@ import org.junit.Test;
 import problem.componentStructure.ComponentStructure2d;
 import problem.componentStructure.ComponentStructure2dStandard;
 import problem.fleet.FleetDescendingCapacity;
-import problem.problemFormulation.Problem;
 import problem.problemFormulation.ProblemVRP;
-import solving.perturbation.DoubleBridge;
-import solving.perturbation.Perturbation;
-import solving.solution.Solution;
+import solving.localSearch.perturbation.DoubleBridge;
+import solving.localSearch.perturbation.Perturbation;
 import solving.solution.SolutionVRP;
 import solving.solution.Tour;
 

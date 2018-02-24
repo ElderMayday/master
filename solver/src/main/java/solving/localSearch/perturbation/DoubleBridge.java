@@ -1,4 +1,4 @@
-package solving.perturbation;
+package solving.localSearch.perturbation;
 
 import general.Main;
 import problem.componentStructure.ComponentStructure2d;
@@ -126,9 +126,9 @@ public class DoubleBridge extends Perturbation
 
                 tour.setCustomers(newCustomers);
 
-                // recompute
+                // optimized objective recomputing (instead of full recomputing)
 
-                solutionVRP.recomputeObjective();
+                solutionVRP.objective += sum4new - sum4original;
             }
         }
 

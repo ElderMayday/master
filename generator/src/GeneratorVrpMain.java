@@ -34,7 +34,7 @@ public class GeneratorVrpMain
             int vehicleNum = 10;
             double minVehicleCapacity = 10.0, maxVehicleCapacity = 100.0, rangeVehicleCapacity = 90.0;
             double minVehicleLength = 50.0, maxVehicleLength = 100.0, rangeVehicleLength = 50.0;
-            double minDemand = 10.0, maxDemand = 50.0, rangeDemand = 40.0;
+            double minDemand = 1.0, maxDemand = 5.0, rangeDemand = 40.0;
             double minHeuristic = 1.0, maxHeuristic = 1.0, rangeHeuristic = 0.0;
             double probabilityLengthNonrestricted = 0.0;
             int customersNum = 10;
