@@ -17,6 +17,9 @@ public class SelectorManiezzo extends Selector
     {
         this.alpha = alpha;
         this.alphaComplement = 1.0 - alpha;
+
+        if ((alpha < 0.0) || (alpha > 1.0))
+            throw new IllegalArgumentException("Wrong alpha value for Maniezzo selector");
     }
 
 

@@ -20,6 +20,12 @@ public class Component
     {
         Component.alpha = alpha;
         Component.beta = beta;
+
+        if (alpha < 0.0)
+            throw new IllegalArgumentException("Alpha cannot be negative");
+
+        if (beta < 0.0)
+            throw new IllegalArgumentException("Beta cannot be negative");
     }
 
     //------------------------------------------------------------
