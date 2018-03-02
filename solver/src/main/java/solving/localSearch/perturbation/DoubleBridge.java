@@ -77,59 +77,56 @@ public class DoubleBridge extends Perturbation
                     structure.get(start3, end1).getDistance() +
                     structure.get(start2, end4).getDistance();
 
-            if (sum4new < sum4original)   // is an improving move
-            {
-                isModified = true;
+            isModified = true;
 
-                // modify the component set
+            // modify the component set
 
-                solutionVRP.components2d.remove(structure.get(start1, end1));
-                solutionVRP.components2d.remove(structure.get(start2, end2));
-                solutionVRP.components2d.remove(structure.get(start3, end3));
-                solutionVRP.components2d.remove(structure.get(start4, end4));
+            solutionVRP.components2d.remove(structure.get(start1, end1));
+            solutionVRP.components2d.remove(structure.get(start2, end2));
+            solutionVRP.components2d.remove(structure.get(start3, end3));
+            solutionVRP.components2d.remove(structure.get(start4, end4));
 
-                solutionVRP.components2d.add(structure.get(start1, end3));
-                solutionVRP.components2d.add(structure.get(start4, end2));
-                solutionVRP.components2d.add(structure.get(start3, end1));
-                solutionVRP.components2d.add(structure.get(start2, end4));
+            solutionVRP.components2d.add(structure.get(start1, end3));
+            solutionVRP.components2d.add(structure.get(start4, end2));
+            solutionVRP.components2d.add(structure.get(start3, end1));
+            solutionVRP.components2d.add(structure.get(start2, end4));
 
-                // modify the customer sequence
+            // modify the customer sequence
 
-                List<Integer> newCustomers = new ArrayList<Integer>();
+            List<Integer> newCustomers = new ArrayList<Integer>();
 
-                for (int i = 0; i < index1; i++)
-                    newCustomers.add(customers.get(i));
+            for (int i = 0; i < index1; i++)
+                newCustomers.add(customers.get(i));
 
-                newCustomers.add(start1);
-                newCustomers.add(end3);
+            newCustomers.add(start1);
+            newCustomers.add(end3);
 
-                for (int i = index3 + 2; i < index4; i++)
-                    newCustomers.add(customers.get(i));
+            for (int i = index3 + 2; i < index4; i++)
+                newCustomers.add(customers.get(i));
 
-                newCustomers.add(start4);
-                newCustomers.add(end2);
+            newCustomers.add(start4);
+            newCustomers.add(end2);
 
-                for (int i = index2 + 2; i < index3; i++)
-                    newCustomers.add(customers.get(i));
+            for (int i = index2 + 2; i < index3; i++)
+                newCustomers.add(customers.get(i));
 
-                newCustomers.add(start3);
-                newCustomers.add(end1);
+            newCustomers.add(start3);
+            newCustomers.add(end1);
 
-                for (int i = index1 + 2; i < index2; i++)
-                    newCustomers.add(customers.get(i));
+            for (int i = index1 + 2; i < index2; i++)
+                newCustomers.add(customers.get(i));
 
-                newCustomers.add(start2);
-                newCustomers.add(end4);
+            newCustomers.add(start2);
+            newCustomers.add(end4);
 
-                for (int i = index4 + 2; i < customers.size(); i++)
-                    newCustomers.add(customers.get(i));
+            for (int i = index4 + 2; i < customers.size(); i++)
+                newCustomers.add(customers.get(i));
 
-                tour.setCustomers(newCustomers);
+            tour.setCustomers(newCustomers);
 
-                // optimized objective recomputing (instead of full recomputing)
+            // optimized objective recomputing (instead of full recomputing)
 
-                solutionVRP.objective += sum4new - sum4original;
-            }
+            solutionVRP.objective += sum4new - sum4original;
         }
 
         return isModified;
