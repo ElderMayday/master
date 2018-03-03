@@ -10,12 +10,5 @@ import solving.solution.Solution;
  */
 public abstract class LocalSearch
 {
-    protected Move move;
-
-    public LocalSearch(Move move)
-    {
-        this.move = move;
-    }
-
     public abstract Solution search(Problem problem, Solution solution);
 }

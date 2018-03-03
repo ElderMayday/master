@@ -12,12 +12,12 @@ import solving.solution.Solution;
 public class IteratedLocalSearch extends LocalSearch
 {
     protected Perturbation perturbation;
-
+    protected Move move;
     protected int iterations;
 
     public IteratedLocalSearch(Move move, Perturbation perturbation, int iterations)
     {
-        super(move);
+        this.move = move;
 
         this.perturbation = perturbation;
         this.iterations = iterations;

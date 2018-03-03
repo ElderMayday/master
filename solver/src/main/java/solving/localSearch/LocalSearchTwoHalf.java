@@ -1,10 +1,10 @@
-package solving.localSearch.localMove;
+package solving.localSearch;
 
 import general.Main;
-import problem.component.Component;
 import problem.component.Component2d;
 import problem.componentStructure.ComponentStructure2d;
-import problem.problemFormulation.ProblemVRP;
+import problem.problemFormulation.Problem;
+import solving.localSearch.LocalSearch;
 import solving.solution.Solution;
 import solving.solution.SolutionVRP;
 import solving.solution.Tour;
@@ -13,13 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Performs 2.5-opt convergence for ILS
- * Completely equivalent to a pure 2.5-opt local search
- * Created by Aldar on 20-Feb-18.
+ * Created by Aldar on 03-Mar-18.
  */
-public class MoveTwoHalf extends Move
+public class LocalSearchTwoHalf extends LocalSearch
 {
-    public Solution move(Solution solution)
+    public Solution search(Problem problem, Solution solution)
     {
         SolutionVRP solutionVRP = (SolutionVRP) solution;
 
@@ -30,7 +28,6 @@ public class MoveTwoHalf extends Move
 
         return solutionVRP;
     }
-
 
     /**
      * Performs full iterated convergence on the particular tour of the solution

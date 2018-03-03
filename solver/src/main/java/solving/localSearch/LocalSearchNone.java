@@ -11,7 +11,7 @@ public class LocalSearchNone extends LocalSearch
 {
     public LocalSearchNone()
     {
-        super(null);
+        super();
     }
 
     @Override
