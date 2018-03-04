@@ -12,11 +12,13 @@ public class TerminationCriteriaTime extends TerminationCriteria
     protected long spanExecution;
     protected long spanBetweenReinitializations;
 
+    protected boolean reinitializationEnabled;
 
-    public TerminationCriteriaTime(long spanExecution, long spanBetweenReinitializations)
+    public TerminationCriteriaTime(long spanExecution, long spanBetweenReinitializations, boolean reinitializationEnabled)
     {
         this.spanExecution = spanExecution;
         this.spanBetweenReinitializations = spanBetweenReinitializations;
+        this.reinitializationEnabled = reinitializationEnabled;
     }
 
     @Override
@@ -34,13 +36,17 @@ public class TerminationCriteriaTime extends TerminationCriteria
     @Override
     public boolean needReinitialize()
     {
-        long timeSpan = System.currentTimeMillis() - tLastReinitialization;
-
-        if (timeSpan > spanBetweenReinitializations)
+        if (reinitializationEnabled)
         {
-            tLastReinitialization = System.currentTimeMillis();
+            long timeSpan = System.currentTimeMillis() - tLastReinitialization;
 
-            return true;
+            if (timeSpan > spanBetweenReinitializations)
+            {
+                tLastReinitialization = System.currentTimeMillis();
+
+                return true;
+            } else
+                return false;
         }
         else
             return false;

@@ -13,7 +13,7 @@ public class TestTerminationCriteriaTime
     @Test
     public void testSolutionVrpIterator()
     {
-        TerminationCriteria timer = new TerminationCriteriaTime(10000, 5000);
+        TerminationCriteria timer = new TerminationCriteriaTime(10000, 5000, true);
 
         timer.initialize();
 

@@ -13,7 +13,7 @@ public abstract class TerminationCriteria
 
 
     /**
-     * Can be called during the iteration to checkout whether reinitialization should be done
+     * Can be called during the iteration to checkout whether reinitialization should be done at this iteration
      * @return
      */
     public abstract boolean needReinitialize();
