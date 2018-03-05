@@ -15,18 +15,18 @@ import java.util.List;
  */
 public class CandidateDeterminerVrpSorting extends CandidateDeterminer
 {
-    protected int numberOfCandidates;
+    protected int numberOfCandidatesDesired;
 
-    public CandidateDeterminerVrpSorting(int numberOfCandidates)
+    public CandidateDeterminerVrpSorting(int numberOfCandidatesDesired)
     {
-        this.numberOfCandidates = numberOfCandidates;
+        this.numberOfCandidatesDesired = numberOfCandidatesDesired;
     }
 
 
     /**
      * Uses QuickSort to get the customers
      * @param problem
-     * @return candidateList based on the <numberOfCandidates> closest customers for each customers
+     * @return candidateList based on the <numberOfCandidatesDesired> closest customers for each customers
      * Does not include edge to back-to-the-depot and self-loop edges
      * @throws Exception
      */
@@ -53,17 +53,17 @@ public class CandidateDeterminerVrpSorting extends CandidateDeterminer
                 List<Component2d> allPossibleComponents = new ArrayList<Component2d>();
 
                 for (int column = 0; column < problemVRP.getVertexNum(); column++)
-                {
                     if ((column != row) && (column != depotId))
                         allPossibleComponents.add(structure2d.get(row, column));
-                }
 
                 allPossibleComponents.sort(new Component2dComparatorByDistance());
 
-                for (int column = 0; column < numberOfCandidates; column++)
+                int borderIndex = Math.min(numberOfCandidatesDesired, allPossibleComponents.size()); // when candidates end and rest starts
+
+                for (int column = 0; column < borderIndex; column++)
                     candidateRow.add(allPossibleComponents.get(column).getColumn());   // get for ArrayList is O(1), so it's fine
 
-                for (int column = numberOfCandidates; column < allPossibleComponents.size(); column++)
+                for (int column = borderIndex; column < allPossibleComponents.size(); column++)
                     restRow.add(allPossibleComponents.get(column).getColumn());
             }
 
@@ -78,7 +78,6 @@ public class CandidateDeterminerVrpSorting extends CandidateDeterminer
 
 class Component2dComparatorByDistance implements Comparator<Component2d>
 {
-    @Override
     public int compare(Component2d o1, Component2d o2)
     {
         if (o1.getDistance() > o2.getDistance())
