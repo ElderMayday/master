@@ -18,9 +18,43 @@ candidate_num			"--candidate-num  "		i	(1, 20)		| candidate_list == "candidate-y
 global_update			"--"					c	(ant-s,ant-colony-s,min-max-s,rank-based-ant-s,elitist-ant-s,best-worst-ant-s)
 local_update			"--"					c	(local-update-yes,local-update-no) | selector %in% c("selector-standard","selector-dorigo")
 iterated_greedy			"--"					c	(standard,external-memory,iterated-ants,cunning-ants)
+reinitialization		"--"					c	(reinitialization-yes,reinitialization-no)
 #
 #
-#TODO restraing iterated_greedy local_update connection
+#TODO restraing iterated_greedy local_update connection and selectors
 #
 #
+# Local update
+#
+lupd_epsilon			"--lupd-epsilon "		r	(0.0, 1.0)	| local_update == "local-update-yes"
+lupd_tau0				"--tau0 "				r   (0.0, 1.0)  | local_update == "local-update-yes"
+#
+#
+# Local search
+#
+local_search			"--"					c	(local-search-none,local-search-ils-twohalf,local-search-twohalf)
+#
+#
+# Global update
+#
+evaporation_remains		"evaporation-remains "	r	(0.0,1.0)
+#
+#
+# Ant System
+#
+ant_s_is_bounded		"--"					c	(ant-s-bounded-yes,ant-s-bounded-no) | global_update == "ant-s"	
+ant_s_k					"--ant-s-k "			r	(1.0,10.0)	| (global_update == "ant-s") & (ant_s_is_bounded == "ant-s-bounded-yes")
+#
+#
+# Min Max Ant System
+#
+min_max_s_p_best			"--min-max-s-p-best "	r	(0.01, 1.0)	| global_update == "min-max-s"
+min_max_s_pts				"--"					c	(min-max-s-pts-yes,min-max-s-pts-no) | global_update == "min-max-s"
+#
+#
+# PTS (for MMAS only)
+#
+pts_lambda					"--pts-lambda "			r	(0.0, 1.0)	| (global_update == "min-max-s") & (min_max_s_pts == "min-max-s-pts-yes")
+
+
 

@@ -317,7 +317,6 @@ public class ProblemVRP extends Problem2d
 
     class ConstructionPreselectorVrpNoCandidates implements ConstructionPreselectorVRP
     {
-        @Override
         public List<Component> getConstructionComponents(SolutionVRP solutionVRP)
         {
             List<Component> result = new ArrayList<Component>();
@@ -342,8 +341,6 @@ public class ProblemVRP extends Problem2d
 
     class ConstructionPreselectorVrpCandidates implements ConstructionPreselectorVRP
     {
-
-        @Override
         public List<Component> getConstructionComponents(SolutionVRP solutionVRP)
         {
             List<Component> result = new ArrayList<Component>();
@@ -397,7 +394,6 @@ public class ProblemVRP extends Problem2d
 
     class ReconstructionPreselectorVrpNoCandidates implements ReconstructionPreselectorVRP
     {
-        @Override
         public List<Component> getReconstructionComponents(SolutionVRP solutionVRP)
         {
             List<Component> result = new ArrayList<Component>();
@@ -454,7 +450,6 @@ public class ProblemVRP extends Problem2d
 
     class ReconstructionPreselectorVrpCandidates implements ReconstructionPreselectorVRP
     {
-        @Override
         public List<Component> getReconstructionComponents(SolutionVRP solutionVRP)
         {
             List<Component> result = new ArrayList<Component>();

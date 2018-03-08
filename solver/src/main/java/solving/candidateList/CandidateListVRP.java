@@ -3,6 +3,7 @@ package solving.candidateList;
 import java.util.ArrayList;
 
 /**
+ * Candidate list for VRP problem
  * Created by Aldar on 20-Oct-17.
  */
 public class CandidateListVRP extends CandidateList

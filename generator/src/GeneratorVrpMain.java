@@ -20,8 +20,9 @@ public class GeneratorVrpMain
             System.out.println("--max_vehicle_length [max_vehicle_length]");
             System.out.println("--min_demand [min_demand]");
             System.out.println("--max_demand [max_demand]");
-            System.out.println("--min_heuristics [min_heuristics]");
-            System.out.println("--max_heuristics [max_heuristics]");
+            System.out.println("--heuristic_information [uniform/inverse]");
+            System.out.println("--min_heuristic_information [min_heuristics] (only for uniform heuristic_information)");
+            System.out.println("--max_heuristic_information [max_heuristics] (only for uniform heuristic_information)");
             System.out.println("--probability_length_nonrestricted [probability_length_nonrestricted]");
             System.out.println("--customers_num [customers_num]");
             System.out.println("--area_size [area_size]");
@@ -35,10 +36,11 @@ public class GeneratorVrpMain
             double minVehicleCapacity = 10.0, maxVehicleCapacity = 100.0, rangeVehicleCapacity = 90.0;
             double minVehicleLength = 50.0, maxVehicleLength = 100.0, rangeVehicleLength = 50.0;
             double minDemand = 1.0, maxDemand = 5.0, rangeDemand = 40.0;
-            double minHeuristic = 1.0, maxHeuristic = 1.0, rangeHeuristic = 0.0;
+            double minHeuristicInformation = 1.0, maxHeuristicInformation = 1.5, rangeHeuristicInformation = 0.0;
             double probabilityLengthNonrestricted = 0.0;
             int customersNum = 10;
             double areaSize = 10.0;
+            boolean isUniformHeuristicInformation = false;
 
             for (int index = 0; index < args.length; index += 2)
             {
@@ -63,11 +65,14 @@ public class GeneratorVrpMain
                 if (args[index].equals("--max_vehicle_length"))
                     maxVehicleLength = Double.parseDouble(args[index + 1]);
 
-                if (args[index].equals("--min_heuristic"))
-                    minHeuristic = Double.parseDouble(args[index + 1]);
+                if (args[index].equals("--heuristic_information"))
+                    isUniformHeuristicInformation = args[index + 1].equals("uniform");
 
-                if (args[index].equals("--max_heuristic"))
-                    maxHeuristic = Double.parseDouble(args[index + 1]);
+                if (args[index].equals("--min_heuristic_information"))
+                    minHeuristicInformation = Double.parseDouble(args[index + 1]);
+
+                if (args[index].equals("--max_heuristic_information"))
+                    maxHeuristicInformation = Double.parseDouble(args[index + 1]);
 
                 if (args[index].equals("--probability_length_nonrestricted"))
                     probabilityLengthNonrestricted = Double.parseDouble(args[index + 1]);
@@ -83,12 +88,14 @@ public class GeneratorVrpMain
 
                 if (args[index].equals("--max_demand"))
                     maxDemand = Double.parseDouble(args[index + 1]);
-
-                rangeVehicleCapacity = maxVehicleCapacity - minVehicleCapacity;
-                rangeVehicleLength = maxVehicleLength - minVehicleLength;
-                rangeDemand = maxDemand - minDemand;
-                rangeHeuristic = maxHeuristic - minHeuristic;
             }
+
+
+            rangeVehicleCapacity = maxVehicleCapacity - minVehicleCapacity;
+            rangeVehicleLength = maxVehicleLength - minVehicleLength;
+            rangeDemand = maxDemand - minDemand;
+            rangeHeuristicInformation = maxHeuristicInformation - minHeuristicInformation;
+
 
             System.out.println("filename=" + filename);
             System.out.println(isOpenVrp ? "openVRP=yes" : "openVRP=no");
@@ -97,6 +104,18 @@ public class GeneratorVrpMain
             System.out.println("max_vehicle_capacity=" + maxVehicleCapacity);
             System.out.println("min_vehicle_length=" + minVehicleLength);
             System.out.println("max_vehicle_length=" + maxVehicleLength);
+
+            if (isUniformHeuristicInformation)
+            {
+                System.out.println("heuristic_information=uniform");
+                System.out.println("min_heuristic_information=" + minHeuristicInformation);
+                System.out.println("max_heuristic_information=" + maxHeuristicInformation);
+            }
+            else
+            {
+                System.out.println("heuristic_information=inverse");
+            }
+
             System.out.println("probability_length_nonrestricted=" + probabilityLengthNonrestricted);
             System.out.println("customers_num=" + customersNum);
             System.out.println("area_size=" + areaSize);
@@ -170,16 +189,41 @@ public class GeneratorVrpMain
                     writer.write("\n");
                 }
 
+                // heuristic information
+
                 writer.write("---\n");
 
-                for (int i = 0; i < customersNum + 1; i++)
+                if (isUniformHeuristicInformation)
                 {
-                    for (int j = 0; j < customersNum + 1; j++)
+                    // uniform range heuristic information
+
+                    for (int i = 0; i < customersNum + 1; i++)
                     {
-                        writer.write(String.format("%1$,.1f", random.nextDouble() * rangeHeuristic + minHeuristic));
-                        writer.write(" ");
+                        for (int j = 0; j < customersNum + 1; j++)
+                        {
+                            writer.write(String.format("%1$,.1f", random.nextDouble() * rangeHeuristicInformation + minHeuristicInformation));
+                            writer.write(" ");
+                        }
+                        writer.write("\n");
                     }
-                    writer.write("\n");
+                }
+                else
+                {
+                    // heuristic information is equal to distance^-1
+
+                    for (int i = 0; i < customersNum + 1; i++)
+                    {
+                        for (int j = 0; j < customersNum + 1; j++)
+                        {
+                            if (i != j)
+                                writer.write(String.format("%1$,.3f", 1.0 / (Math.sqrt(Math.pow(y[i] - y[j], 2.0)) + Math.pow(x[i] - x[j], 2.0))));
+                            else
+                                writer.write("0.0");
+
+                            writer.write(" ");
+                        }
+                        writer.write("\n");
+                    }
                 }
 
                 writer.close();

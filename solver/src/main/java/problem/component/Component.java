@@ -1,7 +1,5 @@
 package problem.component;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Aldar on 28-Sep-17.
