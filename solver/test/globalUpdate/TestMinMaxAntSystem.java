@@ -65,7 +65,7 @@ public class TestMinMaxAntSystem
             solution3.addConstructionComponent(structure2d.get(3, 0));
             solutionList.add(solution3);
 
-            GlobalUpdate update = new MinMaxAntSystem(problem, 0.9, 2, new PheromoneTrailSmoothingMMAS(0.9, 0.1, 0.8), 1, 1);
+            GlobalUpdate update = new MinMaxAntSystem(problem, 0.9, 2, new PheromoneTrailSmoothingMMAS(0.9, 0.1, 0.8), true, 1, true,1);
 
             update.update(solutionList);
 

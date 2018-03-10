@@ -35,7 +35,7 @@ lupd_tau0				"--tau0 "				r   (0.0, 1.0)  | local_update == "local-update-yes"
 local_search			"--"					c	(local-search-none,local-search-ils-twohalf,local-search-twohalf)
 #
 #
-# Global update
+# Global update (all)
 #
 evaporation_remains		"evaporation-remains "	r	(0.0,1.0)
 #
@@ -54,7 +54,9 @@ min_max_s_pts				"--"					c	(min-max-s-pts-yes,min-max-s-pts-no) | global_update
 #
 # PTS (for MMAS only)
 #
+# MAYBE MAKE SMALLER?
 pts_lambda					"--pts-lambda "			r	(0.0, 1.0)	| (global_update == "min-max-s") & (min_max_s_pts == "min-max-s-pts-yes")
-
+pts_ratio					"--pts-ratio "			r	(0.0, 1.0)	| (global_update == "min-max-s") & (min_max_s_pts == "min-max-s-pts-yes")
+pts_delta					"--pts-delta "			r	(0.0, 1.0)	| (global_update == "min-max-s") & (min_max_s_pts == "min-max-s-pts-yes")
 
 

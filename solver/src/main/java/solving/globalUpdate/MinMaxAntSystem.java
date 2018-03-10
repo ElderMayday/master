@@ -19,15 +19,17 @@ public class MinMaxAntSystem extends GlobalUpdate
 
     protected PheromoneTrailSmoothing pts;
 
-    protected int iterationsBetweenGlobal; // how many iterated-best are used between two global-best usages, -1 for no global
+    protected boolean mustDoGlobalIterations; // flag whether must perform global-best iterations
+    protected int iterationsBetweenGlobal;    // how many iterated-best are used between two global-best usages (if mustDoGlobalIterations == true)
     protected int countSchedule;
 
+    protected boolean mustDoPTS;
     protected int iterationsBetweenPTS; // how many iterations do not apply PTS between two iterations with applying of PTS, -1 for no applying
     protected int countPTS;
 
     protected Solution globalBest;
 
-    public MinMaxAntSystem(Problem problem, double evaporationRemains, double pBest, PheromoneTrailSmoothing pts, int iterationsBetweenGlobal, int iterationsBetweenPTS)
+    public MinMaxAntSystem(Problem problem, double evaporationRemains, double pBest, PheromoneTrailSmoothing pts, boolean mustDoGlobalIterations, int iterationsBetweenGlobal, boolean mustDoPTS, int iterationsBetweenPTS)
     {
         super(problem, evaporationRemains);
 
@@ -37,7 +39,10 @@ public class MinMaxAntSystem extends GlobalUpdate
 
         this.pts = pts;
 
+        this.mustDoGlobalIterations = mustDoGlobalIterations;
         this.iterationsBetweenGlobal = iterationsBetweenGlobal;
+
+        this.mustDoPTS = mustDoPTS;
         this.iterationsBetweenPTS = iterationsBetweenPTS;
 
         this.countSchedule = iterationsBetweenGlobal + 1;
@@ -56,7 +61,7 @@ public class MinMaxAntSystem extends GlobalUpdate
 
         // do PTS if iteration has come and criteria is fulfilled
 
-        if (iterationsBetweenPTS > 0)
+        if (mustDoPTS)
         {
             countPTS--;
 
@@ -128,7 +133,7 @@ public class MinMaxAntSystem extends GlobalUpdate
         }
 
 
-        if (iterationsBetweenGlobal >= 0)  // switch is applied
+        if (mustDoGlobalIterations)  // switch is applied
         {
             if ((globalBest == null) || iterationBest.betterThan(globalBest))
                 globalBest = iterationBest;
