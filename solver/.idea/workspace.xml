@@ -33,18 +33,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PheromoneTrailSmoothingMMAS.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/solving/globalUpdate/pheromoneTrailSmoothing/PheromoneTrailSmoothingMMAS.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MinMaxAntSystem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/solving/globalUpdate/MinMaxAntSystem.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -66,18 +54,6 @@
                 <element signature="imports" expanded="false" />
                 <element signature="e#733#734#0" expanded="false" />
                 <element signature="e#783#784#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestMinMaxAntSystem.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/globalUpdate/TestMinMaxAntSystem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1000">
-              <caret line="67" column="133" lean-forward="false" selection-start-line="67" selection-start-column="133" selection-end-line="67" selection-end-column="133" />
-              <folding>
-                <element signature="imports" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -107,23 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GlobalUpdate.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/solving/globalUpdate/GlobalUpdate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="15" column="29" lean-forward="false" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="RankBasedAntSystem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/solving/globalUpdate/RankBasedAntSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-54">
-              <caret line="38" column="65" lean-forward="false" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
+            <state relative-caret-position="126">
+              <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
               <folding>
                 <element signature="e#2022#2032#0" expanded="true" />
               </folding>
@@ -134,8 +98,48 @@
       <file leaf-file-name="TestRankBasedAntSystem.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/globalUpdate/TestRankBasedAntSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3500">
-              <caret line="191" column="63" lean-forward="false" selection-start-line="191" selection-start-column="63" selection-end-line="191" selection-end-column="63" />
+            <state relative-caret-position="51">
+              <caret line="207" column="63" lean-forward="true" selection-start-line="207" selection-start-column="63" selection-end-line="207" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReflectiveCallable.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="169">
+              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CandidateDeterminer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/solving/candidateList/CandidateDeterminer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="5" column="69" lean-forward="false" selection-start-line="5" selection-start-column="69" selection-end-line="5" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CandidateDeterminerVrpSorting.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/solving/candidateList/CandidateDeterminerVrpSorting.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="60" column="78" lean-forward="false" selection-start-line="60" selection-start-column="78" selection-end-line="60" selection-end-column="78" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestCandidateDeterminer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/TestCandidateDeterminer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-520">
+              <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -352,70 +356,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="solving" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solving" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="globalUpdate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solving" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="globalUpdate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pheromoneTrailSmoothing" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -918,34 +858,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test - 2018.03.10 at 23h 31m 02s.xml">
+    <history-entry file="Test - 2018.03.10 at 23h 59m 22s.xml">
       <configuration name="Test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test - 2018.03.10 at 23h 33m 25s.xml">
+    <history-entry file="Test - 2018.03.10 at 23h 59m 25s.xml">
       <configuration name="Test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test - 2018.03.10 at 23h 33m 31s.xml">
+    <history-entry file="Test - 2018.03.10 at 23h 59m 29s.xml">
       <configuration name="Test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test - 2018.03.10 at 23h 33m 38s.xml">
+    <history-entry file="Test - 2018.03.10 at 23h 59m 36s.xml">
       <configuration name="Test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test - 2018.03.10 at 23h 33m 42s.xml">
+    <history-entry file="Test - 2018.03.10 at 23h 59m 41s.xml">
       <configuration name="Test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestRankBasedAntSystem_testRankBasedAntSystem_wIsLessThanSolutionNumber - 2018.03.10 at 23h 31m 40s.xml">
+    <history-entry file="Test - 2018.03.10 at 23h 59m 48s.xml">
+      <configuration name="Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Test - 2018.03.10 at 23h 59m 51s.xml">
+      <configuration name="Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestRankBasedAntSystem_testRankBasedAntSystem_wIsLessThanSolutionNumber - 2018.03.10 at 23h 59m 13s.xml">
       <configuration name="TestRankBasedAntSystem.testRankBasedAntSystem_wIsLessThanSolutionNumber" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestRankBasedAntSystem_testRankBasedAntSystem_wIsLessThanSolutionNumber - 2018.03.10 at 23h 32m 22s.xml">
+    <history-entry file="TestRankBasedAntSystem_testRankBasedAntSystem_wIsLessThanSolutionNumber - 2018.03.10 at 23h 59m 16s.xml">
       <configuration name="TestRankBasedAntSystem.testRankBasedAntSystem_wIsLessThanSolutionNumber" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestRankBasedAntSystem_testRankBasedAntSystem_wIsLessThanSolutionNumber - 2018.03.10 at 23h 32m 49s.xml">
-      <configuration name="TestRankBasedAntSystem.testRankBasedAntSystem_wIsLessThanSolutionNumber" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestRankBasedAntSystem_testRankBasedAntSystem_wIsLessThanSolutionNumber - 2018.03.10 at 23h 33m 03s.xml">
-      <configuration name="TestRankBasedAntSystem.testRankBasedAntSystem_wIsLessThanSolutionNumber" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestRankBasedAntSystem_testRankBasedAntSystem_wIsLessThanSolutionNumber - 2018.03.10 at 23h 33m 16s.xml">
+    <history-entry file="TestRankBasedAntSystem_testRankBasedAntSystem_wIsLessThanSolutionNumber - 2018.03.10 at 23h 59m 18s.xml">
       <configuration name="TestRankBasedAntSystem.testRankBasedAntSystem_wIsLessThanSolutionNumber" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -1042,7 +982,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="323" />
+      <option name="time" value="326" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1219,13 +1159,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/solving/candidateList/CandidateDeterminerVrpSorting.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1420">
-          <caret line="78" column="6" lean-forward="false" selection-start-line="78" selection-start-column="6" selection-end-line="78" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/solving/candidateList/CandidateList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1237,20 +1170,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/solving/candidateList/CandidateDeterminer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="69" lean-forward="false" selection-start-line="5" selection-start-column="69" selection-end-line="5" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/TestCandidateDeterminer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1416,6 +1335,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/solving/candidateList/CandidateDeterminer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="69" lean-forward="false" selection-start-line="5" selection-start-column="69" selection-end-line="5" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/solving/candidateList/CandidateDeterminerVrpSorting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="60" column="78" lean-forward="false" selection-start-line="60" selection-start-column="78" selection-end-line="60" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/TestCandidateDeterminer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-520">
+          <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/solving/globalUpdate/RankBasedAntSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding>
+            <element signature="e#2022#2032#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
@@ -1424,20 +1377,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/solving/globalUpdate/RankBasedAntSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-54">
-          <caret line="38" column="65" lean-forward="false" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
-          <folding>
-            <element signature="e#2022#2032#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/globalUpdate/TestRankBasedAntSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3500">
-          <caret line="191" column="63" lean-forward="false" selection-start-line="191" selection-start-column="63" selection-end-line="191" selection-end-column="63" />
+        <state relative-caret-position="51">
+          <caret line="207" column="63" lean-forward="true" selection-start-line="207" selection-start-column="63" selection-end-line="207" selection-end-column="63" />
           <folding />
         </state>
       </provider>
