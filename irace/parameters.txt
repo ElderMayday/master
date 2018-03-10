@@ -21,7 +21,7 @@ iterated_greedy			"--"					c	(standard,external-memory,iterated-ants,cunning-ant
 reinitialization		"--"					c	(reinitialization-yes,reinitialization-no)
 #
 #
-#TODO restraing iterated_greedy local_update connection and selectors
+# TODO constrain iterated_greedy local_update connection and selectors
 #
 #
 # Local update
@@ -37,7 +37,7 @@ local_search			"--"					c	(local-search-none,local-search-ils-twohalf,local-sear
 #
 # Global update (all)
 #
-evaporation_remains		"evaporation-remains "	r	(0.0,1.0)
+evaporation_remains		"evaporation-remains "	r	(0.0, 1.0)
 #
 #
 # Ant System
@@ -46,10 +46,19 @@ ant_s_is_bounded		"--"					c	(ant-s-bounded-yes,ant-s-bounded-no) | global_updat
 ant_s_k					"--ant-s-k "			r	(1.0,10.0)	| (global_update == "ant-s") & (ant_s_is_bounded == "ant-s-bounded-yes")
 #
 #
+# Ant Colony System
+# No additional parameters for ACS
+# TODO constrain ACS
+#
+#
 # Min Max Ant System
 #
 min_max_s_p_best			"--min-max-s-p-best "	r	(0.01, 1.0)	| global_update == "min-max-s"
 min_max_s_pts				"--"					c	(min-max-s-pts-yes,min-max-s-pts-no) | global_update == "min-max-s"
+min_max_s_global_best		"--"					c	(min-max-s-global-best-yes,min-max-s-global-best-no) |  global_update == "min-max-s"
+min_max_s_global_iterations	"--min-max-s-global-iterations "	i	(1, 30) | (global_update == "min-max-s") & (min_max_s_global_best == "min-max-s-global-best-yes")
+min_max_s_pts				"--"					c	(min-max-s-pts-yes,min-max-s-pts-no) | global_update == "min-max-s"
+min_max_s_pts_iterations	"--min-max-s-global-iterations "	i	(1, 30) | (global_update == "min-max-s") & (min_max_s_pts == "min-max-s-pts-yes")
 #
 #
 # PTS (for MMAS only)
@@ -58,5 +67,9 @@ min_max_s_pts				"--"					c	(min-max-s-pts-yes,min-max-s-pts-no) | global_update
 pts_lambda					"--pts-lambda "			r	(0.0, 1.0)	| (global_update == "min-max-s") & (min_max_s_pts == "min-max-s-pts-yes")
 pts_ratio					"--pts-ratio "			r	(0.0, 1.0)	| (global_update == "min-max-s") & (min_max_s_pts == "min-max-s-pts-yes")
 pts_delta					"--pts-delta "			r	(0.0, 1.0)	| (global_update == "min-max-s") & (min_max_s_pts == "min-max-s-pts-yes")
-
+#
+#
+# Rank Based Ant System
+#
+ras_w						"--ras-w "				i	(i)
 

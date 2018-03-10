@@ -86,4 +86,118 @@ public class TestRankBasedAntSystem
             assertTrue(false);
         }
     }
+
+    @Test
+    public void testRankBasedAntSystem_wIsMoreThanSolutionNumber()
+    {
+        ProblemVRP problem = null;
+        SolutionVRP solution1 = null, solution2 = null, solution3 = null;
+
+        try
+        {
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
+            problem.load(new File("problem-samples/vrp-unit-test.json"));
+
+            ComponentStructure2d structure2d = problem.structure2d;
+
+            PheromoneInitializer initializer = new PheromoneInitializerConstant(1.0);
+
+            initializer.initialize(structure2d);
+
+            List<Solution> solutionList = new ArrayList<Solution>();
+
+            solution1 = new SolutionVRP(problem);
+            solution1.addConstructionComponent(structure2d.get(0, 3));
+            solution1.addConstructionComponent(structure2d.get(3, 2));
+            solution1.addConstructionComponent(structure2d.get(2, 0));
+            solution1.addConstructionComponent(structure2d.get(0, 1));
+            solution1.addConstructionComponent(structure2d.get(1, 0));
+            solutionList.add(solution1);
+
+            solution2 = new SolutionVRP(problem);
+            solution2.addConstructionComponent(structure2d.get(0, 1));
+            solution2.addConstructionComponent(structure2d.get(1, 2));
+            solution2.addConstructionComponent(structure2d.get(2, 3));
+            solution2.addConstructionComponent(structure2d.get(3, 0));
+            solutionList.add(solution2);
+
+            solution3 = new SolutionVRP(problem);
+            solution3.addConstructionComponent(structure2d.get(0, 1));
+            solution3.addConstructionComponent(structure2d.get(1, 2));
+            solution3.addConstructionComponent(structure2d.get(2, 3));
+            solution3.addConstructionComponent(structure2d.get(3, 0));
+            solutionList.add(solution3);
+
+            GlobalUpdate update = new RankBasedAntSystem(problem, 0.9, 5, true, 0.5);
+
+            update.update(solutionList);
+
+            assertEquals(structure2d.get(0, 0).getPheromone(), 0.9, 0.0001);
+            assertEquals(structure2d.get(0, 1).getPheromone(), 0.9913, 0.0001);
+            assertEquals(structure2d.get(0, 2).getPheromone(), 0.9, 0.0001);
+            assertEquals(structure2d.get(0, 3).getPheromone(), 0.9, 0.0001);
+
+            update.update(solutionList);
+
+            assertEquals(structure2d.get(0, 0).getPheromone(), 0.81, 0.0001);
+            assertEquals(structure2d.get(0, 1).getPheromone(), 0.9835, 0.0001);
+            assertEquals(structure2d.get(0, 2).getPheromone(), 0.81, 0.0001);
+            assertEquals(structure2d.get(0, 3).getPheromone(), 0.81, 0.0001);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            assertTrue(false);
+        }
+    }
+
+    @Test
+    public void testRankBasedAntSystem_wIsLessThanSolutionNumber()
+    {
+        ProblemVRP problem = null;
+        SolutionVRP solution1 = null, solution2 = null, solution3 = null;
+
+        try
+        {
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
+            problem.load(new File("problem-samples/vrp-unit-test.json"));
+
+            ComponentStructure2d structure2d = problem.structure2d;
+
+            PheromoneInitializer initializer = new PheromoneInitializerConstant(1.0);
+
+            initializer.initialize(structure2d);
+
+            List<Solution> solutionList = new ArrayList<Solution>();
+
+            solution1 = new SolutionVRP(problem);
+            solution1.addConstructionComponent(structure2d.get(0, 3));
+            solution1.addConstructionComponent(structure2d.get(3, 2));
+            solution1.addConstructionComponent(structure2d.get(2, 0));
+            solution1.addConstructionComponent(structure2d.get(0, 1));
+            solution1.addConstructionComponent(structure2d.get(1, 0));
+            solutionList.add(solution1);
+
+            GlobalUpdate update = new RankBasedAntSystem(problem, 0.9, 3, true, 0.5);
+
+            update.update(solutionList);
+
+            assertEquals(structure2d.get(0, 0).getPheromone(), 0.339, 0.0001);
+            assertEquals(structure2d.get(0, 1).getPheromone(), 0.339, 0.0001);
+            assertEquals(structure2d.get(0, 2).getPheromone(), 0.339, 0.0001);
+            assertEquals(structure2d.get(0, 3).getPheromone(), 0.339, 0.0001);
+
+            update.update(solutionList);
+
+            assertEquals(structure2d.get(0, 0).getPheromone(), 0.3051, 0.0001);
+            assertEquals(structure2d.get(0, 1).getPheromone(), 0.3333, 0.0001);
+            assertEquals(structure2d.get(0, 2).getPheromone(), 0.3051, 0.0001);
+            assertEquals(structure2d.get(0, 3).getPheromone(), 0.3333, 0.0001);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            assertTrue(false);
+        }
+    }
 }

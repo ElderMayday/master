@@ -106,14 +106,29 @@ public class RankBasedAntSystem extends GlobalUpdate
         // depositing to top [numberOfDepositing - 1] iterated-best solutions
 
         int factor = numberOfDepositing - 1;
-        for (int index = 0; index < numberOfDepositing - 1; index++)
+
+        int iteratedBestToDeposit = Math.min(numberOfDepositing - 1, sorted.size());
+
+        for (int index = 0; index < iteratedBestToDeposit; index++)
         {
             Solution solution = sorted.get(index);
 
             double addValue = (double) factor / solution.objective;
 
-            for (Component component : solution.getComponents())
-                component.setPheromone(component.getPheromone() + addValue);
+            for (Component component : globalBest.getComponents())
+            {
+                double newPheromone = component.getPheromone() + addValue;
+
+                if (isBounded)
+                {
+                    if (newPheromone > maxP)
+                        newPheromone = maxP;
+                    else if (newPheromone < minP)
+                        newPheromone = minP;
+                }
+
+                component.setPheromone(newPheromone);
+            }
 
             factor--;
         }
