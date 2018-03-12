@@ -441,7 +441,10 @@ public class SolutionVRP extends Solution
         for (Tour tour : tours)
             result += tour.toString() + " ";
 
-        result += "obj=" + String.format("%.2f", objective);
+        if (isPartiallyDestroyed)
+            result += "par=" + String.format("%.2f", lastObjective);
+        else
+            result += "obj=" + String.format("%.2f", objective);
 
         return result;
     }

@@ -32,7 +32,9 @@ public class TournamentSelectorBag extends TournamentSelector
             List<Solution> bag = new ArrayList<Solution>();
             List<Solution> leftCandidates = new ArrayList<Solution>(solutions);
 
-            for (int bagIndex = 0; bagIndex < bagSize; bagIndex++)
+            int numberOfSolutionsToSelect = Math.min(bagSize, solutions.size());
+
+            for (int bagIndex = 0; bagIndex < numberOfSolutionsToSelect; bagIndex++)
             {
                 int dice = Main.random.nextInt(leftCandidates.size());
 
@@ -44,7 +46,7 @@ public class TournamentSelectorBag extends TournamentSelector
 
             Solution bestSolution = bag.get(0);
 
-            for (int bagIndex = 1; bagIndex < bagSize; bagIndex++)
+            for (int bagIndex = 1; bagIndex < numberOfSolutionsToSelect; bagIndex++)
                 if (bag.get(bagIndex).betterThanLast(bestSolution))
                     bestSolution = bag.get(bagIndex);
 
