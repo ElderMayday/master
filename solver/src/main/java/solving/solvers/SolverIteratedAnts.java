@@ -3,6 +3,7 @@ package solving.solvers;
 import problem.problemFormulation.Problem;
 import solving.globalUpdate.GlobalUpdate;
 import solving.localSearch.LocalSearch;
+import solving.localSearch.LocalSearchNone;
 import solving.localUpdate.LocalUpdate;
 import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.selectors.Selector;
@@ -20,16 +21,16 @@ import java.util.List;
 public class SolverIteratedAnts extends Solver
 {
     protected SolutionDestroyer destroyer;
-    protected boolean mustExecuteIntermediateSearch;
     protected IteratedCriteria criteria;
 
-    public SolverIteratedAnts(Problem problem, Selector selector, GlobalUpdate globalUpdate, LocalUpdate localUpdate, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer, LocalSearch localSearch, SolutionDestroyer destroyer, int antNum, boolean mustExecuteIntermediateSearch, IteratedCriteria criteria)
+    public SolverIteratedAnts(Problem problem, Selector selector, GlobalUpdate globalUpdate, LocalUpdate localUpdate,
+                              boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer,
+                              LocalSearch localSearch, SolutionDestroyer destroyer, int antNum, IteratedCriteria criteria)
     {
         super(problem, selector, antNum, globalUpdate, localUpdate, localSearch, precomputeValues, terminationCriteria, initializer);
 
         this.destroyer = destroyer;
         this.antNum = antNum;
-        this.mustExecuteIntermediateSearch = mustExecuteIntermediateSearch;
         this.criteria = criteria;
     }
 
@@ -63,8 +64,7 @@ public class SolverIteratedAnts extends Solver
             for (int index = 0; index < newSolutions.size(); index++)
                 reconstructOneSolution(newSolutions.get(index));
 
-            if (mustExecuteIntermediateSearch)
-                newSolutions = executeMultipleLocalSearch(newSolutions);
+            newSolutions = executeMultipleLocalSearch(newSolutions);
 
             solutions = criteria.Decide(solutions, newSolutions);
 

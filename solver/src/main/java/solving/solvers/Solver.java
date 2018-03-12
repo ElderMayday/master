@@ -5,6 +5,7 @@ import problem.problemFormulation.Problem;
 import solving.globalUpdate.BestWorstAntSystem;
 import solving.globalUpdate.GlobalUpdate;
 import solving.localSearch.LocalSearch;
+import solving.localSearch.LocalSearchNone;
 import solving.localUpdate.LocalUpdate;
 import solving.pheromoneInitializer.PheromoneInitializer;
 import solving.solution.Solution;
@@ -111,11 +112,17 @@ public abstract class Solver
 
     protected List<Solution> executeMultipleLocalSearch(List<Solution> solutions)
     {
-        List<Solution> solutionsLocalSearched = new ArrayList<Solution>();
+        if (!(localSearch instanceof LocalSearchNone))
+        {
+            List<Solution> solutionsLocalSearched = new ArrayList<Solution>();
 
-        for (Solution solution : solutions)
-            solutionsLocalSearched.add(localSearch.search(problem, solution));
+            for (Solution solution : solutions)
+                solutionsLocalSearched.add(localSearch.search(problem, solution));
 
-        return solutionsLocalSearched;
+            return solutionsLocalSearched;
+        }
+        else
+            return solutions;
+
     }
 }

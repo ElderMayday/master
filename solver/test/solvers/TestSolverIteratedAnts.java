@@ -51,7 +51,7 @@ public class TestSolverIteratedAnts
             PheromoneInitializer initializer = new PheromoneInitializerRange(1.0, 2.0);
             SolutionDestroyer destroyer = new SolutionDestroyerVrpRandom(0.5);
 
-            Solver solver = new SolverIteratedAnts(problem, selector, update, localUpdate, true, terminationCriteria, initializer, localSearch, destroyer, 5, true, new IteratedCriteriaBest());
+            Solver solver = new SolverIteratedAnts(problem, selector, update, localUpdate, true, terminationCriteria, initializer, localSearch, destroyer, 5, new IteratedCriteriaBest());
 
             List<Solution> solutions = solver.solve();
 

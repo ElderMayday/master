@@ -21,7 +21,6 @@ public class FleetDescendingCapacity extends Fleet
  */
 class VehicleComparatorCapacityDescending implements Comparator<Vehicle>
 {
-    @Override
     public int compare(Vehicle o1, Vehicle o2)
     {
         if (o1.capacity < o2.capacity)
