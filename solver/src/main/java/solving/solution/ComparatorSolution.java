@@ -7,7 +7,6 @@ import java.util.Comparator;
  */
 public class ComparatorSolution implements Comparator<Solution>
 {
-    @Override
     public int compare(Solution o1, Solution o2)
     {
         if (o1.betterThan(o2))
