@@ -18,15 +18,10 @@ public class SelectorDorigo extends Selector
     {
         Component.setPrecomputationParameters(alpha, beta);
 
-        if (probabilityOfBest > 1.0)
-            this.probabilityOfBest = 1.0;
-        else
-        {
-            if (probabilityOfBest < 1.0)
-                this.probabilityOfBest = 0.0;
-            else
-                this.probabilityOfBest = probabilityOfBest;
-        }
+        if ((probabilityOfBest < 0.0) || (probabilityOfBest > 1.0))
+            throw new IllegalArgumentException("Wrong probability for Dorigo selector");
+
+        this.probabilityOfBest = probabilityOfBest;
     }
 
     @Override

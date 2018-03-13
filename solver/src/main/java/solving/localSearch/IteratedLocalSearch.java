@@ -21,6 +21,9 @@ public class IteratedLocalSearch extends LocalSearch
 
         this.perturbation = perturbation;
         this.iterations = iterations;
+
+        if (iterations <= 0)
+            throw new IllegalArgumentException("Number of ILS iterations must be positive");
     }
 
     public Solution search(Problem problem, Solution solution)

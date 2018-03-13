@@ -25,6 +25,9 @@ public class BestWorstAntSystem extends GlobalUpdate
         super(structure, evaporationRemains);
 
         this.mutatedProbability = mutatedProbability;
+
+        if ((mutatedProbability < 0.0) || (mutatedProbability > 1.0))
+            throw new IllegalArgumentException("Wrong mutation probability in BWAS");
     }
 
     public BestWorstAntSystem(Problem problem, double evaporationRemains, double mutatedProbability)

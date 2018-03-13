@@ -22,7 +22,6 @@ ant_num					"--ant-num "			i	(5,20)
 runtime					"--runtime "			i	(1000,1000)
 #
 #
-# TODO constrain iterated_greedy local_update connection and selectors
 # PROPOSITION - PERFORM PRECOMPUTATION ALWAYS OR TO SEPARATEDLY STORE H^BETA
 #
 #

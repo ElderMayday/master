@@ -33,6 +33,9 @@ public class RankBasedAntSystem extends GlobalUpdate
         if (numberOfDepositing < 1)
             throw new IllegalArgumentException("Wrong number of depositing");
 
+        //if (kFactor < 1.0)
+         //   throw new IllegalArgumentException("kFactor must be > 1.0");
+
         this.isBounded = isBounded;
         this.kFactor = kFactor;
 

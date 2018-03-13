@@ -19,6 +19,9 @@ public class PheromoneInitializerRange extends PheromoneInitializer
         this.min = min;
         this.max = max;
         this.range = max - min;
+
+        if (min > max)
+            throw new IllegalArgumentException("Min cannot be more than max pheromone");
     }
 
     @Override

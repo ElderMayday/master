@@ -19,6 +19,12 @@ public class TerminationCriteriaTime extends TerminationCriteria
         this.spanExecution = spanExecution;
         this.spanBetweenReinitializations = spanBetweenReinitializations;
         this.reinitializationEnabled = reinitializationEnabled;
+
+        if (reinitializationEnabled && (spanBetweenReinitializations <= 0))
+            throw new IllegalArgumentException("Reinitialization period must be positive");
+
+        if (spanExecution <= 0)
+            throw new IllegalArgumentException("Execution time must be positive");
     }
 
     @Override

@@ -47,6 +47,16 @@ public class MinMaxAntSystem extends GlobalUpdate
 
         this.countSchedule = iterationsBetweenGlobal + 1;
         this.countPTS = iterationsBetweenPTS + 1;
+
+
+        if ((pBest < 0.0) || (pBest > 1.0))
+            throw new IllegalArgumentException("pBest out of range");
+
+        if (mustDoGlobalIterations && (iterationsBetweenGlobal <= 0))
+            throw new IllegalArgumentException("Iterations between global must be positive");
+
+        if (mustDoPTS && (iterationsBetweenPTS <= 0))
+            throw new IllegalArgumentException("Iterations between PTS must be positive");
     }
 
 

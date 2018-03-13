@@ -46,6 +46,9 @@ public abstract class Solver
         this.localSearch = localSearch;
         this.initializer = initializer;
 
+        if (antNum <= 0)
+            throw new IllegalArgumentException("AntNum must be positive");
+
         if (globalUpdate instanceof BestWorstAntSystem)
         {
             BestWorstAntSystem bwas = (BestWorstAntSystem) globalUpdate;

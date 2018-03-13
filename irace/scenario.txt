@@ -1,0 +1,26 @@
+
+parameterFile = "./parameters.txt"
+
+
+
+
+
+
+
+## Directory where the programs will be run??????
+execDir = "./acotsp-arena"
+
+
+trainInstancesDir = "./instances"
+
+maxExperiments = 10
+
+digits = 2
+
+forbiddenFile = "./forbidden.txt"
+
+
+
+## A value of 0 silences all debug messages. Higher values provide
+## more verbose debug messages.
+# debugLevel = 0

@@ -39,6 +39,9 @@ public class ElitistAntSystem extends GlobalUpdate
         rhoToMaxFactor = 1.0 / (1.0 - evaporationRemains);
         maxToMinFactor = 1.0 / (kFactor * structure.numberOfComponents());
 
+        //if (kFactor < 1.0)
+        //    throw new IllegalArgumentException("kFactor must be > 1.0");
+
         if (elitistFactor < 0.0)
             throw new IllegalArgumentException("Elitist factor cannot be negative");
     }

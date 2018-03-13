@@ -29,6 +29,9 @@ public class AntSystem extends GlobalUpdate
 
         rhoToMaxFactor = 1.0 / (1.0 - evaporationRemains);
         maxToMinFactor = 1.0 / (kFactor * structure.numberOfComponents());
+
+        //if (kFactor < 1.0)
+        //    throw new IllegalArgumentException("kFactor must be > 1.0");
     }
 
     public AntSystem(Problem problem, double evaporationRemains, boolean isBounded, double kFactor)

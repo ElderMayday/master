@@ -18,6 +18,9 @@ public class IteratedCriteriaProbabilistic extends IteratedCriteria
     public IteratedCriteriaProbabilistic(double probabilityBest)
     {
         this.probabilityBest = probabilityBest;
+
+        if ((probabilityBest < 0.0) || (probabilityBest > 1.0))
+            throw new IllegalArgumentException("Wrong iterated-ants criteria probability");
     }
 
     @Override

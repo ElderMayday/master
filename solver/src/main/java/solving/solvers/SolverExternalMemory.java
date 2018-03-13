@@ -46,9 +46,6 @@ public class SolverExternalMemory extends Solver
 
         if ((topK <= 0) || (antNum < topK))
             throw new IllegalArgumentException("Wrong topK value");
-
-        if (antNum > memorySize)
-            throw new IllegalArgumentException("Ant num cannot be larger than the memory size");
     }
 
 
