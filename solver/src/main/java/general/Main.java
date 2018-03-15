@@ -12,55 +12,27 @@ public class Main
     public static Random random = random = new Random(28);;
 
 
+
     public static void main(String[] args)
     {
-        if (args.length < 4)
-        {
-            System.out.println("EXCEPTION: Not all arguments are specified:\njava -jar solver.jar [configuration id] " +
-                    "[instance id] [seed] [instance path] {rest of the arguments}");
+        ConfigurationVRP configuration = new ConfigurationVRP(args);
 
-            return;
-        }
+        random = new Random(configuration.seed);
 
-        random = new Random(Integer.parseInt(args[2]));
-
-        int selectorID = 1;
         Selector selector = null;
-        double alpha = 1.0, beta = 1.0;
-        double probabilityDorigo = 0.5;
 
-        for (int i = 4; i < args.length;)
-        {
-            if (args[i].equals("--selector-standard"))
-            {
-                selectorID = 1;
-                i++;
-            }
-
-            if (args[i].equals("--selector-dorigo"))
-            {
-                selectorID = 2;
-                i++;
-            }
-
-            if (args[i].equals("--selector-maniezzo"))
-            {
-                selectorID = 3;
-                i++;
-            }
-        }
-
-        switch (selectorID)
+        switch (configuration.selector)
         {
             case 1:
-                selector = new SelectorStandard(alpha, beta);
+                selector = new SelectorStandard(configuration.alpha, configuration.beta);
                 break;
             case 2:
-                selector = new SelectorDorigo(alpha, beta, probabilityDorigo);
+                selector = new SelectorDorigo(configuration.alpha, configuration.beta, configuration.probabilityDorigo);
                 break;
             case 3:
-                selector = new SelectorManiezzo(alpha);
+                selector = new SelectorManiezzo(configuration.alpha);
                 break;
         }
     }
+
 }
