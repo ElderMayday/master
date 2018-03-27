@@ -31,7 +31,7 @@ public class TestAntColonySystem
         try
         {
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
-            problem.load(new File("problem-samples/vrp-unit-test.json"));
+            problem.load(new File("solver/problem-samples/vrp-unit-test.json"));
 
             ComponentStructure2d structure2d = problem.structure2d;
 

@@ -32,7 +32,7 @@ public class TestProblemVRP
         try
         {
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
-            problem.load(new File("problem-samples/vrp-unit-test.json"));
+            problem.load(new File("solver/problem-samples/vrp-unit-test.json"));
 
             Iterator<Vehicle> vehicleIterator = problem.fleet.getVehiclesIterator();
             Vehicle vehicle = vehicleIterator.next();
@@ -102,7 +102,7 @@ public class TestProblemVRP
         try
         {
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
-            problem.load(new File("problem-samples/vrp-unit-test-2.json"));
+            problem.load(new File("solver/problem-samples/vrp-unit-test-2.json"));
 
             Solution solution = new SolutionVRP(problem);
 
@@ -141,7 +141,7 @@ public class TestProblemVRP
         try
         {
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
-            problem.load(new File("problem-samples/vrp-unit-test-3.json"));
+            problem.load(new File("solver/problem-samples/vrp-unit-test-3.json"));
 
             Solution solution = new SolutionVRP(problem);
 
@@ -179,7 +179,7 @@ public class TestProblemVRP
         try
         {
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(2));
-            problem.load(new File("problem-samples/vrp-unit-test-2.json"));
+            problem.load(new File("solver/problem-samples/vrp-unit-test-2.json"));
 
             Solution solution = new SolutionVRP(problem);
 
@@ -216,7 +216,7 @@ public class TestProblemVRP
         try
         {
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(2));
-            problem.load(new File("problem-samples/vrp-unit-test-3.json"));
+            problem.load(new File("solver/problem-samples/vrp-unit-test-3.json"));
 
             Solution solution = new SolutionVRP(problem);
 
@@ -250,7 +250,7 @@ public class TestProblemVRP
         try
         {
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(2));
-            problem.load(new File("problem-samples/vrp-unit-test-4.json"));
+            problem.load(new File("solver/problem-samples/vrp-unit-test-4.json"));
 
             Solution solution = new SolutionVRP(problem);
 
@@ -284,7 +284,7 @@ public class TestProblemVRP
         try
         {
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
-            problem.load(new File("problem-samples/vrp-unit-test-5.json"));
+            problem.load(new File("solver/problem-samples/vrp-unit-test-5.json"));
 
             SolutionVRP solution = new SolutionVRP(problem);
 
@@ -315,7 +315,7 @@ public class TestProblemVRP
         try
         {
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
-            problem.load(new File("problem-samples/vrp-unit-test.json"));
+            problem.load(new File("solver/problem-samples/vrp-unit-test.json"));
 
             SolutionVRP solutionVRP = new SolutionVRP(problem);
 
@@ -364,7 +364,7 @@ public class TestProblemVRP
         try
         {
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
-            problem.load(new File("problem-samples/vrp-unit-test.json"));
+            problem.load(new File("solver/problem-samples/vrp-unit-test.json"));
 
             SolutionVRP solutionVRP = new SolutionVRP(problem);
 
@@ -400,7 +400,7 @@ public class TestProblemVRP
         try
         {
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
-            problem.load(new File("problem-samples/vrp-unit-test.json"));
+            problem.load(new File("solver/problem-samples/vrp-unit-test.json"));
 
             SolutionVRP solutionVRP = new SolutionVRP(problem);
 
@@ -468,7 +468,7 @@ public class TestProblemVRP
         try
         {
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(1));
-            problem.load(new File("problem-samples/vrp-unit-test.json"));
+            problem.load(new File("solver/problem-samples/vrp-unit-test.json"));
 
             SolutionVRP solutionVRP = new SolutionVRP(problem);
 
@@ -519,7 +519,7 @@ public class TestProblemVRP
         try
         {
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(1));
-            problem.load(new File("problem-samples/vrp-unit-test-4.json"));
+            problem.load(new File("solver/problem-samples/vrp-unit-test-4.json"));
 
             SolutionVRP solutionVRP = new SolutionVRP(problem);
 

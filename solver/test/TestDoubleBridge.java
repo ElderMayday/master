@@ -35,7 +35,7 @@ public class TestDoubleBridge
         try
         {
             ProblemVRP problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
-            problem.load(new File("problem-samples/vrp-10-customers-no-length.txt"));
+            problem.load(new File("solver/problem-samples/vrp-10-customers-no-length.txt"));
 
             SolutionVRP solution = new SolutionVRP(problem);
             ComponentStructure2d structure2d = problem.structure2d;

@@ -7,6 +7,16 @@ import solving.selectors.SelectorStandard;
 
 import java.util.Random;
 
+
+// Intellij Idea may loose the source, test and output folder assignment
+// If compilation does not work, check "Project Structure"
+
+// Java 1.8.0_101
+// org.mockito:mockito-core 2.8.9 for white-box testing
+// org.json:json:20131018 for json problem file reading
+
+
+
 public class Main
 {
     public static Random random = random = new Random(28);;

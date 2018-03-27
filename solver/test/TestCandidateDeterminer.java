@@ -26,7 +26,7 @@ public class TestCandidateDeterminer
         {
             CandidateDeterminer candidateDeterminer = new CandidateDeterminerVrpSorting(2);
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), candidateDeterminer);
-            problem.load(new File("problem-samples/vrp-unit-test.json"));
+            problem.load(new File("solver/problem-samples/vrp-unit-test.json"));
         }
         catch (Exception e)
         {
@@ -84,7 +84,7 @@ public class TestCandidateDeterminer
         {
             CandidateDeterminer candidateDeterminer = new CandidateDeterminerVrpSorting(5);
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), candidateDeterminer);
-            problem.load(new File("problem-samples/vrp-unit-test.json"));
+            problem.load(new File("solver/problem-samples/vrp-unit-test.json"));
         }
         catch (Exception e)
         {

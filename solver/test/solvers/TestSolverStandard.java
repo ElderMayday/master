@@ -39,7 +39,7 @@ public class TestSolverStandard
         try
         {
             Problem problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(2));
-            problem.load(new File("problem-samples/vrp-unit-test-2.json"));
+            problem.load(new File("solver/problem-samples/vrp-unit-test-2.json"));
 
             Selector selector = new SelectorStandard(1.0, 1.0);
             LocalUpdate localUpdate = new LocalUpdateNone();
@@ -60,7 +60,7 @@ public class TestSolverStandard
             assertEquals(solutions.get(2).getComplete(), true);
         } catch (Exception e)
         {
-            e.printStackTrace();
+            assertTrue(false);
         }
     }
 
@@ -71,7 +71,7 @@ public class TestSolverStandard
         try
         {
             Problem problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(2));
-            problem.load(new File("problem-samples/vrp-unit-test-2.json"));
+            problem.load(new File("solver/problem-samples/vrp-unit-test-2.json"));
 
             Selector selector = new SelectorStandard(1.0, 1.0);
             LocalUpdate localUpdate = new LocalUpdateNone();
@@ -115,7 +115,7 @@ public class TestSolverStandard
             assertEquals(solutions.get(2).getComplete(), true);
         } catch (Exception e)
         {
-            e.printStackTrace();
+            assertTrue(false);
         }
     }
 }
