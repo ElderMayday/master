@@ -15,11 +15,11 @@ import java.util.List;
  */
 public class CandidateDeterminerVrpSorting extends CandidateDeterminer
 {
-    protected int numberOfCandidatesDesired;
+    protected double ratioOfCandidatesDesired;
 
-    public CandidateDeterminerVrpSorting(int numberOfCandidatesDesired)
+    public CandidateDeterminerVrpSorting(double ratioOfCandidatesDesired)
     {
-        this.numberOfCandidatesDesired = numberOfCandidatesDesired;
+        this.ratioOfCandidatesDesired = ratioOfCandidatesDesired;
     }
 
 
@@ -30,6 +30,7 @@ public class CandidateDeterminerVrpSorting extends CandidateDeterminer
      * Does not include edge to back-to-the-depot and self-loop edges
      * @throws Exception
      */
+    @SuppressWarnings("Since15")
     @Override
     public CandidateList determine(Problem problem) throws Exception
     {
@@ -40,7 +41,7 @@ public class CandidateDeterminerVrpSorting extends CandidateDeterminer
             ProblemVRP problemVRP = (ProblemVRP) problem;
             ComponentStructure2d structure2d = problemVRP.structure2d;
             int depotId = problemVRP.getDepotId();
-
+            int numberOfCandidatesDesired = (int) (problem.ProblemSize() * ratioOfCandidatesDesired);
 
             for (int row = 0; row < problemVRP.getVertexNum(); row++)
             {

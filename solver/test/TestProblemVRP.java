@@ -178,7 +178,7 @@ public class TestProblemVRP
 
         try
         {
-            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(2));
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(0.5));
             problem.load(new File("solver/problem-samples/vrp-unit-test-2.json"));
 
             Solution solution = new SolutionVRP(problem);
@@ -215,7 +215,7 @@ public class TestProblemVRP
 
         try
         {
-            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(2));
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(0.5));
             problem.load(new File("solver/problem-samples/vrp-unit-test-3.json"));
 
             Solution solution = new SolutionVRP(problem);
@@ -249,7 +249,7 @@ public class TestProblemVRP
 
         try
         {
-            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(2));
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(0.5));
             problem.load(new File("solver/problem-samples/vrp-unit-test-4.json"));
 
             Solution solution = new SolutionVRP(problem);
@@ -518,7 +518,7 @@ public class TestProblemVRP
 
         try
         {
-            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(1));
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(0.25));
             problem.load(new File("solver/problem-samples/vrp-unit-test-4.json"));
 
             SolutionVRP solutionVRP = new SolutionVRP(problem);

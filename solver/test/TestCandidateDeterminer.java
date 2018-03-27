@@ -24,7 +24,7 @@ public class TestCandidateDeterminer
 
         try
         {
-            CandidateDeterminer candidateDeterminer = new CandidateDeterminerVrpSorting(2);
+            CandidateDeterminer candidateDeterminer = new CandidateDeterminerVrpSorting(0.5);
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), candidateDeterminer);
             problem.load(new File("solver/problem-samples/vrp-unit-test.json"));
         }
