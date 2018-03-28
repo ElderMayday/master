@@ -45,7 +45,7 @@ public class SolverIteratedAnts extends Solver
 
         terminationCriteria.initialize();
 
-        initializer.initialize(problem.structure);
+        experimentalRun();
 
         List<Solution> solutions = constructSolutionList(antNum);
         List<Solution> newSolutions;

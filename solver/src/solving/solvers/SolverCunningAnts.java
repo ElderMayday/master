@@ -38,7 +38,7 @@ public class SolverCunningAnts extends Solver
 
         terminationCriteria.initialize();
 
-        initializer.initialize(problem.structure);
+        experimentalRun();
 
         for (int i = 0; i < antNum; i++)
         {

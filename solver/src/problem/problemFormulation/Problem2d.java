@@ -18,4 +18,26 @@ public abstract class Problem2d extends Problem
 
         this.structure2d = structure2d;
     }
+
+    public MinMaxResult findMinMax()
+    {
+        double min, max;
+
+        min = structure2d.get(0, 0).getPheromone();
+        max = min;
+
+        for (int i = 0; i < structure2d.getRowNumber(); i++)
+            for (int j = 0; j < structure2d.getColumnNumber(); j++)
+            {
+                double pheromone = structure2d.get(i, j).getPheromone();
+
+                if (min > pheromone)
+                    min = pheromone;
+
+                if (max < pheromone)
+                    max = pheromone;
+            }
+
+        return new MinMaxResult(min, max);
+    }
 }

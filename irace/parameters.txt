@@ -19,7 +19,7 @@ global_update			"--"					c	(ant-s,ant-colony-s,min-max-s,rank-based-ant-s,elitis
 local_update			"--"					c	(local-update-yes,local-update-no) | selector %in% c("selector-standard","selector-dorigo")
 iterated_greedy			"--"					c	(standard,external-memory,iterated-ants,cunning-ants)
 ant_num					"--ant-num "			i	(1,50)
-#runtime					"--runtime "			i	(1000,1000)
+runtime					"--runtime "			с	(1000)
 #
 #
 # PROPOSITION - PERFORM PRECOMPUTATION ALWAYS OR TO SEPARATEDLY STORE H^BETA
@@ -43,7 +43,7 @@ ils_iterations			"--ils-iterations "		i	(1,30)		| local_search	== "local-search-
 #
 # Global update (all)
 #
-evaporation_remains		"--evaporation-remains "	r	(0.0,1.0)
+evaporation_remains		"--evaporation-remains "	r	(0.2,1.0)
 #
 #
 # Ant System

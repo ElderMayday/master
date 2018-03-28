@@ -27,11 +27,11 @@ public class SolverStandard extends Solver
     @Override
     public List<Solution> solve() throws Exception
     {
-        List<Solution> solutions;
-
         terminationCriteria.initialize();
 
-        initializer.initialize(problem.structure);
+        experimentalRun();
+
+        List<Solution> solutions = constructSolutionList(antNum);
 
         do
         {

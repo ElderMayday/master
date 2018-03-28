@@ -82,6 +82,7 @@ public abstract class Problem
     protected abstract boolean checkFeasibility();
 
 
+    public abstract MinMaxResult findMinMax();
 
 
     public CandidateList getCandidateList()

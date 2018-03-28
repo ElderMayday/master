@@ -1,6 +1,8 @@
 package solving.solvers;
 
 import problem.component.Component;
+import problem.componentStructure.ComponentStructure2d;
+import problem.problemFormulation.MinMaxResult;
 import problem.problemFormulation.Problem;
 import solving.globalUpdate.BestWorstAntSystem;
 import solving.globalUpdate.GlobalUpdate;
@@ -8,6 +10,7 @@ import solving.localSearch.LocalSearch;
 import solving.localSearch.LocalSearchNone;
 import solving.localUpdate.LocalUpdate;
 import solving.pheromoneInitializer.PheromoneInitializer;
+import solving.pheromoneInitializer.PheromoneInitializerRange;
 import solving.solution.Solution;
 import solving.selectors.Selector;
 import solving.terminationCriteria.TerminationCriteria;
@@ -126,6 +129,31 @@ public abstract class Solver
         }
         else
             return solutions;
+    }
 
+
+    /**
+     * Performs an initializing run
+     * Recommended to be done by all heuristics after one experimental run
+     */
+    protected void experimentalRun() throws Exception
+    {
+        initializer.initialize(problem.structure);
+        List<Solution> solutions = constructSolutionList(antNum);
+        globalUpdate.update(solutions);
+        reinitializeByCurrentValues();
+    }
+
+
+    /**
+     * Sets a new pheromone initializer according to the minimal and maximal trail values at the moment.
+     */
+    protected void reinitializeByCurrentValues()
+    {
+        MinMaxResult minMaxResult = problem.findMinMax();
+
+        initializer = new PheromoneInitializerRange(minMaxResult.min, minMaxResult.max);
+
+        initializer.initialize(problem.structure);
     }
 }

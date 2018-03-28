@@ -59,7 +59,7 @@ public class SolverExternalMemory extends Solver
     {
         terminationCriteria.initialize();
 
-        initializer.initialize(problem.structure);
+        experimentalRun();
 
         List<Solution> segments = new ArrayList<Solution>();
 
