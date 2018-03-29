@@ -19,7 +19,7 @@ global_update			"--"					c	(ant-s,ant-colony-s,min-max-s,rank-based-ant-s,elitis
 local_update			"--"					c	(local-update-yes,local-update-no) | selector %in% c("selector-standard","selector-dorigo")
 iterated_greedy			"--"					c	(standard,external-memory,iterated-ants,cunning-ants)
 ant_num					"--ant-num "			i	(1,50)
-runtime					"--runtime "			с	(1000)
+runtime					"--runtime "			c	(1000)
 #
 #
 # PROPOSITION - PERFORM PRECOMPUTATION ALWAYS OR TO SEPARATEDLY STORE H^BETA
@@ -63,7 +63,7 @@ min_max_s_p_best			"--min-max-s-p-best "	r	(0.01,1.0)	| global_update == "min-ma
 min_max_s_global_best		"--"					c	(min-max-s-global-best-yes,min-max-s-global-best-no) |  global_update == "min-max-s"
 min_max_s_global_iterations	"--min-max-s-global-iterations "	i	(1,30) | (global_update == "min-max-s") & (min_max_s_global_best == "min-max-s-global-best-yes")
 min_max_s_pts				"--"					c	(min-max-s-pts-yes,min-max-s-pts-no) | global_update == "min-max-s"
-min_max_s_pts_iterations	"--min-max-s-global-iterations "	i	(1,30) | (global_update == "min-max-s") & (min_max_s_pts == "min-max-s-pts-yes")
+min_max_s_pts_iterations	"--min-max-s-pts-iterations "	i	(1,30) | (global_update == "min-max-s") & (min_max_s_pts == "min-max-s-pts-yes")
 #
 #
 # PTS (for MMAS only)

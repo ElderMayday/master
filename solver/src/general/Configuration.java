@@ -13,12 +13,38 @@ public class Configuration
     public double probabilityDorigo = -1.0;
 
     public int candidate = -1;  // -1 - not defined, 0 - no, 1 - yes
-    public int candidateNum = -1;
+    public double candidateRatio = -1;
 
     public int globalUpdate = -1;
     public int localUpdate = -1;
     public int iteratedGreedy = -1;
     public int antNum = -1;
+    public int runtime = -1;
+
+    public double lupdEpsilon = -1.0;
+    public double lupdTau0 = -1.0;
+
+    public int localSearch = 1;
+    public int ilsIterations = -1;
+
+    public double evaporationRemains = -1.0;
+
+    public int antSystemIsBounded = -1;
+    public int antSystemK = -1;
+
+    public double minMaxSystemPbest = -1.0;
+    public int minMaxSystemGlobalBest = -1;
+    public int minMaxSystemGlobalIterations = -1;
+    public int minMaxSystemPts = -1;
+    public int minMaxSystemPtsIterations = -1;
+
+    public double ptsLambda = -1.0;
+    public double ptsRatio = -1.0;
+    public double ptsDelta = -1.0;
+
+    public int rasW = -1;
+    public int rasBounded = -1;
+    public double rasK = -1.0;
 
     /**
      * Checks the consistency of the read configuration and throws an exception if found

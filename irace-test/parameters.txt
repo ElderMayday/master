@@ -5,8 +5,8 @@
 # Selectors
 #
 selector				"--"					c	(selector-standard,selector-dorigo,selector-maniezzo)
-alpha					"--alpha "				r	(0.0,5.0)	| selector %in% c("selector-standard","selector-dorigo")
-beta					"--beta "				r	(0.0,5.0)	| selector %in% c("selector-standard","selector-dorigo")
+alpha					"--alpha "				r	(0.1,5.0)	| selector %in% c("selector-standard","selector-dorigo")
+beta					"--beta "				r	(0.1,5.0)	| selector %in% c("selector-standard","selector-dorigo")
 alpha_maniezzo			"--alpha "				r 	(0.0,1.0)	| selector == "selector-maniezzo"
 dorigo_probability		"--dorigo-probability " r	(0.0,1.0)	| selector == "selector-dorigo"
 #
@@ -14,12 +14,12 @@ dorigo_probability		"--dorigo-probability " r	(0.0,1.0)	| selector == "selector-
 # General
 #
 candidate_list			"--"					c	(candidate-yes,candidate-no)
-candidate_num			"--candidate-num  "		i	(1,20)		| candidate_list == "candidate-yes"
+candidate_ratio			"--candidate-ratio  "		r	(0.0,1.0)		| candidate_list == "candidate-yes"
 global_update			"--"					c	(ant-s,ant-colony-s,min-max-s,rank-based-ant-s,elitist-ant-s,best-worst-ant-s)
 local_update			"--"					c	(local-update-yes,local-update-no) | selector %in% c("selector-standard","selector-dorigo")
 iterated_greedy			"--"					c	(standard,external-memory,iterated-ants,cunning-ants)
-ant_num					"--ant-num "			i	(5,20)
-#runtime					"--runtime "			i	(1000,1000)
+ant_num					"--ant-num "			i	(1,50)
+runtime					"--runtime "			c	(1000)
 #
 #
 # PROPOSITION - PERFORM PRECOMPUTATION ALWAYS OR TO SEPARATEDLY STORE H^BETA
@@ -34,7 +34,7 @@ lupd_tau0				"--tau0 "				r   (0.0,1.0)  | local_update == "local-update-yes"
 # Local search
 #
 local_search			"--"					c	(local-search-none,local-search-ils-twohalf,local-search-twohalf)
-ils_iterations			"--ils-iterations "		i	(1,10)		| local_search	== "local-search-ils-twohalf"
+ils_iterations			"--ils-iterations "		i	(1,30)		| local_search	== "local-search-ils-twohalf"
 #
 #
 #
@@ -43,7 +43,7 @@ ils_iterations			"--ils-iterations "		i	(1,10)		| local_search	== "local-search-
 #
 # Global update (all)
 #
-evaporation_remains		"--evaporation-remains "	r	(0.0,1.0)
+evaporation_remains		"--evaporation-remains "	r	(0.2,1.0)
 #
 #
 # Ant System
@@ -83,7 +83,7 @@ ras_k						"--ras-k "				r	(1.0,10.0)	| global_update == "rank-based-ant-s"
 #
 # Elitist Ant System
 #
-eas_m_elite					"--eas-m-elite "		r	(1.0, 10.0)	| global_update == "elitist-ant-s"
+eas_m_elite					"--eas-m-elite "		i	(1, 100)	| global_update == "elitist-ant-s"
 eas_is_bounded				"--"					c	(eas-bounded-yes,eas-bounded-no)	| global_update == "elitist-ant-s"
 eas_k						"--eas-k "				r	(1.0,10.0) | global_update == "elitist-ant-s"
 #
@@ -110,7 +110,7 @@ reinitialization_time		"--reinitialization-time "	i	(300,5000)	| reinitializatio
 # External memory
 #
 top_k						"--top-k "				i	(1,5)	|	iterated_greedy == "external-memory"
-memory_size					"--memory-size "		i	(6,10)	|	iterated_greedy == "external-memory"
+memory_size					"--memory-size "		i	(10,30)	|	iterated_greedy == "external-memory"
 tournament_selector_size	"--tournament_selector_size "	i	(2,10)	|	iterated_greedy == "external-memory"
 # TODO ensure topK and memorySize constraints
 #
