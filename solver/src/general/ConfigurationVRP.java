@@ -573,6 +573,198 @@ public class ConfigurationVRP extends Configuration
                 continue;
             }
 
+            if (args[i].equals("--eas-m-elite"))
+            {
+                if (this.easM != -1)
+                    throw new IllegalArgumentException("Redefinition of eas-m-elite is not allowed");
+
+                if (this.globalUpdate != 5)
+                    throw new IllegalArgumentException("eas-m-elite cannot be specified if EAS global update was not specified");
+
+                this.easM = Integer.parseInt(args[i + 1]);
+                i += 2;
+                continue;
+            }
+
+            if (args[i].equals("--eas-bounded-yes"))
+            {
+                if (this.easIsBounded != -1)
+                    throw new IllegalArgumentException("Redefinition of eas-bounded is not allowed");
+
+                if (this.globalUpdate != 5)
+                    throw new IllegalArgumentException("eas-bounded cannot be specified if EAS global update was not specified");
+
+                this.easIsBounded = 1;
+                i++;
+                continue;
+            }
+
+            if (args[i].equals("--eas-bounded-no"))
+            {
+                if (this.easIsBounded != -1)
+                    throw new IllegalArgumentException("Redefinition of eas-bounded is not allowed");
+
+                if (this.globalUpdate != 5)
+                    throw new IllegalArgumentException("eas-bounded cannot be specified if EAS global update was not specified");
+
+                this.easIsBounded = 2;
+                i++;
+                continue;
+            }
+
+            if (args[i].equals("--eas-k"))
+            {
+                if (this.easK >= 0.0)
+                    throw new IllegalArgumentException("Redefinition of eas-k is not allowed");
+
+                if (this.globalUpdate != 5)
+                    throw new IllegalArgumentException("eas-k cannot be specified if EAS global update was not specified");
+
+                this.easK = Double.parseDouble(args[i + 1]);
+                i += 2;
+                continue;
+            }
+
+            if (args[i].equals("--bwas-mutation-probability"))
+            {
+                if (this.bwasProbability >= 0.0)
+                    throw new IllegalArgumentException("Redefinition of bwas-mutation-probability is not allowed");
+
+                if (this.globalUpdate != 6)
+                    throw new IllegalArgumentException("bwas-mutation-probability cannot be specified if EAS global update was not specified");
+
+                this.bwasProbability = Double.parseDouble(args[i + 1]);
+                i += 2;
+                continue;
+            }
+
+            if (args[i].equals("--reinitialization-yes"))
+            {
+                if (this.reinitialization != -1)
+                    throw new IllegalArgumentException("Redefinition of reinitialization is not allowed");
+
+                this.reinitialization = 1;
+                i++;
+                continue;
+            }
+
+            if (args[i].equals("--reinitialization-no"))
+            {
+                if (this.reinitialization != -1)
+                    throw new IllegalArgumentException("Redefinition of reinitialization is not allowed");
+
+                this.reinitialization = 2;
+                i++;
+                continue;
+            }
+
+            if (args[i].equals("--reinitialization-time"))
+            {
+                if (this.reinitializationTime != -1)
+                    throw new IllegalArgumentException("Redefinition of reinitialization-time is not allowed");
+
+                if (this.reinitialization != 1)
+                    throw new IllegalArgumentException("reinitialization-time cannot be specified without reinitialization-yes");
+
+                this.reinitializationTime = Integer.parseInt(args[i + 1]);
+                i += 2;
+                continue;
+            }
+
+            if (args[i].equals("--top-k"))
+            {
+                if (this.topK != -1)
+                    throw new IllegalArgumentException("Redefinition of top-k is not allowed");
+
+                if (this.iteratedGreedy != 2)
+                    throw new IllegalArgumentException("top-k cannot be specified without external-memory");
+
+                this.topK = Integer.parseInt(args[i + 1]);
+                i += 2;
+                continue;
+            }
+
+            if (args[i].equals("--memory-size"))
+            {
+                if (this.memorySize != -1)
+                    throw new IllegalArgumentException("Redefinition of memory-size is not allowed");
+
+                if (this.iteratedGreedy != 2)
+                    throw new IllegalArgumentException("memory-size cannot be specified without external-memory");
+
+                this.memorySize = Integer.parseInt(args[i + 1]);
+                i += 2;
+                continue;
+            }
+
+            if (args[i].equals("--tournament-selector-size"))
+            {
+                if (this.tournamentSelectorSize != -1)
+                    throw new IllegalArgumentException("Redefinition of tournament-selector-size is not allowed");
+
+                if (this.iteratedGreedy != 2)
+                    throw new IllegalArgumentException("tournament-selector-size cannot be specified without external-memory");
+
+                this.tournamentSelectorSize = Integer.parseInt(args[i + 1]);
+                i += 2;
+                continue;
+            }
+
+            if (args[i].equals("--iterated-criteria-best"))
+            {
+                if (this.iteratedCriteria != -1)
+                    throw new IllegalArgumentException("Redefinition of iterated-criteria is not allowed");
+
+                if (this.iteratedGreedy != 3)
+                    throw new IllegalArgumentException("iterated-criteria cannot be specified without iterated-ants");
+
+                this.iteratedCriteria = 1;
+                i++;
+                continue;
+            }
+
+            if (args[i].equals("--iterated-criteria-probabilistic"))
+            {
+                if (this.iteratedCriteria != -1)
+                    throw new IllegalArgumentException("Redefinition of iterated-criteria-probabilistic is not allowed");
+
+                if (this.iteratedGreedy != 3)
+                    throw new IllegalArgumentException("iterated-criteria-probabilistic cannot be specified without iterated-ants");
+
+                this.iteratedCriteria = 2;
+                i++;
+                continue;
+            }
+
+            if (args[i].equals("--probabilistic-best"))
+            {
+                if (this.probabilisticBest >= 0.0)
+                    throw new IllegalArgumentException("Redefinition of probabilistic-best is not allowed");
+
+                if (this.iteratedGreedy != 3)
+                    throw new IllegalArgumentException("probabilistic-best cannot be specified without iterated-ants");
+
+                if (this.iteratedCriteria != 2)
+                    throw new IllegalArgumentException("probabilistic-best cannot be specified without iterated-criteria-probabilistic");
+
+                this.probabilisticBest = Double.parseDouble(args[i + 1]);
+                i += 2;
+                continue;
+            }
+
+            if (args[i].equals("--destruction-probability"))
+            {
+                if (this.destructionProbability >= 0.0)
+                    throw new IllegalArgumentException("Redefinition of destruction-probability is not allowed");
+
+                if (!((this.iteratedGreedy == 2) || (this.iteratedGreedy == 3) || (this.iteratedGreedy == 4)))
+                    throw new IllegalArgumentException("destruction-probability can only be specified in iterated greedy heuristics");
+
+                this.destructionProbability = Double.parseDouble(args[i + 1]);
+                i += 2;
+                continue;
+            }
+
             throw new IllegalArgumentException("Unknown parameter [" + args[i] + "] has been found");
         }
 
@@ -587,5 +779,8 @@ public class ConfigurationVRP extends Configuration
     protected void checkConfiguration()
     {
         super.checkConfiguration();
+
+
+        
     }
 }

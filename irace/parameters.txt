@@ -100,8 +100,8 @@ bwas_mutation_probability	"--bwas-mutation-probability"	r	(0.0,1.0)	|	global_upd
 # Pheromone initialization/retinitalization
 #
 # MAKE OVERLAPPING RANGES?
-pheromone_min				"--pheromone-min "		r	(0.1,5.0)
-pheromone_max				"--pheromone-max "		r	(5.1,10.0)
+#pheromone_min				"--pheromone-min "		r	(0.1,5.0)
+#pheromone_max				"--pheromone-max "		r	(5.1,10.0)
 reinitialization			"--"					c	(reinitialization-yes,reinitialization-no)
 reinitialization_time		"--reinitialization-time "	i	(300,5000)	| reinitialization == "reinitialization-yes"
 #
@@ -111,7 +111,7 @@ reinitialization_time		"--reinitialization-time "	i	(300,5000)	| reinitializatio
 #
 top_k						"--top-k "				i	(1,5)	|	iterated_greedy == "external-memory"
 memory_size					"--memory-size "		i	(10,30)	|	iterated_greedy == "external-memory"
-tournament_selector_size	"--tournament_selector_size "	i	(2,10)	|	iterated_greedy == "external-memory"
+tournament_selector_size	"--tournament-selector-size "	i	(2,10)	|	iterated_greedy == "external-memory"
 # TODO ensure topK and memorySize constraints
 #
 #

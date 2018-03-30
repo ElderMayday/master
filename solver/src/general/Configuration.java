@@ -46,6 +46,24 @@ public class Configuration
     public int rasBounded = -1;
     public double rasK = -1.0;
 
+    public int easM = -1;
+    public int easIsBounded = -1;
+    public double easK = -1.0;
+
+    public double bwasProbability = -1.0;
+
+    public int reinitialization = -1;
+    public int reinitializationTime = -1;
+
+    public int topK = -1;
+    public int memorySize = -1;
+    public int tournamentSelectorSize = -1;
+
+    public int iteratedCriteria = -1;
+    public double probabilisticBest = -1.0;
+
+    public double destructionProbability = -1.0;
+
     /**
      * Checks the consistency of the read configuration and throws an exception if found
      */
