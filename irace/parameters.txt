@@ -99,9 +99,6 @@ bwas_mutation_probability	"--bwas-mutation-probability"	r	(0.0,1.0)	|	global_upd
 #
 # Pheromone initialization/retinitalization
 #
-# MAKE OVERLAPPING RANGES?
-#pheromone_min				"--pheromone-min "		r	(0.1,5.0)
-#pheromone_max				"--pheromone-max "		r	(5.1,10.0)
 reinitialization			"--"					c	(reinitialization-yes,reinitialization-no)
 reinitialization_time		"--reinitialization-time "	i	(300,5000)	| reinitialization == "reinitialization-yes"
 #
@@ -118,7 +115,7 @@ tournament_selector_size	"--tournament-selector-size "	i	(2,10)	|	iterated_greed
 # Iterated ants
 #
 criteria					"--"	c	(iterated-criteria-best,iterated-criteria-probabilistic)	|	iterated_greedy	== "iterated-ants"
-probabilistic_best			"--probabilistic-best "	r	(0.0,1.0)	|	(iterated_greedy == "external-memory") & (criteria == "iterated-criteria-probabilistic")
+probabilistic_best			"--probabilistic-best "	r	(0.0,1.0)	|	(iterated_greedy == "iterated-ants") & (criteria == "iterated-criteria-probabilistic")
 #
 #
 # Solution destroyer (only SolutionDestroyerVrpRandom is considered)

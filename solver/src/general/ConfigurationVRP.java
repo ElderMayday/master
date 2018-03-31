@@ -780,7 +780,167 @@ public class ConfigurationVRP extends Configuration
     {
         super.checkConfiguration();
 
+        checkGeneralConstraints();
 
-        
+        checkGlobalUpdateConstraints();
+
+        if (selector == 2)
+            if (probabilityDorigo < 0.0)
+                throw new IllegalArgumentException("probabilityDorigo must be specified");
+
+        if (localUpdate == 1)
+        {
+            if (lupdEpsilon < 0.0)
+                throw new IllegalArgumentException("lupdEpsilon must be specified");
+
+            if (lupdTau0 < 0.0)
+                throw new IllegalArgumentException("lupdTau0 must be specified");
+        }
+
+        if (localSearch == 2)
+            if (ilsIterations == -1)
+                throw new IllegalArgumentException("ilsIterations must be specified");
+
+        if (iteratedGreedy == 2)
+        {
+            if (topK == -1)
+                throw new IllegalArgumentException("topK must be specified");
+
+            if (memorySize == -1)
+                throw new IllegalArgumentException("memorySize must be specified");
+
+            if (tournamentSelectorSize == -1)
+                throw new IllegalArgumentException("tournamentSelectorSize must be specified");
+        }
+
+        if (iteratedGreedy == 3)
+        {
+            if (iteratedCriteria == -1)
+                throw new IllegalArgumentException("iteratedCriteria must be specified");
+
+            if (probabilisticBest < 0.0)
+                throw new IllegalArgumentException("probabilisticBest must be specified");
+        }
+
+        if (iteratedGreedy != 1)
+            if (destructionProbability < 0.0)
+                throw new IllegalArgumentException("destructionProbability must be specified");
+    }
+
+    protected void checkGeneralConstraints()
+    {
+        if (this.selector == -1)
+            throw new IllegalArgumentException("selector must be specified");
+
+        if (this.candidate == -1)
+            throw new IllegalArgumentException("candidate must be specified");
+
+        if (this.globalUpdate == -1)
+            throw new IllegalArgumentException("globalUpdate must be specified");
+
+        if (this.iteratedGreedy == -1)
+            throw new IllegalArgumentException("iteratedGreedy must be specified");
+
+        if (this.localSearch == -1)
+            throw new IllegalArgumentException("localSearch must be specified");
+
+        if (this.reinitialization == -1)
+            throw new IllegalArgumentException("reinitialization must be specified");
+
+        if (this.antNum == -1)
+            throw new IllegalArgumentException("antNum must be specified");
+
+        if (this.runtime == -1)
+            throw new IllegalArgumentException("runtime must be specified");
+
+        if (reinitialization == 1)
+            if (reinitializationTime == -1)
+                throw new IllegalArgumentException("reinitializationTime must be specified");
+    }
+
+    protected void checkGlobalUpdateConstraints()
+    {
+        if (this.alpha == -1)
+            throw new IllegalArgumentException("alpha must be initialized");
+
+        if ((this.selector == 1) || (this.selector == 2))
+        {
+            if (this.beta == -1)
+                throw new IllegalArgumentException("beta must be initialized");
+
+            if (this.localUpdate == -1)
+                throw new IllegalArgumentException("localUpdate must be initialized");
+        }
+
+        if (this.candidate == 1)
+            if (this.candidateRatio < 0.0)
+                throw new IllegalArgumentException("candidateRatio must be initialized");
+
+        if (this.globalUpdate == 1)
+        {
+            if (antSystemIsBounded == -1)
+                throw new IllegalArgumentException("antSystemIsBounded must be initialized");
+
+            if (antSystemK < 0.0)
+                throw new IllegalArgumentException("antSystemK must be initialized");
+        }
+
+        if (this.globalUpdate == 3)
+        {
+            if (minMaxSystemPbest < 0.0)
+                throw new IllegalArgumentException("minMaxSystemPbest must be initialized");
+
+            if (minMaxSystemGlobalBest == -1)
+                throw new IllegalArgumentException("minMaxSystemGlobalBest must be initialized");
+
+            if (minMaxSystemGlobalIterations == -1)
+                throw new IllegalArgumentException("minMaxSystemGlobalIterations must be initialized");
+
+            if (minMaxSystemPts == -1)
+                throw new IllegalArgumentException("minMaxSystemPts must be initialized");
+
+            if (minMaxSystemPtsIterations == -1)
+                throw new IllegalArgumentException("minMaxSystemPtsIterations must be initialized");
+
+            if (minMaxSystemPts == 1)
+            {
+                if (ptsLambda < 0.0)
+                    throw new IllegalArgumentException("ptsLambda must be initialized");
+
+                if (ptsRatio < 0.0)
+                    throw new IllegalArgumentException("ptsRatio must be initialized");
+
+                if (ptsDelta < 0.0)
+                    throw new IllegalArgumentException("ptsDelta must be initialized");
+            }
+        }
+
+        if (this.globalUpdate == 4)
+        {
+            if (this.rasW == -1)
+                throw new IllegalArgumentException("rasW must be initialized");
+
+            if (this.rasBounded == -1)
+                throw new IllegalArgumentException("rasBounded must be initialized");
+
+            if (this.rasK == -1)
+                throw new IllegalArgumentException("rasK must be initialized");
+        }
+
+        if (this.globalUpdate == 5)
+        {
+            if (this.easM == -1)
+                throw new IllegalArgumentException("easM must be initialized");
+
+            if (this.easIsBounded == -1)
+                throw new IllegalArgumentException("easIsBounded must be initialized");
+
+            if (this.easK < 0.0)
+                throw new IllegalArgumentException("easK must be initialized");
+        }
+
+        if (this.globalUpdate == 6)
+            if (this.bwasProbability < 0.0)
+                throw new IllegalArgumentException("bwasProbability must be initialized");
     }
 }

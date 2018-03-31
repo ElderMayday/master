@@ -18,10 +18,3 @@
 # Top-k in external memory must be equal or less to the ant number
 #
 (iterated_greedy == "external-memory") & (ant_num < top_k)
-#
-#
-#
-#
-# Pheromone min cannot be more than max (EFFICIENT IN TERMS OF GENERATION?)
-#
-pheromone_min > pheromone_max
