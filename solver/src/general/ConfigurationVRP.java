@@ -74,7 +74,7 @@ public class ConfigurationVRP extends Configuration
                 i += 2;
 
                 if (selector != 2)
-                    throw new IllegalArgumentException("Selector parameters cannot be defined before the selector type");
+                    throw new IllegalArgumentException("dorigo-probability can be only defined if dorigo selector is specified");
 
                 continue;
             }
@@ -94,7 +94,7 @@ public class ConfigurationVRP extends Configuration
                 if (this.candidate != -1)
                     throw new IllegalArgumentException("Redefinition of candidate flag is not allowed");
 
-                this.candidate = 0;
+                this.candidate = 2;
                 i++;
                 continue;
             }
@@ -105,7 +105,7 @@ public class ConfigurationVRP extends Configuration
                 i += 2;
 
                 if (candidate != 1)
-                    throw new IllegalArgumentException("Candidate number cannot be defined without candidate flag");
+                    throw new IllegalArgumentException("Candidate ratio cannot be defined without candidate flag");
 
                 continue;
             }
@@ -188,10 +188,7 @@ public class ConfigurationVRP extends Configuration
                 if (this.localUpdate != -1)
                     throw new IllegalArgumentException("Redefinition of local update is not allowed");
 
-                if (!((selector == 1) || (selector == 2)))
-                    throw new IllegalArgumentException("Local update must be only specified in case of standard or dorigo selector");
-
-                this.localUpdate = 0;
+                this.localUpdate = 2;
                 i++;
                 continue;
             }
@@ -313,7 +310,7 @@ public class ConfigurationVRP extends Configuration
 
             if (args[i].equals("--ils-iterations"))
             {
-                if (this.ilsIterations != 1)
+                if (this.ilsIterations != -1)
                     throw new IllegalArgumentException("Redefinition of ILS iteration number is not allowed");
 
                 if (this.localSearch != 2)
@@ -362,7 +359,7 @@ public class ConfigurationVRP extends Configuration
 
             if (args[i].equals("--ant-s-k"))
             {
-                if (this.antSystemK != -1)
+                if (this.antSystemK >= 0.0)
                     throw new IllegalArgumentException("Redefinition of ant-s-k is not allowed");
 
                 if (this.globalUpdate != 1)
@@ -371,7 +368,7 @@ public class ConfigurationVRP extends Configuration
                 if (this.antSystemIsBounded != 1)
                     throw new IllegalArgumentException("ant-s-bounded-yes must be specified");
 
-                this.antSystemK = Integer.parseInt(args[i + 1]);
+                this.antSystemK = Double.parseDouble(args[i + 1]);
                 i += 2;
                 continue;
             }
@@ -818,8 +815,9 @@ public class ConfigurationVRP extends Configuration
             if (iteratedCriteria == -1)
                 throw new IllegalArgumentException("iteratedCriteria must be specified");
 
-            if (probabilisticBest < 0.0)
-                throw new IllegalArgumentException("probabilisticBest must be specified");
+            if (iteratedCriteria == 2)
+                if (probabilisticBest < 0.0)
+                    throw new IllegalArgumentException("probabilisticBest must be specified");
         }
 
         if (iteratedGreedy != 1)
@@ -881,8 +879,9 @@ public class ConfigurationVRP extends Configuration
             if (antSystemIsBounded == -1)
                 throw new IllegalArgumentException("antSystemIsBounded must be initialized");
 
-            if (antSystemK < 0.0)
-                throw new IllegalArgumentException("antSystemK must be initialized");
+            if (antSystemIsBounded == 1)
+                if (antSystemK < 0.0)
+                    throw new IllegalArgumentException("antSystemK must be initialized");
         }
 
         if (this.globalUpdate == 3)
@@ -893,14 +892,16 @@ public class ConfigurationVRP extends Configuration
             if (minMaxSystemGlobalBest == -1)
                 throw new IllegalArgumentException("minMaxSystemGlobalBest must be initialized");
 
-            if (minMaxSystemGlobalIterations == -1)
-                throw new IllegalArgumentException("minMaxSystemGlobalIterations must be initialized");
+            if (minMaxSystemGlobalBest == 1)
+                if (minMaxSystemGlobalIterations == -1)
+                    throw new IllegalArgumentException("minMaxSystemGlobalIterations must be initialized");
 
             if (minMaxSystemPts == -1)
                 throw new IllegalArgumentException("minMaxSystemPts must be initialized");
 
-            if (minMaxSystemPtsIterations == -1)
-                throw new IllegalArgumentException("minMaxSystemPtsIterations must be initialized");
+            if (minMaxSystemPts == 1)
+                if (minMaxSystemPtsIterations == -1)
+                    throw new IllegalArgumentException("minMaxSystemPtsIterations must be initialized");
 
             if (minMaxSystemPts == 1)
             {

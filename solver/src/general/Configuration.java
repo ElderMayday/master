@@ -30,7 +30,7 @@ public class Configuration
     public double evaporationRemains = -1.0;
 
     public int antSystemIsBounded = -1;
-    public int antSystemK = -1;
+    public double antSystemK = -1;
 
     public double minMaxSystemPbest = -1.0;
     public int minMaxSystemGlobalBest = -1;
