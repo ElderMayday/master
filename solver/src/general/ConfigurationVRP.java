@@ -14,6 +14,8 @@ public class ConfigurationVRP extends Configuration
 
         seed = Integer.parseInt(args[2]);
 
+        path = args[3];
+
         for (int i = 4; i < args.length;)
         {
             if (args[i].equals("--selector-standard"))
@@ -227,6 +229,9 @@ public class ConfigurationVRP extends Configuration
             {
                 if (this.iteratedGreedy != -1)
                     throw new IllegalArgumentException("Redefinition of iterated greedy mode is not allowed");
+
+                if (this.globalUpdate != 3)
+                    throw new IllegalArgumentException("Cunning ants can only use MMAS");
 
                 this.iteratedGreedy = 4;
                 i++;

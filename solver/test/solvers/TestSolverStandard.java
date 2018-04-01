@@ -49,7 +49,7 @@ public class TestSolverStandard
             TerminationCriteria terminationCriteria = new TerminationCriteriaCounter(5);
             PheromoneInitializer initializer = new PheromoneInitializerRange(1.0, 2.0);
 
-            Solver solver = new SolverStandard(problem, selector, update, localUpdate, true, terminationCriteria, initializer, localSearch, update, 3);
+            Solver solver = new SolverStandard(problem, selector, update, localUpdate, true, terminationCriteria, initializer, localSearch, 3);
 
             List<Solution> solutions = solver.solve();
 
@@ -84,7 +84,7 @@ public class TestSolverStandard
 
             PheromoneInitializer initializer = mock(PheromoneInitializer.class);  // fake initializer however, so does not perform work
 
-            Solver solver = new SolverStandard(problem, selector, update, localUpdate, true, terminationCriteria, initializer, localSearch, update, 3);
+            Solver solver = new SolverStandard(problem, selector, update, localUpdate, true, terminationCriteria, initializer, localSearch, 3);
 
             List<Solution> solutions = solver.solve();
 

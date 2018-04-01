@@ -18,3 +18,10 @@
 # Top-k in external memory must be equal or less to the ant number
 #
 (iterated_greedy == "external-memory") & (ant_num < top_k)
+#
+#
+#
+#
+# Cunning Ants can only use MMAS
+#
+(iterated_greedy == "cunning-ants") & (global_update != "min-max-s")

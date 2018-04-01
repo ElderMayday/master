@@ -38,7 +38,9 @@ public abstract class Solver
      * @param selector
      * @param precomputeValues
      */
-    public Solver(Problem problem, Selector selector, int antNum, GlobalUpdate globalUpdate, LocalUpdate localUpdate, LocalSearch localSearch, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializer initializer)
+    public Solver(Problem problem, Selector selector, int antNum, GlobalUpdate globalUpdate, LocalUpdate localUpdate,
+                  LocalSearch localSearch, boolean precomputeValues, TerminationCriteria terminationCriteria,
+                  PheromoneInitializer initializer)
     {
         this.problem = problem;
         this.selector = selector;

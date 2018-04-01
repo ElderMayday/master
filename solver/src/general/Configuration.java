@@ -6,7 +6,8 @@ package general;
  */
 public class Configuration
 {
-    protected int seed = 28;
+    public int seed = 28;
+    public String path = null;
 
     public int selector = -1; // -1 - not defined, 1 - standard, 2 - dorigo, 3 - maniezzo
     public double alpha = -1.0, beta = -1.0;

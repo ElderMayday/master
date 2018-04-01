@@ -13,7 +13,7 @@ public class TestConfigurationVRP
     @Test
     public void testParameters1()
     {
-        String configurationString = "testConfig2 instance1 1234567 D:/master/irace-test/instances/1.txt --selector-standard --alpha 4.34 --beta 4.63 --candidate-yes --candidate-ratio 0.82 --rank-based-ant-s --local-update-yes --cunning-ants --ant-num 5 --runtime 1000 --lupd-epsilon 0.82 --tau0 0.84 --local-search-none --evaporation-remains 0.62 --ras-w 26 --ras-bounded-no --ras-k 1.78 --reinitialization-yes --reinitialization-time 797 --destruction-probability 0.01";
+        String configurationString = "testConfig2 instance1 1234567 D:/master/irace-test/instances/1.txt --selector-standard --alpha 4.34 --beta 4.63 --candidate-yes --candidate-ratio 0.82 --rank-based-ant-s --local-update-yes --standard --ant-num 5 --runtime 1000 --lupd-epsilon 0.82 --tau0 0.84 --local-search-none --evaporation-remains 0.62 --ras-w 26 --ras-bounded-no --ras-k 1.78 --reinitialization-yes --reinitialization-time 797";
         String[] args = configurationString.split(" ");
 
         ConfigurationVRP conf = new ConfigurationVRP(args);
@@ -25,7 +25,7 @@ public class TestConfigurationVRP
         assertEquals(conf.candidateRatio, 0.82, 0.01);
         assertEquals(conf.globalUpdate, 4);
         assertEquals(conf.localUpdate, 1);
-        assertEquals(conf.iteratedGreedy, 4);
+        assertEquals(conf.iteratedGreedy, 1);
         assertEquals(conf.antNum, 5);
         assertEquals(conf.runtime, 1000);
         assertEquals(conf.lupdEpsilon, 0.82, 0.01);
@@ -37,7 +37,6 @@ public class TestConfigurationVRP
         assertEquals(conf.rasK, 1.78, 0.01);
         assertEquals(conf.reinitialization, 1);
         assertEquals(conf.reinitializationTime, 797);
-        assertEquals(conf.destructionProbability, 0.01, 0.01);
     }
 
     @Test
@@ -334,7 +333,7 @@ public class TestConfigurationVRP
     @Test
     public void testParameters7()
     {
-        String configurationString = "testConfig2 instance1 1234567 D:/master/irace-test/instances/1.txt --selector-standard --alpha 4.34 --beta 4.63 --candidate-yes --candidate-ratio 0.82 --rank-based-ant-s --local-update-yes --cunning-ants --ant-num 5 --runtime 1000 --lupd-epsilon 0.82 --tau0 0.84 --local-search-none --evaporation-remains 0.62 --ras-w 26 --ras-bounded-yes --ras-k 1.78 --reinitialization-yes --reinitialization-time 797 --destruction-probability 0.01";
+        String configurationString = "testConfig2 instance1 1234567 D:/master/irace-test/instances/1.txt --selector-standard --alpha 4.34 --beta 4.63 --candidate-yes --candidate-ratio 0.82 --rank-based-ant-s --local-update-yes --standard --ant-num 5 --runtime 1000 --lupd-epsilon 0.82 --tau0 0.84 --local-search-none --evaporation-remains 0.62 --ras-w 26 --ras-bounded-yes --ras-k 1.78 --reinitialization-yes --reinitialization-time 797";
         String[] args = configurationString.split(" ");
 
         ConfigurationVRP conf = new ConfigurationVRP(args);
@@ -346,7 +345,7 @@ public class TestConfigurationVRP
         assertEquals(conf.candidateRatio, 0.82, 0.01);
         assertEquals(conf.globalUpdate, 4);
         assertEquals(conf.localUpdate, 1);
-        assertEquals(conf.iteratedGreedy, 4);
+        assertEquals(conf.iteratedGreedy, 1);
         assertEquals(conf.antNum, 5);
         assertEquals(conf.runtime, 1000);
         assertEquals(conf.lupdEpsilon, 0.82, 0.01);
@@ -358,7 +357,6 @@ public class TestConfigurationVRP
         assertEquals(conf.rasK, 1.78, 0.01);
         assertEquals(conf.reinitialization, 1);
         assertEquals(conf.reinitializationTime, 797);
-        assertEquals(conf.destructionProbability, 0.01, 0.01);
     }
 
     @Test
