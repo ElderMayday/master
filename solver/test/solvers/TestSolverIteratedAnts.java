@@ -41,7 +41,7 @@ public class TestSolverIteratedAnts
         try
         {
             Problem problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
-            problem.load(new File("solver/problem-samples/vrp-10-customers.txt"));
+            problem.load(new File("solver/problem-samples/vrp-10-customers.my"));
 
             Selector selector = new SelectorStandard(1.0, 1.0);
             TerminationCriteria terminationCriteria = new TerminationCriteriaCounter(3);

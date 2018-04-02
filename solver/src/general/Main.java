@@ -1,5 +1,6 @@
 package general;
 
+import problem.component.Component;
 import problem.componentStructure.ComponentStructure2dStandard;
 import problem.fleet.FleetDescendingCapacity;
 import problem.problemFormulation.Problem;
@@ -25,6 +26,7 @@ import solving.selectors.Selector;
 import solving.selectors.SelectorDorigo;
 import solving.selectors.SelectorManiezzo;
 import solving.selectors.SelectorStandard;
+import solving.solution.Solution;
 import solving.solutionDestroyer.SolutionDestroyer;
 import solving.solutionDestroyer.SolutionDestroyerVrpRandom;
 import solving.solvers.*;
@@ -37,6 +39,7 @@ import solving.terminationCriteria.TerminationCriteria;
 import solving.terminationCriteria.TerminationCriteriaTime;
 
 import java.io.File;
+import java.util.List;
 import java.util.Random;
 
 
@@ -67,11 +70,16 @@ public class Main
             LocalSearch localSearch = getLocalSearch(conf);
             CandidateDeterminer candidateDeterminer = getCandidateDeterminer(conf);
 
+            if ((conf.selector == 1) || (conf.selector == 2))
+                Component.setPrecomputationParameters(conf.alpha, conf.beta);
+
             ProblemVRP problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), candidateDeterminer);
             problem.load(new File(conf.path));
 
             GlobalUpdate globalUpdate = getGlobalUpdate(conf, problem);
             Solver solver = getSolver(conf, problem, selector, globalUpdate, localUpdate, localSearch);
+
+            List<Solution> solutions = solver.solve();
 
             int a = 1;
         }
@@ -88,7 +96,11 @@ public class Main
 
         TerminationCriteria terminationCriteria = new TerminationCriteriaTime(conf.runtime, conf.reinitializationTime, conf.reinitialization == 1);
         PheromoneInitializerConstant pheromoneInitializer = new PheromoneInitializerConstant(10.0);
-        SolutionDestroyer solutionDestroyer = new SolutionDestroyerVrpRandom(conf.destructionProbability);
+        SolutionDestroyer solutionDestroyer = null;
+
+        if ((conf.iteratedGreedy == 2) || (conf.iteratedGreedy == 3) || (conf.iteratedGreedy == 4))
+            solutionDestroyer = new SolutionDestroyerVrpRandom(conf.destructionProbability);
+
         int antNum = conf.antNum;
 
         switch (conf.iteratedGreedy)
