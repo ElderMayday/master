@@ -81,7 +81,9 @@ public class Main
 
             List<Solution> solutions = solver.solve();
 
-            int a = 1;
+            Solution best = Solution.findBestSolution(solutions);
+
+            System.out.println(best.objective);
         }
         catch (Exception e)
         {

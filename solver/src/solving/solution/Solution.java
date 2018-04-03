@@ -124,4 +124,17 @@ public abstract class Solution implements Iterable<Component>
         else
             return this.lastObjective > that.lastObjective;
     }
+
+
+
+    public static Solution findBestSolution(List<Solution> solutions)
+    {
+        Solution best = solutions.get(0);
+
+        for (int i = 1; i < solutions.size(); i++)
+            if (solutions.get(i).betterThan(best))
+                best = solutions.get(i);
+
+        return best;
+    }
 }
