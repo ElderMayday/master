@@ -1,6 +1,5 @@
 package problem.problemFormulation;
 
-import org.json.JSONObject;
 import problem.component.Component;
 import problem.componentStructure.ComponentStructure2d;
 import problem.fleet.Fleet;
@@ -14,7 +13,6 @@ import solving.solution.Tour;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.ref.Reference;
 import java.util.*;
 
 /**
@@ -75,6 +73,8 @@ public class ProblemVRP extends Problem2d
         if (file.getAbsolutePath().endsWith(".json"))
             parserVrp = new ParserVrpJson();
         else if (file.getAbsolutePath().endsWith(".my"))
+            parserVrp = new ParserVrpMy();
+        else if (file.getAbsolutePath().endsWith(".txt"))
             parserVrp = new ParserVrpTxt();
         else
             throw new Exception("Problem format is not recognized");

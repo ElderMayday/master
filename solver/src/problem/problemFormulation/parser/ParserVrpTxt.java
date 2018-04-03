@@ -1,5 +1,6 @@
 package problem.problemFormulation.parser;
 
+import problem.componentStructure.ComponentStructure2d;
 import problem.fleet.Vehicle;
 import problem.problemFormulation.ProblemVRP;
 
@@ -7,83 +8,172 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Aldar on 02-Apr-18.
+ * Created by Aldar on 03-Apr-18.
  */
 public class ParserVrpTxt extends ParserVrp
 {
+
     @Override
     public void parseVRP(String text, ProblemVRP problem) throws Exception
     {
-        String token[] = text.split("(\\s|\\n)+");
+        String[] line = text.split("\r\n|\n");
+
+        int i = 0;
+
+        double capacity = -1.0;
+        boolean distanceRestricted = false;
+        double distance = -1.0;
+
+        boolean cvrpIsSpecified = false;
+        String distanceString = "";
 
         problem.depotId = 0;
 
-        // vehicle number -----------------------------
-
-        int vehicleNum = Integer.parseInt(token[0]);
-
-        int index = 2;
-
-        // vehicles parameters -------------------------------------------
-
-        List<Vehicle> vehicleList = new ArrayList<Vehicle>();
-        for (int i = 0; i < vehicleNum; i++)
+        while (!line[i].startsWith("NODE_COORD_SECTION")) // read specification loop
         {
-            double capacity = Double.parseDouble(token[index]);
-            double length = Double.parseDouble(token[index + 1]);     // negative length is considered as missing of length restriction
+            if (line[i].startsWith("TYPE"))
+            {
+                String[] tokens = line[i].split(": ");
 
-            Vehicle newVehicle = new Vehicle(capacity, length >= 0 ? length : 0.0, length > 0);
-            vehicleList.add(newVehicle);
+                if (tokens[tokens.length - 1].equals("CVRP"))
+                    cvrpIsSpecified = true;
 
-            index += 2;
+                i++;
+                continue;
+            }
+
+            if (line[i].startsWith("DIMENSION"))
+            {
+                String[] tokens = line[i].split(": ");
+
+                problem.vertexNum = Integer.parseInt(tokens[tokens.length - 1]);
+                problem.demands = new double[problem.vertexNum];
+
+                i++;
+                continue;
+            }
+
+            if (line[i].startsWith("CAPACITY"))
+            {
+                String[] tokens = line[i].split(": ");
+
+                capacity = Double.parseDouble(tokens[tokens.length - 1]);
+
+                i++;
+                continue;
+            }
+
+            if (line[i].startsWith("DISTANCE"))
+            {
+                String[] tokens = line[i].split(": ");
+
+                distanceRestricted = true;
+                distance = Double.parseDouble(tokens[tokens.length - 1]);
+
+                i++;
+                continue;
+            }
+
+            if (line[i].startsWith("EDGE_WEIGHT_TYPE"))
+            {
+                String[] tokens = line[i].split(": ");
+
+                distanceString = tokens[tokens.length - 1];
+                distanceString = distanceString.replaceAll("\\s+","");
+
+                i++;
+                continue;
+            }
+
+            i++;
         }
-        problem.fleet.setVehicles(vehicleList);
 
-        index++;
+        i++;
 
-        // customer number ----------------------------
+        // check some constraints
 
-        int customerNum = Integer.parseInt(token[index]);
+        if (!cvrpIsSpecified)
+            throw new Exception("The problem instances is not tagged as CVRP");
 
-        index += 2;
+        if (capacity < 0.0)
+            throw new Exception("Vehicle capacity is not specified");
 
-        // demands ------------------
+        allocateVehicles(problem, capacity, distance, distanceRestricted);
 
-        problem.vertexNum = customerNum + 1;
-        problem.demands = new double[problem.vertexNum];
 
-        for (int i = 1; i < problem.vertexNum; i++, index++)
-            problem.demands[i] = Double.parseDouble(token[index]);
+        // read distance data
 
-        index++;
+        double x[], y[];
 
-        // distances -----------------------------
+        x = new double[problem.vertexNum];
+        y = new double[problem.vertexNum];
+
+        while (!line[i].startsWith("DEMAND_SECTION"))
+        {
+            String tokens[];
+
+            tokens = line[i].split(" ");
+
+            int index = Integer.parseInt(tokens[tokens.length - 3]);
+
+            x[index - 1] = Double.parseDouble(tokens[tokens.length - 2]);
+            y[index - 1] = Double.parseDouble(tokens[tokens.length - 1]);
+
+            i++;
+        }
+
+        i++;
+
+        DistanceDeterminer distanceDeterminer = null;
+        ComponentStructure2d structure2d = problem.structure2d;
+
+        switch (distanceString)
+        {
+            case "EUC_2D":
+                distanceDeterminer = new DistanceEuclidean2d();
+                break;
+
+            default:
+                throw new Exception("Distance function is not recognized");
+        }
 
         problem.structure2d.allocate(problem.vertexNum, problem.vertexNum);
 
-        for (int i = 0; i < problem.vertexNum; i++)
-            for (int j = 0; j < problem.vertexNum; j++)
-            {
-                double distance = Double.parseDouble(token[index]);
+        for (int index = 0; index < problem.vertexNum; index++)
+            structure2d.setDistance(index, index, -1.0);
 
-                problem.structure2d.setDistance(i, j, distance);
+        int a = 1;
+    }
 
-                if (i == j)
-                    if (distance >= 0.0)
-                        throw new Exception("Self path should be marked by negative distance");
+    protected void allocateVehicles(ProblemVRP problem, double capacity, double distance, boolean distanceRestricted)
+    {
+        List<Vehicle> vehicleList = new ArrayList<Vehicle>();
 
-                index++;
-            }
+        if (distanceRestricted)
+            for (int index = 0; index < problem.vertexNum; index++)
+                vehicleList.add(new Vehicle(capacity, distance, true));
+        else
+            for (int index = 0; index < problem.vertexNum; index++)
+                vehicleList.add(new Vehicle(capacity, 0.0, false));
 
-        index++;
+        problem.fleet.setVehicles(vehicleList);
+    }
 
-        // heuristics -----------------------------------
 
-        for (int i = 0; i < problem.vertexNum; i++)
-            for (int j = 0; j < problem.vertexNum; j++)
-            {
-                problem.structure2d.setH(i, j, Double.parseDouble(token[index]));
-                index++;
-            }
+
+
+    interface DistanceDeterminer
+    {
+        double distance(double x1, double y1, double x2, double y2);
+    }
+
+    class DistanceEuclidean2d implements DistanceDeterminer
+    {
+
+        @Override
+        public double distance(double x1, double y1, double x2, double y2)
+        {
+            return Math.sqrt(Math.pow(x1 - x2, 2.0) + Math.pow(y1 - y2, 2.0));
+        }
     }
 }
