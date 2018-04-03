@@ -62,6 +62,6 @@ public class Component2d extends Component
 
     public String toString()
     {
-        return "(" + row + ";" + column + ") t=" + String.format("%1$,.4f", pheromone) + "; h=" + String.format("%1$,.2f", heuristic) + "; d=" + String.format("%1$,.4f", distance);
+        return "(" + row + ";" + column + ") t=" + String.format("%1$,.4f", pheromone) + "; h=" + String.format("%1$,.4f", heuristic) + "; d=" + String.format("%1$,.4f", distance);
     }
 }

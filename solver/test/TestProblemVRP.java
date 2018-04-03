@@ -54,14 +54,14 @@ public class TestProblemVRP
     }
 
     @Test
-    public void testProblemVrpLoadInstanceTxt()
+    public void testProblemVrpLoadInstanceMy()
     {
         ProblemVRP problem;
 
         try
         {
             problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
-            problem.load(new File("problem-samples/vrp-10-customers.txt"));
+            problem.load(new File("solver/problem-samples/vrp-10-customers.my"));
 
             assertEquals(problem.fleet.getVehicles().size(), 10);
             assertEquals(problem.fleet.getVehicles().get(0).capacity, 90.4, 0.0001);
@@ -87,9 +87,51 @@ public class TestProblemVRP
         }
         catch (Exception e)
         {
-
+            e.printStackTrace();
+            assertTrue(false);
         }
     }
+
+    @Test
+    public void testProblemVrpLoadInstanceTxt()
+    {
+        ProblemVRP problem;
+
+        try
+        {
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
+            problem.load(new File("solver/problem-samples/X-n101-k25.vrp.txt"));
+
+            assertEquals(problem.fleet.getVehicles().size(), 101);
+            assertEquals(problem.fleet.getVehicles().get(0).capacity, 206.0, 0.0001);
+            assertEquals(problem.fleet.getVehicles().get(0).length, 0.0, 0.0001);
+            assertEquals(problem.fleet.getVehicles().get(0).hasLengthRestriction, false);
+
+            assertEquals(problem.lowerIsBetter, true);
+
+            assertEquals(problem.getDepotId(), 0);
+
+            assertEquals(problem.getVertexNum(), 101);
+            assertEquals(problem.getDemands().length, 101);
+            assertEquals(problem.getDemands()[0], 0.0, 0.001);
+            assertEquals(problem.getDemands()[10], 98.0, 0.0001);
+
+            assertEquals(problem.structure2d.get(0, 0).getDistance(), -1.0, 0.0001);
+            assertEquals(problem.structure2d.get(0, 0).getHeuristic(), -1.0, 0.0001);
+
+            assertEquals(problem.structure2d.get(0, 1).getDistance(), 554.11, 0.01);
+            assertEquals(problem.structure2d.get(0, 1).getHeuristic(), 0.0018, 0.0001);
+
+            assertEquals(problem.structure2d.get(10, 9).getDistance(), 440.696, 0.0001);
+            assertEquals(problem.structure2d.get(10, 9).getHeuristic(), 0.0023, 0.0001);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            assertTrue(false);
+        }
+    }
+
 
     /**
      *  Integration test of how does ProblemVrp define possible components based on the current SolutionVRP

@@ -20,9 +20,9 @@ public class ParserVrpTxt extends ParserVrp
 
         int i = 0;
 
-        double capacity = -1.0;
+        double vehicleCapacity = -1.0;
         boolean distanceRestricted = false;
-        double distance = -1.0;
+        double vehicleDistance = -1.0;
 
         boolean cvrpIsSpecified = false;
         String distanceString = "";
@@ -33,9 +33,9 @@ public class ParserVrpTxt extends ParserVrp
         {
             if (line[i].startsWith("TYPE"))
             {
-                String[] tokens = line[i].split(": ");
+                String[] tokens = line[i].split("(:|\\s)+");
 
-                if (tokens[tokens.length - 1].equals("CVRP"))
+                if (tokens[tokens.length - 1].startsWith("CVRP"))
                     cvrpIsSpecified = true;
 
                 i++;
@@ -44,7 +44,7 @@ public class ParserVrpTxt extends ParserVrp
 
             if (line[i].startsWith("DIMENSION"))
             {
-                String[] tokens = line[i].split(": ");
+                String[] tokens = line[i].split("(:|\\s)+");
 
                 problem.vertexNum = Integer.parseInt(tokens[tokens.length - 1]);
                 problem.demands = new double[problem.vertexNum];
@@ -55,9 +55,9 @@ public class ParserVrpTxt extends ParserVrp
 
             if (line[i].startsWith("CAPACITY"))
             {
-                String[] tokens = line[i].split(": ");
+                String[] tokens = line[i].split("(:|\\s)+");
 
-                capacity = Double.parseDouble(tokens[tokens.length - 1]);
+                vehicleCapacity = Double.parseDouble(tokens[tokens.length - 1]);
 
                 i++;
                 continue;
@@ -65,10 +65,10 @@ public class ParserVrpTxt extends ParserVrp
 
             if (line[i].startsWith("DISTANCE"))
             {
-                String[] tokens = line[i].split(": ");
+                String[] tokens = line[i].split("(:|\\s)+");
 
                 distanceRestricted = true;
-                distance = Double.parseDouble(tokens[tokens.length - 1]);
+                vehicleDistance = Double.parseDouble(tokens[tokens.length - 1]);
 
                 i++;
                 continue;
@@ -76,10 +76,9 @@ public class ParserVrpTxt extends ParserVrp
 
             if (line[i].startsWith("EDGE_WEIGHT_TYPE"))
             {
-                String[] tokens = line[i].split(": ");
+                String[] tokens = line[i].split("(:|\\s)+");
 
                 distanceString = tokens[tokens.length - 1];
-                distanceString = distanceString.replaceAll("\\s+","");
 
                 i++;
                 continue;
@@ -95,13 +94,13 @@ public class ParserVrpTxt extends ParserVrp
         if (!cvrpIsSpecified)
             throw new Exception("The problem instances is not tagged as CVRP");
 
-        if (capacity < 0.0)
+        if (vehicleCapacity < 0.0)
             throw new Exception("Vehicle capacity is not specified");
 
-        allocateVehicles(problem, capacity, distance, distanceRestricted);
+        allocateVehicles(problem, vehicleCapacity, vehicleDistance, distanceRestricted);
 
 
-        // read distance data
+        // read coordinate data
 
         double x[], y[];
 
@@ -110,9 +109,7 @@ public class ParserVrpTxt extends ParserVrp
 
         while (!line[i].startsWith("DEMAND_SECTION"))
         {
-            String tokens[];
-
-            tokens = line[i].split(" ");
+            String tokens[] = line[i].split("(:|\\s)+");
 
             int index = Integer.parseInt(tokens[tokens.length - 3]);
 
@@ -123,6 +120,8 @@ public class ParserVrpTxt extends ParserVrp
         }
 
         i++;
+
+        // compute the distance matrix
 
         DistanceDeterminer distanceDeterminer = null;
         ComponentStructure2d structure2d = problem.structure2d;
@@ -142,7 +141,39 @@ public class ParserVrpTxt extends ParserVrp
         for (int index = 0; index < problem.vertexNum; index++)
             structure2d.setDistance(index, index, -1.0);
 
-        int a = 1;
+        for (int row = 0; row < problem.vertexNum; row++)
+            for (int column = row + 1; column < problem.vertexNum; column++)
+            {
+                double distance = distanceDeterminer.distance(x[row], y[row], x[column], y[column]);
+
+                structure2d.setDistance(row, column, distance);
+                structure2d.setDistance(column, row, distance);
+            }
+
+        // read demands
+
+        problem.demands = new double[problem.vertexNum];
+
+        while (!line[i].startsWith("DEPOT_SECTION"))
+        {
+            String tokens[] = line[i].split("(:|\\s)+");
+
+            int index = Integer.parseInt(tokens[tokens.length - 2]);
+
+            problem.demands[index - 1] = Double.parseDouble(tokens[tokens.length - 1]);
+
+            i++;
+        }
+
+        // depot is set to node #0 disregarding the file (but normally it corresponds to the standard format)
+
+        problem.depotId = 0;
+
+        // heuristics
+
+        for (int row = 0; row < problem.vertexNum; row++)
+            for (int column = 0; column < problem.vertexNum; column++)
+                structure2d.setH(row, column, 1.0 / structure2d.get(row, column).getDistance());
     }
 
     protected void allocateVehicles(ProblemVRP problem, double capacity, double distance, boolean distanceRestricted)
