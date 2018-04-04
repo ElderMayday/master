@@ -2,7 +2,7 @@
 parameterFile = "./parameters.txt"
 execDir = "./execution"
 forbiddenFile = "./forbidden.txt"
-targetRunner = "./target.bat"
+targetRunner = "./target.sh"
 trainInstancesDir = "./instances"
 digits = 2
 
@@ -10,7 +10,7 @@ digits = 2
 
 nbIterations = 1
 minNbSurvival = 5
-maxExperiments = 300
+maxExperiments = 10
 nbConfigurations = 10
 
 
