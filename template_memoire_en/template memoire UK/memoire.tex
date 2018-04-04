@@ -1,0 +1,163 @@
+\documentclass[11pt,a4paper,oneside]{book}
+\usepackage[hmargin={1.25in,1.25in},vmargin={1.25in,1.25in}]{geometry}
+
+\makeindex
+\usepackage{textcomp}
+\usepackage{fancyhdr}
+\usepackage{makeidx}
+\pagestyle{myheadings}
+\fancyhf{}
+\rhead[\leftmark]{thepage}
+
+\usepackage[latin1]{inputenc}
+\usepackage{url}
+
+\parindent0em
+\parskip1.5ex
+
+\begin{document}
+
+\frontmatter
+\begin{titlepage}
+\begin{center}
+\textbf{UNIVERSIT\'E LIBRE DE BRUXELLES}\\
+\textbf{Facult\'e des Sciences}\\
+\textbf{D\'epartement d'Informatique}
+\vfill{}\vfill{}
+
+{\Huge  Title \vspace*{.5cm}  \linebreak[4] possibly on many lines \vspace*{.5cm}  \linebreak[4]  nevertheless a short title is better}
+
+{\Huge \par}
+\begin{center}{\LARGE Firstname Lastname}\end{center}{\Huge \par}
+\vfill{}\vfill{}
+\begin{flushright}{\large \textbf{Promotor :} Prof. Firstname LastName}\hfill{}{\large Master Thesis in Computer Sciences}\\
+{\large }\hfill{}{}\end{flushright}{\large\par}
+\vfill{}\vfill{}\enlargethispage{3cm}
+\textbf{Academic year 20XX~-~20XX+1}
+\end{center}
+\end{titlepage}
+\newpage
+\thispagestyle{empty} 
+\null
+
+\newenvironment{vcenterpage}
+{\newpage\thispagestyle{empty} 
+\vspace*{\fill}}
+{\vspace*{\fill}\par\pagebreak}
+
+\begin{vcenterpage}
+\begin{flushright}
+    \large\em\null\vskip1in 
+    You may want\\
+   to write a dedication here\vfill
+  \end{flushright}
+\end{vcenterpage}
+\thispagestyle{empty}
+\vspace*{5cm}
+
+\begin{quotation}
+\noindent ``\emph{You may also include one or more general quotes related to your topic.}''
+\begin{flushright}\textbf{Name of the author, date}\end{flushright}
+\end{quotation}
+
+\medskip
+
+\begin{quotation}
+\noindent ``\emph{Another quote.}''
+\begin{flushright}\textbf{Name of the author, date}\end{flushright}
+\end{quotation}
+\chapter*{Acknowledgment}
+\thispagestyle{empty} 
+
+\noindent I want to thank ...
+
+\thispagestyle{empty} 
+\setcounter{page}{0}
+\tableofcontents
+\mainmatter 
+\chapter{Introduction}
+\setcounter{page}{1}
+
+\vspace*{0.5cm}
+
+\section{Background and objectives of the thesis}
+
+Blabla
+
+For a quick and detailed introduction to  \LaTeX et \LaTeX2e, you can consult, in addition to classical books, \cite{lamp,mittel} and the website \cite{oetik}.
+
+You may need to use other packages than those mentioned at the beginning of the file! To write algorithms, see for example the site \cite{fiorio}.
+
+\section{Section name}
+
+Blabla
+
+Blabla
+
+\section{Structure of the thesis}
+
+In chapter \ref{chap2} ...
+
+Blabla
+
+\section{Contributions}
+
+Our main contributions are ...\vspace{1cm}
+
+\clearpage
+\section{Notations}
+
+It may be interesting to gather here the main notations, their meaning, and the page where it is defined in more detail or possibly a bibliographic reference.
+
+\chapter{Chapter name}
+
+It is important to always add all the needed bibliographic references~\cite{ref1,ref3}.
+
+\section{Section name}
+
+When an important notion is defined in a large document, it may be useful to add it in an index\index{Important notion}, this will allow the reader to quickly find this definition if he has forgotten it.
+
+\subsection{Sub-section name}
+
+This provides a more structured text.
+
+\paragraph{Title of a paragraph}
+
+You can also have subsubsections, but it is usually better to avoid it (in order to prevent to have  sections numbering such as 3.2.1.5).
+
+Similarly, we must choose how to number the definitions, lemmas, proposals and theorems. We may manage the corresponding counters to operate at the global level, at the level of sections, ... and we may prefer for example to avoid to have a theorem 1 which follows a proposal 15.
+
+\section{Second section}
+
+\section{...}Blabla~\cite{ref2}.
+
+\chapter{Second chapter}
+
+\label{chap2}
+
+\section{...}Blabla~\cite{ref4}.
+
+\section{...}
+\label{sec-untel}
+
+\chapter{Next one}
+
+\section{...}
+
+\section{...}
+
+\chapter*{Conclusions}
+
+The conclusions are to be written with care\index{Care}, because it will be sometimes the part that could convince a potential reader to read the whole document.
+
+\appendix
+
+\backmatter
+
+\printindex % use makeindex to generate the index
+
+\bibliographystyle{plain}
+
+\bibliography{biblio} %use bibtex to generate the bibliography
+
+\end{document}
