@@ -52,15 +52,15 @@ public class DoubleBridge extends Perturbation
             int start1 = customers.get(index1);
             int end1 = customers.get(index1 + 1);
 
-            int index2 = customers.get(Main.random.nextInt(size - index1 - 7) + index1 + 2);   // index2 is in [index1+2; n-6]
+            int index2 = Main.random.nextInt(size - index1 - 7) + index1 + 2;   // index2 is in [index1+2; n-6]
             int start2 = customers.get(index2);
             int end2 = customers.get(index2 + 1);
 
-            int index3 = customers.get(Main.random.nextInt(size - index2 - 5) + index2 + 2);   // index3 is in [index2+2; n-4]
+            int index3 = Main.random.nextInt(size - index2 - 5) + index2 + 2;   // index3 is in [index2+2; n-4]
             int start3 = customers.get(index3);
             int end3 = customers.get(index3 + 1);
 
-            int index4 = customers.get(Main.random.nextInt(size - index3 - 3) + index3 + 2);   // index4 is in [index3+2; n-2]
+            int index4 = Main.random.nextInt(size - index3 - 3) + index3 + 2;   // index4 is in [index3+2; n-2]
             int start4 = customers.get(index4);
             int end4 = customers.get(index4 + 1);
 
