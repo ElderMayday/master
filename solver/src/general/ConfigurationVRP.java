@@ -767,6 +767,9 @@ public class ConfigurationVRP extends Configuration
                 continue;
             }
 
+            if (args[i].startsWith("--end"))
+                break;
+
             throw new IllegalArgumentException("Unknown parameter [" + args[i] + "] has been found");
         }
 
