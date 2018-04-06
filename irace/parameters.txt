@@ -90,7 +90,7 @@ eas_k						"--eas-k "				r	(1.0,10.0) | global_update == "elitist-ant-s"
 #
 # Best-Worst Ant System
 #
-bwas_mutation_probability	"--bwas-mutation-probability"	r	(0.0,1.0)	|	global_update == "best-worst-ant-s"
+bwas_mutation_probability	"--bwas-mutation-probability "	r	(0.0,1.0)	|	global_update == "best-worst-ant-s"
 #
 #
 #---------------------------------------------------------------------------------------------------------------------
@@ -121,3 +121,8 @@ probabilistic_best			"--probabilistic-best "	r	(0.0,1.0)	|	(iterated_greedy == "
 # Solution destroyer (only SolutionDestroyerVrpRandom is considered)
 #
 destruction_probability		"--destruction-probability "	r	(0.0,1.0)	|	iterated_greedy %in% c("external-memory","iterated-ants","cunning-ants")
+#
+#
+# Final terminal
+#
+end							"--"					c	(end)
