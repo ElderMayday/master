@@ -33,7 +33,7 @@ public class SolverStandard extends Solver
 
         experimentalRun();
 
-        List<Solution> solutions = constructSolutionList(antNum);
+        List<Solution> solutions;
 
         do
         {

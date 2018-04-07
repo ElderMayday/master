@@ -54,7 +54,7 @@ import java.util.Random;
 
 public class Main
 {
-    public static Random random = random = new Random(28);;
+    public static Random random = new Random(28);;
 
 
 
@@ -159,7 +159,7 @@ public class Main
 
                 globalUpdate = new MinMaxAntSystem(problem, conf.evaporationRemains, conf.minMaxSystemPbest,
                         pts, conf.minMaxSystemGlobalBest == 1, conf.minMaxSystemGlobalIterations,
-                        conf.minMaxSystemPts == 1, conf.minMaxSystemGlobalIterations);
+                        conf.minMaxSystemPts == 1, conf.minMaxSystemPtsIterations);
                 break;
 
             case 4:
