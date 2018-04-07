@@ -10,7 +10,7 @@ digits = 2
 
 nbIterations = 1
 minNbSurvival = 5
-maxExperiments = 69
+maxTime = 100
 nbConfigurations = 10
 
 

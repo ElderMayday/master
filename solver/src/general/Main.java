@@ -40,6 +40,7 @@ import solving.terminationCriteria.TerminationCriteriaTime;
 
 import java.io.File;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 
@@ -62,6 +63,8 @@ public class Main
     {
         try
         {
+            long startTime = System.currentTimeMillis();
+
             ConfigurationVRP conf = new ConfigurationVRP(args);
 
             random = new Random(conf.seed);
@@ -83,7 +86,11 @@ public class Main
 
             Solution best = Solution.findBestSolution(solutions);
 
-            System.out.println(best.objective);
+            long stopTime = System.currentTimeMillis();
+            long elapsedTime = stopTime - startTime;
+
+            Locale.setDefault(Locale.US);
+            System.out.println(String.format("%1$.3f", best.objective) + " " + String.format("%1$.2f", elapsedTime / 1000.0));
         }
         catch (Exception e)
         {
