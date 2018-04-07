@@ -17,7 +17,7 @@ exit ssh:
 ctrl+D
 
 
-
+BUDGET >= ITERATIONS x NUMBER_OF_INSTANCES
 
 
 
@@ -32,7 +32,7 @@ get current PATH variable:
 echo $PATH
 
 
-
+vrp.jar MUST BE IN THE execution folder
 
 
 --------- SH ----------------------
@@ -53,6 +53,9 @@ chmod +x [filename]
 
 add a job:
 qsub [*.sh]
+
+qsub job.sh -M asaranov@ulb.ac.be
+
 
 status of my jobs:
 qstat
@@ -80,3 +83,8 @@ unzip [file]
 Start R:
 R
 not "r"!!!
+
+
+
+
+irace --scenario scenario.txt --check
