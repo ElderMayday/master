@@ -47,6 +47,6 @@ public class IteratedLocalSearch extends LocalSearch
         }
         while (count < iterations);
 
-        return null;
+        return sStar;
     }
 }
