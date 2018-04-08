@@ -65,7 +65,7 @@ qdel [ID]
 
 
 download:
-scp asaranov@majorana.ulb.ac.be:remote_file local_file 
+scp asaranov@majorana.ulb.ac.be:[remote_file] ./
 
 upload:
 scp [local_file] asaranov@majorana.ulb.ac.be:[remote_file]

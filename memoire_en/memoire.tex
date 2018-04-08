@@ -1,0 +1,178 @@
+\documentclass[11pt,a4paper,oneside]{book}
+\usepackage[hmargin={1.25in,1.25in},vmargin={1.25in,1.25in}]{geometry}
+
+\makeindex
+\usepackage{textcomp}
+\usepackage{fancyhdr}
+\usepackage{makeidx}
+\pagestyle{myheadings}
+\fancyhf{}
+\rhead[\leftmark]{thepage}
+
+\usepackage[latin1]{inputenc}
+\usepackage{url}
+
+
+
+\parindent0em
+\parskip1.5ex
+
+\begin{document}
+
+\frontmatter
+\begin{titlepage}
+\begin{center}
+\textbf{UNIVERSIT\'E LIBRE DE BRUXELLES}\\
+\textbf{Facult\'e des Sciences}\\
+\textbf{D\'epartement d'Informatique}
+\vfill{}\vfill{}
+
+{\Huge  Development of an automatically configurable ant colony optimization framework}
+
+{\Huge \par}
+\begin{center}{\LARGE Aldar Saranov}\end{center}{\Huge \par}
+\vfill{}\vfill{}
+\begin{flushright}{\large \textbf{Promoter :} Prof. Thomas St{\"u}tzle}\hfill{}{\large Master Thesis in Computer Sciences}\\
+{\large }\hfill{}{}\end{flushright}{\large\par}
+\vfill{}\vfill{}\enlargethispage{3cm}
+\textbf{Academic year 2016~-~2017+1}
+\end{center}
+\end{titlepage}
+\newpage
+\thispagestyle{empty} 
+\null
+
+\newenvironment{vcenterpage}
+{\newpage\thispagestyle{empty} 
+\vspace*{\fill}}
+{\vspace*{\fill}\par\pagebreak}
+
+\begin{vcenterpage}
+\begin{flushright}
+    \large\em\null\vskip1in 
+    Dedicated to my mother Lena, who\\
+   was always sincerely supporting me\vfill
+  \end{flushright}
+\end{vcenterpage}
+\thispagestyle{empty}
+\vspace*{5cm}
+
+\begin{quotation}
+\noindent ``\emph{If one does not know to which port one is sailing, no wind is favorable.}''
+\begin{flushright}\textbf{Lucius Annaeus Seneca, 1st century AD}\end{flushright}
+\end{quotation}
+
+\medskip
+
+\begin{quotation}
+\noindent ``\emph{The general, unable to control his irritation, will launch his men
+to the assault like swarming ants, with the result that one-third of
+his men are slain, while the town still remains untaken. Such are
+the disastrous effects of a siege.}''
+\begin{flushright}\textbf{Sun Tzu, "The Art of War", 5th century BC}\end{flushright}
+\end{quotation}
+\chapter*{Acknowledgment}
+\thispagestyle{empty} 
+
+\noindent I want to thank my promoter, prof. Thomas St{\"u}tzle, whose determination and competencies were leading me to the goal of the paper, and my friend, Alain, who made this precious time of my education possible.
+
+\thispagestyle{empty} 
+\setcounter{page}{0}
+\tableofcontents
+\mainmatter 
+\chapter{Introduction 4-5}
+\setcounter{page}{1}
+\vspace*{0.5cm}
+
+Some species show an extreme degree of social organization. Such species (e.g. ants) have pheromone production and detection body parts and therefore seize an ability to communicate between each other in an indirect way. This concept has inspired the development of algorithms, which are based on the social behavior of the ant colonies called ant colony optimization algorithms. These algorithms allow to solve NP-hard problems in a very efficient manner. These algorithms are considered to be metaheuristics. The development of an ACO framework is the next step of formalizing this area. Such a framework can then be used as a tool to help resolving various optimization problems. This report gives a brief overview of the current state of the ACO research area, existing framework description and some tools which can be used for the automatic configuration of the framework.
+
+
+In the chapter 2, we describe the theoretical foundations of the framework, that is required to develop, and an efficient configuration software, that allows to obtain high-performing configurations for further framework exploiting.
+
+The development of such framework would also require its application to some particular problem for testing and analysis purposes. Vehicle Routing Problem was chosen as the one. In the chapter 3, we introduce formulation of Vehicle Routing Problem and also mention several variations thereof.
+
+In the chapter 4, we describe thorough implementation details and decisions for the ACO framework, the way we adapt it specifically to VRP-problems and also show line-by-line description of the parameter space defined for the framework.
+
+In the chapter 5, one can see the experimental set-up, tuning results and interpretations that are made.
+
+
+\chapter{Background 20}
+
+\section{Combinatorial Optimization Problems and Constructive Heuristics 5}
+
+Combinatorial optimization problems (COPs) are a class of mathematical optimization problems. These problems can be described as a grouping, ordering, assignment or any other operations over a set of discrete objects. In practice, one may need to resolve COPs, which have a large number of extra constraints for the solutions to consider them as admissible. Many of these problems which are still being thoroughly researched at the moment, belong to NP-hard discrete optimization problems. The best performing algorithms known today to solve such problems have a worst-case run-time larger than polynomial (e.g. exponential).
+
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+\underline{An Optimization Problem} is a tuple \cite{papadimitriou1982combinatorial} ($\Phi,\omega, f$), where
+	\begin{itemize}
+		\item{$\Phi$ is a \underline{search space} consisting of all possible assignments of discrete variables $x_i$, with $i=1,...,n$ }
+		\item{$\omega$ is a \underline{set of constraints} on the decision variables}
+		\item{$f:\Phi \to R$ is an \underline{objective function}, which has to be optimized}
+	\end{itemize}
+    }%
+}
+
+
+\section{Ant Colony Optimization 10}
+
+[rip-off the previous year paper, describe only those components that are used] \newline
+
+[ACOTSPQAP brief description] \newline
+
+\section{Iterated F-Race 5}
+
+[description similar to the slides of I-RACE description] \newline
+
+
+\chapter{Vehicle Routing Problem 5}
+
+
+
+\chapter{Implementation 20-25}
+
+[framework class-level description, no class diagram due to large size (however no descriptions for every class method. it's not a documentation)] \newline
+
+[mention the back-bone classes that provide generality and maintaining of VRP instance generality] \newline 
+
+[framework parameters space] \newline
+
+[mention unit testing???] \newline
+
+
+\chapter{Experimental 20-25}
+
+[public samples description, some publicly know plots] \newline
+
+[configuration of i-race] \newline
+
+[obtained result configuration for the framework] \newline
+
+[description of the configuration]
+
+
+\chapter{Conclusion 4-5}
+
+
+
+
+\section{Literature}
+
+
+
+
+\appendix
+
+\backmatter
+
+\printindex % use makeindex to generate the index
+
+
+
+\bibliographystyle{plain}
+
+\bibliography{biblio} %use bibtex to generate the bibliography
+
+% BIBLIOGRAPHY DOES NOT WORK IN TEXMAKER, USE OVERLEAF FOR FINAL GENERATION
+
+\end{document}
