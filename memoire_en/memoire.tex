@@ -26,7 +26,6 @@ numberstyle=\small,
 numbersep=8pt, 
 frame = single, 
 breaklines=true,
-language=Pascal, 
 tabsize=2,
 framexleftmargin=15pt}
 
@@ -111,6 +110,7 @@ In the chapter 4, we describe thorough implementation details and decisions for 
 
 In the chapter 5, one can see the experimental set-up, tuning results and interpretations that are made.
 
+[TODO: Add more?] \newline
 
 \chapter{Background 20}
 
@@ -137,31 +137,13 @@ The problem formulation describes an abstract task (e.g. find the minimum spanni
 
 
 
-
-
-
-
-
-
 \section{Ant Colony Optimization 10}
-
-Since solving of such NP-hard problems by trying to find provably optimal solutions is unreasonable, one can apply heuristic algorithms, which more or less provide solutions with relatively good quality consuming reasonable quantity of resources (time/power, memory etc.).
-
-An important class of such heuristic algorithms are constructive heuristics. Constructive heuristics start with an empty or partially built solution, which is then being completed by iterative extension until a full solution is completed. Each of the iterations adds one or several solution components to the solution. For example, greedy constructive heuristics  add the best-ranked components by their heuristic values.
-
-ACO also uses the notion of a heuristic values
-
-Generally, heuristic values are assigned as constants at the start of the solution construction. However, in extensions one can use heuristic values, which are a function of the generated partial solution. These are called \emph{adaptive} heuristics and normally they consume larger computer resources although they often lead to a better quality of the generated solutions.
-
-
-[selectors description] \newline
-
-%---------------------------------
 
 [rip-off the previous year paper, describe only those components that are used] \newline
 
+Since solving of such NP-hard problems by trying to find provably optimal solutions is unreasonable, one can apply heuristic algorithms, which more or less provide solutions with relatively good quality consuming reasonable quantity of resources (time/power, memory etc.). An important class of such heuristic algorithms are constructive heuristics. Constructive heuristics start with an empty or partially built solution, which is then being completed by iterative extension until a full solution is completed. Each of the iterations adds one or several solution components to the solution. For example, greedy constructive heuristics  add the best-ranked components by their heuristic values.
 
-ACO algorithms are a class of constructive heuristics. Meta-heuristic is a top-level heuristic, which is used to improve the performance of an underlying, basic heuristic. ACO is such a metaheuristic that can be used to improve the performance of a construction heuristic. Features of ACO algorithms are the following.
+ACO algorithms are a subclass of constructive heuristics. Meta-heuristic is a top-level heuristic, which is used to improve the performance of an underlying, basic heuristic. ACO is such a metaheuristic that can be used to improve the performance of a construction heuristic. One has to remark several necessary features of the ACO algorithms:
 
 \begin{itemize}
 \item ACO algorithms are population-based algorithms. Solutions are being generated at each iteration.
@@ -170,21 +152,21 @@ ACO algorithms are a class of constructive heuristics. Meta-heuristic is a top-l
 \end{itemize}
 
 
-\begin{minipage}[c, breaklines=true]{0.95\textwidth}
+\begin{minipage}[c]{0.95\textwidth}
 \begin{lstlisting}[caption={General ACO pseudo-code}, label={lst:aco}]
 procedure ACO-Metaheuristic
 repeat
 	foreach ant do
 		repeat
-			Extend partial solution probabilistically
-		until solution is complete
+			extend-partial-solution-probabilistically()
+		until solution-is-complete()
 	
-	foreach ant in SelectAntsForLocalSearch() do
-		ApplyLocalSearch(ant)
+	foreach ant in select-ants-for-local-search() do
+		apply-local-search(ant)
 	
-	EvaporatePheromones
-	DepositPheromones
-until termination criteria met
+	evaporate-pheromones()
+	deposit-pheromones()
+until termination-criteria-met()
 end
 \end{lstlisting}
 \end{minipage}
@@ -197,14 +179,241 @@ Generally, there are two mechanisms of biasing the solution construction - phero
 Hereby we introduce the following components: \\
 $C$ - set of solution components (a combination of which can constitute a solution). \\
 $\tau_c \in T$ - pheromones trail values for solution component bias. \\
-$\tau'_c \in T'$ - pheromones trail values for particular purposes (as choosing the next facility to consider in QAP). \\
+$\tau'_c \in T'$ - pheromones trail values for particular purposes. \\
 $\pi$ - candidate solution. \\
 $\eta_c \in H$ - heuristic information (constant in time). \\
+
+Higher values of $\tau_c$ stand for a higher probability that the component $c$ will be added to a solution. Additionally, problem-specific pheromones such as $\tau'_c$ can be used for auxiliary purposes. 
+
+Similarly heuristic values are numerical attributes of the solution components. However, generally heuristic values are assigned as constants at the start of the solution construction, although in extensions one can use heuristic values, which are a function of the generated partial solution. These are called \emph{adaptive} heuristics and normally they consume larger computer resources although they often lead to a better quality of the generated solutions. Heuristic information $H$ is similar to the pheromone trails in terms of that they both bias the solution component choice. However, it is defined in problem-specific way and is not updated during the algorithm execution ($\forall c \in C, \exists \eta_c \in H$). Heuristic information is either static values or values which are defined by a function of the current partially constructed solution. 
+
+\subsection{Solution component choice}
+
+The solution construction phase, as says the name, yields a new solution set. The probability of $c_j$ to be added at a certain step can be calculated by different techniques (i.e. $Pr(c_j|T,H,s)$). Each ant starts with an empty solution $s$. Each ant may produce one solution at one execution of the solution construction phase. At each construction step one solution component is added. A frequently used rule is defined as follows:
+
+\begin{equation}
+Pr(c_j)=\frac{t_j^\alpha \times \eta_j^\beta}{\sum \limits_{c_k \in N_i} t_k^\alpha \times \eta_k^\beta} \forall c_j \in N_i
+\label{eq:construction_classic}
+\end{equation}
+
+$\alpha$ and $\beta$ are parameters that determine the impact of the pheromone trails and heuristic information on the final probability. Another alternative has been proposed by Maniezzo \cite{maniezzo}, which combines the pheromone trails and heuristic information in a linear way.
+
+\begin{equation}
+Pr(c_j)=\frac{\alpha \times \tau_j + (1-\alpha) \times \eta_j}{\sum \limits_{c_k \in N_i} \alpha \times \tau_k + (1-\alpha) \times \tau_k} \forall c_j \in N_i
+\end{equation}
+
+Since it does not use exponentiation operations such choice rule is preferable for performance-targeted frameworks. However, this algorithm may cause undesired biases if the range of the values are not taken into account. The third alternative is invented by Dorigo and Gambardella \cite{dorigo} in Ant Colony System (ACS) algorithm. The rule of solution component choice in ACS is also called pseudo-random proportional rule. A random uniform value $q$ is generated in range $[0;1)$ and if $q>q_0$, where $q_0$ is a predefined parameter, then the probability of choosing $c_j$ is calculated according to formula \eqref{eq:construction_classic}. Otherwise, the solution component is picked as:
+
+\begin{equation}
+c_j = \operatornamewithlimits{argmax}\limits_{c_k \in N_i} t_k^\alpha \times \eta_k^\beta
+\label{eq:construction_dorigo}
+\end{equation}
+
+Apparently, larger $q_0$ gives more greedy choice.
+
+\subsection{Construction extensions}
+
+\textbf{Lookahead} concept was introduced. It says that at each decision step several solution components should be considered at once in order to get the next solution component \cite{lookahead}. This says that in constructing a candidate solution, ants use a transition rule that incorporates complete information on past decisions (\emph{the trail}) and local information (\emph{visibility}) on the immediate decision that is to be made \cite{lookahead2}. The look-ahead mechanism allows the incorporation of information of the anticipated decisions that are beyond the immediate choice horizon. Generally, it is worth to be implemented when the cost of making a local prediction based on the current partial solution state is much lower than the cost of the real execution of the move sequence.
+
+\textbf{A candidate list} restricts the solution component set to a smaller set to be considered. The solution components in this list have to be the most promising ones at the current step \cite{candidate_list}. Usually, this approach yields a significant gain of computation time, depending on the initial set-up (i.e. if this list is precalculated once before the run). Nonetheless, it can also depend on the current partial solution.
+
+\textbf{Hash table} of pheromone trails. It allows to efficiently save memory when the updated pheromone trails are in a sparse set in comparison to the set of all solution components. Search and updating of the elements of the hash-table is expected to be done within linear time \cite{hash_table}.
+
+\textbf{Heuristic precomputation} of the values $t_j^\alpha \times \eta_j^\beta$ for each of the solution components which are used in formula \eqref{eq:construction_dorigo}. The reduction of computation time is based on the fact that all these values will be shared by the ants at each iteration.
+
+\textbf{External memory} extension is based on starting the solution construction from a partially constructed solution with partial destroying of a certain good solution and reconstructing it and thus anticipating to obtain even a better solution \cite{iterated_greedy}. This iterated greedy extension was inspired by genetic algorithms and described in \cite{external_memory}. It uses reinforcement procedures of the elite solutions with deferred reintroducing of solutions segments in following iterations (see listing \ref{lst:ext-mem}). The ACO iteration is composed of two stages. First is meant to initialize the external memory. The second is the solution construction itself based on a partial solution. \textbf{Iterated ants} also uses the partially constructed solutions. Based on the following additional notions. Destruct() removes some solution components from a complete solution \cite{iterated_ants}. Constuct() constructs a complete solution from initially partial solution. An acceptance-criterion chooses one of two complete solutions in order to continue the construction with it. Concrete implementations of these strategies are defined in problem-specific way. The algorithm of the extension is showed in listing \ref{lst:iterated-ants}. \textbf{Cunning ants} algorithm tackles to the solution generation by iterated producing of new ant population. The algorithm has a pheromone database and an ant population of fixed size. For every existing ant, a new one is produced which borrows some solution parts from its parent \cite{cunning_ants}. Then in each such ant pair a winner is selected and all winners continue their work in the next iteration. After each iteration all winners jointly update the pheromone database and stop if the termination criteria is met. Similarly the solution component inheritance process is problem-specific. 
+
+\begin{minipage}[c, breaklines=true]{0.95\textwidth}
+\begin{lstlisting}[caption={External memory iteration pseudo-code}, label={lst:ext-mem}]
+procedure ACO-external-memory
+initialize the external memory
+repeat
+	set m ants in the graph
+	
+	ants construct a solution using neighborhood graph and the pheromone matrix
+	
+	select k-best solutions and cut randomly positioned and sized segments
+	
+	store the segments into the external memory
+until the external memory is full
+
+done = false
+
+while not(done)
+	ants select their segments according to tournament selection
+	
+	ants finish the solution construction
+	update the pheromone matrix
+	update the memory
+end
+end
+\end{lstlisting}
+\end{minipage}
+
+
+\begin{minipage}[c, breaklines=true]{0.95\textwidth}
+\begin{lstlisting}[caption={General iterated ants pseudo-code}, label={lst:iterated-ants}]
+procedure iterated-ants
+	s0 = initial-solution()
+	s = local-search(s0)
+	repeat
+		sp = destruct(s)
+		s' = construct(sp)
+		s' = local-search(s')   // optional
+		s = acceptances-criterion(s,s')
+	until termination criterion met
+end
+\end{lstlisting}
+\end{minipage}
+
+
+
+\subsection{Global pheromone update}
+As it was said before, the key idea of the ACO algorithm is the pheromone trail biasing. It is composed of two parts - pheromone evaporation and pheromone deposit. Pheromone evaporation decreases the values in order to reduce the impact of the previously deposited solutions. The general form formula is as follows.
+
+\begin{equation}
+\tau_{new}=evaporation(\tau_{old}, \rho, S^{eva})
+\end{equation}
+
+where:
+\begin{itemize}
+\item $\tau_{new}, \tau_{old}$ - new and old pheromone trail values
+\item $\rho \in (0,1)$ - evaporation rate
+\item $S^{eva}$ - selected solution set for evaporation
+\end{itemize}
+
+The classic linear reduction is as follows:
+\begin{equation}
+\tau_j = (1-\rho) \times \tau_j \ \ \forall  \tau_j \in T | c_j \in S^{eva}
+\end{equation}
+
+Hence $\rho=1$ stands for the pheromone trails are being reset completely to zero whereas $\rho=0$ means that pheromone trail remains exactly the same. Other values cause a geometrically decreasing sequence of the pheromone trails with a number of iterations. Usually, all the solution components are being selected for the evaporation, however, some modifications perform distinctive selection of the components. The generic intention of the evaporation is to slow down the convergence of solution components, which can be selected with some reasonable probability, to a limited subset of all solution components. \\
+
+In contrast, the pheromone deposit increases the pheromone trail values of selected solution components. The solution components may belong to several solutions at once. The general deposit formula is described as:
+
+\begin{equation}
+\tau_j = \tau_j + \sum \limits_{s_k \in S^{upd}} w_k \times F(s_k)
+\end{equation} 
+
+\begin{itemize}
+\item $S^{upd} \subseteq S^{eva}$ - the set of solutions selected for the pheromone deposit
+\item $F$ - non-decreasing function with respect to the solution quality
+\item $w_k$ - multiplication weight of the k-th solution.  
+\end{itemize}
+
+The following update selection techniques can be used:
+\begin{enumerate}
+\item {\textbf{Ant system} - selects all solution from the last iteration}
+\item {Single update selections:}
+\begin{enumerate}
+\item {\textbf{iteration-based} update - selects the best solution from the last iteration}
+\item {\textbf{global-based} update - selects the best solution recorded since the start of the run. Provides fast convergence but may lead to a state called stagnation. Stagnation is a state, where the pheromone trails are defined in such way, that some solution components are selected regularly from one iteration to another, so that virtually no other solution components can be selected.}
+\item \textbf{{restart-based} update - selects the best solution since last pheromone reset.}
+\end{enumerate}
+\end{enumerate}
+
+In the minimization case, typically one adds a value inversely proportional to a value of the solution quality function.
+
+\begin{equation}
+w_k \times F(s_k) = 1 / f(s_k)
+\end{equation}
+
+For the mentioned update techniques several variants are possible: \\
+
+\begin{enumerate}
+\item {\textbf{Ant System} - i.e. without extensions. Every pheromone trail is evaporated.}
+
+\item {\textbf{Ant Colony System} - uses formulas \ref{eq:construction_classic} or \ref{eq:construction_dorigo} for solution construction. It also uses local pheromone update according to formula \ref{eq:local_update}. Thus, it makes the components, that have been already chosen, less attractive for the rest of the ants. After the solution construction is finished, the ants deposit the pheromone trails according to formula \ref{eq:acs_deposit}}
+
+\begin{equation}
+\tau_j = (1 - \rho) \times \tau_j + \rho \times \Delta \tau_j^*, \forall j \in S^*
+\label{eq:acs_deposit}
+\end{equation}
+
+where $S^*$ is the best solution so far, and $\Delta t_j^* = 1/z^*$, $z^*$ is the cost of $S^*$.
+
+\item \textbf{Max-Min Ant System}. The pheromone values are updated by evaporating all pheromone trails according to \ref{eq:mmas_evaporation} with consequent deposit of $\Delta \tau = 1 / z$ to the solution components in global-best or iteration-best or reset-based solution, where $z$ is the cost of this solution. The amount of pheromones per component is bounded $\tau_i \in [\tau_{max};\tau_{min}]$. The update schedule switches between ib, gb and rb depending on the branching factor \cite{mmas}.
+\begin{equation}
+\tau_i' = \rho \tau_i + \sum \limits_{\forall ants} \delta t_i^k
+\end{equation}
+where
+\[
+\delta t_i^k =
+\left\{
+\begin{array}{ll}
+      \frac{1}{L^k(t)} & \textit{if i-th component is used by ant k at the iteration}\\
+      0 & \textit{otherwise} \\
+\end{array} 
+\right. 
+\]
+$L^k(t)$ - \textit{is the length of k-th ant tour}
+
+
+\begin{equation}
+\tau_j = (1-\rho) \times \tau_j, \forall j \in N
+\label{eq:mmas_evaporation}
+\end{equation}
+
+[pheromone trail smoothing]
+
+\item {\textbf{Rank-based Ant System} uses the notion of rank by depositing \cite{ras} to the pheromone trail the following value:
+$w_k \times F(s_k) = \frac{max(0,w-r)}{f(s_k)}$
+where: $w=|S^{upd}|$, r-solution rank in the current iteration
+}
+
+\item {\textbf{Elitist Ant System} - all solutions from the current iteration deposit pheromones as well as the global-best solution $s_{gb}$ deposits an amount $w_{gb} \times F(s_{gb}) = Q \times \frac{m_{elite}}{f(s_{gb})}$ \cite{eas}, where $m_{elite}$ is the multiplicative factor that increases the weight of $s_{gb}$ solution, $Q$ is the same multiplication factor from the standard AS.}
+
+\item {\textbf{Best-Worst Ant System} denotes that pheromone trail values are deposited to the solution components that constitute the global-best solution but also evaporation is applied to the components from the worst solution of the current iteration (which are in the global-best solution) \cite{bwas}}
+
+\end{enumerate}
+
+The pheromone update schedule allows to dynamically switch between different solution selections. For example, an ACO algorithm may start from ib and then converge to gb or rb. If one wants to start the problem solution process with exploratory behavior and end up with exploiting one, then it is possible to start solution process with ib-update and then switch to gb or ib updates at the later solution iterations. The update schedule has a major influence on the ACO algorithm performance, since it determines the balance between convergence and exploration traits of the algorithm in a global scale.
+
+
+
+\subsection{Initialization and reinitialization of pheromones}
+
+The solution selection algorithm plays a critical role in determining the ACO algorithm behavior. However, it is also important how one initializes and reinitializes the pheromones. Typically, for ACS and BWAS very small initial values are assigned in the beginning and large ones for MMAS. Small values stand for exploitative bias, whereas large stand for exploration one, because in the first case better solution components will rapidly gain pheromone values advantage over the rest ones, and in the second case the high values will oppose such fast convergence. Pheromone reinitialization in often applied in ACO algorithms since otherwise the run may converge rapidly. MMAS uses a notion of branching factor in such a way that when it falls below a certain value, all pheromone trails are reset to the initial pheromone trail value. BWAS resets whenever the distance between global-best and global-worst solution for a certain iteration plummets down lower than a predefined value.
+
+
+\subsection{Local pheromone update}
+For sake of making the behavior more exploratory one can apply \cite{coop_tsp} local pheromone update in ACS according to the formula:
+
+\begin{equation}
+\tau_j = (1 - \epsilon) \times \tau_j + \epsilon \times \tau_0 \ \ ,\forall \tau_j | c_j
+\label{eq:local_update}
+\end{equation}
+
+$\epsilon$ - update strength. $\tau_0$ - initial pheromone trail.
+
+This local evaporation is applied to solution components that are used by some ant and future ants will choose these components with smaller probability. Therefore, already explored components become less attractive. An important algorithmic detail is whether the algorithm will work sequentially or in parallel, since in parallel case ants will have to modify the pheromone trails simultaneously, whereas in sequential they have no such a problem. However it does not behave very efficiently with other ACO algorithms but ACS, because it relies on a strong gb-update and a lack of pheromone evaporation.
+
+\subsection{Pheromone trail limits}
+As it was said before, MMAS is based on restricting the pheromone values in a certain range. Parameter $p_{dec}$ is the probability that an ant chooses exactly the solution components that reproduce best solution found so far.
+
+\begin{equation}
+\tau_{min} = \frac{\tau_{max} \times (1 - \sqrt[n]{p_{dec}})}{n' \times \sqrt[n]{p_{dec}}} 
+\label{eq:mmas_tmin}
+\end{equation}
+
+where n' - is an estimation of the number of solution components available to each ant at each construction step (often corresponds to $\frac{n}{2}$). The $p_{dec}$ allows to estimate the reasonable values for $\tau_{min}$ according to formula \ref{eq:mmas_tmin}. This formula relies on two facts. First is that the best solutions are found shortly before search stagnation occurs. The second fact is that the relative difference between upper and lower pheromone trail limits has more influence on the solution construction than the relative differences of the heuristic information
+
+\subsection{Local search}
+Local search allows to significantly increase the obtained solutions quality for specific problems. It is based on small iterative solution changes obtained by applying a so-called neighborhood operator.
+
+\begin{itemize}
+\item \textbf{best-improvement} scans all the neighborhood and chooses the best solution.
+\item \textbf{first-improvement} takes the first found improving solution in the neighborhood.
+\end{itemize}
+
+In the general ACO algorithm this stage is optional. If it is fast and effective it may be used to all solutions at each iteration. In other cases applying it in iteration-best ants may be the optimal strategy. A neighborhood operator is always defined in a problem-specific way. More thoroughly this is explained in chapter 3.
+
+
 
 
 %------------------------------
 
-[ACOTSPQAP brief description] \newline
+[ACOTSPQAP brief description???] \newline
 
 \section{Iterated F-Race 5}
 
@@ -216,12 +425,20 @@ $\eta_c \in H$ - heuristic information (constant in time). \\
 
 [correct formulas below under the VRP definition in the future] \newline
 
+
 For the VRP, the \emph{nearest neighbor} heuristic can be used. The nearest neighbor heuristic starts from a random node $\pi_i$ with initial random $\pi=<\pi_1>$. At each step it selects the node with the minimal distance $d_{ij}$ to the current node and adds the corresponding next node $\pi_2=j$ components to the solution. The index of the next node at each step can be computed as following.\\
 
 \begin{equation}
 nextNode = \operatornamewithlimits{argmin} \limits_{j \in N, j \notin \pi} {(\pi_{ij})}
 \end{equation}
 
+[basically explain all blue components from the UML]
+
+[candidate list determining for VRP]
+
+[local search in VRP]
+
+[perturbation double-bridge]
 
 \chapter{Implementation 20-25}
 

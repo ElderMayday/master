@@ -1,11 +1,18 @@
 \contentsline {chapter}{\numberline {1}Introduction 4-5}{1}
-\contentsline {chapter}{\numberline {2}Background 20}{2}
-\contentsline {section}{\numberline {2.1}Combinatorial Optimization Problems and Constructive Heuristics 5}{2}
-\contentsline {section}{\numberline {2.2}Ant Colony Optimization 10}{3}
-\contentsline {subsection}{\numberline {2.2.1}Choice of pheromone trails and heuristic information}{4}
-\contentsline {section}{\numberline {2.3}Iterated F-Race 5}{4}
-\contentsline {chapter}{\numberline {3}Vehicle Routing Problem 5}{5}
-\contentsline {chapter}{\numberline {4}Implementation 20-25}{6}
-\contentsline {chapter}{\numberline {5}Experimental 20-25}{7}
-\contentsline {chapter}{\numberline {6}Conclusion 4-5}{8}
-\contentsline {section}{\numberline {6.1}Literature}{8}
+\contentsline {chapter}{\numberline {2}Background 20}{3}
+\contentsline {section}{\numberline {2.1}Combinatorial Optimization Problems and Constructive Heuristics 5}{3}
+\contentsline {section}{\numberline {2.2}Ant Colony Optimization 10}{4}
+\contentsline {subsection}{\numberline {2.2.1}Choice of pheromone trails and heuristic information}{5}
+\contentsline {subsection}{\numberline {2.2.2}Solution component choice}{5}
+\contentsline {subsection}{\numberline {2.2.3}Construction extensions}{6}
+\contentsline {subsection}{\numberline {2.2.4}Global pheromone update}{8}
+\contentsline {subsection}{\numberline {2.2.5}Initialization and reinitialization of pheromones}{10}
+\contentsline {subsection}{\numberline {2.2.6}Local pheromone update}{11}
+\contentsline {subsection}{\numberline {2.2.7}Pheromone trail limits}{11}
+\contentsline {subsection}{\numberline {2.2.8}Local search}{11}
+\contentsline {section}{\numberline {2.3}Iterated F-Race 5}{12}
+\contentsline {chapter}{\numberline {3}Vehicle Routing Problem 5}{13}
+\contentsline {chapter}{\numberline {4}Implementation 20-25}{14}
+\contentsline {chapter}{\numberline {5}Experimental 20-25}{15}
+\contentsline {chapter}{\numberline {6}Conclusion 4-5}{16}
+\contentsline {section}{\numberline {6.1}Literature}{16}
