@@ -6,10 +6,10 @@
 \contentsline {subsection}{\numberline {2.2.2}Solution component choice}{5}
 \contentsline {subsection}{\numberline {2.2.3}Construction extensions}{6}
 \contentsline {subsection}{\numberline {2.2.4}Global pheromone update}{8}
-\contentsline {subsection}{\numberline {2.2.5}Initialization and reinitialization of pheromones}{10}
+\contentsline {subsection}{\numberline {2.2.5}Initialization and reinitialization of pheromones}{11}
 \contentsline {subsection}{\numberline {2.2.6}Local pheromone update}{11}
 \contentsline {subsection}{\numberline {2.2.7}Pheromone trail limits}{11}
-\contentsline {subsection}{\numberline {2.2.8}Local search}{11}
+\contentsline {subsection}{\numberline {2.2.8}Local search}{12}
 \contentsline {section}{\numberline {2.3}Iterated F-Race 5}{12}
 \contentsline {chapter}{\numberline {3}Vehicle Routing Problem 5}{13}
 \contentsline {chapter}{\numberline {4}Implementation 20-25}{14}

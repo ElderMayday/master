@@ -332,7 +332,7 @@ For the mentioned update techniques several variants are possible: \\
 
 where $S^*$ is the best solution so far, and $\Delta t_j^* = 1/z^*$, $z^*$ is the cost of $S^*$.
 
-\item \textbf{Max-Min Ant System}. The pheromone values are updated by evaporating all pheromone trails according to \ref{eq:mmas_evaporation} with consequent deposit of $\Delta \tau = 1 / z$ to the solution components in global-best or iteration-best or reset-based solution, where $z$ is the cost of this solution. The amount of pheromones per component is bounded $\tau_i \in [\tau_{max};\tau_{min}]$. The update schedule switches between ib, gb and rb depending on the branching factor \cite{mmas}.
+\item \textbf{Max-Min Ant System}. The pheromone values are updated by evaporating all pheromone trails according to \ref{eq:mmas_evaporation} with consequent deposit of $\Delta \tau = 1 / z$ to the solution components in global-best or iteration-best or reset-based solution, where $z$ is the cost of this solution. The amount of pheromones per component is bounded $\tau_i \in [\tau_{max};\tau_{min}]$. The update schedule switches between ib, gb and rb depending on the value called branching factor \cite{STUTZLE2000889}.
 \begin{equation}
 \tau_i' = \rho \tau_i + \sum \limits_{\forall ants} \delta t_i^k
 \end{equation}
@@ -354,7 +354,25 @@ $L^k(t)$ - \textit{is the length of k-th ant tour}
 \label{eq:mmas_evaporation}
 \end{equation}
 
-[pheromone trail smoothing]
+A special \textit{pheromone trail smoothing} mechanism is often used hand in hand with MMAS update. It is a tool to oppose the effect of convergence, thus, it is useful for long runs that are excessively exploiting. It is applied in case, if fraction $\Omega$ (branching factor) of solution components, whose pheromone trail values surpass the computed threshold $\tau_t$, exceeds predefined fraction $\Omega'$. Higher $\Omega$ values correspond to higher grade of convergence. Computing of $\tau_t$ is shown in formula \ref{eq:pts_omega}.
+
+\begin{equation}
+\tau_t = \tau_{min} + (\tau_{max} - \tau_{min}) \times \lambda
+\label{eq:pts_omega}
+\end{equation}
+
+\textit{where $\tau_{min}$ - minimum pheromone trail border, $\tau_{max}$ - maximum pheromone trail border.  $\lambda$ - threshold determining factor in [0;1].}
+
+When applied, the value of each pheromone trail is increased according to formula \ref{eq:pts_increase}, and thus, exploration is boosted.
+
+\begin{equation}
+\tau^*_{ij} = \tau_{ij} + \delta \times (\tau_{max} - \tau_{ij})
+\label{eq:pts_increase}
+\end{equation}
+
+\textit{where $\delta$ - is elevation parameter in [0;1].}
+
+
 
 \item {\textbf{Rank-based Ant System} uses the notion of rank by depositing \cite{ras} to the pheromone trail the following value:
 $w_k \times F(s_k) = \frac{max(0,w-r)}{f(s_k)}$
@@ -396,7 +414,7 @@ As it was said before, MMAS is based on restricting the pheromone values in a ce
 \label{eq:mmas_tmin}
 \end{equation}
 
-where n' - is an estimation of the number of solution components available to each ant at each construction step (often corresponds to $\frac{n}{2}$). The $p_{dec}$ allows to estimate the reasonable values for $\tau_{min}$ according to formula \ref{eq:mmas_tmin}. This formula relies on two facts. First is that the best solutions are found shortly before search stagnation occurs. The second fact is that the relative difference between upper and lower pheromone trail limits has more influence on the solution construction than the relative differences of the heuristic information
+where n' - is an estimation of the number of solution components available to each ant at each construction step (often corresponds to $\frac{n}{2}$). The $p_{dec}$ allows to estimate the reasonable values for $\tau_{min}$ according to formula \ref{eq:mmas_tmin}. This formula relies on two facts. First is that the best solutions are found shortly before search stagnation occurs. The second fact is that the relative difference between upper and lower pheromone trail limits has more influence on the solution construction than the relative differences of the heuristic information.
 
 \subsection{Local search}
 Local search allows to significantly increase the obtained solutions quality for specific problems. It is based on small iterative solution changes obtained by applying a so-called neighborhood operator.
