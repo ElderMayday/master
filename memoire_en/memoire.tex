@@ -112,6 +112,9 @@ In the chapter 5, one can see the experimental set-up, tuning results and interp
 
 [TODO: Add more?] \newline
 
+[TODO: fix citing] \newline
+
+
 \chapter{Background 20}
 
 \section{Combinatorial Optimization Problems and Constructive Heuristics 5}
@@ -129,7 +132,11 @@ Combinatorial optimization problems (COPs) are a large class of mathematical opt
     }%
 }
 
-The problem formulation describes an abstract task (e.g. find the minimum spanning tree of some graph), while the instance of a problem describes a specific practical problem (e.g. find the minimum spanning tree of a given graph G). The objective function is the sum of the weights of the selected edges. \\
+The problem formulation describes an abstract task (e.g. find the minimum spanning tree of some graph), while the instance of a problem describes a specific practical problem (e.g. find the minimum spanning tree of a given graph G). The objective function is the sum of the weights of the selected edges. \par
+
+Any combination of solution components is called a candidate solution (not necessarily satisfying all problem constraints). Oppositely, solution is a candidate solution, that satisfies all problem constraints.
+
+Since solving of NP-hard problems by trying to find provably optimal solutions is unreasonable, one can apply heuristic algorithms, which more or less provide solutions with relatively good quality consuming reasonable quantity of resources (time/power, memory etc.). An important class of such heuristic algorithms are constructive heuristics. Constructive heuristics start with an empty or partially built solution, which is then being completed by iterative extension until a full solution is completed. Each of the iterations adds one or several solution components to the solution. For example, greedy constructive heuristics  add the best-ranked components by their heuristic values.
 
 [TSP and QAP description here, or not needed???] \newline
 
@@ -141,7 +148,7 @@ The problem formulation describes an abstract task (e.g. find the minimum spanni
 
 [rip-off the previous year paper, describe only those components that are used] \newline
 
-Since solving of such NP-hard problems by trying to find provably optimal solutions is unreasonable, one can apply heuristic algorithms, which more or less provide solutions with relatively good quality consuming reasonable quantity of resources (time/power, memory etc.). An important class of such heuristic algorithms are constructive heuristics. Constructive heuristics start with an empty or partially built solution, which is then being completed by iterative extension until a full solution is completed. Each of the iterations adds one or several solution components to the solution. For example, greedy constructive heuristics  add the best-ranked components by their heuristic values.
+
 
 ACO algorithms are a subclass of constructive heuristics. Meta-heuristic is a top-level heuristic, which is used to improve the performance of an underlying, basic heuristic. ACO is such a metaheuristic that can be used to improve the performance of a construction heuristic. One has to remark several necessary features of the ACO algorithms:
 
@@ -417,16 +424,41 @@ As it was said before, MMAS is based on restricting the pheromone values in a ce
 where n' - is an estimation of the number of solution components available to each ant at each construction step (often corresponds to $\frac{n}{2}$). The $p_{dec}$ allows to estimate the reasonable values for $\tau_{min}$ according to formula \ref{eq:mmas_tmin}. This formula relies on two facts. First is that the best solutions are found shortly before search stagnation occurs. The second fact is that the relative difference between upper and lower pheromone trail limits has more influence on the solution construction than the relative differences of the heuristic information.
 
 \subsection{Local search}
-Local search allows to significantly increase the obtained solutions quality for specific problems. It is based on small iterative solution changes obtained by applying a so-called neighborhood operator.
+Local search allows to significantly increase the obtained solutions quality for specific problems. It is based on small iterative solution changes obtained by applying a so-called neighborhood operator, followed by evaluation of the solutions. Generally there are two neighborhood scanning strategies:
 
 \begin{itemize}
 \item \textbf{best-improvement} scans all the neighborhood and chooses the best solution.
 \item \textbf{first-improvement} takes the first found improving solution in the neighborhood.
 \end{itemize}
 
-In the general ACO algorithm this stage is optional. If it is fast and effective it may be used to all solutions at each iteration. In other cases applying it in iteration-best ants may be the optimal strategy. A neighborhood operator is always defined in a problem-specific way. More thoroughly this is explained in chapter 3.
+
+In the general ACO algorithm this stage is optional. If it is fast and effective it may be used to all solutions at each iteration. It is not guaranteed to converge on an optimal solution, however, it may converge on a relatively good local optimum. In other cases applying it in iteration-best ants may be the optimal strategy. A neighborhood operator is always defined in a problem-specific way. More thoroughly this is explained in chapter 3.
+
+In many COPs it is possible to optimize computation of objective function value of a newly obtained solution, based on objective function value of an old solution. From feasibility point of view one can apply a local move and check whether this is a solution after. Another option is to define a neighborhood operator in such way, that all solution's neighbors are also feasible solutions.
+
+In many problem-depending cases perturbative search can be embedded into the local search heuristics. The aim of such mechanism is to allow escaping from local search space "peaks" which might be not as good as the others.
+
+One of the most efficient metaheuristics in local search domain is Iterated Local Search (ILS) \cite{STUTZLE2001ILS}. Usually it leads to much better solutions, than the ones obtained by repeated random trials. It uses custom components as local search procedure, perturbation procedure and acceptance criterion. The pseudo-code is shown in \ref{lst:iterated-local-search}.
 
 
+\begin{minipage}[c, breaklines=true]{0.95\textwidth}
+\begin{lstlisting}[caption={Iterated Local Search pseudo-code}, label={lst:iterated-local-search}, mathescape=true]
+procedure IteratedLocalSearch
+	$s_0$ = GenerateInitialSoluition()
+	$s^*$ = LocalSearch($s_0$)
+	repeat
+		$s^\prime$ = Perturbation($s^*$, history)
+		$s^{*\prime}$ = LocalSearch($s^\prime$)
+		$s^*$ = AcceptanceCriterion($s^*$, $s^{*\prime}$, history)
+	until TerminationCondition()
+end
+\end{lstlisting}
+\end{minipage}
+
+The simplest acceptance criteria is choice of a better solution, however one may want to use a probabilistic approach. It prevents   major perturbation moves, that do not effectively contribute to objective goal improving, and thus, attains good trade-off between exploration and intensification. History can be taken into account in this heuristics, so the whole procedure is in fact a "Markovian" process, which implies that further moves completely depend on the current state.
+
+
+[Illustration of local search. Allowed to copy-paste images???]
 
 
 %------------------------------
@@ -452,11 +484,19 @@ nextNode = \operatornamewithlimits{argmin} \limits_{j \in N, j \notin \pi} {(\pi
 
 [basically explain all blue components from the UML]
 
+[maintaining feasibility during the run]
+
 [candidate list determining for VRP]
+
+[preselecting in VRP]
 
 [local search in VRP]
 
 [perturbation double-bridge]
+
+
+
+
 
 \chapter{Implementation 20-25}
 
