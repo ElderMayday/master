@@ -29,6 +29,13 @@ breaklines=true,
 tabsize=2,
 framexleftmargin=15pt}
 
+% for images
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+
+% enables click hyperreferences
+\usepackage{hyperref}
+
 \parindent0em
 \parskip1.5ex
 
@@ -207,6 +214,7 @@ $\alpha$ and $\beta$ are parameters that determine the impact of the pheromone t
 
 \begin{equation}
 Pr(c_j)=\frac{\alpha \times \tau_j + (1-\alpha) \times \eta_j}{\sum \limits_{c_k \in N_i} \alpha \times \tau_k + (1-\alpha) \times \tau_k} \forall c_j \in N_i
+\label{eq:construction_maniezzo}
 \end{equation}
 
 Since it does not use exponentiation operations such choice rule is preferable for performance-targeted frameworks. However, this algorithm may cause undesired biases if the range of the values are not taken into account. The third alternative is invented by Dorigo and Gambardella \cite{dorigo} in Ant Colony System (ACS) algorithm. The rule of solution component choice in ACS is also called pseudo-random proportional rule. A random uniform value $q$ is generated in range $[0;1)$ and if $q>q_0$, where $q_0$ is a predefined parameter, then the probability of choosing $c_j$ is calculated according to formula \eqref{eq:construction_classic}. Otherwise, the solution component is picked as:
@@ -319,7 +327,7 @@ The following update selection techniques can be used:
 \end{enumerate}
 \end{enumerate}
 
-In the minimization case, typically one adds a value inversely proportional to a value of the solution quality function.
+In the minimization case, which is the case of VRP, typically one adds a value inversely proportional to a value of the solution quality function.
 
 \begin{equation}
 w_k \times F(s_k) = 1 / f(s_k)
@@ -467,7 +475,66 @@ The simplest acceptance criteria is choice of a better solution, however one may
 
 \section{Iterated F-Race 5}
 
-[description similar to the slides of I-RACE description] \newline
+Automatic configuration is a process that optimizes the performance of a certain algorithm as a goal function based on input parameters of the algorithm. The general parameter types are:
+ 
+\begin{itemize}
+\item \textbf{categorical} parameters - represent discrete values without any implicit order or distance measure between its possible values. Define the choice of constructive procedure, choice of branching strategies (i. e. algorithmic blocs) and so on.
+\item \textbf{ordinal} parameters - are also assigned to finite discrete values, but they have implicit value order (such as \emph{low, middle, high}). Define lower bounds, neighborhoods.
+\item \textbf{numerical} parameters - define integer or real values/constants such as weighting factors, population sizes.
+\end{itemize}
+
+Some of the parameters maybe subordinate to other ones. This means that their values only make sense if the parameters, that they subordinate to, are assigned to certain values. This can be expressed as a scalar value constraint (e.g $a < b$) or as a dependency on concrete values of some categorical or ordinal parameter. In addition, one can force constraints for several different parameters combined (even the ones of different type).
+
+\begin{figure}
+  \centering
+    \includegraphics[scale=0.7]{configuration-top-level.png}
+  \caption{Automatic configuration scheme}
+  \label{fig:autoconf}
+\end{figure}
+
+Figure \ref{fig:autoconf} shows the configuration software and software to configure. Configuration script has parameter metadata at its disposal. Based on them, the configuration software runs the software to configure with candidate configurations according to some algorithm. After the configuration process finishes, the configuration software renders the best configurations obtained. In the most general software case there are two measures of the performance - solution quality (to maximize) and computation time (to minimize). This general approach is called an offline tuning. It introduces a learning stage on training instances before learning on the real-world instance set.
+
+
+A widely used configuration algorithmic family is racing algorithms. The simplified algorithm is shown in \ref{lst:racing} and an illustration is in \ref{fig:irace}.
+
+
+\begin{minipage}[c, breaklines=true]{0.95\textwidth}
+\begin{lstlisting}[caption={General racing pseudo-code}, label={lst:racing}]
+procedure racing
+start with an initial candidate set Theta
+repeat iterations I
+	process an instance stream
+	evaluate the candidates sequentially
+	remove inferior candidates
+until winner is selected or exit condition fulfilled
+end
+\end{lstlisting}
+\end{minipage}
+
+
+\begin{figure}
+  \centering
+    \includegraphics{irace.jpg}
+  \caption{I-RACE execution illustration}
+  \label{fig:irace}
+\end{figure}
+
+
+I-RACE (iterated race) configuration implementation was developed and described in \cite{iraceaac}. It was implemented in R with taking into account the parallel programming techniques and an initial candidate set-up. It is implemented as an offline tuning. That means, that the tuning is a separate preparatory process from the actual real-world problem application. The feature of the I-RACE is based on iterated generation of new configurations and removing of solutions with lower quality for further evaluating on the problem instances.
+
+In order to tune the configurations that are sampled, I-RACE algorithms uses independent sampling distributions for each of the parameters. For numeric values those are normal distributions and discretely-defined distributions for the rest. The configuration biasing procedure is based on modifying the sampling distributions.
+
+Iterated racing is an automatic configuration implementation that consists of three steps:
+
+\begin{itemize}
+\item Sampling new configurations according to a particular distribution.
+\item Selecting the best configurations from the newly sampled ones by means of racing.
+\item Updating the sampling distribution in order to bias the sampling towards the best configurations.
+\end{itemize}
+
+After new configurations are sampled comes the selection stage. At the configuration selection stage, I-RACE runs each of the configurations on a single problem instance from the predefined instance set. After each racing iteration the worst configurations are discarded. Then the rest of the configurations update parameter sampling distributions. The racing stops when the number of the survived configurations becomes small enough (defined by termination criteria).
+
+Some I-RACE extensions can be applied. \textbf{Initial configurations} can be set before the run of the I-RACE. \textbf{Soft-restart} is used for preventing premature convergence. Such convergence may suppresses configuration diversity and, therefore some good configurations may be lost. This restart is triggered if the value of an ad hoc function of configuration distance is lower than a certain margin. Then reinitialization is applied to the elite configurations.
 
 
 \chapter{Vehicle Routing Problem 5}
@@ -475,20 +542,92 @@ The simplest acceptance criteria is choice of a better solution, however one may
 
 [correct formulas below under the VRP definition in the future] \newline
 
+\section{Problem definition}
 
-For the VRP, the \emph{nearest neighbor} heuristic can be used. The nearest neighbor heuristic starts from a random node $\pi_i$ with initial random $\pi=<\pi_1>$. At each step it selects the node with the minimal distance $d_{ij}$ to the current node and adds the corresponding next node $\pi_2=j$ components to the solution. The index of the next node at each step can be computed as following.\\
+As a basis for VRP formulation variation we use the Classical Vehicle Routing Problem \cite{CORDEAU2007367}. However minor generalizations are actually implemented in the framework above the given formulation. \par
+
+VRP is defined on a complete undirected graph $G=(V,E)$. A set of nodes $V=\{0,1,...,n\}$ is a union of all customer nodes $V\setminus\{0\}$ and a depot node $0$. Distance (a.k.a. travel cost or length or time) $c_e$ or $c_{ij}$ is assigned to each edge $e \in E = \{(i,j): i,j \in V, i<j\}$. Vehicle fleet is represented by $m$ identical vehicles, having a capacity $Q$ and total distance limit $L$.
+
+Constraints are defined as follows:
+\begin{enumerate}
+\item Each customer is only visited by exactly one vehicle.
+\item Each route starts and ends at the depot.
+\item Total demand, that any vehicle provides does not exceed the capacity $Q$.
+\item Total distance, that any vehicle passes on route does not exceed the limit L. 
+\end{enumerate}
+
+A proposed problem formulation is given below.
+
+The decision variables $x_e$ are presented by an integer variable for each edge $e \in E$.
+
+Let $r(S)$ be the minimum number of vehicles needed to serve the customers $S \subseteq V\setminus\{0\}, S \neq \emptyset$.
+
+Let $\delta(S)=\{(i,j):i \in S, j \notin \textit{S or i} \notin S, j \in S\}$
+
+Then we have a following integer linear programming problem:
 
 \begin{equation}
-nextNode = \operatornamewithlimits{argmin} \limits_{j \in N, j \notin \pi} {(\pi_{ij})}
+\label{eq:cvrp_obj}
+minimize {\sum\limits_{e \in E} c_ex_e} 
 \end{equation}
+
+\begin{equation}
+\label{eq:cvrp_constr1}
+{\sum\limits_{e \in \delta(i)} x_e = 2}, i \in V\setminus\{0\}
+\end{equation}
+
+\begin{equation}
+\label{eq:cvrp_constr2}
+{\sum\limits_{e \in \delta(0)} x_e = 2m},
+\end{equation}
+
+\begin{equation}
+\label{eq:cvrp_constr3}
+{\sum\limits_{e \in \delta(s)} x_e \geq 2r(S)},
+\end{equation}
+
+\begin{equation}
+\label{eq:cvrp_constr4}
+x_e \in \{0,1\}, e \notin \delta(0)
+\end{equation}
+
+\begin{equation}
+\label{eq:cvrp_constr5}
+x_e \in \{0,1,2\}, e \in \delta(0)
+\end{equation}
+
+
+However in addition to this definition one can apply several soothing generalizations:
+
+\begin{enumerate}
+\item \textbf{Non-symmetric matrix} can be considered, i.e. moving an edge one-way may have a different cost from moving backwards.
+\item \textbf{Non-homogeneous vehicle fleet}. Every vehicle has its own maximum capacity and maximum distance.
+\item A particular \textbf{vehicle may lack of maximum distance restriction}. In other words, maximum distance can be set to infinity.
+\item \textbf{Open/closed problem variations can be also generalized}. Open VRP is a VRP variation, where a vehicle does not have to return to the depot. Closed is a variation, where it must return to the depot in any case. Generalization can be done at matrix definition step by setting all edges leaving from a customer to the depot to 0 in case of opened. On contrary, in closed VRP they are set to their actual travel cost.
+\end{enumerate}
+
+
+[tell about nearest neighbor heuristics, or not worthy?] \newline
+
+\section{Candidate list}
+
+Candidate list can severely boost performance. Similarly to TSP, \textbf{cl nearest neighbors} candidate lists can be used. For sake of optimization, these lists are computed once in the beginning of metaheuristcs execution and exploited during whole the run. Such a candidate list must be determined separately for every node.
+
+During the preselection phase, the algorithm will examine the candidate list for the current node in the first place. In case if none of those will satisfy constraints (capacity, distance, already visited constraints), only then the nodes outside of the candidate list will be considered.
 
 [basically explain all blue components from the UML]
 
-[maintaining feasibility during the run]
+\section{Heuristic values}
 
-[candidate list determining for VRP]
+In VRP and TSP, one typically uses the inverted value of the distance between two nodes as the heuristics value, see \ref{eq:vrp_heuristic_value}. Thus, the selection phase will bias the tour edge towards shorter ones.
 
-[preselecting in VRP]
+\begin{equation}
+\label{eq:vrp_heuristic_value}
+\eta_{edge} = 1 / c_{edge}
+\end{equation}
+
+\section{Local search}
+
 
 [local search in VRP]
 
@@ -501,6 +640,38 @@ nextNode = \operatornamewithlimits{argmin} \limits_{j \in N, j \notin \pi} {(\pi
 \chapter{Implementation 20-25}
 
 [framework class-level description, no class diagram due to large size (however no descriptions for every class method. it's not a documentation)] \newline
+
+[problem feasibility precheck]
+
+
+\section{Preselection stage}
+
+Generally in ACO optimization heuristics there are two ways of maintaining solution feasibility. First is two ensure solution \textbf{feasibility at every moment} of the run. Second is to \textbf{allow processing unfeasible solutions}, however trying to bias towards the components, that keep or likely to keep the solution feasible. Second is good for solving problems with complicated constraints that require a lot of computations in order to keep them feasible. In VRP however, we have decided to use the first approach. This will allow to avoid unnecessary construction of solutions, that are expected to be unfeasible beforehand. \par
+
+Before applying selectors according to formulas \ref{eq:construction_classic}, \ref{eq:construction_maniezzo} or \ref{eq:construction_dorigo} one has to determine the possible solution components at the current construction step. Proposed preselection algorithm is shown in \ref{lst:preselection}. It selects all constraint non-violating edges. Among such constraints there are non-revisiting, not going to itself, not going to the depot edges. Out of those several are filtered out, such as the ones, who violate capacity constraint and distance constraint. In particular, we ensure condition $leftDistance >= dist(current;N) + dist(N;depot)$, since it does not make to go by a certain edge, if it will not be possible even to return to the depot from it. Neither it will be possible to return to the depot by going any farther from that node, which is ensured by triangle inequality property, that works in all VRP instances, that are based on Euclidean space. In case if none such node is found, then the vehicle returns directly to the depot from the current node.
+
+In case if a candidate list is used, then the initial set is populated from this list, and the constraints are applied after.
+
+\begin{minipage}[c, breaklines=true]{0.95\textwidth}
+\begin{lstlisting}[caption={Solution component preselection pseudo-code}, label={lst:preselection}]
+procedure preselection(currentNode)
+	foreach non-visited non-loop non-depot-leading node N
+		if leftCapacity >= demand(N)
+			if leftDistance >= dist(current;N) + dist(N;depot)
+				add component(current;N) to resultSet
+			end
+		end
+	end
+	
+	if size(resultSet) == 0
+		add component (current;depot) to result set
+	end
+		
+	return resultSet
+end
+\end{lstlisting}
+\end{minipage}
+
 
 [mention the back-bone classes that provide generality and maintaining of VRP instance generality] \newline 
 
