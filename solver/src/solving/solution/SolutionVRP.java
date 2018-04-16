@@ -22,7 +22,7 @@ public class SolutionVRP extends Solution
     public List<Component2d> components2d;      // Chosen components2d candidates (while constructing and reconstructing, use the corresponding methods)
     protected ProblemVRP problemVRP;            // The problem this solving belongs to
 
-    protected boolean[] visited;                // Flag array of whether the corresponding custumer has been visited
+    protected boolean[] visited;                // Flag array of whether the corresponding customer has been visited
     protected int visitedNum;                   // Number of visited customers (except depot) max = N - 1
 
     protected List<Tour> tours;                 // Every tour of the solution
@@ -150,7 +150,7 @@ public class SolutionVRP extends Solution
      * - Must prune empty tours if finished with them
      * REQUIREMENTS!!
      * - currentTour must be correctly set by the ProblemVRP while pre-selecting
-     * - currentCustomerId must be correcly set by the ProblemVRP (corresponding to the currentTour last customer or to the depotId
+     * - currentCustomerId must be correctly set by the ProblemVRP (corresponding to the currentTour last customer or to the depotId
      * @param component
      */
     @SuppressWarnings("Since15")

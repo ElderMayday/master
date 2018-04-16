@@ -22,7 +22,9 @@ public class SolverCunningAnts extends Solver
     protected SolutionDestroyer destroyer;
 
 
-    public SolverCunningAnts(Problem problem, Selector selector, LocalUpdate localUpdate, boolean precomputeValues, TerminationCriteria terminationCriteria, PheromoneInitializerConstant initializer, LocalSearch localSearch, MinMaxAntSystem globalUpdate, int antNum, SolutionDestroyer destroyer)
+    public SolverCunningAnts(Problem problem, Selector selector, LocalUpdate localUpdate, boolean precomputeValues,
+                             TerminationCriteria terminationCriteria, PheromoneInitializerConstant initializer,
+                             LocalSearch localSearch, MinMaxAntSystem globalUpdate, int antNum, SolutionDestroyer destroyer)
     {
         super(problem, selector, antNum, globalUpdate, localUpdate, localSearch, precomputeValues, terminationCriteria, initializer);
 

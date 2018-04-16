@@ -33,7 +33,7 @@ public class MinMaxAntSystem extends GlobalUpdate
     {
         super(problem, evaporationRemains);
 
-        int problemSize = problem.ProblemSize(); // aka-n, aka vertex number
+        int problemSize = problem.problemSize(); // aka-n, aka vertex number
         tMaxCoefficient = 1.0 / this.evaporationStrength;
         tMinCoefficient = (1.0 - Math.pow(pBest, 1.0 / problemSize)) / ((problemSize / 2.0 - 1.0) * Math.pow(pBest, 1.0 / problemSize));
 

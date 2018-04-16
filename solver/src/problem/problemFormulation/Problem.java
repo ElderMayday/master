@@ -74,7 +74,7 @@ public abstract class Problem
      * Required for MMAS
      * @return
      */
-    public abstract int ProblemSize();
+    public abstract int problemSize();
 
 
     protected abstract void readDataFromFile(File file) throws Exception;

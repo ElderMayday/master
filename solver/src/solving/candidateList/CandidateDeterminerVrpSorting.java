@@ -41,7 +41,7 @@ public class CandidateDeterminerVrpSorting extends CandidateDeterminer
             ProblemVRP problemVRP = (ProblemVRP) problem;
             ComponentStructure2d structure2d = problemVRP.structure2d;
             int depotId = problemVRP.getDepotId();
-            int numberOfCandidatesDesired = (int) (problem.ProblemSize() * ratioOfCandidatesDesired);
+            int numberOfCandidatesDesired = (int) (problem.problemSize() * ratioOfCandidatesDesired);
 
             for (int row = 0; row < problemVRP.getVertexNum(); row++)
             {

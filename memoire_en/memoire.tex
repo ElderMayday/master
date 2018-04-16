@@ -36,6 +36,11 @@ framexleftmargin=15pt}
 % enables click hyperreferences
 \usepackage{hyperref}
 
+% for multiple images on a row
+\usepackage{multicol}
+\usepackage{lipsum}
+\usepackage{mwe}
+
 \parindent0em
 \parskip1.5ex
 
@@ -396,7 +401,9 @@ where: $w=|S^{upd}|$, r-solution rank in the current iteration
 
 \item {\textbf{Elitist Ant System} - all solutions from the current iteration deposit pheromones as well as the global-best solution $s_{gb}$ deposits an amount $w_{gb} \times F(s_{gb}) = Q \times \frac{m_{elite}}{f(s_{gb})}$ \cite{eas}, where $m_{elite}$ is the multiplicative factor that increases the weight of $s_{gb}$ solution, $Q$ is the same multiplication factor from the standard AS.}
 
-\item {\textbf{Best-Worst Ant System} denotes that pheromone trail values are deposited to the solution components that constitute the global-best solution but also evaporation is applied to the components from the worst solution of the current iteration (which are in the global-best solution) \cite{bwas}}
+\item \textbf{Best-Worst Ant System} denotes that pheromone trail values are deposited to the solution components that constitute the global-best solution but also evaporation is applied to the components from the worst solution of the current iteration (which are in the global-best solution) \cite{bwas}
+
+[explain mutation]
 
 \end{enumerate}
 
@@ -606,6 +613,11 @@ However in addition to this definition one can apply several soothing generaliza
 \item \textbf{Open/closed problem variations can be also generalized}. Open VRP is a VRP variation, where a vehicle does not have to return to the depot. Closed is a variation, where it must return to the depot in any case. Generalization can be done at matrix definition step by setting all edges leaving from a customer to the depot to 0 in case of opened. On contrary, in closed VRP they are set to their actual travel cost.
 \end{enumerate}
 
+Two general feasibility constraints can be verified in advance before solving a problem instance. Firstly, one can check whether total demand of all customers is not larger than total supply of all vehicles in case of limited fleet. Secondly, one can check that maximum demand of a single customer does not exceed maximum supply of a vehicle fleet, since this customer will never be satisfied, due to the fact, that only one vehicle can supply a customer.
+
+The problem size parameter, that is required for MMAS, is equal to the number of nodes, i.e. all customers plus one depot.
+
+In case of limited non-homogeneous vehicle fleet, the results strongly depend on order of vehicle departure. We propose to emit vehicles in order of their decreasing capacities. By this we try to maximize number of customers visited by a single vehicle and remove redundant long-distance travels over zones, where customers were already satisfied.
 
 [tell about nearest neighbor heuristics, or not worthy?] \newline
 
@@ -628,12 +640,46 @@ In VRP and TSP, one typically uses the inverted value of the distance between tw
 
 \section{Local search}
 
+Two local search variations are proposed - 2.5-opt move \cite{Stattenberger2007} and Iterated Local Search, that uses underlying 2.5-opt move. 
 
-[local search in VRP]
+2.5-opt move illustrtions are shown in \ref{fig:twohalf}, \ref{fig:twohalf1}, \ref{fig:twohalf2}, \ref{fig:twohalf3}. In 2.5-opt move, a replacable edge $(y1;y2)$ is chosen, and swapped with another sequence of edges, consisting from one up to three customers, denoted by $(x2)$, $(x2,x3)$ or $(x2,x3,x4)$ on the illustrations.
 
-[perturbation double-bridge]
+The whole local search procedure consists of sequential attempts of such local moves by trying all possible position combinations of the replacable edge and the replacing ones. The length of the replacing sequence is defined by a random number generator. The local move is applied if it is computed that it will benefit to the solution objective function. However, if local move was applied, one does not reset the position combinations of the loop, but continue with the current progress.
+
+In order to accelerate computation of the objective function value one may simply distract the distance of the edges, that are removed and add distance of the edges, that are added. Thus, we avoid full tour recomputation. If during the full attempt cycle one applied the local move at least one time, then the whole attempt cycle is repeated. Otherwise, it means that we have converged to a local optimum and we keep the current solution.
+
+\begin{multicols}{2}
+\begin{figure*}[ht!]
+\includegraphics[width=.3\textwidth]{two-half/two-half.jpg}\hfill
+\includegraphics[width=.3\textwidth]{two-half/two-half-1.jpg}\hfill
+
+\includegraphics[width=.3\textwidth]{two-half/two-half-2.jpg}\hfill
+\includegraphics[width=.3\textwidth]{two-half/two-half-3.jpg}
+\caption{Initial tour} \label{fig:twohalf}
+\caption{Result of swapping with 1 node} \label{fig:twohalf1}
+\caption{Result of swapping with 2 nodes} \label{fig:twohalf2}
+\caption{Result of swapping with 3 nodes} \label{fig:twohalf3}
+\end{figure*}
+\end{multicols}
+
+[Add pseudo-code???]
+
+For ILS in case of VRP problems, one can implement perturbation as double-bridge move, see \ref{fig:dbridge1} and \ref{fig:dbridge2}.
 
 
+\begin{multicols}{2}
+\begin{figure*}[ht!]
+\includegraphics[width=.3\textwidth]{double-bridge/1.jpg}\hfill
+\includegraphics[width=.3\textwidth]{double-bridge/2.jpg}
+\caption{Tour before perturbation} \label{fig:dbridge1}
+\caption{Tour after applying double-bridge perturbation} \label{fig:dbridge2}
+\end{figure*}
+\end{multicols}
+
+
+\section{Solution destruction}
+
+Solution destruction is a procedure, that is necessary to implement for iterated greedy extensions. A whole range of diverse algorithms can be proposed here only being limited by fantasy. We implemented it as the following stochastic procedure: every tour of a certain solution with certain probability is a subject to slicing. Slicing means that a random number of final solution components are removed. At the same moment, the corresponding quantity of length-capacity and supply-capacity is compensated to the vehicle of the sliced tour, so refinishing of the tour can be done. Objective function is also modified to the actual progress. Still, the initial "parent" objective function value has to be backed-up, in order to be able to compare partially destroyed solutions in External memory during tournament selection process.
 
 
 
@@ -641,7 +687,70 @@ In VRP and TSP, one typically uses the inverted value of the distance between tw
 
 [framework class-level description, no class diagram due to large size (however no descriptions for every class method. it's not a documentation)] \newline
 
-[problem feasibility precheck]
+
+\section{Software design}
+
+The software framework is implemented in Java 1.8.0 in correspondence with object-oriented programming paradigm. Besides VRP, many other combinatorial optimization problems are also anticipated to be solved by means of this framework. This framework remains highly flexible and adaptive in terms of problem variations. This is attained by design patterns and deep abstraction of the framework components. Large application of abstractions ensures minor code-repetition, being ready for some algorithm modifications. Dependency injection ensures, that high-level abstraction do not determine the low-level details themselves. Instead, they only receive these dependencies as arguments. This also allows to resort to white-box unit testing of some software components.
+
+All classes are strictly grouped in two parts. The first part is \textbf{problem independent} classes. Those are:
+
+\begin{itemize}
+\item \textbf{Solver} - abstract class, that encapsulates high-level metaheuristics, that aim to solve abstract combinatorial optimization problems. It is the central class in the framework. It also contains all shared lower-level algorithmic components, such as problem instance itself, solution component selector, termination criteria, local search, pheromone initializer, local and global update strategies. Basic abstract operations are already implemented in this class such as constructing one abstract solution of an abstract problem.
+
+\item \textbf{SolverStandard} - metaheuristcs without any iterated greedy or other extensions.
+
+\item \textbf{SolverIteratedAnts} - metaheuristics with iterated ants as iterated greedy extension. Also holds an IteratedCriteria.
+
+\item \textbf{IteratedCriteria} - an algorithm that gives preference to either one solution or another. Is used in SolverIteratedAnts. Can be either deterministic or probabilistic.
+
+\item \textbf{SolverExternalMemory} - metaheuristics with iterated ants as iterated greedy extension. Also contains TournamentSelector.
+
+\item \textbf{TournamentSelector} - a procedure used in SolverExternalMemory, that selects certain number of solutions from a given set according to tournament selection rule.
+
+\item \textbf{SolverCunningAnts} - metaheuristics with cunning ants as iterated greedy extension. Is is also obliged to use MMAS as global update strategy.
+
+\item \textbf{Problem} - is an encapsulation of an abstract problem. It contains general problem components as CandidateDeterminer, ComponentSructure and a flag whether it is maximizing or minimizing problem.
+
+\item \textbf{Component} - encapsulated an abstract problem solution component. Allows computation of its selection weight. Performs caching of selection weight, so it gets rid of redundant recomputations.
+
+\item \textbf{ComponentStructure} - contains the solution components in an unspecified data structure (matrix in case of VRP).
+
+\item \textbf{Parser} - abstract problem instance parsing. Depends on the problem type. Also a problem instance may have different formats of representation.
+
+\item \textbf{CandidateDeterminer} - generates abstract problem-specific CandidateList.
+
+\item \textbf{CandidateList} - abstract problem-specific candidate list. Is computed once before the run.
+
+\item \textbf{Solution} - encapsulates an abstract problem-independent solution of an abstract problem. It must have an objective function value, that is update during the construction run according to the problem formulation. It also must have a procedure of obtaining a solution component set, that are available at the current construction step. Also deep copying method must be implemented, since it is widely used by solvers and local search strategies.
+
+\item \textbf{GlobalUpdate} - abstract global pheromone update strategy. Includes standard evaporation method, since it is shared by most of the global updates.
+
+\item \textbf{AntSystem}, \textbf{AntColonySystem}, \textbf{MinMaxAntSystem}, \textbf{RankBasedAntSystem}, \textbf{ElitistAntSystem}, \textbf{BestWorthAntSystem} - correspond to the respective global update strategies. MMAS in addition contains PheromoneTrailSmoothing.
+
+\item \textbf{PheromoneTrailSmoothing} is used bu MMAS. It is an optional step.
+
+\item \textbf{LocalUpdate} optional argument in general case and mandatory in case of choosing AntColonyOptimization as a global update strategy.
+
+\item \textbf{LocalSearch} can be either a direct local search implementation or an IteratedLocalSearch, that uses an abstract Move dependency.
+
+\item \textbf{IteratedLocalSearch} performs an iterated local search. Depends on Perturbation and Move strategy.
+
+\item \textbf{Move} full convergence local move, that is used by ILS.
+
+\item \textbf{Selector} ...
+
+
+\end{itemize}
+
+The second part is \textbf{problem dependent} classes. These classes may be easily substituted by the others, thus switching the framework application. It is only necessary to determine certain low-level methods for them, such as determining of possible solution components, problem-specific local searches and solution destroyers, determining solution component candidate lists. Those are:
+
+\begin{itemize}
+\item lala
+\end{itemize}
+
+[Tell about SOLID patterns??? Or it is too detailed???]
+
+[Class diagram is too large to add here. Put in appendix?]
 
 
 \section{Preselection stage}
@@ -673,7 +782,6 @@ end
 \end{minipage}
 
 
-[mention the back-bone classes that provide generality and maintaining of VRP instance generality] \newline 
 
 [framework parameters space] \newline
 
@@ -693,7 +801,13 @@ end
 
 \chapter{Conclusion 4-5}
 
+[We planned ...]
 
+[We implemeted ...]
+
+[We analyzed ...]
+
+[It will be very useful for such domains as ...]
 
 
 \section{Literature}

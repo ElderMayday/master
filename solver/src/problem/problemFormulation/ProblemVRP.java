@@ -58,7 +58,7 @@ public class ProblemVRP extends Problem2d
     }
 
     @Override
-    public int ProblemSize()
+    public int problemSize()
     {
         return vertexNum;
     }
