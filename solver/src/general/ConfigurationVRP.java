@@ -767,6 +767,16 @@ public class ConfigurationVRP extends Configuration
                 continue;
             }
 
+            if (args[i].equals("--output"))
+            {
+                if (this.outputPath != null)
+                    throw new IllegalArgumentException("Redefinition of destruction-probability is not allowed");
+
+                this.outputPath = args[i + 1];
+                i += 2;
+                continue;
+            }
+
             if (args[i].startsWith("--end"))
                 break;
 

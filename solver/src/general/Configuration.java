@@ -65,6 +65,8 @@ public class Configuration
 
     public double destructionProbability = -1.0;
 
+    public String outputPath = null;
+
     /**
      * Checks the consistency of the read configuration and throws an exception if found
      */

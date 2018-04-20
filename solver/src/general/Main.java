@@ -39,6 +39,9 @@ import solving.terminationCriteria.TerminationCriteria;
 import solving.terminationCriteria.TerminationCriteriaTime;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -86,6 +89,8 @@ public class Main
 
             Solution best = Solution.findBestSolution(solutions);
 
+            outputSolution(best, conf.outputPath);
+
             long stopTime = System.currentTimeMillis();
             long elapsedTime = stopTime - startTime;
 
@@ -97,6 +102,17 @@ public class Main
             e.printStackTrace();
         }
     }
+
+    public static void outputSolution(Solution solution, String outputPath) throws FileNotFoundException, UnsupportedEncodingException
+    {
+        if (outputPath != null)
+        {
+            PrintWriter writer = new PrintWriter(outputPath, "UTF-8");
+            writer.println(solution.toString());
+            writer.close();
+        }
+    }
+
 
     public static Solver getSolver(Configuration conf, Problem problem, Selector selector, GlobalUpdate globalUpdate,
                                    LocalUpdate localUpdate, LocalSearch localSearch)
