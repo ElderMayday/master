@@ -866,9 +866,6 @@ public class ConfigurationVRP extends Configuration
         if (this.antNum == -1)
             throw new IllegalArgumentException("antNum must be specified");
 
-        if (this.runtime == -1)
-            throw new IllegalArgumentException("runtime must be specified");
-
         if (reinitialization == 1)
             if (reinitializationTime == -1)
                 throw new IllegalArgumentException("reinitializationTime must be specified");

@@ -119,7 +119,12 @@ public class Main
     {
         Solver solver = null;
 
-        TerminationCriteria terminationCriteria = new TerminationCriteriaTime(conf.runtime, conf.reinitializationTime, conf.reinitialization == 1);
+        TerminationCriteria terminationCriteria = null;
+        if (conf.runtime != -1)
+            terminationCriteria = new TerminationCriteriaTime(conf.runtime, conf.reinitializationTime, conf.reinitialization == 1);
+        else
+            terminationCriteria = new TerminationCriteriaTime(problem.problemSize() * 500, conf.reinitializationTime, conf.reinitialization == 1);
+
         PheromoneInitializerConstant pheromoneInitializer = new PheromoneInitializerConstant(10.0);
         SolutionDestroyer solutionDestroyer = null;
 
