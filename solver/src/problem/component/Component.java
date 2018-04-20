@@ -9,6 +9,7 @@ public class Component
     protected static double alpha = 1.0;
     protected static double beta = 1.0;
 
+
     /**
      * Sets alpha and beta selection parameters. IMPORTANT!!! After calling this, the old component re-computation should be called manually if existed
      * @param alpha
@@ -32,20 +33,20 @@ public class Component
 
 
     protected double heuristic;                   // H-value
+    protected double heuristicPow;                // H^beta
     protected double pheromone;                   // T-value
     protected double value;                       // t^alpha x h^beta value (if has been precomputed)
     protected boolean isPrecomputed;              // true if the current <value> corresponds to the value of t^alpha x h^beta
 
     public Component(double heuristic, double pheromone)
     {
-        this.heuristic = heuristic;
-        this.pheromone = pheromone;
-        this.isPrecomputed = false;
+        setPheromone(pheromone);
+        setHeuristic(heuristic);
     }
 
     public void precompute()
     {
-        this.value = Math.pow(pheromone, alpha) * Math.pow(heuristic, beta);    // 0^0 = 1 in java (just to remember)
+        this.value = Math.pow(pheromone, alpha) * heuristicPow;    // 0^0 = 1 in java (just to remember)
         this.isPrecomputed = true;
     }
 
@@ -70,6 +71,7 @@ public class Component
     {
         this.isPrecomputed = false;
         this.heuristic = heuristic;
+        this.heuristicPow = Math.pow(heuristic, beta);
     }
 
     public double getValue()
