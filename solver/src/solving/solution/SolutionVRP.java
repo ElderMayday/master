@@ -177,11 +177,11 @@ public class SolutionVRP extends Solution
             throw new Exception("New component does not proceed the current tour");
 
         currentCustomerId = component2d.getColumn();
+        currentTour.getCustomers().add(component2d.getColumn());
 
         if (currentCustomerId != problemVRP.getDepotId())
         {
             visitedNum++;
-            currentTour.getCustomers().add(component2d.getColumn());
 
             if (visited[currentCustomerId])
                 throw new Exception("Vehicle has revisited a customer");
@@ -205,7 +205,6 @@ public class SolutionVRP extends Solution
             {
                 isComplete = true;
                 isPartiallyDestroyed = false;
-                currentTour.getCustomers().add(problemVRP.getDepotId());
                 currentTour = null;
                 recomputeObjective();
 

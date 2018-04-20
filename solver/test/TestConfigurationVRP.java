@@ -36,7 +36,7 @@ public class TestConfigurationVRP
         assertEquals(conf.rasBounded, 2);
         assertEquals(conf.rasK, 1.78, 0.01);
         assertEquals(conf.reinitialization, 1);
-        assertEquals(conf.reinitializationTime, 797);
+        assertEquals(conf.reinitializationTime, 797.0, 0.01);
     }
 
     @Test
@@ -356,7 +356,7 @@ public class TestConfigurationVRP
         assertEquals(conf.rasBounded, 1);
         assertEquals(conf.rasK, 1.78, 0.01);
         assertEquals(conf.reinitialization, 1);
-        assertEquals(conf.reinitializationTime, 797);
+        assertEquals(conf.reinitializationTime, 797.0, 0.01);
     }
 
     @Test
