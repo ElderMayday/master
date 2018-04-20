@@ -19,7 +19,6 @@ global_update			"--"					c	(ant-s,ant-colony-s,min-max-s,rank-based-ant-s,elitis
 local_update			"--"					c	(local-update-yes,local-update-no) | selector %in% c("selector-standard","selector-dorigo")
 iterated_greedy			"--"					c	(standard,external-memory,iterated-ants,cunning-ants)
 ant_num					"--ant-num "			i	(1,50)
-runtime					"--runtime "			c	(1000)
 #
 #
 # PROPOSITION - PERFORM PRECOMPUTATION ALWAYS OR TO SEPARATEDLY STORE H^BETA
@@ -100,7 +99,7 @@ bwas_mutation_probability	"--bwas-mutation-probability "	r	(0.0,1.0)	|	global_up
 # Pheromone initialization/retinitalization
 #
 reinitialization			"--"					c	(reinitialization-yes,reinitialization-no)
-reinitialization_time		"--reinitialization-time "	i	(300,5000)	| reinitialization == "reinitialization-yes"
+reinitialization_time		"--reinitialization-time "	i	(0.01,0.2)	| reinitialization == "reinitialization-yes"
 #
 # Nothing in standard and cunning ants heuristics
 #

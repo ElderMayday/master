@@ -119,11 +119,14 @@ public class Main
     {
         Solver solver = null;
 
+        // if --runtime is not specified, then it is derived as problemSize / 2 seconds
+        // and reinitializationTime is a factor to define reinitialization time from computed runtime
+
         TerminationCriteria terminationCriteria = null;
         if (conf.runtime != -1)
-            terminationCriteria = new TerminationCriteriaTime(conf.runtime, conf.reinitializationTime, conf.reinitialization == 1);
+            terminationCriteria = new TerminationCriteriaTime(conf.runtime, (long) conf.reinitializationTime, conf.reinitialization == 1);
         else
-            terminationCriteria = new TerminationCriteriaTime(problem.problemSize() * 500, conf.reinitializationTime, conf.reinitialization == 1);
+            terminationCriteria = new TerminationCriteriaTime(problem.problemSize() * 500, (long) (problem.problemSize() * 500 * conf.reinitializationTime), conf.reinitialization == 1);
 
         PheromoneInitializerConstant pheromoneInitializer = new PheromoneInitializerConstant(10.0);
         SolutionDestroyer solutionDestroyer = null;

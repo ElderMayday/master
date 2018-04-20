@@ -54,7 +54,7 @@ public class Configuration
     public double bwasProbability = -1.0;
 
     public int reinitialization = -1;
-    public int reinitializationTime = -1;
+    public double reinitializationTime = -1;
 
     public int topK = -1;
     public int memorySize = -1;

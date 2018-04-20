@@ -668,7 +668,7 @@ public class ConfigurationVRP extends Configuration
                 if (this.reinitialization != 1)
                     throw new IllegalArgumentException("reinitialization-time cannot be specified without reinitialization-yes");
 
-                this.reinitializationTime = Integer.parseInt(args[i + 1]);
+                this.reinitializationTime = Double.parseDouble(args[i + 1]);
                 i += 2;
                 continue;
             }
@@ -867,7 +867,7 @@ public class ConfigurationVRP extends Configuration
             throw new IllegalArgumentException("antNum must be specified");
 
         if (reinitialization == 1)
-            if (reinitializationTime == -1)
+            if (reinitializationTime < 0.0)
                 throw new IllegalArgumentException("reinitializationTime must be specified");
     }
 
