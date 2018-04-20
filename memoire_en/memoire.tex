@@ -113,6 +113,7 @@ the disastrous effects of a siege.}''
 
 Some species show an extreme degree of social organization. Such species (e.g. ants) have pheromone production and detection body parts and therefore seize an ability to communicate between each other in an indirect way. This concept has inspired the development of algorithms, which are based on the social behavior of the ant colonies called ant colony optimization algorithms. These algorithms allow to solve NP-hard problems in a very efficient manner. These algorithms are considered to be metaheuristics. The development of an ACO framework is the next step of formalizing this area. Such a framework can then be used as a tool to help resolving various optimization problems. This report gives a brief overview of the current state of the ACO research area, existing framework description and some tools which can be used for the automatic configuration of the framework.
 
+[Explain what is done]
 
 In the chapter 2, we describe the theoretical foundations of the framework, that is required to develop. However unreasonable selection of a running configuration may lead to producing of low-quality results even after a long runtime execution. A simple decision is to perform certain configuration tuning before the actual executing. This chapter also introduces an efficient configuration software, that allows to obtain high-performing configurations for further framework exploiting.
 
@@ -150,7 +151,7 @@ Any combination of solution components is called a candidate solution (not neces
 
 Since solving of NP-hard problems by trying to find provably optimal solutions is unreasonable, one can apply heuristic algorithms, which more or less provide solutions with relatively good quality consuming reasonable quantity of resources (time/power, memory etc.). An important class of such heuristic algorithms are constructive heuristics. Constructive heuristics start with an empty or partially built solution, which is then being completed by iterative extension until a full solution is completed. Each of the iterations adds one or several solution components to the solution. For example, greedy constructive heuristics  add the best-ranked components by their heuristic values.
 
-[TSP and QAP description here, or not needed???] \newline
+[TSP brief explanation in terms of VRP] \newline
 
 
 
@@ -160,7 +161,7 @@ Since solving of NP-hard problems by trying to find provably optimal solutions i
 
 [rip-off the previous year paper, describe only those components that are used] \newline
 
-
+[Add what was added, e.g. PTS and tournament selection]
 
 ACO algorithms are a subclass of constructive heuristics. Meta-heuristic is a top-level heuristic, which is used to improve the performance of an underlying, basic heuristic. ACO is such a metaheuristic that can be used to improve the performance of a construction heuristic. One has to remark several necessary features of the ACO algorithms:
 
@@ -451,6 +452,8 @@ In the general ACO algorithm this stage is optional. If it is fast and effective
 
 In many COPs it is possible to optimize computation of objective function value of a newly obtained solution, based on objective function value of an old solution. From feasibility point of view one can apply a local move and check whether this is a solution after. Another option is to define a neighborhood operator in such way, that all solution's neighbors are also feasible solutions.
 
+[Add neighborhood description]
+
 In many problem-depending cases perturbative search can be embedded into the local search heuristics. The aim of such mechanism is to allow escaping from local search space "peaks" which might be not as good as the others.
 
 One of the most efficient metaheuristics in local search domain is Iterated Local Search (ILS) \cite{STUTZLE2001ILS}. Usually it leads to much better solutions, than the ones obtained by repeated random trials. It uses custom components as local search procedure, perturbation procedure and acceptance criterion. The pseudo-code is shown in \ref{lst:iterated-local-search}.
@@ -473,12 +476,10 @@ end
 The simplest acceptance criteria is choice of a better solution, however one may want to use a probabilistic approach. It prevents   major perturbation moves, that do not effectively contribute to objective goal improving, and thus, attains good trade-off between exploration and intensification. History can be taken into account in this heuristics, so the whole procedure is in fact a "Markovian" process, which implies that further moves completely depend on the current state.
 
 
-[Illustration of local search. Allowed to copy-paste images???]
-
 
 %------------------------------
 
-[ACOTSPQAP brief description???] \newline
+[ACOTSPQAP Mention] \newline
 
 \section{Iterated F-Race 5}
 
@@ -619,8 +620,6 @@ The problem size parameter, that is required for MMAS, is equal to the number of
 
 In case of limited non-homogeneous vehicle fleet, the results strongly depend on order of vehicle departure. We propose to emit vehicles in order of their decreasing capacities. By this we try to maximize number of customers visited by a single vehicle and remove redundant long-distance travels over zones, where customers were already satisfied.
 
-[tell about nearest neighbor heuristics, or not worthy?] \newline
-
 \section{Candidate list}
 
 Candidate list can severely boost performance. Similarly to TSP, \textbf{cl nearest neighbors} candidate lists can be used. For sake of optimization, these lists are computed once in the beginning of metaheuristcs execution and exploited during whole the run. Such a candidate list must be determined separately for every node.
@@ -690,7 +689,9 @@ Solution destruction is a procedure, that is necessary to implement for iterated
 
 \section{Software design}
 
-The software framework is implemented in Java 1.8.0 in correspondence with object-oriented programming paradigm. Besides VRP, many other combinatorial optimization problems are also anticipated to be solved by means of this framework. This framework remains highly flexible and adaptive in terms of problem variations. This is attained by design patterns and deep abstraction of the framework components. Large application of abstractions ensures minor code-repetition, being ready for some algorithm modifications. Dependency injection ensures, that high-level abstraction do not determine the low-level details themselves. Instead, they only receive these dependencies as arguments. This also allows to resort to white-box unit testing of some software components.
+The software framework is implemented in Java 1.8.0 in correspondence with object-oriented programming paradigm. Besides VRP, many other combinatorial optimization problems are also anticipated to be solved by means of this framework. This framework remains highly flexible and adaptive in terms of problem variations. This is attained by design patterns and deep abstraction of the framework components. Large application of abstractions ensures minor code-repetition, being ready for some algorithm modifications. Dependency injection concept ensures, that high-level abstraction do not determine the low-level details themselves. Instead, they only receive these dependencies as arguments. This also allows to resort to white-box unit testing of some software components.
+
+
 
 All classes are strictly grouped in two parts. The first part is \textbf{problem independent} classes. Those are:
 
@@ -715,8 +716,6 @@ All classes are strictly grouped in two parts. The first part is \textbf{problem
 
 \item \textbf{ComponentStructure} - contains the solution components in an unspecified data structure (matrix in case of VRP).
 
-\item \textbf{Parser} - abstract problem instance parsing. Depends on the problem type. Also a problem instance may have different formats of representation.
-
 \item \textbf{CandidateDeterminer} - generates abstract problem-specific CandidateList.
 
 \item \textbf{CandidateList} - abstract problem-specific candidate list. Is computed once before the run.
@@ -727,30 +726,47 @@ All classes are strictly grouped in two parts. The first part is \textbf{problem
 
 \item \textbf{AntSystem}, \textbf{AntColonySystem}, \textbf{MinMaxAntSystem}, \textbf{RankBasedAntSystem}, \textbf{ElitistAntSystem}, \textbf{BestWorthAntSystem} - correspond to the respective global update strategies. MMAS in addition contains PheromoneTrailSmoothing.
 
-\item \textbf{PheromoneTrailSmoothing} is used bu MMAS. It is an optional step.
+\item \textbf{PheromoneTrailSmoothing} - is used bu MMAS. It is an optional step.
 
-\item \textbf{LocalUpdate} optional argument in general case and mandatory in case of choosing AntColonyOptimization as a global update strategy.
+\item \textbf{LocalUpdate} - optional argument in general case and mandatory in case of choosing AntColonyOptimization as a global update strategy.
 
-\item \textbf{LocalSearch} can be either a direct local search implementation or an IteratedLocalSearch, that uses an abstract Move dependency.
+\item \textbf{LocalSearch} - can be either a direct local search implementation or an IteratedLocalSearch, that uses an abstract Move dependency.
 
-\item \textbf{IteratedLocalSearch} performs an iterated local search. Depends on Perturbation and Move strategy.
+\item \textbf{IteratedLocalSearch} - performs an iterated local search. Depends on Perturbation and Move strategy.
 
-\item \textbf{Move} full convergence local move, that is used by ILS.
+\item \textbf{Move} - full convergence local move, that is used by ILS.
 
-\item \textbf{Selector} ...
+\item \textbf{Selector} - an abstract stochastic algorithm that selects a solution component out of a set of components according to some stochastic rule, by taking into consideration pheromone trail values and heuristic values of these components.
 
+\item \textbf{TerminationCriteria} - an abstract solver termination criteria. Implemented as time criteria and number of iterations criteria for unit testing.
+
+\item \textbf{PheromoneInitializer} - an abstract strategy that initialized/reinitializes pheromone trail values for a whole ComponentStructure. Normally implemented as a stochastic operation.
 
 \end{itemize}
 
-The second part is \textbf{problem dependent} classes. These classes may be easily substituted by the others, thus switching the framework application. It is only necessary to determine certain low-level methods for them, such as determining of possible solution components, problem-specific local searches and solution destroyers, determining solution component candidate lists. Those are:
+The second part is \textbf{problem dependent} classes. These classes may be easily substituted by the others, thus switching the framework application. It is only necessary to determine certain low-level methods for them, such as determining of possible solution components, problem-specific local searches and solution destroyers, determining solution component candidate lists , etc. Those are:
 
 \begin{itemize}
-\item lala
+\item \textbf{Problem2d} - extends Problem class. Encapsulates a problem, that has a two-dimensional matrix organization of its solution components.
+
+\item \textbf{ProblemVRP} - encapsulates a VRP problem instance.
+
+\item \textbf{ComponentStucture2d} - a ComponentStructure implementation for Problem2d. Implemented as dense matrix of solution components and sparse matrix of solution components by means of hash table. The latter allows to have some memory consumption gain, however it cannot be used specifically for VRP problem, due its dense definition of solution components.
+
+\item \textbf{ParserVRP} - VRP problem instance parsing. May have many implementations, since one problem type may have many formats of representation.
+
+[Put rest here]
+
 \end{itemize}
+
+
+
+Design patterns are widely used during development process. One of the most used patterns here are "Strategy", "Command" and "Template method", due to having a various range of algorithms on different levels, that adhere to some common structure. All concrete implementation in the program entry point are inferred from the program arguments and are created by means of many "Factory methods" in the \textbf{Main} class. "Prototype" pattern is used for \textbf{Solution} class and its sub-classes in order to be able to clone solutions one from another as it is required by some algorithms. "Iterator" is used for vehicle fleet for obtaining a sequence of vehicles, that build a solution in order of their emission.
+
 
 [Tell about SOLID patterns??? Or it is too detailed???]
 
-[Class diagram is too large to add here. Put in appendix?]
+[Add GitHub Link with class diagram to Appendix]
 
 
 \section{Preselection stage}
@@ -782,15 +798,21 @@ end
 \end{minipage}
 
 
+[All blue classes decisions here] \newline
 
-[framework parameters space] \newline
 
-[mention unit testing???] \newline
+[framework parameters space, names MUST CORRESPOND TO PUBLIC ARRANGEMENTS] \newline
 
+All parameter constraints are checked on two levels. Firstly, i-race scenario is set in such way, that it will only generate valid configurations by means of conditional parameters and specification of forbidden configurations. Secondly, configuration is wholly scanned in the framework itself, not only by checking valid parameter bounds, but also by verifying consistency between several parameters. In case of inconsistency, the framework returns a verbal exception response with error description.
+
+Thorough unit and integrated testing is done in order to validate performance of the framework. Several auxiliary problem instances are used in order to simulate very specific artificial situations. Both white-box and black-box methodologies are used depending on a test case. For white-box mock objects are used to test specific method calls/returns by tested objects. This is done by using Mockito framework in combination with JUnit library. Random seed forcing is used to switch execution behavior
+from pseudo-random to deterministic, thus ensuring a concrete scenario.
 
 \chapter{Experimental 20-25}
 
-[public samples description, some publicly know plots] \newline
+[public samples description, some publicly know plots - YES, mention web-site] \newline
+
+[randomness of results even with same seed] \newline
 
 [configuration of i-race] \newline
 
