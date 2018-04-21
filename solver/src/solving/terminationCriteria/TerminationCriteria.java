@@ -32,4 +32,7 @@ public abstract class TerminationCriteria
      * @return
      */
     public abstract double mutationBwasFactor();
+
+
+    public abstract double elapsed();
 }

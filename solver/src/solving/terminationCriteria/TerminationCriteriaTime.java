@@ -70,4 +70,10 @@ public class TerminationCriteriaTime extends TerminationCriteria
     {
         return (System.currentTimeMillis() - tLastReinitialization) / (tEndExpected - tLastReinitialization + 0.0001); // 0.0001 allows to prevent 0-division
     }
+
+    @Override
+    public double elapsed()
+    {
+        return (System.currentTimeMillis() - tStart) * 0.001;
+    }
 }

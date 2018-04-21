@@ -43,4 +43,10 @@ public class TerminationCriteriaCounter extends TerminationCriteria
     {
         return 1.0;
     }
+
+    @Override
+    public double elapsed()
+    {
+        return 0;
+    }
 }

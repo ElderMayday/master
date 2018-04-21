@@ -85,7 +85,7 @@ public class SolverExternalMemory extends Solver
             destroyer.destroy(segments.get(index));
 
         List<Solution> solutions = new ArrayList<Solution>();
-
+        
         do
         {
             List<Solution> selectedSolutions = tournamentSelector.select(segments, antNum);
@@ -116,7 +116,7 @@ public class SolverExternalMemory extends Solver
 
             segments.sort(new ComparatorSolutionLast());
 
-            segments = segments.subList(0, memorySize);
+            segments = trimList(segments, memorySize);
 
             if (terminationCriteria.needReinitialize())
                 initializer.initialize(problem.structure);
@@ -124,5 +124,16 @@ public class SolverExternalMemory extends Solver
         while (!terminationCriteria.isFulfilled());
 
         return solutions;
+    }
+
+
+    protected List<Solution> trimList(List<Solution> segments, int memorySize)
+    {
+        List<Solution> result = new ArrayList<Solution>();
+
+        for (int i = 0; i < memorySize; i++)
+            result.add(segments.get(i));
+
+        return result;
     }
 }

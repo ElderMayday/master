@@ -8,8 +8,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1ecf803f-2efb-433b-b808-048082cc77ed" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solver/src/solving/solution/SolutionVRP.java" afterPath="$PROJECT_DIR$/solver/src/solving/solution/SolutionVRP.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solver/test/TestConfigurationVRP.java" afterPath="$PROJECT_DIR$/solver/test/TestConfigurationVRP.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solver/src/solving/solvers/SolverExternalMemory.java" afterPath="$PROJECT_DIR$/solver/src/solving/solvers/SolverExternalMemory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solver/src/solving/solvers/SolverIteratedAnts.java" afterPath="$PROJECT_DIR$/solver/src/solving/solvers/SolverIteratedAnts.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solver/src/solving/terminationCriteria/TerminationCriteria.java" afterPath="$PROJECT_DIR$/solver/src/solving/terminationCriteria/TerminationCriteria.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solver/src/solving/terminationCriteria/TerminationCriteriaCounter.java" afterPath="$PROJECT_DIR$/solver/src/solving/terminationCriteria/TerminationCriteriaCounter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solver/src/solving/terminationCriteria/TerminationCriteriaTime.java" afterPath="$PROJECT_DIR$/solver/src/solving/terminationCriteria/TerminationCriteriaTime.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,62 +30,48 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Component.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/solver/src/problem/component/Component.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="980">
-              <caret line="49" column="20" lean-forward="false" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConfigurationVRP.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/solver/src/general/ConfigurationVRP.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13400">
-              <caret line="670" column="26" lean-forward="false" selection-start-line="670" selection-start-column="21" selection-end-line="670" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Solver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/Solver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+            <state relative-caret-position="100">
+              <caret line="27" column="25" lean-forward="false" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SolutionVRP.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/solver/src/solving/solution/SolutionVRP.java">
+      <file leaf-file-name="TerminationCriteria.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/solver/src/solving/terminationCriteria/TerminationCriteria.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="553">
-              <caret line="206" column="45" lean-forward="false" selection-start-line="206" selection-start-column="45" selection-end-line="206" selection-end-column="45" />
+            <state relative-caret-position="526">
+              <caret line="36" column="37" lean-forward="false" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SolverCunningAnts.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverCunningAnts.java">
+      <file leaf-file-name="TerminationCriteriaCounter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/solver/src/solving/terminationCriteria/TerminationCriteriaCounter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="26" column="75" lean-forward="false" selection-start-line="26" selection-start-column="75" selection-end-line="26" selection-end-column="75" />
-              <folding />
+            <state relative-caret-position="646">
+              <caret line="49" column="8" lean-forward="false" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="17" />
+              <folding>
+                <element signature="e#759#760#0" expanded="true" />
+                <element signature="e#783#784#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SolverStandard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverStandard.java">
+      <file leaf-file-name="TerminationCriteriaTime.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/solver/src/solving/terminationCriteria/TerminationCriteriaTime.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="24" column="29" lean-forward="false" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
-              <folding />
+            <state relative-caret-position="492">
+              <caret line="76" column="61" lean-forward="false" selection-start-line="76" selection-start-column="61" selection-end-line="76" selection-end-column="61" />
+              <folding>
+                <element signature="e#2256#2257#0" expanded="true" />
+                <element signature="e#2324#2325#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -90,8 +79,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/solver/src/general/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="97" column="126" lean-forward="false" selection-start-line="97" selection-start-column="126" selection-end-line="97" selection-end-column="126" />
+            <state relative-caret-position="432">
+              <caret line="97" column="70" lean-forward="false" selection-start-line="97" selection-start-column="31" selection-end-line="97" selection-end-column="70" />
               <folding>
                 <element signature="method#getCandidateDeterminer#0;class#Main#0" expanded="false" />
                 <element signature="method#getSelector#0;class#Main#0" expanded="false" />
@@ -102,32 +91,57 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ArrayList.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/util/ArrayList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="260" column="0" lean-forward="false" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tour.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/solver/src/solving/solution/Tour.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="SolverIteratedAnts.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverIteratedAnts.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="8" />
+            <state relative-caret-position="366">
+              <caret line="49" column="42" lean-forward="false" selection-start-line="49" selection-start-column="42" selection-end-line="49" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestConfigurationVRP.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/solver/test/TestConfigurationVRP.java">
+      <file leaf-file-name="SolverExternalMemory.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverExternalMemory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1687">
-              <caret line="358" column="59" lean-forward="false" selection-start-line="358" selection-start-column="59" selection-end-line="358" selection-end-column="59" />
-              <folding />
+            <state relative-caret-position="166">
+              <caret line="87" column="8" lean-forward="false" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+              <folding>
+                <element signature="e#3083#3093#0" expanded="true" />
+                <element signature="e#4569#4579#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Configuration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/solver/src/general/Configuration.java">
+      <file leaf-file-name="TournamentSelectorBag.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/tournamentSelector/TournamentSelectorBag.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1120">
-              <caret line="56" column="17" lean-forward="false" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
-              <folding />
+            <state relative-caret-position="-96">
+              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding>
+                <element signature="e#632#642#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -177,7 +191,6 @@
         <option value="$PROJECT_DIR$/solver/test/TestCandidateDeterminer.java" />
         <option value="$PROJECT_DIR$/solver/src/problem/problemFormulation/MinMaxResult.java" />
         <option value="$PROJECT_DIR$/solver/src/problem/problemFormulation/Problem2d.java" />
-        <option value="$PROJECT_DIR$/solver/src/solving/solvers/SolverExternalMemory.java" />
         <option value="$PROJECT_DIR$/solver/src/solving/solvers/Solver.java" />
         <option value="$PROJECT_DIR$/solver/test/solvers/TestSolverStandard.java" />
         <option value="$PROJECT_DIR$/solver/test/TestDoubleBridge.java" />
@@ -204,10 +217,14 @@
         <option value="$PROJECT_DIR$/solver/src/problem/component/Component.java" />
         <option value="$PROJECT_DIR$/solver/src/general/Configuration.java" />
         <option value="$PROJECT_DIR$/solver/src/general/ConfigurationVRP.java" />
-        <option value="$PROJECT_DIR$/solver/src/solving/solvers/SolverIteratedAnts.java" />
         <option value="$PROJECT_DIR$/solver/test/TestConfigurationVRP.java" />
         <option value="$PROJECT_DIR$/solver/src/general/Main.java" />
         <option value="$PROJECT_DIR$/solver/src/solving/solution/SolutionVRP.java" />
+        <option value="$PROJECT_DIR$/solver/src/solving/terminationCriteria/TerminationCriteria.java" />
+        <option value="$PROJECT_DIR$/solver/src/solving/terminationCriteria/TerminationCriteriaCounter.java" />
+        <option value="$PROJECT_DIR$/solver/src/solving/terminationCriteria/TerminationCriteriaTime.java" />
+        <option value="$PROJECT_DIR$/solver/src/solving/solvers/SolverIteratedAnts.java" />
+        <option value="$PROJECT_DIR$/solver/src/solving/solvers/SolverExternalMemory.java" />
       </list>
     </option>
   </component>
@@ -239,6 +256,8 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -427,8 +446,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -754,7 +771,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="general.Main" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="3 1 1831529381 D:\\master\\irace\\instances\\X-n101-k25.vrp.txt --selector-standard --alpha 4.53 --beta 1.35 --candidate-yes --candidate-ratio 0.15 --min-max-s --local-update-no --iterated-ants --ant-num 35 --local-search-none --evaporation-remains 0.52 --min-max-s-p-best 0.39 --min-max-s-global-best-no --min-max-s-pts-yes --min-max-s-pts-iterations 13 --pts-lambda 0.32 --pts-ratio 0.28 --pts-delta 0.21 --reinitialization-yes --reinitialization-time 0.2 --iterated-criteria-probabilistic --probabilistic-best 0.17 --destruction-probability 0.37 --end" />
+      <option name="PROGRAM_PARAMETERS" value="3 24 627607104 D:\master\irace\instances\X-n209-k16.vrp.txt --selector-maniezzo --alpha 0.17 --candidate-yes --candidate-ratio  0.72 --rank-based-ant-s --external-memory --ant-num 38 --local-search-ils-twohalf --ils-iterations 30 --evaporation-remains 0.21 --ras-w 30 --ras-bounded-yes --ras-k 5.16 --reinitialization-yes --reinitialization-time 0.14 --top-k 1 --memory-size 24 --tournament-selector-size 4 --destruction-probability 0.38 --end" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
@@ -851,7 +868,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -863,18 +880,18 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5025707" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.410498" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36473754" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24357326" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19987147" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55450875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5397039" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -890,7 +907,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="143" />
+      <option name="time" value="150" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
@@ -903,70 +920,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/solutionDestroyer/SolutionDestroyerVrpByTour.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="18" column="39" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/solutionDestroyer/SolutionDestroyerVrpFixed.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/tournamentSelector/TournamentSelectorBag.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="38" column="32" lean-forward="false" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#455#456#0" expanded="false" />
-            <element signature="e#493#494#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/solutionDestroyer/SolutionDestroyerVrpRandom.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/iteratedCriteria/IteratedCriteria.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverExternalMemory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/tournamentSelector/TournamentSelector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/problem/problemFormulation/ProblemVRP.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="21" column="1" lean-forward="false" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/solver/src/problem/problemFormulation/Problem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -1158,9 +1111,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1175,9 +1125,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="30" column="5" lean-forward="false" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1195,7 +1142,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
           <caret line="28" column="1" lean-forward="false" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1215,10 +1161,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverStandard.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/lang/NumberFormatException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="24" column="29" lean-forward="false" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+        <state relative-caret-position="188">
+          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solver/src/general/ConfigurationVRP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13400">
+          <caret line="670" column="26" lean-forward="false" selection-start-line="670" selection-start-column="21" selection-end-line="670" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/solution/SolutionVRP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2573">
+          <caret line="193" column="0" lean-forward="false" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1231,10 +1192,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/lang/NumberFormatException.java">
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverStandard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+        <state relative-caret-position="300">
+          <caret line="24" column="29" lean-forward="false" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solver/test/TestConfigurationVRP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7100">
+          <caret line="358" column="59" lean-forward="false" selection-start-line="358" selection-start-column="59" selection-end-line="358" selection-end-column="59" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1246,34 +1216,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/general/ConfigurationVRP.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13400">
-          <caret line="670" column="26" lean-forward="false" selection-start-line="670" selection-start-column="21" selection-end-line="670" selection-end-column="26" />
+        <state relative-caret-position="136">
+          <caret line="260" column="0" lean-forward="false" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/solution/Tour.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/Solver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+        <state relative-caret-position="100">
+          <caret line="27" column="25" lean-forward="false" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/solver/test/TestConfigurationVRP.java">
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/terminationCriteria/TerminationCriteria.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1687">
-          <caret line="358" column="59" lean-forward="false" selection-start-line="358" selection-start-column="59" selection-end-line="358" selection-end-column="59" />
+        <state relative-caret-position="526">
+          <caret line="36" column="37" lean-forward="false" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/terminationCriteria/TerminationCriteriaCounter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="49" column="8" lean-forward="false" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="17" />
+          <folding>
+            <element signature="e#759#760#0" expanded="true" />
+            <element signature="e#783#784#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/terminationCriteria/TerminationCriteriaTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="76" column="61" lean-forward="false" selection-start-line="76" selection-start-column="61" selection-end-line="76" selection-end-column="61" />
+          <folding>
+            <element signature="e#2256#2257#0" expanded="true" />
+            <element signature="e#2324#2325#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/solver/src/general/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="97" column="126" lean-forward="false" selection-start-line="97" selection-start-column="126" selection-end-line="97" selection-end-column="126" />
+        <state relative-caret-position="432">
+          <caret line="97" column="70" lean-forward="false" selection-start-line="97" selection-start-column="31" selection-end-line="97" selection-end-column="70" />
           <folding>
             <element signature="method#getCandidateDeterminer#0;class#Main#0" expanded="false" />
             <element signature="method#getSelector#0;class#Main#0" expanded="false" />
@@ -1283,19 +1283,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverIteratedAnts.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/util/Arrays.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="8" />
+        <state relative-caret-position="136">
+          <caret line="3180" column="0" lean-forward="false" selection-start-line="3180" selection-start-column="0" selection-end-line="3180" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/solution/SolutionVRP.java">
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/tournamentSelector/TournamentSelectorBag.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="206" column="45" lean-forward="false" selection-start-line="206" selection-start-column="45" selection-end-line="206" selection-end-column="45" />
+        <state relative-caret-position="-96">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#632#642#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverIteratedAnts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="49" column="42" lean-forward="false" selection-start-line="49" selection-start-column="42" selection-end-line="49" selection-end-column="42" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverExternalMemory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="87" column="8" lean-forward="false" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+          <folding>
+            <element signature="e#3083#3093#0" expanded="true" />
+            <element signature="e#4569#4579#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
