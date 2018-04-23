@@ -1,5 +1,5 @@
-\BOOKMARK [0][-]{chapter.1}{Introduction 4-5}{}% 1
-\BOOKMARK [0][-]{chapter.2}{Background 20}{}% 2
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Background}{}% 2
 \BOOKMARK [1][-]{section.2.1}{Combinatorial Optimization Problems and Constructive Heuristics 5}{chapter.2}% 3
 \BOOKMARK [1][-]{section.2.2}{Ant Colony Optimization 10}{chapter.2}% 4
 \BOOKMARK [2][-]{subsection.2.2.1}{Choice of pheromone trails and heuristic information}{section.2.2}% 5
@@ -11,15 +11,18 @@
 \BOOKMARK [2][-]{subsection.2.2.7}{Pheromone trail limits}{section.2.2}% 11
 \BOOKMARK [2][-]{subsection.2.2.8}{Local search}{section.2.2}% 12
 \BOOKMARK [1][-]{section.2.3}{Iterated F-Race 5}{chapter.2}% 13
-\BOOKMARK [0][-]{chapter.3}{Vehicle Routing Problem 5}{}% 14
+\BOOKMARK [0][-]{chapter.3}{Vehicle Routing Problem}{}% 14
 \BOOKMARK [1][-]{section.3.1}{Problem definition}{chapter.3}% 15
 \BOOKMARK [1][-]{section.3.2}{Candidate list}{chapter.3}% 16
 \BOOKMARK [1][-]{section.3.3}{Heuristic values}{chapter.3}% 17
 \BOOKMARK [1][-]{section.3.4}{Local search}{chapter.3}% 18
 \BOOKMARK [1][-]{section.3.5}{Solution destruction}{chapter.3}% 19
-\BOOKMARK [0][-]{chapter.4}{Implementation 20-25}{}% 20
+\BOOKMARK [0][-]{chapter.4}{Implementation}{}% 20
 \BOOKMARK [1][-]{section.4.1}{Software design}{chapter.4}% 21
 \BOOKMARK [1][-]{section.4.2}{Preselection stage}{chapter.4}% 22
-\BOOKMARK [0][-]{chapter.5}{Experimental 20-25}{}% 23
-\BOOKMARK [0][-]{chapter.6}{Conclusion 4-5}{}% 24
-\BOOKMARK [1][-]{section.6.1}{Literature}{chapter.6}% 25
+\BOOKMARK [1][-]{section.4.3}{Configuration process set-up}{chapter.4}% 23
+\BOOKMARK [1][-]{section.4.4}{Testing}{chapter.4}% 24
+\BOOKMARK [0][-]{chapter.5}{Experimental}{}% 25
+\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 26
+\BOOKMARK [0][-]{chapter.7}{Literature}{}% 27
+\BOOKMARK [0][-]{appendix*.3}{Appendix}{}% 28

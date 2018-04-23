@@ -110,11 +110,15 @@ the disastrous effects of a siege.}''
 \setcounter{page}{0}
 \tableofcontents
 \mainmatter 
-\chapter{Introduction 4-5}
+\chapter{Introduction}
 \setcounter{page}{1}
 \vspace*{0.5cm}
 
-Some species show an extreme degree of social organization. Such species (e.g. ants) have pheromone production and detection body parts and therefore seize an ability to communicate between each other in an indirect way. This concept has inspired the development of algorithms, which are based on the social behavior of the ant colonies called ant colony optimization algorithms. These algorithms allow to solve NP-hard problems in a very efficient manner. These algorithms are considered to be metaheuristics. The development of an ACO framework is the next step of formalizing this area. Such a framework can then be used as a tool to help resolving various optimization problems. This report gives a brief overview of the current state of the ACO research area, existing framework description and some tools which can be used for the automatic configuration of the framework.
+Some species show an extreme degree of social organization. Such species (e.g. ants) have pheromone production and detection body parts and therefore seize an ability to communicate between each other in an indirect way. This concept has inspired the development of algorithms, which are based on the social behavior of the ant colonies called ant colony optimization algorithms. These algorithms allow to solve NP-hard problems in a very efficient manner. These algorithms are considered to be metaheuristics.
+
+At the moment, there exists a state-of-the-art software called ACOTSPQAP. As the name says, it is designed to solve Traveling Salesman Problem and Quadratic Assignment Problems with high-efficiency by means of ACO meta-heuristics. It also includes different algorithm variations as AS, EAS, MMAS, RAS, BWAS, ACS. As for the implementation, it is written in C and, therefore, it adheres to structural programming paradigm. Although switching to a different problem type context is still possible, it is nonetheless more costly than if it is was written in an objective oriented language.
+
+The development of a flexible ACO framework is the next step of formalizing this area. Such a framework can then be used as a tool to help resolving various optimization problems. This report gives a brief overview of the current state of the ACO research area, existing framework description and some tools which can be used for the automatic configuration of the framework.
 
 [Explain what is done]
 
@@ -131,7 +135,7 @@ In the chapter 5, one can see the experimental set-up, tuning results and interp
 [TODO: fix citing] \newline
 
 
-\chapter{Background 20}
+\chapter{Background}
 
 \section{Combinatorial Optimization Problems and Constructive Heuristics 5}
 
@@ -158,10 +162,6 @@ Since solving of NP-hard problems by trying to find provably optimal solutions i
 
 
 \section{Ant Colony Optimization 10}
-
-[rip-off the previous year paper, describe only those components that are used] \newline
-
-[Add what was added, e.g. PTS and tournament selection]
 
 ACO algorithms are a subclass of constructive heuristics. Meta-heuristic is a top-level heuristic, which is used to improve the performance of an underlying, basic heuristic. ACO is such a metaheuristic that can be used to improve the performance of a construction heuristic. One has to remark several necessary features of the ACO algorithms:
 
@@ -242,7 +242,7 @@ Apparently, larger $q_0$ gives more greedy choice.
 
 \textbf{Heuristic precomputation} of the values $t_j^\alpha \times \eta_j^\beta$ for each of the solution components which are used in formula \eqref{eq:construction_dorigo}. The reduction of computation time is based on the fact that all these values will be shared by the ants at each iteration.
 
-\textbf{External memory} extension is based on starting the solution construction from a partially constructed solution with partial destroying of a certain good solution and reconstructing it and thus anticipating to obtain even a better solution \cite{iterated_greedy}. This iterated greedy extension was inspired by genetic algorithms and described in \cite{external_memory}. It uses reinforcement procedures of the elite solutions with deferred reintroducing of solutions segments in following iterations (see listing \ref{lst:ext-mem}). The ACO iteration is composed of two stages. First is meant to initialize the external memory. The second is the solution construction itself based on a partial solution. \textbf{Iterated ants} also uses the partially constructed solutions. Based on the following additional notions. Destruct() removes some solution components from a complete solution \cite{iterated_ants}. Constuct() constructs a complete solution from initially partial solution. An acceptance-criterion chooses one of two complete solutions in order to continue the construction with it. Concrete implementations of these strategies are defined in problem-specific way. The algorithm of the extension is showed in listing \ref{lst:iterated-ants}. \textbf{Cunning ants} algorithm tackles to the solution generation by iterated producing of new ant population. The algorithm has a pheromone database and an ant population of fixed size. For every existing ant, a new one is produced which borrows some solution parts from its parent \cite{cunning_ants}. Then in each such ant pair a winner is selected and all winners continue their work in the next iteration. After each iteration all winners jointly update the pheromone database and stop if the termination criteria is met. Similarly the solution component inheritance process is problem-specific. 
+\textbf{External memory} extension is based on starting the solution construction from a partially constructed solution with partial destroying of a certain good solution and reconstructing it and thus anticipating to obtain even a better solution \cite{iterated_greedy}. This iterated greedy extension was inspired by genetic algorithms and described in \cite{external_memory}. It uses reinforcement procedures of the elite solutions with deferred reintroducing of solutions segments in following iterations (see listing \ref{lst:ext-mem}). The ACO iteration is composed of two stages. First is meant to initialize the external memory. The second is the solution construction itself based on a partial solution. 
 
 \begin{minipage}[c, breaklines=true]{0.95\textwidth}
 \begin{lstlisting}[caption={External memory iteration pseudo-code}, label={lst:ext-mem}]
@@ -271,6 +271,9 @@ end
 \end{lstlisting}
 \end{minipage}
 
+Tournament selection procedure is usually defined as follows: from a set of solutions, one selects randomly $tSize$ solutions, finds the best solution among them and places this solution into result set. This is repeated $m$ times.
+
+\textbf{Iterated ants} also uses the partially constructed solutions. Based on the following additional notions. Destruct() removes some solution components from a complete solution \cite{iterated_ants}. Constuct() constructs a complete solution from initially partial solution. An acceptance-criterion chooses one of two complete solutions in order to continue the construction with it. Concrete implementations of these strategies are defined in problem-specific way. The algorithm of the extension is showed in listing \ref{lst:iterated-ants}.
 
 \begin{minipage}[c, breaklines=true]{0.95\textwidth}
 \begin{lstlisting}[caption={General iterated ants pseudo-code}, label={lst:iterated-ants}]
@@ -286,6 +289,22 @@ procedure iterated-ants
 end
 \end{lstlisting}
 \end{minipage}
+
+\textbf{Cunning ants} algorithm tackles to the solution generation by iterated producing of new ant population. The algorithm has a pheromone database and an ant population of fixed size. For every existing ant, a new one is produced which borrows some solution parts from its parent \cite{cunning_ants}. Then in each such ant pair a winner is selected and all winners continue their work in the next iteration. After each iteration all winners jointly update the pheromone database and stop if the termination criteria is met. Similarly the solution component inheritance process is problem-specific.
+
+As an extension of the original cunning ants variation, one may use local search after the reconstruction step and also a custom pheromone update algorithm.
+
+\begin{figure}[h]
+  \centering
+    \includegraphics[scale=0.5]{cunning-ants.jpg}
+  \caption{Cunning ants}
+  \label{fig:autoconf}
+\end{figure}
+
+
+
+
+
 
 
 
@@ -404,7 +423,24 @@ where: $w=|S^{upd}|$, r-solution rank in the current iteration
 
 \item \textbf{Best-Worst Ant System} denotes that pheromone trail values are deposited to the solution components that constitute the global-best solution but also evaporation is applied to the components from the worst solution of the current iteration (which are in the global-best solution) \cite{bwas}
 
-[explain mutation]
+Mutation mechanism is used hand in hand with BWAS. It is inspired by natural evolution process of gene mutation. It provides certain amount of diversity by modifying pheromone values of some components. The mutation mechanism is illustrated in formula \ref{eq:mutation}. Every component is mutated with probability $p_{mut}$. Uniform random $q$ is generated within $[0;1]$
+
+\begin{equation}
+\tau' = \begin{cases}
+\tau + 4 \times \tau_{avg} \times f, & \textit{if } q < 0.5 \\
+\tau - 4 \times \tau_{avg} \times f, & \textit{if } q \ge 0.5
+\end{cases} \\
+\label{eq:mutation}
+\end{equation}
+
+\textit{where $\tau_{avg}$ - is the average pheromone trail value before global update execution, $f$ - is BWAS mutation factor defined in formula \ref{eq:bwas_factor} for the case of time based execution.}
+
+\begin{equation}
+f = \frac{t - t_{reinit}}{t_{end} - t_{reinit}}
+\label{eq:bwas_factor}
+\end{equation}
+
+\textit{$t$ - is current time, $t_{reinit}$ - is time of last pheromone reinitialization, $t_{end}$ - is expected time of the run finish.}
 
 \end{enumerate}
 
@@ -452,8 +488,6 @@ In the general ACO algorithm this stage is optional. If it is fast and effective
 
 In many COPs it is possible to optimize computation of objective function value of a newly obtained solution, based on objective function value of an old solution. From feasibility point of view one can apply a local move and check whether this is a solution after. Another option is to define a neighborhood operator in such way, that all solution's neighbors are also feasible solutions.
 
-[Add neighborhood description]
-
 In many problem-depending cases perturbative search can be embedded into the local search heuristics. The aim of such mechanism is to allow escaping from local search space "peaks" which might be not as good as the others.
 
 One of the most efficient metaheuristics in local search domain is Iterated Local Search (ILS) \cite{STUTZLE2001ILS}. Usually it leads to much better solutions, than the ones obtained by repeated random trials. It uses custom components as local search procedure, perturbation procedure and acceptance criterion. The pseudo-code is shown in \ref{lst:iterated-local-search}.
@@ -474,12 +508,6 @@ end
 \end{minipage}
 
 The simplest acceptance criteria is choice of a better solution, however one may want to use a probabilistic approach. It prevents   major perturbation moves, that do not effectively contribute to objective goal improving, and thus, attains good trade-off between exploration and intensification. History can be taken into account in this heuristics, so the whole procedure is in fact a "Markovian" process, which implies that further moves completely depend on the current state.
-
-
-
-%------------------------------
-
-[ACOTSPQAP Mention] \newline
 
 \section{Iterated F-Race 5}
 
@@ -545,10 +573,8 @@ After new configurations are sampled comes the selection stage. At the configura
 Some I-RACE extensions can be applied. \textbf{Initial configurations} can be set before the run of the I-RACE. \textbf{Soft-restart} is used for preventing premature convergence. Such convergence may suppresses configuration diversity and, therefore some good configurations may be lost. This restart is triggered if the value of an ad hoc function of configuration distance is lower than a certain margin. Then reinitialization is applied to the elite configurations.
 
 
-\chapter{Vehicle Routing Problem 5}
+\chapter{Vehicle Routing Problem}
 
-
-[correct formulas below under the VRP definition in the future] \newline
 
 \section{Problem definition}
 
@@ -628,8 +654,6 @@ Candidate list can severely boost performance. Similarly to TSP, \textbf{cl near
 
 During the preselection phase, the algorithm will examine the candidate list for the current node in the first place. In case if none of those will satisfy constraints (capacity, distance, already visited constraints), only then the nodes outside of the candidate list will be considered.
 
-[basically explain all blue components from the UML]
-
 \section{Heuristic values}
 
 In VRP and TSP, one typically uses the inverted value of the distance between two nodes as the heuristics value, see \ref{eq:vrp_heuristic_value}. Thus, the selection phase will bias the tour edge towards shorter ones.
@@ -643,9 +667,9 @@ In VRP and TSP, one typically uses the inverted value of the distance between tw
 
 Two local search variations are proposed - 2.5-opt move \cite{Stattenberger2007} and Iterated Local Search, that uses underlying 2.5-opt move. 
 
-2.5-opt move illustrtions are shown in \ref{fig:twohalf}, \ref{fig:twohalf1}, \ref{fig:twohalf2}, \ref{fig:twohalf3}. In 2.5-opt move, a replacable edge $(y1;y2)$ is chosen, and swapped with another sequence of edges, consisting from one up to three customers, denoted by $(x2)$, $(x2,x3)$ or $(x2,x3,x4)$ on the illustrations.
+2.5-opt move illustrtions are shown in \ref{fig:twohalf}, \ref{fig:twohalf1}, \ref{fig:twohalf2}, \ref{fig:twohalf3}. In 2.5-opt move, a replacable edge $(y1;y2)$ is chosen, and swapped with another sequence of edges, consisting from one up to three customers, denoted by $(x2)$, $(x2,x3)$ or $(x2,x3,x4)$ on the illustrations. Therefore, size of solution neighborhood is a function depending on tour size of complexity $O(n^2)$.
 
-The whole local search procedure consists of sequential attempts of such local moves by trying all possible position combinations of the replacable edge and the replacing ones. The length of the replacing sequence is defined by a random number generator. The local move is applied if it is computed that it will benefit to the solution objective function. However, if local move was applied, one does not reset the position combinations of the loop, but continue with the current progress.
+The whole local search procedure consists of sequential attempts of such local moves by trying all possible position combinations of the replacable edge and the replacing ones. The length of the replacing sequence is defined by a random number generator. The local move is applied if it is computed that it will benefit to the solution objective function. However, if local move was applied, one does not reset the position combinations of the loop, but continue with the current progress. In case if solution consists of several tours, then this procedure is applied to every one of them.
 
 In order to accelerate computation of the objective function value one may simply distract the distance of the edges, that are removed and add distance of the edges, that are added. Thus, we avoid full tour recomputation. If during the full attempt cycle one applied the local move at least one time, then the whole attempt cycle is repeated. Otherwise, it means that we have converged to a local optimum and we keep the current solution.
 
@@ -684,9 +708,7 @@ Solution destruction is a procedure, that is necessary to implement for iterated
 
 
 
-\chapter{Implementation 20-25}
-
-[framework class-level description, no class diagram due to large size (however no descriptions for every class method. it's not a documentation)] \newline
+\chapter{Implementation}
 
 
 \section{Software design}
@@ -734,7 +756,7 @@ All classes are strictly grouped in two parts. The first part is \textbf{problem
 
 \item \textbf{LocalSearch} - can be either a direct local search implementation or an IteratedLocalSearch, that uses an abstract Move dependency.
 
-\item \textbf{IteratedLocalSearch} - performs an iterated local search. Depends on Perturbation and Move strategy.
+\item \textbf{IteratedLocalSearch} - performs an iterated local search. Depends on Perturbation and Move strategy. High level class, that is not dependent on a problem type.
 
 \item \textbf{Move} - full convergence local move, that is used by ILS.
 
@@ -757,7 +779,13 @@ The second part is \textbf{problem dependent} classes. These classes may be easi
 
 \item \textbf{ParserVRP} - VRP problem instance parsing. May have many implementations, since one problem type may have many formats of representation.
 
-[Put rest here]
+\item \textbf{Vehicle} - encapsulation of a vehicle. Contains information related to constraints of capacity and distance.
+
+\item \textbf{Fleet} - abstract class, that contains a sequence of vehicles. Generates a vehicle iterator for their sequential emission during solution process. The order of emission depends on a particular implementation of this class.
+
+\item \textbf{Tour} - is an inherent part of VRP problem solution. Set of tours defines a solution. One tour is associated with one predefined vehicle. Contains current consumption of capacity and distance, resting capacity and distance, list of visited nodes, associated vehicle pointer.
+
+\item \textbf{SolutionVRP} - is a solution of a VRP problem instance. Contains all selected solution components, array of flags of visited customers with, vehicle iterator (generated by Fleet class), all solution tours, and current solution construction progress information.
 
 \end{itemize}
 
@@ -765,10 +793,6 @@ The second part is \textbf{problem dependent} classes. These classes may be easi
 
 Design patterns are widely used during development process. One of the most used patterns here are "Strategy", "Command" and "Template method", due to having a various range of algorithms on different levels, that adhere to some common structure. All concrete implementation in the program entry point are inferred from the program arguments and are created by means of many "Factory methods" in the \textbf{Main} class. "Prototype" pattern is used for \textbf{Solution} class and its sub-classes in order to be able to clone solutions one from another as it is required by some algorithms. "Iterator" is used for vehicle fleet for obtaining a sequence of vehicles, that build a solution in order of their emission.
 
-
-[Tell about SOLID patterns??? Or it is too detailed???]
-
-[Add GitHub Link with class diagram to Appendix]
 
 
 \section{Preselection stage}
@@ -803,11 +827,86 @@ end
 [All blue classes decisions here] \newline
 
 
-[framework parameters space, names MUST CORRESPOND TO PUBLIC ARRANGEMENTS] \newline
+\section{Configuration process set-up}
 
-By aggregating all options, strategy choices and flags, one forms a parameter space according to table \ref{tbl:space}. This space formulation corresponds to the i-race representation.
+By aggregating all options, strategy choices and flags, one forms a parameter space according to table \ref{tbl:space}. This space formulation corresponds to the i-race representation. Every parameter is defined by its i-race name, publicly known alias (or new if such does was not invented), type, possible parameter values, condition of validity. Every parameter is can be categorical, integer or real. In case of integer and real lower and upper bounds of the parameter are specified. In case of categorical all possible values are listed. Condition is a predicate, that defines whether this parameter must be assigned a value, or this parameter must not present in the generated configuration.
 
 
+In addition to the conditional restrictions, several additional constraints have to be ensured by means of forbidden configuration file.
+
+\begin{itemize}
+\item Ant Colony System only works with standard or Dorigo selectors.
+
+\item Ant Colony System must use local update.
+
+\item In external memory $topK$ has to be equal or less than the ant number $m$.
+
+\item Cunning ants must use MMAS as global update technique.
+\end{itemize}
+
+
+\section{Testing}
+
+
+All parameter constraints are checked on two levels. Firstly, i-race scenario is set in such way, that it will only generate valid configurations by means of conditional parameters and specification of forbidden configurations. Secondly, configuration is wholly scanned in the framework itself, not only by checking valid parameter bounds, but also by verifying consistency between several parameters. In case of inconsistency, the framework returns a verbal exception response with error description.
+
+Thorough unit and integrated testing is done in order to validate performance of the framework. Several auxiliary problem instances are used in order to simulate very specific artificial situations. Both white-box and black-box methodologies are used depending on a test case. For white-box mock objects are used to test specific method calls/returns by tested objects. This is done by using Mockito framework in combination with JUnit library. Random seed forcing is used to switch execution behavior
+from pseudo-random to deterministic, thus ensuring a concrete scenario.
+
+\chapter{Experimental}
+
+
+[public samples description, some publicly know plots - YES, mention web-site] \newline
+
+
+
+[randomness of results even with same seed] \newline
+
+One must also take into account that, although deterministic behavior of the program is assured by forcing a random seed, one can not guarantee the same result of the program run even with the same configuration, since number of iterations, that will be effectively done within the specified time range, may vary.
+
+[configuration of i-race] \newline
+
+[obtained result configuration for the framework] \newline
+
+[description of the configuration]
+
+
+\chapter{Conclusion}
+
+[We planned ...]
+
+[We implemeted ...]
+
+[We analyzed ...]
+
+[It will be very useful for such domains as ...]
+
+
+
+
+
+\chapter{Literature}
+
+
+
+
+\appendix
+
+\backmatter
+
+\printindex % use makeindex to generate the index
+
+
+
+\bibliographystyle{plain}
+
+\bibliography{biblio} %use bibtex to generate the bibliography
+
+% BIBLIOGRAPHY DOES NOT WORK IN TEXMAKER, USE OVERLEAF FOR FINAL GENERATION
+
+\chapter{Appendix}
+
+The framework sources, automatic configuration setup, problem instances, analysis results and documentation are available on \url{https://github.com/ElderMayday/master}.
 
 \begin{table}[]
 \centering
@@ -855,7 +954,7 @@ ras\_w                          & $w$        & i    & (1,30)                    
 ras\_is\_bounded                & -          & c    & (ras-bounded-yes, ras-bounded-no)                                               & global\_update == "rank-based-ant-s"                                                          \\ \hline
 eas\_m\_elite                   & $m_{elite}$ & i   & (1, 100)                                                                       & global\_update == "elitist-ant-s"                                                             \\ \hline
 eas\_is\_bounded                & -          & c    & (eas-bounded-yes, eas-bounded-no)                                               & global\_update == "elitist-ant-s"                                                             \\ \hline
-bwas\_mutation\_probability     & $mut_p$    & r    & (0.0,1.0)                                                                      & global\_update == "best-worst-ant-s"                                                          \\ \hline
+bwas\_mutation\_probability     & $p_{mut}$    & r    & (0.0,1.0)                                                                      & global\_update == "best-worst-ant-s"                                                          \\ \hline
 reinitialization                & -          & c    & (reinitialization-yes, reinitialization-no)                                     & -                                                                                             \\ \hline
 reinitialization\_time          & $t_{reinit}$ & i    & (0.01,0.2)                                                                     & reinitialization == "reinitialization-yes"                                                    \\ \hline
 \end{tabular}
@@ -875,63 +974,5 @@ probabilistic\_best             & $p_{iter}$ & r    & (0.0,1.0)                 
 destruction\_probability        & $p_{destr}$  &  r & (0.0,1.0)                                                                      & iterated\_greedy in c("external-memory", "iterated-ants", "cunning-ants")                     \\ \hline
 \end{tabular}
 \end{table}
-
-
-
-[forbidden]
-
-
-All parameter constraints are checked on two levels. Firstly, i-race scenario is set in such way, that it will only generate valid configurations by means of conditional parameters and specification of forbidden configurations. Secondly, configuration is wholly scanned in the framework itself, not only by checking valid parameter bounds, but also by verifying consistency between several parameters. In case of inconsistency, the framework returns a verbal exception response with error description.
-
-Thorough unit and integrated testing is done in order to validate performance of the framework. Several auxiliary problem instances are used in order to simulate very specific artificial situations. Both white-box and black-box methodologies are used depending on a test case. For white-box mock objects are used to test specific method calls/returns by tested objects. This is done by using Mockito framework in combination with JUnit library. Random seed forcing is used to switch execution behavior
-from pseudo-random to deterministic, thus ensuring a concrete scenario.
-
-\chapter{Experimental 20-25}
-
-
-[public samples description, some publicly know plots - YES, mention web-site] \newline
-
-
-
-[randomness of results even with same seed] \newline
-
-One must also take into account that, although deterministic behavior of the program is assured by forcing a random seed, one can not guarantee the same result of the program run even with the same configuration, since number of iterations, that will be effectively done within the specified time range, may vary.
-
-[configuration of i-race] \newline
-
-[obtained result configuration for the framework] \newline
-
-[description of the configuration]
-
-
-\chapter{Conclusion 4-5}
-
-[We planned ...]
-
-[We implemeted ...]
-
-[We analyzed ...]
-
-[It will be very useful for such domains as ...]
-
-
-\section{Literature}
-
-
-
-
-\appendix
-
-\backmatter
-
-\printindex % use makeindex to generate the index
-
-
-
-\bibliographystyle{plain}
-
-\bibliography{biblio} %use bibtex to generate the bibliography
-
-% BIBLIOGRAPHY DOES NOT WORK IN TEXMAKER, USE OVERLEAF FOR FINAL GENERATION
 
 \end{document}

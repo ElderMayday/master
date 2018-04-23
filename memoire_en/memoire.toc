@@ -1,25 +1,28 @@
-\contentsline {chapter}{\numberline {1}Introduction 4-5}{1}{chapter.1}
-\contentsline {chapter}{\numberline {2}Background 20}{3}{chapter.2}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}Background}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}Combinatorial Optimization Problems and Constructive Heuristics 5}{3}{section.2.1}
 \contentsline {section}{\numberline {2.2}Ant Colony Optimization 10}{4}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Choice of pheromone trails and heuristic information}{5}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Solution component choice}{5}{subsection.2.2.2}
 \contentsline {subsection}{\numberline {2.2.3}Construction extensions}{6}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}Global pheromone update}{8}{subsection.2.2.4}
-\contentsline {subsection}{\numberline {2.2.5}Initialization and reinitialization of pheromones}{11}{subsection.2.2.5}
-\contentsline {subsection}{\numberline {2.2.6}Local pheromone update}{11}{subsection.2.2.6}
-\contentsline {subsection}{\numberline {2.2.7}Pheromone trail limits}{11}{subsection.2.2.7}
-\contentsline {subsection}{\numberline {2.2.8}Local search}{12}{subsection.2.2.8}
-\contentsline {section}{\numberline {2.3}Iterated F-Race 5}{13}{section.2.3}
-\contentsline {chapter}{\numberline {3}Vehicle Routing Problem 5}{16}{chapter.3}
-\contentsline {section}{\numberline {3.1}Problem definition}{16}{section.3.1}
-\contentsline {section}{\numberline {3.2}Candidate list}{18}{section.3.2}
-\contentsline {section}{\numberline {3.3}Heuristic values}{18}{section.3.3}
-\contentsline {section}{\numberline {3.4}Local search}{18}{section.3.4}
-\contentsline {section}{\numberline {3.5}Solution destruction}{19}{section.3.5}
-\contentsline {chapter}{\numberline {4}Implementation 20-25}{21}{chapter.4}
-\contentsline {section}{\numberline {4.1}Software design}{21}{section.4.1}
-\contentsline {section}{\numberline {4.2}Preselection stage}{23}{section.4.2}
-\contentsline {chapter}{\numberline {5}Experimental 20-25}{28}{chapter.5}
-\contentsline {chapter}{\numberline {6}Conclusion 4-5}{29}{chapter.6}
-\contentsline {section}{\numberline {6.1}Literature}{29}{section.6.1}
+\contentsline {subsection}{\numberline {2.2.4}Global pheromone update}{9}{subsection.2.2.4}
+\contentsline {subsection}{\numberline {2.2.5}Initialization and reinitialization of pheromones}{12}{subsection.2.2.5}
+\contentsline {subsection}{\numberline {2.2.6}Local pheromone update}{12}{subsection.2.2.6}
+\contentsline {subsection}{\numberline {2.2.7}Pheromone trail limits}{12}{subsection.2.2.7}
+\contentsline {subsection}{\numberline {2.2.8}Local search}{13}{subsection.2.2.8}
+\contentsline {section}{\numberline {2.3}Iterated F-Race 5}{14}{section.2.3}
+\contentsline {chapter}{\numberline {3}Vehicle Routing Problem}{17}{chapter.3}
+\contentsline {section}{\numberline {3.1}Problem definition}{17}{section.3.1}
+\contentsline {section}{\numberline {3.2}Candidate list}{19}{section.3.2}
+\contentsline {section}{\numberline {3.3}Heuristic values}{19}{section.3.3}
+\contentsline {section}{\numberline {3.4}Local search}{19}{section.3.4}
+\contentsline {section}{\numberline {3.5}Solution destruction}{20}{section.3.5}
+\contentsline {chapter}{\numberline {4}Implementation}{22}{chapter.4}
+\contentsline {section}{\numberline {4.1}Software design}{22}{section.4.1}
+\contentsline {section}{\numberline {4.2}Preselection stage}{25}{section.4.2}
+\contentsline {section}{\numberline {4.3}Configuration process set-up}{26}{section.4.3}
+\contentsline {section}{\numberline {4.4}Testing}{26}{section.4.4}
+\contentsline {chapter}{\numberline {5}Experimental}{27}{chapter.5}
+\contentsline {chapter}{\numberline {6}Conclusion}{28}{chapter.6}
+\contentsline {chapter}{\numberline {7}Literature}{29}{chapter.7}
+\contentsline {chapter}{Appendix}{30}{appendix*.3}
