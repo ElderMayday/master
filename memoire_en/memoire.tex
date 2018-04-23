@@ -41,6 +41,9 @@ framexleftmargin=15pt}
 \usepackage{lipsum}
 \usepackage{mwe}
 
+% for several pages table
+\usepackage{longtable}
+
 \parindent0em
 \parskip1.5ex
 
@@ -802,65 +805,78 @@ end
 
 [framework parameters space, names MUST CORRESPOND TO PUBLIC ARRANGEMENTS] \newline
 
-By aggregating all options, strategy choices and flags, one forms a parameter space according to table \ref{}. This space formulation corresponds to the i-race representation.
+By aggregating all options, strategy choices and flags, one forms a parameter space according to table \ref{tbl:space}. This space formulation corresponds to the i-race representation.
 
-% use \begin{tabular}{|c|c|c|p{4cm}|p{4cm}|} for auto newline
-% also put spaces between enums for correct line-wrapping
 
 
 \begin{table}[]
 \centering
-\caption{My caption}
-\label{my-label}
-\begin{tabular}{|c|c|c|c|c|}
+\caption{Parameter space for the framework in context of VRP}
+\label{tbl:space}
+\begin{tabular}{|c|c|c|p{4cm}|p{4cm}|}
 \hline
-Name                            & Alias      & Type & Possible values                                                                & Condition                                                                                     \\ \hline
-selector                        & -          & c    & (selector-standard,selector-dorigo,selector-maniezzo)                          & -                                                                                             \\ \hline
-alpha                           & $\alpha$   & r    & (0.1,5.0)                                                                      & selector in c("selector-standard","selector-dorigo")                                          \\ \hline
-beta                            & $\beta$    & r    & (0.1,5.0)                                                                      & selector in c("selector-standard","selector-dorigo")                                          \\ \hline
+\textbf{Name}  & \textbf{Alias}      & \textbf{Type} & \textbf{Possible values}                                                                & \textbf{Condition}                                                                                     \\ \hline
+selector                        & -          & c    & (selector-standard, selector-dorigo, selector-maniezzo)                          & -                                                                                             \\ \hline
+alpha                           & $\alpha$   & r    & (0.1,5.0)                                                                      & selector in c("selector-standard", "selector-dorigo")                                          \\ \hline
+beta                            & $\beta$    & r    & (0.1,5.0)                                                                      & selector in c("selector-standard", "selector-dorigo")                                          \\ \hline
 alpha\_maniezzo                 & $\alpha$   & r    & (0.0,1.0)                                                                      & selector == "selector-maniezzo"                                                               \\ \hline
 dorigo\_probability             & $q_0$      & r    & (0.0,1.0)                                                                      & selector == "selector-dorigo"                                                                 \\ \hline
-candidate\_list                 & -          & c    & (candidate-yes,candidate-no)                                                   & -                                                                                             \\ \hline
-candidate\_ratio                & -          & r    & (0.0,1.0)                                                                      & candidate\_list == "candidate-yes"                                                            \\ \hline
-global\_update                  & -          & c    & (ant-s,ant-colony-s,min-max-s,rank-based-ant-s,elitist-ant-s,best-worst-ant-s) & -                                                                                             \\ \hline
-local\_update                   & -          & c    & (local-update-yes,local-update-no)                                             & selector in c("selector-standard","selector-dorigo")                                          \\ \hline
-iterated\_greedy                & -          & c    & (standard,external-memory,iterated-ants,cunning-ants)                          & -                                                                                             \\ \hline
+candidate\_list                 & -          & c    & (candidate-yes, candidate-no)                                                   & -                                                                                             \\ \hline
+candidate\_ratio                & $r_{cand}$ & r    & (0.0,1.0)                                                                      & candidate\_list == "candidate-yes"                                                            \\ \hline
+global\_update                  & -          & c    & (ant-s, ant-colony-s, min-max-s, rank-based-ant-s, elitist-ant-s, best-worst-ant-s) & -                                                                                             \\ \hline
+local\_update                   & -          & c    & (local-update-yes, local-update-no)                                             & selector in c("selector-standard", "selector-dorigo")                                          \\ \hline
+iterated\_greedy                & -          & c    & (standard, external-memory, iterated-ants, cunning-ants)                          & -                                                                                             \\ \hline
 ant\_num                        & m          & i    & (1,50)                                                                         & -                                                                                             \\ \hline
 lupd\_epsilon                   & $\epsilon$ & r    & (0.0,1.0)                                                                      & local\_update == "local-update-yes"                                                           \\ \hline
 lupd\_tau0                      & $\tau_0$   & r    & (0.0,1.0)                                                                      & local\_update == "local-update-yes"                                                           \\ \hline
-local\_search                   & -          & c    & (local-search-none,local-search-ils-twohalf,local-search-twohalf)              & -                                                                                             \\ \hline
-ils\_iterations                 & -          & i    & (1,30)                                                                         & local\_search == "local-search-ils-twohalf"                                                   \\ \hline
+local\_search                   & -          & c    & (local-search-none, local-search-ils-twohalf, local-search-twohalf)              & -                                                                                             \\ \hline
+ils\_iterations                 & $iter_{ils}$ & i    & (1,30)                                                                         & local\_search == "local-search-ils-twohalf"                                                   \\ \hline
 evaporation\_remains            & $1-\rho$   & r    & (0.2,1.0)                                                                      & -                                                                                             \\ \hline
-ant\_s\_is\_bounded             & -          & c    & (ant-s-bounded-yes,ant-s-bounded-no)                                           & global\_update == "ant-s"                                                                     \\ \hline
-ant\_s\_k                       & $k$        & r    & (1.0,10.0)                                                                     & (global\_update == "ant-s") \& (ant\_s\_is\_bounded == "ant-s-bounded-yes")                   \\ \hline
-min\_max\_s\_p\_best            & $p_{best}$ & r    & (0.01,1.0)                                                                     & global\_update == "min-max-s"                                                                 \\ \hline
-min\_max\_s\_global\_best       & -          & c    & (min-max-s-global-best-yes,min-max-s-global-best-no)                           & global\_update == "min-max-s"                                                                 \\ \hline
-min\_max\_s\_global\_iterations & -          & i    & (1,30)                                                                         & (global\_update == "min-max-s") \& (min\_max\_s\_global\_best == "min-max-s-global-best-yes") \\ \hline
-min\_max\_s\_pts                & -          & c    & (min-max-s-pts-yes,min-max-s-pts-no)                                           & global\_update == "min-max-s"                                                                 \\ \hline
-min\_max\_s\_pts\_iterations    & -          & i    & (1,30)                                                                         & (global\_update == "min-max-s") \& (min\_max\_s\_pts == "min-max-s-pts-yes")                  \\ \hline
-pts\_lambda                     & $\lambda$  & r    & (0.0,1.0)                                                                      & (global\_update == "min-max-s") \& (min\_max\_s\_pts == "min-max-s-pts-yes")                                                                                              \\ \hline
-pts\_ratio                      & $\Omega'$  & r    & (0.0,1.0)                                                                      & (global\_update == "min-max-s") \& (min\_max\_s\_pts == "min-max-s-pts-yes")                                                                                              \\ \hline
-pts\_delta                      & $\delta$   & r    & (0.0,1.0)                                                                      & (global\_update == "min-max-s") \& (min\_max\_s\_pts == "min-max-s-pts-yes")                                                                                              \\ \hline
-ras\_w                          &            &      &                                                                                &                                                                                               \\ \hline
-ras\_is\_bounded                &            &      &                                                                                &                                                                                               \\ \hline
-ras\_k                          &            &      &                                                                                &                                                                                               \\ \hline
-eas\_m\_elite                   &            &      &                                                                                &                                                                                               \\ \hline
-eas\_is\_bounded                &            &      &                                                                                &                                                                                               \\ \hline
-bwas\_mutation\_probability     &            &      &                                                                                &                                                                                               \\ \hline
-reinitialization                &            &      &                                                                                &                                                                                               \\ \hline
-reinitialization\_time          &            &      &                                                                                &                                                                                               \\ \hline
-top\_k                          &            &      &                                                                                &                                                                                               \\ \hline
-memory\_size                    &            &      &                                                                                &                                                                                               \\ \hline
-tournament\_selector\_size      &            &      &                                                                                &                                                                                               \\ \hline
-criteria                        &            &      &                                                                                &                                                                                               \\ \hline
-probabilistic\_best             &            &      &                                                                                &                                                                                               \\ \hline
-destruction\_probability        &            &      &                                                                                &                                                                                               \\ \hline
+ant\_s\_is\_bounded             & -          & c    & (ant-s-bounded-yes, ant-s-bounded-no)                                           & global\_update == "ant-s"                                                                     \\ \hline
 \end{tabular}
 \end{table}
 
 
+\begin{table}[]
+\centering
+\begin{tabular}{|c|c|c|p{4cm}|p{4cm}|}
+\hline
+\textbf{Name}  & \textbf{Alias}      & \textbf{Type} & \textbf{Possible values}                                                                & \textbf{Condition}                                                                                     \\ \hline
+ant\_s\_k                       & $k$        & r    & (1.0,10.0)                                                                     & (global\_update == "ant-s") \& (ant\_s\_is\_bounded == "ant-s-bounded-yes")                   \\ \hline
+min\_max\_s\_p\_best            & $p_{best}$ & r    & (0.01,1.0)                                                                     & global\_update == "min-max-s"                                                                 \\ \hline
+min\_max\_s\_global\_best       & -          & c    & (min-max-s-global-best-yes, min-max-s-global-best-no)                           & global\_update == "min-max-s"                                                                 \\ \hline
+min\_max\_s\_global\_iterations & $iter_{mg}$ & i    & (1,30)                                                                         & (global\_update == "min-max-s") \& (min\_max\_s\_global\_best == "min-max-s-global-best-yes") \\ \hline
+min\_max\_s\_pts                & -          & c    & (min-max-s-pts-yes, min-max-s-pts-no)                                           & global\_update == "min-max-s"                                                                 \\ \hline
+min\_max\_s\_pts\_iterations    & $iter_{pts}$ & i    & (1,30)                                                                         & (global\_update == "min-max-s") \& (min\_max\_s\_pts == "min-max-s-pts-yes")                  \\ \hline
+pts\_lambda                     & $\lambda$  & r    & (0.0,1.0)                                                                      & (global\_update == "min-max-s") \& (min\_max\_s\_pts == "min-max-s-pts-yes")                  \\ \hline
+pts\_ratio                      & $\Omega'$  & r    & (0.0,1.0)                                                                      & (global\_update == "min-max-s") \& (min\_max\_s\_pts == "min-max-s-pts-yes")                  \\ \hline
+pts\_delta                      & $\delta$   & r    & (0.0,1.0)                                                                      & (global\_update == "min-max-s") \& (min\_max\_s\_pts == "min-max-s-pts-yes")                  \\ \hline
+ras\_w                          & $w$        & i    & (1,30)                                                                         & global\_update == "rank-based-ant-s"                                                          \\ \hline
+ras\_is\_bounded                & -          & c    & (ras-bounded-yes, ras-bounded-no)                                               & global\_update == "rank-based-ant-s"                                                          \\ \hline
+eas\_m\_elite                   & $m_{elite}$ & i   & (1, 100)                                                                       & global\_update == "elitist-ant-s"                                                             \\ \hline
+eas\_is\_bounded                & -          & c    & (eas-bounded-yes, eas-bounded-no)                                               & global\_update == "elitist-ant-s"                                                             \\ \hline
+bwas\_mutation\_probability     & $mut_p$    & r    & (0.0,1.0)                                                                      & global\_update == "best-worst-ant-s"                                                          \\ \hline
+reinitialization                & -          & c    & (reinitialization-yes, reinitialization-no)                                     & -                                                                                             \\ \hline
+reinitialization\_time          & $t_{reinit}$ & i    & (0.01,0.2)                                                                     & reinitialization == "reinitialization-yes"                                                    \\ \hline
+\end{tabular}
+\end{table}
 
-[TODO finish]
+
+\begin{table}[]
+\centering
+\begin{tabular}{|c|c|c|p{4cm}|p{4cm}|}
+\hline
+\textbf{Name}  & \textbf{Alias}      & \textbf{Type} & \textbf{Possible values}                                                                & \textbf{Condition}                                                                                     \\ \hline
+top\_k                          & $topK$     & i    & (1,5)                                                                          & iterated\_greedy == "external-memory"                                                         \\ \hline
+memory\_size                    & $mem$      & i    & (10,30)                                                                        & iterated\_greedy == "external-memory"                                                         \\ \hline
+tournament\_selector\_size      & $tSize$    & i    & (2,10)                                                                         & iterated\_greedy == "external-memory"                                                         \\ \hline
+criteria                        & -          & c    & (iterated-criteria-best, iterated-criteria-probabilistic)                       & iterated\_greedy	== "iterated-ants"                                                           \\ \hline
+probabilistic\_best             & $p_{iter}$ & r    & (0.0,1.0)                                                                      & (iterated\_greedy == "iterated-ants") \& (criteria == "iterated-criteria-probabilistic")       \\ \hline
+destruction\_probability        & $p_{destr}$  &  r & (0.0,1.0)                                                                      & iterated\_greedy in c("external-memory", "iterated-ants", "cunning-ants")                     \\ \hline
+\end{tabular}
+\end{table}
+
+
 
 [forbidden]
 
