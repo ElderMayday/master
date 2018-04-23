@@ -151,9 +151,6 @@ Any combination of solution components is called a candidate solution (not neces
 
 Since solving of NP-hard problems by trying to find provably optimal solutions is unreasonable, one can apply heuristic algorithms, which more or less provide solutions with relatively good quality consuming reasonable quantity of resources (time/power, memory etc.). An important class of such heuristic algorithms are constructive heuristics. Constructive heuristics start with an empty or partially built solution, which is then being completed by iterative extension until a full solution is completed. Each of the iterations adds one or several solution components to the solution. For example, greedy constructive heuristics  add the best-ranked components by their heuristic values.
 
-[TSP brief explanation in terms of VRP] \newline
-
-
 
 
 
@@ -552,6 +549,8 @@ Some I-RACE extensions can be applied. \textbf{Initial configurations} can be se
 
 \section{Problem definition}
 
+VRP is a generalization of Traveling Salesman Problem. TSP is such a particular case of VRP, where a single vehicle is disposed instead of a whole fleet, and all capacity and length constraints are always satisfied. Both of these problem require return to the initial node in general variation. Both problems have an objective defined as the total distance passed by a vehicle/vehicles.
+
 As a basis for VRP formulation variation we use the Classical Vehicle Routing Problem \cite{CORDEAU2007367}. However minor generalizations are actually implemented in the framework above the given formulation. \par
 
 VRP is defined on a complete undirected graph $G=(V,E)$. A set of nodes $V=\{0,1,...,n\}$ is a union of all customer nodes $V\setminus\{0\}$ and a depot node $0$. Distance (a.k.a. travel cost or length or time) $c_e$ or $c_{ij}$ is assigned to each edge $e \in E = \{(i,j): i,j \in V, i<j\}$. Vehicle fleet is represented by $m$ identical vehicles, having a capacity $Q$ and total distance limit $L$.
@@ -803,6 +802,69 @@ end
 
 [framework parameters space, names MUST CORRESPOND TO PUBLIC ARRANGEMENTS] \newline
 
+By aggregating all options, strategy choices and flags, one forms a parameter space according to table \ref{}. This space formulation corresponds to the i-race representation.
+
+% use \begin{tabular}{|c|c|c|p{4cm}|p{4cm}|} for auto newline
+% also put spaces between enums for correct line-wrapping
+
+
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Name                            & Alias      & Type & Possible values                                                                & Condition                                                                                     \\ \hline
+selector                        & -          & c    & (selector-standard,selector-dorigo,selector-maniezzo)                          & -                                                                                             \\ \hline
+alpha                           & $\alpha$   & r    & (0.1,5.0)                                                                      & selector in c("selector-standard","selector-dorigo")                                          \\ \hline
+beta                            & $\beta$    & r    & (0.1,5.0)                                                                      & selector in c("selector-standard","selector-dorigo")                                          \\ \hline
+alpha\_maniezzo                 & $\alpha$   & r    & (0.0,1.0)                                                                      & selector == "selector-maniezzo"                                                               \\ \hline
+dorigo\_probability             & $q_0$      & r    & (0.0,1.0)                                                                      & selector == "selector-dorigo"                                                                 \\ \hline
+candidate\_list                 & -          & c    & (candidate-yes,candidate-no)                                                   & -                                                                                             \\ \hline
+candidate\_ratio                & -          & r    & (0.0,1.0)                                                                      & candidate\_list == "candidate-yes"                                                            \\ \hline
+global\_update                  & -          & c    & (ant-s,ant-colony-s,min-max-s,rank-based-ant-s,elitist-ant-s,best-worst-ant-s) & -                                                                                             \\ \hline
+local\_update                   & -          & c    & (local-update-yes,local-update-no)                                             & selector in c("selector-standard","selector-dorigo")                                          \\ \hline
+iterated\_greedy                & -          & c    & (standard,external-memory,iterated-ants,cunning-ants)                          & -                                                                                             \\ \hline
+ant\_num                        & m          & i    & (1,50)                                                                         & -                                                                                             \\ \hline
+lupd\_epsilon                   & $\epsilon$ & r    & (0.0,1.0)                                                                      & local\_update == "local-update-yes"                                                           \\ \hline
+lupd\_tau0                      & $\tau_0$   & r    & (0.0,1.0)                                                                      & local\_update == "local-update-yes"                                                           \\ \hline
+local\_search                   & -          & c    & (local-search-none,local-search-ils-twohalf,local-search-twohalf)              & -                                                                                             \\ \hline
+ils\_iterations                 & -          & i    & (1,30)                                                                         & local\_search == "local-search-ils-twohalf"                                                   \\ \hline
+evaporation\_remains            & $1-\rho$   & r    & (0.2,1.0)                                                                      & -                                                                                             \\ \hline
+ant\_s\_is\_bounded             & -          & c    & (ant-s-bounded-yes,ant-s-bounded-no)                                           & global\_update == "ant-s"                                                                     \\ \hline
+ant\_s\_k                       & $k$        & r    & (1.0,10.0)                                                                     & (global\_update == "ant-s") \& (ant\_s\_is\_bounded == "ant-s-bounded-yes")                   \\ \hline
+min\_max\_s\_p\_best            & $p_{best}$ & r    & (0.01,1.0)                                                                     & global\_update == "min-max-s"                                                                 \\ \hline
+min\_max\_s\_global\_best       & -          & c    & (min-max-s-global-best-yes,min-max-s-global-best-no)                           & global\_update == "min-max-s"                                                                 \\ \hline
+min\_max\_s\_global\_iterations & -          & i    & (1,30)                                                                         & (global\_update == "min-max-s") \& (min\_max\_s\_global\_best == "min-max-s-global-best-yes") \\ \hline
+min\_max\_s\_pts                & -          & c    & (min-max-s-pts-yes,min-max-s-pts-no)                                           & global\_update == "min-max-s"                                                                 \\ \hline
+min\_max\_s\_pts\_iterations    & -          & i    & (1,30)                                                                         & (global\_update == "min-max-s") \& (min\_max\_s\_pts == "min-max-s-pts-yes")                  \\ \hline
+pts\_lambda                     & $\lambda$  & r    & (0.0,1.0)                                                                      & (global\_update == "min-max-s") \& (min\_max\_s\_pts == "min-max-s-pts-yes")                                                                                              \\ \hline
+pts\_ratio                      & $\Omega'$  & r    & (0.0,1.0)                                                                      & (global\_update == "min-max-s") \& (min\_max\_s\_pts == "min-max-s-pts-yes")                                                                                              \\ \hline
+pts\_delta                      & $\delta$   & r    & (0.0,1.0)                                                                      & (global\_update == "min-max-s") \& (min\_max\_s\_pts == "min-max-s-pts-yes")                                                                                              \\ \hline
+ras\_w                          &            &      &                                                                                &                                                                                               \\ \hline
+ras\_is\_bounded                &            &      &                                                                                &                                                                                               \\ \hline
+ras\_k                          &            &      &                                                                                &                                                                                               \\ \hline
+eas\_m\_elite                   &            &      &                                                                                &                                                                                               \\ \hline
+eas\_is\_bounded                &            &      &                                                                                &                                                                                               \\ \hline
+bwas\_mutation\_probability     &            &      &                                                                                &                                                                                               \\ \hline
+reinitialization                &            &      &                                                                                &                                                                                               \\ \hline
+reinitialization\_time          &            &      &                                                                                &                                                                                               \\ \hline
+top\_k                          &            &      &                                                                                &                                                                                               \\ \hline
+memory\_size                    &            &      &                                                                                &                                                                                               \\ \hline
+tournament\_selector\_size      &            &      &                                                                                &                                                                                               \\ \hline
+criteria                        &            &      &                                                                                &                                                                                               \\ \hline
+probabilistic\_best             &            &      &                                                                                &                                                                                               \\ \hline
+destruction\_probability        &            &      &                                                                                &                                                                                               \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+[TODO finish]
+
+[forbidden]
+
+
 All parameter constraints are checked on two levels. Firstly, i-race scenario is set in such way, that it will only generate valid configurations by means of conditional parameters and specification of forbidden configurations. Secondly, configuration is wholly scanned in the framework itself, not only by checking valid parameter bounds, but also by verifying consistency between several parameters. In case of inconsistency, the framework returns a verbal exception response with error description.
 
 Thorough unit and integrated testing is done in order to validate performance of the framework. Several auxiliary problem instances are used in order to simulate very specific artificial situations. Both white-box and black-box methodologies are used depending on a test case. For white-box mock objects are used to test specific method calls/returns by tested objects. This is done by using Mockito framework in combination with JUnit library. Random seed forcing is used to switch execution behavior
@@ -810,9 +872,14 @@ from pseudo-random to deterministic, thus ensuring a concrete scenario.
 
 \chapter{Experimental 20-25}
 
+
 [public samples description, some publicly know plots - YES, mention web-site] \newline
 
+
+
 [randomness of results even with same seed] \newline
+
+One must also take into account that, although deterministic behavior of the program is assured by forcing a random seed, one can not guarantee the same result of the program run even with the same configuration, since number of iterations, that will be effectively done within the specified time range, may vary.
 
 [configuration of i-race] \newline
 
