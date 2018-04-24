@@ -54,7 +54,7 @@ chmod +x [filename]
 add a job:
 qsub [*.sh]
 
-qsub job.sh -M asaranov@ulb.ac.be
+qsub job.sh [-l long]
 
 
 status of my jobs:
