@@ -114,23 +114,19 @@ the disastrous effects of a siege.}''
 \setcounter{page}{1}
 \vspace*{0.5cm}
 
-Some species show an extreme degree of social organization. Such species (e.g. ants) have pheromone production and detection body parts and therefore seize an ability to communicate between each other in an indirect way. This concept has inspired the development of algorithms, which are based on the social behavior of the ant colonies called ant colony optimization algorithms. These algorithms allow to solve NP-hard problems in a very efficient manner. These algorithms are considered to be metaheuristics.
+Some species show an extreme degree of social organization. Such species (e.g. ants) have pheromone production and detection body parts and therefore seize an ability to communicate between each other in an indirect way. This concept has inspired the development of algorithms, which are based on the social behavior of the ant colonies called ant colony optimization algorithms. These algorithms allow to solve NP-hard problems in a very efficient manner. These algorithms are considered to be metaheuristics. ACO algorithms have a large number of variations and configuration parameters, that drastically influence the algorithm performance. These parameters may be unified by means of some framework.
 
 At the moment, there exists a state-of-the-art software called ACOTSPQAP. As the name says, it is designed to solve Traveling Salesman Problem and Quadratic Assignment Problems with high-efficiency by means of ACO meta-heuristics. It also includes different algorithm variations as AS, EAS, MMAS, RAS, BWAS, ACS. As for the implementation, it is written in C and, therefore, it adheres to structural programming paradigm. Although switching to a different problem type context is still possible, it is nonetheless more costly than if it is was written in an objective oriented language.
 
-The development of a flexible ACO framework is the next step of formalizing this area. Such a framework can then be used as a tool to help resolving various optimization problems. This report gives a brief overview of the current state of the ACO research area, existing framework description and some tools which can be used for the automatic configuration of the framework.
+The development of a flexible OOP driven ACO framework is the next step of formalizing this area. Such a framework can then be used as a tool to help resolving various optimization problems. This report gives a brief overview of the current state of the ACO research area, existing framework description and some tools which can be used for the automatic configuration of the framework.
 
-[Explain what is done]
-
-In the chapter 2, we describe the theoretical foundations of the framework, that is required to develop. However unreasonable selection of a running configuration may lead to producing of low-quality results even after a long runtime execution. A simple decision is to perform certain configuration tuning before the actual executing. This chapter also introduces an efficient configuration software, that allows to obtain high-performing configurations for further framework exploiting.
+The work was started by analyzing and aggregating possible options and choices, trying to define their common parts in order to derive abstract classes and reduce component repetitions. In the chapter 2, we describe the theoretical foundations of the framework, that is required to develop. However unreasonable selection of a running configuration may lead to producing of low-quality results even after a long runtime execution. A simple decision is to perform certain configuration tuning before the actual executing. This chapter also introduces a description of an efficient configuration tuning software called I-RACE, that allows to obtain high-performing configurations for further framework exploiting. We integrated the developed framework into the I-RACE by giving a specification of the framework parameter space.
 
 The development of such framework would also require its application to some particular problem for testing and analysis purposes. Vehicle Routing Problem was chosen as the one. It is a widely researched NP-hard combinatorial optimization problem, therefore, it will allow us to perform benchmark comparison of the public available problem instances and its solutions with the solutions, that we obtain. In the chapter 3, we introduce formulation of Vehicle Routing Problem and also mention several variations thereof.
 
 In the chapter 4, we describe thorough implementation details and decisions for the ACO framework, the way we adapt it specifically to VRP-problems and also show line-by-line description of the parameter space defined for the framework. We also explain there how do we attain high flexibility of the framework in order to adapt it for various problem types besides VRP.
 
-In the chapter 5, one can see the experimental set-up, tuning results and interpretations that are made.
-
-[TODO: Add more?] \newline
+In the chapter 5, one can see the experimental set-up, tuning results, performance benchmark and verbal interpretations of the results.
 
 [TODO: fix citing] \newline
 
@@ -671,7 +667,7 @@ Two local search variations are proposed - 2.5-opt move \cite{Stattenberger2007}
 
 The whole local search procedure consists of sequential attempts of such local moves by trying all possible position combinations of the replacable edge and the replacing ones. The length of the replacing sequence is defined by a random number generator. The local move is applied if it is computed that it will benefit to the solution objective function. However, if local move was applied, one does not reset the position combinations of the loop, but continue with the current progress. In case if solution consists of several tours, then this procedure is applied to every one of them.
 
-In order to accelerate computation of the objective function value one may simply distract the distance of the edges, that are removed and add distance of the edges, that are added. Thus, we avoid full tour recomputation. If during the full attempt cycle one applied the local move at least one time, then the whole attempt cycle is repeated. Otherwise, it means that we have converged to a local optimum and we keep the current solution.
+In order to accelerate computation of the objective function value one may simply distract the distance of the edges, that are removed and add distance of the edges, that are added. Thus, we avoid full tour recomputation. If during the full attempt cycle one applied the local move at least one time, then the whole attempt cycle is repeated. Otherwise, it means that we have converged to a local optimum and we keep the current solution. The 2.5-opt pseudo-code is shown in \ref{lst:vrp-two-half}.
 
 \begin{multicols}{2}
 \begin{figure*}[ht!]
@@ -687,7 +683,27 @@ In order to accelerate computation of the objective function value one may simpl
 \end{figure*}
 \end{multicols}
 
-[Add pseudo-code???]
+\begin{minipage}[c, breaklines=true]{0.95\textwidth}
+\begin{lstlisting}[caption={2.5-opt pseudo-code for VRP problems}, label={lst:vrp-two-half}]
+procedure vrp-two-half(solution)
+
+do
+  improved = false
+  
+  for every possible sequence position
+    for every possible non-violating exchange node position
+      pick random length for sequence from 1 to 3
+    
+      if this move will reduce the cost
+        execute the move
+        improved = true
+    end
+  end
+while improved = true
+
+end
+\end{lstlisting}
+\end{minipage}
 
 For ILS in case of VRP problems, one can implement perturbation as double-bridge move, see \ref{fig:dbridge1} and \ref{fig:dbridge2}.
 
@@ -791,7 +807,7 @@ The second part is \textbf{problem dependent} classes. These classes may be easi
 
 
 
-Design patterns are widely used during development process. One of the most used patterns here are "Strategy", "Command" and "Template method", due to having a various range of algorithms on different levels, that adhere to some common structure. All concrete implementation in the program entry point are inferred from the program arguments and are created by means of many "Factory methods" in the \textbf{Main} class. "Prototype" pattern is used for \textbf{Solution} class and its sub-classes in order to be able to clone solutions one from another as it is required by some algorithms. "Iterator" is used for vehicle fleet for obtaining a sequence of vehicles, that build a solution in order of their emission.
+Design patterns are widely used during development process. One of the most used patterns here are "Strategy", "Command" and "Template method", due to having a various range of algorithms on different levels, that adhere to some common structure. All concrete implementation in the program entry point are inferred from the program arguments and are created by means of many "Factory methods" in the \textbf{Launcher} class. "Prototype" pattern is used for \textbf{Solution} class and its sub-classes in order to be able to clone solutions one from another as it is required by some algorithms. "Iterator" is used for vehicle fleet for obtaining a sequence of vehicles, that build a solution in order of their emission.
 
 
 
@@ -822,9 +838,6 @@ procedure preselection(currentNode)
 end
 \end{lstlisting}
 \end{minipage}
-
-
-[All blue classes decisions here] \newline
 
 
 \section{Configuration process set-up}
@@ -858,17 +871,21 @@ from pseudo-random to deterministic, thus ensuring a concrete scenario.
 
 [public samples description, some publicly know plots - YES, mention web-site] \newline
 
+In order to be able to perform benchmark comparison of the framework's performance, one may use publicly known instances of CVRP problems, see Appendix. To make the performance estimation more objective, one must strictly separate training (tuning) and testing set. This will remove the positive effect of some optimization decisions that may have been made during the framework development. For the training stage all Uchoa et al.(2014) instances were selected, that were of size less than 300. These instances are generated on a square grid in Euclidean space.
 
+While running the framework on certain instances one must remember, that performance of a run is a cumulative result of several factors at a time: 
 
-[randomness of results even with same seed] \newline
+\begin{itemize}
+\item Performance of a concrete selected algorithm.
+\item Performance of I-Race configuration software.
+\item Set-up of the configuration software, that was used to produce configuration instances.
+\end{itemize}
 
 One must also take into account that, although deterministic behavior of the program is assured by forcing a random seed, one can not guarantee the same result of the program run even with the same configuration, since number of iterations, that will be effectively done within the specified time range, may vary.
 
-[configuration of i-race] \newline
-
 [obtained result configuration for the framework] \newline
 
-[description of the configuration]
+[description of the obtained configuration]
 
 
 \chapter{Conclusion}
@@ -879,9 +896,10 @@ One must also take into account that, although deterministic behavior of the pro
 
 [We analyzed ...]
 
-[It will be very useful for such domains as ...]
+[Same as in Introduction???]
 
 
+This framework in combination with the I-RACE tuning can be used for every combinatorial optimization problem by applying any custom developed ACO metaheuristics. In context of VRP problem, it can be used for transport logistics, microchip design, computer network planning, agriculture, job scheduling, X-Ray crystallography.
 
 
 
@@ -907,6 +925,9 @@ One must also take into account that, although deterministic behavior of the pro
 \chapter{Appendix}
 
 The framework sources, automatic configuration setup, problem instances, analysis results and documentation are available on \url{https://github.com/ElderMayday/master}.
+
+Public CVRP problem instances are available on \url{http://vrp.atd-lab.inf.puc-rio.br/index.php/en/}.
+
 
 \begin{table}[]
 \centering
