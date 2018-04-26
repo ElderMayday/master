@@ -8,16 +8,37 @@ public class Launcher
     public static void main(String[] args)
     {
         String configurationString = "testConfig2 instance1 1234567 [path]  " +
-                "--selector-standard --alpha 3.83 --beta 1.38 --candidate-no --ant-s --local-update-yes --external-memory " +
-                "--ant-num 49 --lupd-epsilon 0.62 --tau0 0.52 --local-search-twohalf --evaporation-remains 0.27 " +
-                "--ant-s-bounded-no --reinitialization-no --top-k 1 --memory-size 30 --tournament-selector-size 8 " +
-                "--destruction-probability 0.23 --end\n";
+                "--selector-dorigo --alpha 4.02 --beta 3.95 --dorigo-probability 0.91 --candidate-no " +
+                "--min-max-s --local-update-no --cunning-ants --ant-num 38 --local-search-none --evaporation-remains " +
+                "0.49 --min-max-s-p-best 0.34 --min-max-s-global-best-yes --min-max-s-global-iterations 17 " +
+                "--min-max-s-pts-no --reinitialization-yes --reinitialization-time 0.18 --destruction-probability 0.05 --end\n";
 
         String[] arguments = configurationString.split("\\s+");
 
-        String path = "D:\\master\\irace\\instances\\";
+        String path = "D:\\master\\irace\\test\\";
 
-        String[] names = {"X-n101-k25.vrp.txt",
+        String[] names = {"Golden_1.vrp.txt",
+                "Golden_2.vrp.txt",
+                "Golden_3.vrp.txt",
+                "Golden_4.vrp.txt",
+                "Golden_5.vrp.txt",
+                "Golden_6.vrp.txt",
+                "Golden_7.vrp.txt",
+                "Golden_8.vrp.txt",
+                "Golden_9.vrp.txt",
+                "Golden_10.vrp.txt",
+                "Golden_11.vrp.txt",
+                "Golden_12.vrp.txt",
+                "Golden_13.vrp.txt",
+                "Golden_14.vrp.txt",
+                "Golden_15.vrp.txt",
+                "Golden_16.vrp.txt",
+                "Golden_17.vrp.txt",
+                "Golden_18.vrp.txt",
+                "Golden_19.vrp.txt",
+                "Golden_20.vrp.txt"};
+
+        /*String[] names = {"X-n101-k25.vrp.txt",
                 "X-n125-k30.vrp.txt",
                 "X-n148-k46.vrp.txt",
                 "X-n172-k51.vrp.txt",
@@ -59,7 +80,7 @@ public class Launcher
                 "X-n214-k11.vrp.txt",
                 "X-n237-k14.vrp.txt",
                 "X-n261-k13.vrp.txt",
-                "X-n284-k15.vrp.txt"};
+                "X-n284-k15.vrp.txt"};*/
 
         for (String name : names)
         {

@@ -206,7 +206,6 @@ public class SolutionVRP extends Solution
                 isComplete = true;
                 isPartiallyDestroyed = false;
                 currentTour = null;
-                recomputeObjective();
 
                 tours.removeIf(new Predicate<Tour>()
                 {
@@ -215,6 +214,26 @@ public class SolutionVRP extends Solution
                         return tour.getCustomers().size() == 1;
                     }
                 });
+
+                for (Tour tour : tours) // if all customers are visited, just some vehicles must return from their last customers to the depot.
+                {
+                    if (!tour.finished)
+                    {
+                        List<Integer> customers = tour.getCustomers();
+
+                        int last = customers.get(customers.size() - 1);
+
+                        tour.getCustomers().add(0);
+
+                        Component2d endingComponent = problemVRP.structure2d.get(last, 0);
+
+                        components2d.add(endingComponent);
+                        tour.addDistance(endingComponent.getDistance());
+                        tour.finished = true;
+                    }
+                }
+
+                recomputeObjective();
             }
         }
     }

@@ -77,7 +77,5 @@ public class Configuration
 
         if (candidate == -1)  // candidate option was no selected
             throw new IllegalArgumentException("Candidate option was not selected");
-
-        // TODO finish all the constraints
     }
 }

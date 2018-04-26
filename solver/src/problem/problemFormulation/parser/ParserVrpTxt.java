@@ -132,8 +132,10 @@ public class ParserVrpTxt extends ParserVrp
                 distanceDeterminer = new DistanceEuclidean2d();
                 break;
 
+                // ...
+
             default:
-                throw new Exception("Distance function is not recognized");
+                distanceDeterminer = new DistanceEuclidean2d(); // by default
         }
 
         problem.structure2d.allocate(problem.vertexNum, problem.vertexNum);
