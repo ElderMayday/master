@@ -472,7 +472,7 @@ As it was said before, MMAS is based on restricting the pheromone values in a ce
 where n' - is an estimation of the number of solution components available to each ant at each construction step (often corresponds to $\frac{n}{2}$). The $p_{dec}$ allows to estimate the reasonable values for $\tau_{min}$ according to formula \ref{eq:mmas_tmin}. This formula relies on two facts. First is that the best solutions are found shortly before search stagnation occurs. The second fact is that the relative difference between upper and lower pheromone trail limits has more influence on the solution construction than the relative differences of the heuristic information.
 
 \subsection{Local search}
-Local search allows to significantly increase the obtained solutions quality for specific problems. It is based on small iterative solution changes obtained by applying a so-called neighborhood operator, followed by evaluation of the solutions. Generally there are two neighborhood scanning strategies:
+Local search allows to significantly increase the obtained solutions quality for specific problems. It is based on small iterative solution changes obtained by applying a so-called neighborhood operator, followed by evaluation of the solutions. Two common iterative improvement strategies are:
 
 \begin{itemize}
 \item \textbf{best-improvement} scans all the neighborhood and chooses the best solution.
@@ -484,9 +484,9 @@ In the general ACO algorithm this stage is optional. If it is fast and effective
 
 In many COPs it is possible to optimize computation of objective function value of a newly obtained solution, based on objective function value of an old solution. From feasibility point of view one can apply a local move and check whether this is a solution after. Another option is to define a neighborhood operator in such way, that all solution's neighbors are also feasible solutions.
 
-In many problem-depending cases perturbative search can be embedded into the local search heuristics. The aim of such mechanism is to allow escaping from local search space "peaks" which might be not as good as the others.
+From high-level point of view, we distinguish three large classes of local search - simple, hybrid and population-based stochastic local search (SLS) algorithms. Simple ones perform escaping local minimum by allowing worsening steps. Hybrid SLS is a high-level metaheuristics, that uses a combination of several simple SLS. These strategy states can be represented by a finite-state notation called Generalized Local Search Machine. Vertexes of the GLSM graph are low-level stages of the local search. A transition relation must be activated, before entering another local search state. These transition relations can be deterministic, probabilistic or conditional. In many problem-depending cases perturbative local search can be embedded into hybrid SLS.
 
-One of the most efficient metaheuristics in local search domain is Iterated Local Search (ILS) \cite{STUTZLE2001ILS}. Usually it leads to much better solutions, than the ones obtained by repeated random trials. It uses custom components as local search procedure, perturbation procedure and acceptance criterion. The pseudo-code is shown in \ref{lst:iterated-local-search}.
+One of the most efficient hybrid SLS is Iterated Local Search (ILS) \cite{STUTZLE2001ILS}. Usually it leads to much better solutions, than the ones obtained by repeated random trials. It uses custom components as local search procedure, perturbation procedure and acceptance criterion. The pseudo-code is shown in \ref{lst:iterated-local-search}. GLSM for ILS is shown in \ref{fig:ils}.
 
 
 \begin{minipage}[c, breaklines=true]{0.95\textwidth}
@@ -502,6 +502,13 @@ procedure IteratedLocalSearch
 end
 \end{lstlisting}
 \end{minipage}
+
+\begin{figure}
+  \centering
+    \includegraphics[scale=0.7]{glsm-ils.jpg}
+  \caption{General Local Search Machine for ILS}
+  \label{fig:ils}
+\end{figure}
 
 The simplest acceptance criteria is choice of a better solution, however one may want to use a probabilistic approach. It prevents   major perturbation moves, that do not effectively contribute to objective goal improving, and thus, attains good trade-off between exploration and intensification. History can be taken into account in this heuristics, so the whole procedure is in fact a "Markovian" process, which implies that further moves completely depend on the current state.
 
@@ -770,11 +777,11 @@ All classes are strictly grouped in two parts. The first part is \textbf{problem
 
 \item \textbf{LocalUpdate} - optional argument in general case and mandatory in case of choosing AntColonyOptimization as a global update strategy.
 
-\item \textbf{LocalSearch} - can be either a direct local search implementation or an IteratedLocalSearch, that uses an abstract Move dependency.
+\item \textbf{LocalSearch} - high-level hybrid SLS. May use Move class as low-level components.
 
 \item \textbf{IteratedLocalSearch} - performs an iterated local search. Depends on Perturbation and Move strategy. High level class, that is not dependent on a problem type.
 
-\item \textbf{Move} - full convergence local move, that is used by ILS.
+\item \textbf{Move} - simple SLS. performs full convergence local move, that is used by hybrid SLS.
 
 \item \textbf{Selector} - an abstract stochastic algorithm that selects a solution component out of a set of components according to some stochastic rule, by taking into consideration pheromone trail values and heuristic values of these components.
 
@@ -868,20 +875,38 @@ from pseudo-random to deterministic, thus ensuring a concrete scenario.
 
 \chapter{Experimental}
 
-
-[public samples description, some publicly know plots - YES, mention web-site] \newline
-
-In order to be able to perform benchmark comparison of the framework's performance, one may use publicly known instances of CVRP problems, see Appendix. To make the performance estimation more objective, one must strictly separate training (tuning) and testing set. This will remove the positive effect of some optimization decisions that may have been made during the framework development. For the training stage all Uchoa et al.(2014) instances were selected, that were of size less than 300. These instances are generated on a square grid in Euclidean space.
-
 While running the framework on certain instances one must remember, that performance of a run is a cumulative result of several factors at a time: 
 
 \begin{itemize}
-\item Performance of a concrete selected algorithm.
-\item Performance of I-Race configuration software.
-\item Set-up of the configuration software, that was used to produce configuration instances.
+\item Performance of a concrete configuration.
+\item Features of a concrete problem instance.
+\item Performance of hardware and run conditions.
+\item Run-time.
 \end{itemize}
 
-One must also take into account that, although deterministic behavior of the program is assured by forcing a random seed, one can not guarantee the same result of the program run even with the same configuration, since number of iterations, that will be effectively done within the specified time range, may vary.
+To make configuration benchmark more fair, all factors except the configuration itself must be equalized. The runs must be done on same hardware in same or at least roughly same run conditions. Majorana computation cluster was used for this experiments. The precise configuration is given below.
+\begin{itemize}
+\item 32 computational nodes
+\item 2 INTEL Xeon E5410 (4 cores each, 2.33GHz, 2x 6MB L2 cache)
+\item RAM per job:450MB
+\end{itemize}
+
+The runtime is set as a value, depending on size of an instance: $runtime = num_{nodes} / 2$ (in seconds).
+
+In addition, one must also take into account that, although deterministic behavior of the program can assured by forcing a random seed, one can not guarantee the same result of the program run even with the same configuration, since number of iterations, that will be effectively done within the specified time range, may vary.
+
+\section{Train and test runs}
+
+In order to be able to perform benchmark comparison of the framework's performance, one may use publicly known instances of CVRP problems, see Appendix. To make the performance estimation more objective, one must strictly separate training (tuning) and testing set. This will remove the possibility of that, the results obtained are biased by overfitting, made by the tuning process on concrete instances. For the training stage all Uchoa et al.(2014) instances were selected, that were of size less than 300. These instances are generated on a square grid in Euclidean space. For test instances Golden et Al. (1998) were chosen.
+
+In the end of 20 iterations/20 configurations I-RACE tuning, a presumably good configuration was found. Then, runs of this configuration on test instances were made. The Solution Quality Distribution is shown on \ref{fig:sqd-golden}.
+
+\begin{figure}[h]
+  \centering
+    \includegraphics[scale=0.8]{sqd-golden.PNG}
+  \caption{Solution Quality Distribution over Golden et. Al instances}
+  \label{fig:sqd-golden}
+\end{figure}
 
 [obtained result configuration for the framework] \newline
 

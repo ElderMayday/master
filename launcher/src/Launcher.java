@@ -8,10 +8,10 @@ public class Launcher
     public static void main(String[] args)
     {
         String configurationString = "testConfig2 instance1 1234567 [path]  " +
-                "--selector-dorigo --alpha 4.02 --beta 3.95 --dorigo-probability 0.91 --candidate-no " +
-                "--min-max-s --local-update-no --cunning-ants --ant-num 38 --local-search-none --evaporation-remains " +
-                "0.49 --min-max-s-p-best 0.34 --min-max-s-global-best-yes --min-max-s-global-iterations 17 " +
-                "--min-max-s-pts-no --reinitialization-yes --reinitialization-time 0.18 --destruction-probability 0.05 --end\n";
+                "--selector-dorigo --alpha 0.2 --beta 3.56 --dorigo-probability 0.72 --candidate-no --elitist-ant-s " +
+                "--local-update-yes --iterated-ants --ant-num 6 --lupd-epsilon 0.46 --tau0 0.19 --local-search-twohalf " +
+                "--evaporation-remains 0.66 --eas-m-elite 90 --eas-bounded-yes --eas-k 4.02 --reinitialization-yes " +
+                "--reinitialization-time 0.13 --iterated-criteria-best --destruction-probability 0.15 --end";
 
         String[] arguments = configurationString.split("\\s+");
 
