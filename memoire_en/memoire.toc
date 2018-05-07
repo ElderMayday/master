@@ -1,7 +1,7 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {chapter}{\numberline {2}Background}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}Combinatorial Optimization Problems and Constructive Heuristics 5}{3}{section.2.1}
-\contentsline {section}{\numberline {2.2}Ant Colony Optimization 10}{4}{section.2.2}
+\contentsline {section}{\numberline {2.2}Ant Colony Optimization}{4}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Choice of pheromone trails and heuristic information}{5}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Solution component choice}{5}{subsection.2.2.2}
 \contentsline {subsection}{\numberline {2.2.3}Construction extensions}{6}{subsection.2.2.3}
@@ -10,7 +10,7 @@
 \contentsline {subsection}{\numberline {2.2.6}Local pheromone update}{12}{subsection.2.2.6}
 \contentsline {subsection}{\numberline {2.2.7}Pheromone trail limits}{12}{subsection.2.2.7}
 \contentsline {subsection}{\numberline {2.2.8}Local search}{13}{subsection.2.2.8}
-\contentsline {section}{\numberline {2.3}Iterated F-Race 5}{14}{section.2.3}
+\contentsline {section}{\numberline {2.3}Iterated F-Race}{14}{section.2.3}
 \contentsline {chapter}{\numberline {3}Vehicle Routing Problem}{18}{chapter.3}
 \contentsline {section}{\numberline {3.1}Problem definition}{18}{section.3.1}
 \contentsline {section}{\numberline {3.2}Candidate list}{20}{section.3.2}
@@ -24,6 +24,6 @@
 \contentsline {section}{\numberline {4.4}Testing}{27}{section.4.4}
 \contentsline {chapter}{\numberline {5}Experimental}{28}{chapter.5}
 \contentsline {section}{\numberline {5.1}Train and test runs}{28}{section.5.1}
-\contentsline {chapter}{\numberline {6}Conclusion}{30}{chapter.6}
-\contentsline {chapter}{\numberline {7}Literature}{31}{chapter.7}
+\contentsline {section}{\numberline {5.2}Existing configuration verification}{29}{section.5.2}
+\contentsline {chapter}{\numberline {6}Conclusion}{31}{chapter.6}
 \contentsline {chapter}{Appendix}{32}{appendix*.3}

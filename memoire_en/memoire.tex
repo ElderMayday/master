@@ -128,9 +128,6 @@ In the chapter 4, we describe thorough implementation details and decisions for 
 
 In the chapter 5, one can see the experimental set-up, tuning results, performance benchmark and verbal interpretations of the results.
 
-[TODO: fix citing] \newline
-
-
 \chapter{Background}
 
 \section{Combinatorial Optimization Problems and Constructive Heuristics 5}
@@ -157,7 +154,7 @@ Since solving of NP-hard problems by trying to find provably optimal solutions i
 
 
 
-\section{Ant Colony Optimization 10}
+\section{Ant Colony Optimization}
 
 ACO algorithms are a subclass of constructive heuristics. Meta-heuristic is a top-level heuristic, which is used to improve the performance of an underlying, basic heuristic. ACO is such a metaheuristic that can be used to improve the performance of a construction heuristic. One has to remark several necessary features of the ACO algorithms:
 
@@ -187,7 +184,7 @@ end
 \end{lstlisting}
 \end{minipage}
 
-Pheromones are numeric values associated to the solution components that are meant to bias the solution construction in order to improve the quality of the generated solutions. Several ants generate the solutions by an iterative approach (see listing \ref{lst:aco}). After this, an optional local search is applied. Next, pheromone evaporation and deposit is done. Evaporation helps to reduce the convergence-prone behavior of the algorithm. Deposit is the part where the solutions affect the pheromone values in order to bias the future solutions.
+Pheromones are numeric values associated to the solution components that are meant to bias the solution construction in order to improve the quality of the generated solutions. Several ants generate the solutions by an iterative approach (see Listing \ref{lst:aco}). After this, an optional local search is applied. Next, pheromone evaporation and deposit is done. Evaporation helps to reduce the convergence-prone behavior of the algorithm. Deposit is the part where the solutions affect the pheromone values in order to bias the future solutions.
 
 \subsection{Choice of pheromone trails and heuristic information}
 
@@ -212,14 +209,14 @@ Pr(c_j)=\frac{t_j^\alpha \times \eta_j^\beta}{\sum \limits_{c_k \in N_i} t_k^\al
 \label{eq:construction_classic}
 \end{equation}
 
-$\alpha$ and $\beta$ are parameters that determine the impact of the pheromone trails and heuristic information on the final probability. Another alternative has been proposed by Maniezzo \cite{maniezzo}, which combines the pheromone trails and heuristic information in a linear way.
+$\alpha$ and $\beta$ are parameters that determine the impact of the pheromone trails and heuristic information on the final probability. Another alternative has been proposed by Maniezzo \cite{Maniezzo1999}, which combines the pheromone trails and heuristic information in a linear way.
 
 \begin{equation}
 Pr(c_j)=\frac{\alpha \times \tau_j + (1-\alpha) \times \eta_j}{\sum \limits_{c_k \in N_i} \alpha \times \tau_k + (1-\alpha) \times \tau_k} \forall c_j \in N_i
 \label{eq:construction_maniezzo}
 \end{equation}
 
-Since it does not use exponentiation operations such choice rule is preferable for performance-targeted frameworks. However, this algorithm may cause undesired biases if the range of the values are not taken into account. The third alternative is invented by Dorigo and Gambardella \cite{dorigo} in Ant Colony System (ACS) algorithm. The rule of solution component choice in ACS is also called pseudo-random proportional rule. A random uniform value $q$ is generated in range $[0;1)$ and if $q>q_0$, where $q_0$ is a predefined parameter, then the probability of choosing $c_j$ is calculated according to formula \eqref{eq:construction_classic}. Otherwise, the solution component is picked as:
+Since it does not use exponentiation operations such choice rule is preferable for performance-targeted frameworks. However, this algorithm may cause undesired biases if the range of the values are not taken into account. The third alternative is invented by Dorigo and Gambardella \cite{Dorigo1997} in Ant Colony System (ACS) algorithm. The rule of solution component choice in ACS is also called pseudo-random proportional rule. A random uniform value $q$ is generated in range $[0;1)$ and if $q>q_0$, where $q_0$ is a predefined parameter, then the probability of choosing $c_j$ is calculated according to formula \eqref{eq:construction_classic}. Otherwise, the solution component is picked as:
 
 \begin{equation}
 c_j = \operatornamewithlimits{argmax}\limits_{c_k \in N_i} t_k^\alpha \times \eta_k^\beta
@@ -230,15 +227,16 @@ Apparently, larger $q_0$ gives more greedy choice.
 
 \subsection{Construction extensions}
 
-\textbf{Lookahead} concept was introduced. It says that at each decision step several solution components should be considered at once in order to get the next solution component \cite{lookahead}. This says that in constructing a candidate solution, ants use a transition rule that incorporates complete information on past decisions (\emph{the trail}) and local information (\emph{visibility}) on the immediate decision that is to be made \cite{lookahead2}. The look-ahead mechanism allows the incorporation of information of the anticipated decisions that are beyond the immediate choice horizon. Generally, it is worth to be implemented when the cost of making a local prediction based on the current partial solution state is much lower than the cost of the real execution of the move sequence.
+\textbf{Lookahead} concept was introduced. It says that at each decision step several solution components should be considered at once in order to get the next solution component \cite{10.1007/BFb0056911}. This says that in constructing a candidate solution, ants use a transition rule that incorporates complete information on past decisions (\emph{the trail}) and local information (\emph{visibility}) on the immediate decision that is to be made. The look-ahead mechanism allows the incorporation of information of the anticipated decisions that are beyond the immediate choice horizon. Generally, it is worth to be implemented when the cost of making a local prediction based on the current partial solution state is much lower than the cost of the real execution of the move sequence.
 
-\textbf{A candidate list} restricts the solution component set to a smaller set to be considered. The solution components in this list have to be the most promising ones at the current step \cite{candidate_list}. Usually, this approach yields a significant gain of computation time, depending on the initial set-up (i.e. if this list is precalculated once before the run). Nonetheless, it can also depend on the current partial solution.
+\textbf{A candidate list} restricts the solution component set to a smaller set to be considered. The solution components in this list have to be the most promising ones at the current step \cite{Dorigo,Dorigo1997}. Usually, this approach yields a significant gain of computation time, depending on the initial set-up (i.e. if this list is precalculated once before the run). Nonetheless, it can also depend on the current partial solution.
 
-\textbf{Hash table} of pheromone trails. It allows to efficiently save memory when the updated pheromone trails are in a sparse set in comparison to the set of all solution components. Search and updating of the elements of the hash-table is expected to be done within linear time \cite{hash_table}.
+
+\textbf{Hash table} of pheromone trails. It allows to efficiently save memory when the updated pheromone trails are in a sparse set in comparison to the set of all solution components. Search and updating of the elements of the hash-table is expected to be done within linear time \cite{Alba2007}.
 
 \textbf{Heuristic precomputation} of the values $t_j^\alpha \times \eta_j^\beta$ for each of the solution components which are used in formula \eqref{eq:construction_dorigo}. The reduction of computation time is based on the fact that all these values will be shared by the ants at each iteration.
 
-\textbf{External memory} extension is based on starting the solution construction from a partially constructed solution with partial destroying of a certain good solution and reconstructing it and thus anticipating to obtain even a better solution \cite{iterated_greedy}. This iterated greedy extension was inspired by genetic algorithms and described in \cite{external_memory}. It uses reinforcement procedures of the elite solutions with deferred reintroducing of solutions segments in following iterations (see listing \ref{lst:ext-mem}). The ACO iteration is composed of two stages. First is meant to initialize the external memory. The second is the solution construction itself based on a partial solution. 
+\textbf{External memory} extension is based on starting the solution construction from a partially constructed solution with partial destroying of a certain good solution and reconstructing it and thus anticipating to obtain even a better solution. This iterated greedy extension was inspired by genetic algorithms and described in \cite{10.1007/978-3-540-28646-2_7}. It uses reinforcement procedures of the elite solutions with deferred reintroducing of solutions segments in following iterations, see Listing \ref{lst:ext-mem}. The ACO iteration is composed of two stages. First is meant to initialize the external memory. The second is the solution construction itself based on a partial solution. 
 
 \begin{minipage}[c, breaklines=true]{0.95\textwidth}
 \begin{lstlisting}[caption={External memory iteration pseudo-code}, label={lst:ext-mem}]
@@ -269,7 +267,7 @@ end
 
 Tournament selection procedure is usually defined as follows: from a set of solutions, one selects randomly $tSize$ solutions, finds the best solution among them and places this solution into result set. This is repeated $m$ times.
 
-\textbf{Iterated ants} also uses the partially constructed solutions. Based on the following additional notions. Destruct() removes some solution components from a complete solution \cite{iterated_ants}. Constuct() constructs a complete solution from initially partial solution. An acceptance-criterion chooses one of two complete solutions in order to continue the construction with it. Concrete implementations of these strategies are defined in problem-specific way. The algorithm of the extension is showed in listing \ref{lst:iterated-ants}.
+\textbf{Iterated ants} also uses the partially constructed solutions. Based on the following additional notions. Destruct() removes some solution components from a complete solution \cite{10.1007/11839088_16}. Constuct() constructs a complete solution from initially partial solution. An acceptance-criterion chooses one of two complete solutions in order to continue the construction with it. Concrete implementations of these strategies are defined in problem-specific way. The algorithm of the extension is showed in Listing \ref{lst:iterated-ants}.
 
 \begin{minipage}[c, breaklines=true]{0.95\textwidth}
 \begin{lstlisting}[caption={General iterated ants pseudo-code}, label={lst:iterated-ants}]
@@ -286,7 +284,7 @@ end
 \end{lstlisting}
 \end{minipage}
 
-\textbf{Cunning ants} algorithm tackles to the solution generation by iterated producing of new ant population. The algorithm has a pheromone database and an ant population of fixed size. For every existing ant, a new one is produced which borrows some solution parts from its parent \cite{cunning_ants}. Then in each such ant pair a winner is selected and all winners continue their work in the next iteration. After each iteration all winners jointly update the pheromone database and stop if the termination criteria is met. Similarly the solution component inheritance process is problem-specific.
+\textbf{Cunning ants} algorithm tackles to the solution generation by iterated producing of new ant population. The algorithm has a pheromone database and an ant population of fixed size. For every existing ant, a new one is produced which borrows some solution parts from its parent \cite{Tsutsui2007}. Then in each such ant pair a winner is selected and all winners continue their work in the next iteration. After each iteration all winners jointly update the pheromone database and stop if the termination criteria is met. Similarly the solution component inheritance process is problem-specific.
 
 As an extension of the original cunning ants variation, one may use local search after the reconstruction step and also a custom pheromone update algorithm.
 
@@ -296,12 +294,6 @@ As an extension of the original cunning ants variation, one may use local search
   \caption{Cunning ants}
   \label{fig:autoconf}
 \end{figure}
-
-
-
-
-
-
 
 
 \subsection{Global pheromone update}
@@ -359,7 +351,7 @@ For the mentioned update techniques several variants are possible: \\
 \begin{enumerate}
 \item {\textbf{Ant System} - i.e. without extensions. Every pheromone trail is evaporated.}
 
-\item {\textbf{Ant Colony System} - uses formulas \ref{eq:construction_classic} or \ref{eq:construction_dorigo} for solution construction. It also uses local pheromone update according to formula \ref{eq:local_update}. Thus, it makes the components, that have been already chosen, less attractive for the rest of the ants. After the solution construction is finished, the ants deposit the pheromone trails according to formula \ref{eq:acs_deposit}}
+\item {\textbf{Ant Colony System} - uses formulas \eqref{eq:construction_classic} or \eqref{eq:construction_dorigo} for solution construction. It also uses local pheromone update according to formula \eqref{eq:local_update}. Thus, it makes the components, that have been already chosen, less attractive for the rest of the ants. After the solution construction is finished, the ants deposit the pheromone trails according to formula \eqref{eq:acs_deposit}}
 
 \begin{equation}
 \tau_j = (1 - \rho) \times \tau_j + \rho \times \Delta \tau_j^*, \forall j \in S^*
@@ -368,7 +360,7 @@ For the mentioned update techniques several variants are possible: \\
 
 where $S^*$ is the best solution so far, and $\Delta t_j^* = 1/z^*$, $z^*$ is the cost of $S^*$.
 
-\item \textbf{Max-Min Ant System}. The pheromone values are updated by evaporating all pheromone trails according to \ref{eq:mmas_evaporation} with consequent deposit of $\Delta \tau = 1 / z$ to the solution components in global-best or iteration-best or reset-based solution, where $z$ is the cost of this solution. The amount of pheromones per component is bounded $\tau_i \in [\tau_{max};\tau_{min}]$. The update schedule switches between ib, gb and rb depending on the value called branching factor \cite{STUTZLE2000889}.
+\item \textbf{Max-Min Ant System}. The pheromone values are updated by evaporating all pheromone trails according to \eqref{eq:mmas_evaporation} with consequent deposit of $\Delta \tau = 1 / z$ to the solution components in global-best or iteration-best or reset-based solution, where $z$ is the cost of this solution. The amount of pheromones per component is bounded $\tau_i \in [\tau_{max};\tau_{min}]$. The update schedule switches between ib, gb and rb depending on the value called branching factor \cite{STUTZLE2000889}.
 \begin{equation}
 \tau_i' = \rho \tau_i + \sum \limits_{\forall ants} \delta t_i^k
 \end{equation}
@@ -390,7 +382,7 @@ $L^k(t)$ - \textit{is the length of k-th ant tour}
 \label{eq:mmas_evaporation}
 \end{equation}
 
-A special \textit{pheromone trail smoothing} mechanism is often used hand in hand with MMAS update. It is a tool to oppose the effect of convergence, thus, it is useful for long runs that are excessively exploiting. It is applied in case, if fraction $\Omega$ (branching factor) of solution components, whose pheromone trail values surpass the computed threshold $\tau_t$, exceeds predefined fraction $\Omega'$. Higher $\Omega$ values correspond to higher grade of convergence. Computing of $\tau_t$ is shown in formula \ref{eq:pts_omega}.
+A special \textit{pheromone trail smoothing} mechanism is often used hand in hand with MMAS update. It is a tool to oppose the effect of convergence, thus, it is useful for long runs that are excessively exploiting. It is applied in case, if fraction $\Omega$ (branching factor) of solution components, whose pheromone trail values surpass the computed threshold $\tau_t$, exceeds predefined fraction $\Omega'$. Higher $\Omega$ values correspond to higher grade of convergence. Computing of $\tau_t$ is shown in formula \eqref{eq:pts_omega}.
 
 \begin{equation}
 \tau_t = \tau_{min} + (\tau_{max} - \tau_{min}) \times \lambda
@@ -399,7 +391,7 @@ A special \textit{pheromone trail smoothing} mechanism is often used hand in han
 
 \textit{where $\tau_{min}$ - minimum pheromone trail border, $\tau_{max}$ - maximum pheromone trail border.  $\lambda$ - threshold determining factor in [0;1].}
 
-When applied, the value of each pheromone trail is increased according to formula \ref{eq:pts_increase}, and thus, exploration is boosted.
+When applied, the value of each pheromone trail is increased according to formula \eqref{eq:pts_increase}, and thus, exploration is boosted.
 
 \begin{equation}
 \tau^*_{ij} = \tau_{ij} + \delta \times (\tau_{max} - \tau_{ij})
@@ -410,16 +402,16 @@ When applied, the value of each pheromone trail is increased according to formul
 
 
 
-\item {\textbf{Rank-based Ant System} uses the notion of rank by depositing \cite{ras} to the pheromone trail the following value:
+\item {\textbf{Rank-based Ant System} uses the notion of rank by depositing \cite{Bullnheimer97anew} to the pheromone trail the following value:
 $w_k \times F(s_k) = \frac{max(0,w-r)}{f(s_k)}$
 where: $w=|S^{upd}|$, r-solution rank in the current iteration
 }
 
-\item {\textbf{Elitist Ant System} - all solutions from the current iteration deposit pheromones as well as the global-best solution $s_{gb}$ deposits an amount $w_{gb} \times F(s_{gb}) = Q \times \frac{m_{elite}}{f(s_{gb})}$ \cite{eas}, where $m_{elite}$ is the multiplicative factor that increases the weight of $s_{gb}$ solution, $Q$ is the same multiplication factor from the standard AS.}
+\item {\textbf{Elitist Ant System} - all solutions from the current iteration deposit pheromones as well as the global-best solution $s_{gb}$ deposits an amount $w_{gb} \times F(s_{gb}) = Q \times \frac{m_{elite}}{f(s_{gb})}$ \cite{Dor1992:thesis,Maniezzo_antsystem,Dorigo1996}, where $m_{elite}$ is the multiplicative factor that increases the weight of $s_{gb}$ solution, $Q$ is the same multiplication factor from the standard AS.}
 
-\item \textbf{Best-Worst Ant System} denotes that pheromone trail values are deposited to the solution components that constitute the global-best solution but also evaporation is applied to the components from the worst solution of the current iteration (which are in the global-best solution) \cite{bwas}
+\item \textbf{Best-Worst Ant System} denotes that pheromone trail values are deposited to the solution components that constitute the global-best solution but also evaporation is applied to the components from the worst solution of the current iteration (which are in the global-best solution) \cite{Cordon00anew}
 
-Mutation mechanism is used hand in hand with BWAS. It is inspired by natural evolution process of gene mutation. It provides certain amount of diversity by modifying pheromone values of some components. The mutation mechanism is illustrated in formula \ref{eq:mutation}. Every component is mutated with probability $p_{mut}$. Uniform random $q$ is generated within $[0;1]$
+Mutation mechanism is used hand in hand with BWAS. It is inspired by natural evolution process of gene mutation. It provides certain amount of diversity by modifying pheromone values of some components. The mutation mechanism is illustrated in formula \eqref{eq:mutation}. Every component is mutated with probability $p_{mut}$. Uniform random $q$ is generated within $[0;1]$
 
 \begin{equation}
 \tau' = \begin{cases}
@@ -429,7 +421,7 @@ Mutation mechanism is used hand in hand with BWAS. It is inspired by natural evo
 \label{eq:mutation}
 \end{equation}
 
-\textit{where $\tau_{avg}$ - is the average pheromone trail value before global update execution, $f$ - is BWAS mutation factor defined in formula \ref{eq:bwas_factor} for the case of time based execution.}
+\textit{where $\tau_{avg}$ - is the average pheromone trail value before global update execution, $f$ - is BWAS mutation factor defined in formula \eqref{eq:bwas_factor} for the case of time based execution.}
 
 \begin{equation}
 f = \frac{t - t_{reinit}}{t_{end} - t_{reinit}}
@@ -450,7 +442,7 @@ The solution selection algorithm plays a critical role in determining the ACO al
 
 
 \subsection{Local pheromone update}
-For sake of making the behavior more exploratory one can apply \cite{coop_tsp} local pheromone update in ACS according to the formula:
+For sake of making the behavior more exploratory one can apply \cite{Dorigo1997} local pheromone update in ACS according to the formula:
 
 \begin{equation}
 \tau_j = (1 - \epsilon) \times \tau_j + \epsilon \times \tau_0 \ \ ,\forall \tau_j | c_j
@@ -469,7 +461,7 @@ As it was said before, MMAS is based on restricting the pheromone values in a ce
 \label{eq:mmas_tmin}
 \end{equation}
 
-where n' - is an estimation of the number of solution components available to each ant at each construction step (often corresponds to $\frac{n}{2}$). The $p_{dec}$ allows to estimate the reasonable values for $\tau_{min}$ according to formula \ref{eq:mmas_tmin}. This formula relies on two facts. First is that the best solutions are found shortly before search stagnation occurs. The second fact is that the relative difference between upper and lower pheromone trail limits has more influence on the solution construction than the relative differences of the heuristic information.
+where n' - is an estimation of the number of solution components available to each ant at each construction step (often corresponds to $\frac{n}{2}$). The $p_{dec}$ allows to estimate the reasonable values for $\tau_{min}$ according to formula \eqref{eq:mmas_tmin}. This formula relies on two facts. First is that the best solutions are found shortly before search stagnation occurs. The second fact is that the relative difference between upper and lower pheromone trail limits has more influence on the solution construction than the relative differences of the heuristic information.
 
 \subsection{Local search}
 Local search allows to significantly increase the obtained solutions quality for specific problems. It is based on small iterative solution changes obtained by applying a so-called neighborhood operator, followed by evaluation of the solutions. Two common iterative improvement strategies are:
@@ -486,7 +478,7 @@ In many COPs it is possible to optimize computation of objective function value 
 
 From high-level point of view, we distinguish three large classes of local search - simple, hybrid and population-based stochastic local search (SLS) algorithms. Simple ones perform escaping local minimum by allowing worsening steps. Hybrid SLS is a high-level metaheuristics, that uses a combination of several simple SLS. These strategy states can be represented by a finite-state notation called Generalized Local Search Machine. Vertexes of the GLSM graph are low-level stages of the local search. A transition relation must be activated, before entering another local search state. These transition relations can be deterministic, probabilistic or conditional. In many problem-depending cases perturbative local search can be embedded into hybrid SLS.
 
-One of the most efficient hybrid SLS is Iterated Local Search (ILS) \cite{STUTZLE2001ILS}. Usually it leads to much better solutions, than the ones obtained by repeated random trials. It uses custom components as local search procedure, perturbation procedure and acceptance criterion. The pseudo-code is shown in \ref{lst:iterated-local-search}. GLSM for ILS is shown in \ref{fig:ils}.
+One of the most efficient hybrid SLS is Iterated Local Search (ILS) \cite{STUTZLE2001ILS}. Usually it leads to much better solutions, than the ones obtained by repeated random trials. It uses custom components as local search procedure, perturbation procedure and acceptance criterion. The pseudo-code is shown in Listing \ref{lst:iterated-local-search}. GLSM for ILS is shown in Figure \ref{fig:ils}.
 
 
 \begin{minipage}[c, breaklines=true]{0.95\textwidth}
@@ -512,7 +504,7 @@ end
 
 The simplest acceptance criteria is choice of a better solution, however one may want to use a probabilistic approach. It prevents   major perturbation moves, that do not effectively contribute to objective goal improving, and thus, attains good trade-off between exploration and intensification. History can be taken into account in this heuristics, so the whole procedure is in fact a "Markovian" process, which implies that further moves completely depend on the current state.
 
-\section{Iterated F-Race 5}
+\section{Iterated F-Race}
 
 Automatic configuration is a process that optimizes the performance of a certain algorithm as a goal function based on input parameters of the algorithm. The general parameter types are:
  
@@ -534,7 +526,7 @@ Some of the parameters maybe subordinate to other ones. This means that their va
 Figure \ref{fig:autoconf} shows the configuration software and software to configure. Configuration script has parameter metadata at its disposal. Based on them, the configuration software runs the software to configure with candidate configurations according to some algorithm. After the configuration process finishes, the configuration software renders the best configurations obtained. In the most general software case there are two measures of the performance - solution quality (to maximize) and computation time (to minimize). This general approach is called an offline tuning. It introduces a learning stage on training instances before learning on the real-world instance set.
 
 
-A widely used configuration algorithmic family is racing algorithms. The simplified algorithm is shown in \ref{lst:racing} and an illustration is in \ref{fig:irace}.
+A widely used configuration algorithmic family is racing algorithms. The simplified algorithm is shown in Listing \ref{lst:racing} and an illustration is in Figure \ref{fig:irace}.
 
 
 \begin{minipage}[c, breaklines=true]{0.95\textwidth}
@@ -559,7 +551,7 @@ end
 \end{figure}
 
 
-I-RACE (iterated race) configuration implementation was developed and described in \cite{iraceaac}. It was implemented in R with taking into account the parallel programming techniques and an initial candidate set-up. It is implemented as an offline tuning. That means, that the tuning is a separate preparatory process from the actual real-world problem application. The feature of the I-RACE is based on iterated generation of new configurations and removing of solutions with lower quality for further evaluating on the problem instances.
+I-RACE (iterated race) configuration implementation was developed and described in \cite{LopDubStuBir2011:techreport-004}. It was implemented in R with taking into account the parallel programming techniques and an initial candidate set-up. It is implemented as an offline tuning. That means, that the tuning is a separate preparatory process from the actual real-world problem application. The feature of the I-RACE is based on iterated generation of new configurations and removing of solutions with lower quality for further evaluating on the problem instances.
 
 In order to tune the configurations that are sampled, I-RACE algorithms uses independent sampling distributions for each of the parameters. For numeric values those are normal distributions and discretely-defined distributions for the rest. The configuration biasing procedure is based on modifying the sampling distributions.
 
@@ -659,7 +651,7 @@ During the preselection phase, the algorithm will examine the candidate list for
 
 \section{Heuristic values}
 
-In VRP and TSP, one typically uses the inverted value of the distance between two nodes as the heuristics value, see \ref{eq:vrp_heuristic_value}. Thus, the selection phase will bias the tour edge towards shorter ones.
+In VRP and TSP, one typically uses the inverted value of the distance between two nodes as the heuristics value, see \eqref{eq:vrp_heuristic_value}. Thus, the selection phase will bias the tour edge towards shorter ones.
 
 \begin{equation}
 \label{eq:vrp_heuristic_value}
@@ -670,11 +662,11 @@ In VRP and TSP, one typically uses the inverted value of the distance between tw
 
 Two local search variations are proposed - 2.5-opt move \cite{Stattenberger2007} and Iterated Local Search, that uses underlying 2.5-opt move. 
 
-2.5-opt move illustrtions are shown in \ref{fig:twohalf}, \ref{fig:twohalf1}, \ref{fig:twohalf2}, \ref{fig:twohalf3}. In 2.5-opt move, a replacable edge $(y1;y2)$ is chosen, and swapped with another sequence of edges, consisting from one up to three customers, denoted by $(x2)$, $(x2,x3)$ or $(x2,x3,x4)$ on the illustrations. Therefore, size of solution neighborhood is a function depending on tour size of complexity $O(n^2)$.
+2.5-opt move illustrtions are shown in Figures \ref{fig:twohalf}, \ref{fig:twohalf1}, \ref{fig:twohalf2}, \ref{fig:twohalf3}. In 2.5-opt move, a replacable edge $(y1;y2)$ is chosen, and swapped with another sequence of edges, consisting from one up to three customers, denoted by $(x2)$, $(x2,x3)$ or $(x2,x3,x4)$ on the illustrations. Therefore, size of solution neighborhood is a function depending on tour size of complexity $O(n^2)$.
 
 The whole local search procedure consists of sequential attempts of such local moves by trying all possible position combinations of the replacable edge and the replacing ones. The length of the replacing sequence is defined by a random number generator. The local move is applied if it is computed that it will benefit to the solution objective function. However, if local move was applied, one does not reset the position combinations of the loop, but continue with the current progress. In case if solution consists of several tours, then this procedure is applied to every one of them.
 
-In order to accelerate computation of the objective function value one may simply distract the distance of the edges, that are removed and add distance of the edges, that are added. Thus, we avoid full tour recomputation. If during the full attempt cycle one applied the local move at least one time, then the whole attempt cycle is repeated. Otherwise, it means that we have converged to a local optimum and we keep the current solution. The 2.5-opt pseudo-code is shown in \ref{lst:vrp-two-half}.
+In order to accelerate computation of the objective function value one may simply distract the distance of the edges, that are removed and add distance of the edges, that are added. Thus, we avoid full tour recomputation. If during the full attempt cycle one applied the local move at least one time, then the whole attempt cycle is repeated. Otherwise, it means that we have converged to a local optimum and we keep the current solution. The 2.5-opt pseudo-code is shown in Listing \ref{lst:vrp-two-half}.
 
 \begin{multicols}{2}
 \begin{figure*}[ht!]
@@ -712,7 +704,7 @@ end
 \end{lstlisting}
 \end{minipage}
 
-For ILS in case of VRP problems, one can implement perturbation as double-bridge move, see \ref{fig:dbridge1} and \ref{fig:dbridge2}.
+For ILS in case of VRP problems, one can implement perturbation as double-bridge move, see Figure \ref{fig:dbridge1} and \ref{fig:dbridge2}.
 
 
 \begin{multicols}{2}
@@ -822,7 +814,7 @@ Design patterns are widely used during development process. One of the most used
 
 Generally in ACO optimization heuristics there are two ways of maintaining solution feasibility. First is two ensure solution \textbf{feasibility at every moment} of the run. Second is to \textbf{allow processing unfeasible solutions}, however trying to bias towards the components, that keep or likely to keep the solution feasible. Second is good for solving problems with complicated constraints that require a lot of computations in order to keep them feasible. In VRP however, we have decided to use the first approach. This will allow to avoid unnecessary construction of solutions, that are expected to be unfeasible beforehand. \par
 
-Before applying selectors according to formulas \ref{eq:construction_classic}, \ref{eq:construction_maniezzo} or \ref{eq:construction_dorigo} one has to determine the possible solution components at the current construction step. Proposed preselection algorithm is shown in \ref{lst:preselection}. It selects all constraint non-violating edges. Among such constraints there are non-revisiting, not going to itself, not going to the depot edges. Out of those several are filtered out, such as the ones, who violate capacity constraint and distance constraint. In particular, we ensure condition $leftDistance >= dist(current;N) + dist(N;depot)$, since it does not make to go by a certain edge, if it will not be possible even to return to the depot from it. Neither it will be possible to return to the depot by going any farther from that node, which is ensured by triangle inequality property, that works in all VRP instances, that are based on Euclidean space. In case if none such node is found, then the vehicle returns directly to the depot from the current node.
+Before applying selectors according to formulas \eqref{eq:construction_classic}, \eqref{eq:construction_maniezzo} or \eqref{eq:construction_dorigo} one has to determine the possible solution components at the current construction step. Proposed preselection algorithm is shown in Listing \ref{lst:preselection}. It selects all constraint non-violating edges. Among such constraints there are non-revisiting, not going to itself, not going to the depot edges. Out of those several are filtered out, such as the ones, who violate capacity constraint and distance constraint. In particular, we ensure condition $leftDistance >= dist(current;N) + dist(N;depot)$, since it does not make to go by a certain edge, if it will not be possible even to return to the depot from it. Neither it will be possible to return to the depot by going any farther from that node, which is ensured by triangle inequality property, that works in all VRP instances, that are based on Euclidean space. In case if none such node is found, then the vehicle returns directly to the depot from the current node.
 
 In case if a candidate list is used, then the initial set is populated from this list, and the constraints are applied after.
 
@@ -849,7 +841,7 @@ end
 
 \section{Configuration process set-up}
 
-By aggregating all options, strategy choices and flags, one forms a parameter space according to table \ref{tbl:space}. This space formulation corresponds to the i-race representation. Every parameter is defined by its i-race name, publicly known alias (or new if such does was not invented), type, possible parameter values, condition of validity. Every parameter is can be categorical, integer or real. In case of integer and real lower and upper bounds of the parameter are specified. In case of categorical all possible values are listed. Condition is a predicate, that defines whether this parameter must be assigned a value, or this parameter must not present in the generated configuration.
+By aggregating all options, strategy choices and flags, one forms a parameter space according to Table \ref{tbl:space}. This space formulation corresponds to the i-race representation. Every parameter is defined by its i-race name, publicly known alias (or new if such does was not invented), type, possible parameter values, condition of validity. Every parameter is can be categorical, integer or real. In case of integer and real lower and upper bounds of the parameter are specified. In case of categorical all possible values are listed. Condition is a predicate, that defines whether this parameter must be assigned a value, or this parameter must not present in the generated configuration.
 
 
 In addition to the conditional restrictions, several additional constraints have to be ensured by means of forbidden configuration file.
@@ -899,37 +891,48 @@ In addition, one must also take into account that, although deterministic behavi
 
 In order to be able to perform benchmark comparison of the framework's performance, one may use publicly known instances of CVRP problems, see Appendix. To make the performance estimation more objective, one must strictly separate training (tuning) and testing set. This will remove the possibility of that, the results obtained are biased by overfitting, made by the tuning process on concrete instances. For the training stage all Uchoa et al.(2014) instances were selected, that were of size less than 300. These instances are generated on a square grid in Euclidean space. For test instances Golden et Al. (1998) were chosen.
 
-In the end of 20 iterations/20 configurations I-RACE tuning, a presumably good configuration was found. Then, runs of this configuration on test instances were made. The Solution Quality Distribution is shown on \ref{fig:sqd-golden}.
+In the end of 20 iterations/20 configurations I-RACE tuning, a presumably good configuration was found. Then, runs of this configuration on test instances were made. The Solution Quality Distribution is shown on Figure \ref{fig:sqd-golden}.
 
 \begin{figure}[h]
   \centering
-    \includegraphics[scale=0.8]{sqd-golden.PNG}
+    \includegraphics[scale=0.8]{sqd-golden.png}
   \caption{Solution Quality Distribution over Golden et. Al instances}
   \label{fig:sqd-golden}
 \end{figure}
 
-[obtained result configuration for the framework] \newline
+The configuration is shown in Table \ref{tbl:obtained}.
 
-[description of the obtained configuration]
+In that configuration Dorigo selector is chosen, which may be explained by good balance between exploration and exploitation. The heuristics information impact strongly dominates over the pheromone trail value impact. This however will work only if heuristics information is computed duly, as in our case (inverse value of edge distance). Candidate lists are not used, probably since high beta values already manage to cut off the most of poorly promising edges. EAS is used as global update technique. Local update is used. Iterated greedy heuristics is iterated ants. 2.5-opt is used as local search algorithm. The elitist ant factor is 90, which is very high. Reinitialization time is $0.13 \times runtime$, which means that reinitialization will be only enacted 7 times during the run. The iterated ants solution choice criteria is strictly best.
+
+
+
+\section{Existing configuration verification}
+
+In addition to the best configuration obtained, one could use a publicly discovered configurations in literature, \cite{Bullnheimer1999}. One can run the replication of that configuration on the same instances (Christofides, Mingozzi and Toth 1979). The SQD of the Bullnheimer and its replication are shown on Figure \ref{fig:sqd-bullheimer-obtained}.
+
+\begin{figure}[h]
+  \centering
+    \includegraphics[scale=0.8]{sqd-bullnheimer-obtained.PNG}
+  \caption{Solution Quality Distribution for Bullnheimer and its replication}
+  \label{fig:sqd-bullheimer-obtained}
+\end{figure}
+
+The replication did not show as good results as the original, which might be explained by lesser runtime performed or by differences in some implementation details.
+
+
 
 
 \chapter{Conclusion}
 
-[We planned ...]
+As we were planning, we carried out analysis of the state-of-the-art variations and components of the Ant Colony Optimization algorithms. We managed to emphasize the common traits of those algorithms and designed an object-oriented framework, encompassing thereof. This framework was later implemented in Java. This will allow to run and extend this framework in a platform independent way.
 
-[We implemeted ...]
+To apply the framework to actual problems, the framework was adapted for Vehicle Routing Problems, which belongs to NP-hard problems.
 
-[We analyzed ...]
+Then we integrated this framework with a configuration tuning software called I-RACE, created a tuning script and framework parameter specification. The tuning process was performed on Majorana computation cluster.
 
-[Same as in Introduction???]
-
+We performed training (tuning) and testing of the framework on two different publicly known instance sets. In addition, we tried to replicate a publicly known configuration in order to perform benchmark comparison.
 
 This framework in combination with the I-RACE tuning can be used for every combinatorial optimization problem by applying any custom developed ACO metaheuristics. In context of VRP problem, it can be used for transport logistics, microchip design, computer network planning, agriculture, job scheduling, X-Ray crystallography.
-
-
-
-\chapter{Literature}
-
 
 
 
@@ -952,6 +955,8 @@ This framework in combination with the I-RACE tuning can be used for every combi
 The framework sources, automatic configuration setup, problem instances, analysis results and documentation are available on \url{https://github.com/ElderMayday/master}.
 
 Public CVRP problem instances are available on \url{http://vrp.atd-lab.inf.puc-rio.br/index.php/en/}.
+
+
 
 
 \begin{table}[]
@@ -1020,5 +1025,37 @@ probabilistic\_best             & $p_{iter}$ & r    & (0.0,1.0)                 
 destruction\_probability        & $p_{destr}$  &  r & (0.0,1.0)                                                                      & iterated\_greedy in c("external-memory", "iterated-ants", "cunning-ants")                     \\ \hline
 \end{tabular}
 \end{table}
+
+
+\begin{table}[]
+\centering
+\caption{List of parameters of the best configuration obtained}
+\label{tbl:obtained}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Parameter}       & \textbf{Value}         \\ \hline
+selector                 & selector-dorigo        \\ \hline
+alpha                    & 0.2                    \\ \hline
+beta                     & 3.56                   \\ \hline
+dorigo\_probability      & 0.72                   \\ \hline
+candidate\_list          & candidate-no           \\ \hline
+global\_update           & elitist-ant-s          \\ \hline
+local\_update            & local-update-yes       \\ \hline
+iterated\_greedy         & iterated-ants          \\ \hline
+ant\_num                 & 6                      \\ \hline
+lupd\_epsilon            & 0.46                   \\ \hline
+lupd\_tau0               & 0.19                   \\ \hline
+local\_search            & local-search-twohalf   \\ \hline
+evaporation\_remains     & 0.66                   \\ \hline
+eas\_m\_elite            & 90                     \\ \hline
+eas\_is\_bounded         & eas-bounded-yes        \\ \hline
+eas\_k                   & 4.02                   \\ \hline
+reinitialization         & reinitialization-yes   \\ \hline
+reinitialization\_time   & 0.13                   \\ \hline
+criteria                 & iterated-criteria-best \\ \hline
+destruction\_probability & 0.15                   \\ \hline
+\end{tabular}
+\end{table}
+
 
 \end{document}

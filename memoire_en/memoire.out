@@ -1,7 +1,7 @@
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
 \BOOKMARK [0][-]{chapter.2}{Background}{}% 2
 \BOOKMARK [1][-]{section.2.1}{Combinatorial Optimization Problems and Constructive Heuristics 5}{chapter.2}% 3
-\BOOKMARK [1][-]{section.2.2}{Ant Colony Optimization 10}{chapter.2}% 4
+\BOOKMARK [1][-]{section.2.2}{Ant Colony Optimization}{chapter.2}% 4
 \BOOKMARK [2][-]{subsection.2.2.1}{Choice of pheromone trails and heuristic information}{section.2.2}% 5
 \BOOKMARK [2][-]{subsection.2.2.2}{Solution component choice}{section.2.2}% 6
 \BOOKMARK [2][-]{subsection.2.2.3}{Construction extensions}{section.2.2}% 7
@@ -10,7 +10,7 @@
 \BOOKMARK [2][-]{subsection.2.2.6}{Local pheromone update}{section.2.2}% 10
 \BOOKMARK [2][-]{subsection.2.2.7}{Pheromone trail limits}{section.2.2}% 11
 \BOOKMARK [2][-]{subsection.2.2.8}{Local search}{section.2.2}% 12
-\BOOKMARK [1][-]{section.2.3}{Iterated F-Race 5}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.3}{Iterated F-Race}{chapter.2}% 13
 \BOOKMARK [0][-]{chapter.3}{Vehicle Routing Problem}{}% 14
 \BOOKMARK [1][-]{section.3.1}{Problem definition}{chapter.3}% 15
 \BOOKMARK [1][-]{section.3.2}{Candidate list}{chapter.3}% 16
@@ -24,6 +24,6 @@
 \BOOKMARK [1][-]{section.4.4}{Testing}{chapter.4}% 24
 \BOOKMARK [0][-]{chapter.5}{Experimental}{}% 25
 \BOOKMARK [1][-]{section.5.1}{Train and test runs}{chapter.5}% 26
-\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 27
-\BOOKMARK [0][-]{chapter.7}{Literature}{}% 28
+\BOOKMARK [1][-]{section.5.2}{Existing configuration verification}{chapter.5}% 27
+\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 28
 \BOOKMARK [0][-]{appendix*.3}{Appendix}{}% 29
