@@ -7,6 +7,8 @@ import solving.solution.Solution;
 import solving.globalUpdate.GlobalUpdate;
 import solving.localSearch.LocalSearch;
 import solving.selectors.Selector;
+import solving.solution.SolutionVRP;
+import solving.solution.Tour;
 import solving.terminationCriteria.TerminationCriteria;
 
 import java.util.List;
@@ -35,6 +37,8 @@ public class SolverStandard extends Solver
 
         List<Solution> solutions;
 
+        //long iteration = 1;
+
         do
         {
             solutions = constructSolutionList(antNum);
@@ -45,6 +49,12 @@ public class SolverStandard extends Solver
 
             if (terminationCriteria.needReinitialize())
                 initializer.initialize(problem.structure);
+
+            /*SolutionVRP best = (SolutionVRP) Solution.findBestSolution(solutions);
+            if (iteration % 1000 == 0)  // TODO remove
+                System.out.println(iteration + " " + String.format("%1$.3f", Solution.findBestSolution(solutions).objective));
+            iteration++;*/
+
         }
         while (!terminationCriteria.isFulfilled());
 

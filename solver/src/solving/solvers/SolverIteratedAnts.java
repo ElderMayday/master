@@ -52,6 +52,8 @@ public class SolverIteratedAnts extends Solver
 
         solutions = executeMultipleLocalSearch(solutions);
 
+        long iteration = 1;
+
         do
         {
             newSolutions = new ArrayList<Solution>();
@@ -72,6 +74,10 @@ public class SolverIteratedAnts extends Solver
 
             if (terminationCriteria.needReinitialize())
                 initializer.initialize(problem.structure);
+
+            if (iteration % 1000 == 0)  // TODO remove
+                System.out.println(iteration + " " + String.format("%1$.3f", Solution.findBestSolution(solutions).objective));
+            iteration++;
         }
         while (!terminationCriteria.isFulfilled());
 

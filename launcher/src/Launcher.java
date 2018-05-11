@@ -7,14 +7,22 @@ public class Launcher
 {
     public static void main(String[] args)
     {
+        /*String configurationString = "testConfig2 instance1 1234567 [path]  " +
+                "--selector-dorigo --alpha 0.2 --beta 3.56 --dorigo-probability 0.72 --candidate-no --elitist-ant-s " +
+                "--local-update-yes --iterated-ants --ant-num 6 --lupd-epsilon 0.46 --tau0 0.19 --local-search-twohalf " +
+                "--evaporation-remains 0.66 --eas-m-elite 90 --eas-bounded-yes --eas-k 4.02 --reinitialization-yes " +
+                "--reinitialization-time 0.13 --iterated-criteria-best --destruction-probability 0.15 --end";*/
+
         String configurationString = "testConfig2 instance1 1234567 [path]  " +
-                "--selector-standard --alpha 5.0 --beta 5.0 --candidate-yes --candidate-ratio 0.25 --ant-s " +
+                "--selector-standard --alpha 1.0 --beta 5.0 --candidate-yes --candidate-ratio 0.25 --ant-s " +
                 "--local-update-no --standard --ant-num 30 --local-search-twohalf --evaporation-remains 0.75 " +
                 "--ant-s-bounded-no --reinitialization-no --end";
 
         String[] arguments = configurationString.split("\\s+");
 
-        String path = "D:\\master\\irace\\test\\";
+        String path = "irace\\test\\";
+
+        //String[] names = {"CMT13.vrp.txt"}; // TODO remove
 
         String[] names = {"CMT1.vrp.txt",
                 "CMT2.vrp.txt",

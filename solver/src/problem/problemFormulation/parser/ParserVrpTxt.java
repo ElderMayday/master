@@ -121,6 +121,43 @@ public class ParserVrpTxt extends ParserVrp
 
         i++;
 
+        // read demands
+
+        problem.demands = new double[problem.vertexNum];
+
+        boolean firstIsSkipped = false;
+
+        while (!line[i].startsWith("DEPOT_SECTION"))
+        {
+            String tokens[] = line[i].split("(:|\\s)+");
+
+            int index = Integer.parseInt(tokens[tokens.length - 2]);
+
+            problem.demands[index - 1] = Double.parseDouble(tokens[tokens.length - 1]);
+
+            i++;
+        }
+
+        // check whether depot was skipped (it happens if there are coordinates after DEPOT_SECTION)
+
+        i++;
+
+        String tokens[] = line[i].split("\\s+");
+
+        if (!tokens[0].isEmpty()) // depot needs to be added
+        {
+            for (int index = x.length - 1; index > 0; index--)  // shift distances and demands by one row down to free the [0]
+            {
+                x[index] = x[index - 1];
+                y[index] = y[index - 1];
+                problem.demands[index] = problem.demands[index - 1];
+            }
+
+            x[0] = Double.parseDouble(tokens[0]);
+            y[0] = Double.parseDouble(tokens[1]);
+            problem.demands[0] = 0.0;
+        }
+
         // compute the distance matrix
 
         DistanceDeterminer distanceDeterminer = null;
@@ -132,7 +169,7 @@ public class ParserVrpTxt extends ParserVrp
                 distanceDeterminer = new DistanceEuclidean2d();
                 break;
 
-                // ...
+            // ...
 
             default:
                 distanceDeterminer = new DistanceEuclidean2d(); // by default
@@ -152,22 +189,7 @@ public class ParserVrpTxt extends ParserVrp
                 structure2d.setDistance(column, row, distance);
             }
 
-        // read demands
-
-        problem.demands = new double[problem.vertexNum];
-
-        while (!line[i].startsWith("DEPOT_SECTION"))
-        {
-            String tokens[] = line[i].split("(:|\\s)+");
-
-            int index = Integer.parseInt(tokens[tokens.length - 2]);
-
-            problem.demands[index - 1] = Double.parseDouble(tokens[tokens.length - 1]);
-
-            i++;
-        }
-
-        // depot is set to node #0 disregarding the file (but normally it corresponds to the standard format)
+        // depot is set to node #0
 
         problem.depotId = 0;
 

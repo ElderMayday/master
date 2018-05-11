@@ -139,7 +139,14 @@ public class Tour
 
     public String toString()
     {
-        String result = "{";
+        String result = "{[C=" + String.format("%1$.2f", getLeftCapacity()) + "/" + String.format("%1$.2f", vehicle.capacity) + " D=";
+
+        if (vehicle.hasLengthRestriction)
+            result += String.format("%1$.2f", getLeftDistance()) + "/" + String.format("%1$.2f", vehicle.length);
+        else
+            result += "inf";
+
+        result += "] ";
 
         for (int i = 0; i < customers.size() - 1; i++)
             result += customers.get(i).toString() + "-";

@@ -133,6 +133,32 @@ public class TestProblemVRP
     }
 
 
+    @Test
+    public void testProblemVrpLoadInstanceTxt_SkipDepotDemand()
+    {
+        ProblemVRP problem;
+
+        try
+        {
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
+            problem.load(new File("solver/problem-samples/CMT1.vrp.txt"));
+
+            assertEquals(0.0, problem.demands[0], 0.001);
+            assertEquals(7.0, problem.demands[1], 0.001);
+            assertEquals(10.0, problem.demands[50], 0.001);
+
+            assertEquals(13.8924, problem.structure2d.get(0, 1).getDistance(), 0.001);
+
+            int a = 1;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            assertTrue(false);
+        }
+    }
+
+
     /**
      *  Integration test of how does ProblemVrp define possible components based on the current SolutionVRP
      */
