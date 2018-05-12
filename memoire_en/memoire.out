@@ -1,6 +1,6 @@
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
 \BOOKMARK [0][-]{chapter.2}{Background}{}% 2
-\BOOKMARK [1][-]{section.2.1}{Combinatorial Optimization Problems and Constructive Heuristics 5}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.1}{Combinatorial Optimization Problems and Constructive Heuristics}{chapter.2}% 3
 \BOOKMARK [1][-]{section.2.2}{Ant Colony Optimization}{chapter.2}% 4
 \BOOKMARK [2][-]{subsection.2.2.1}{Choice of pheromone trails and heuristic information}{section.2.2}% 5
 \BOOKMARK [2][-]{subsection.2.2.2}{Solution component choice}{section.2.2}% 6

@@ -114,23 +114,25 @@ the disastrous effects of a siege.}''
 \setcounter{page}{1}
 \vspace*{0.5cm}
 
-Some species show an extreme degree of social organization. Such species (e.g. ants) have pheromone production and detection body parts and therefore seize an ability to communicate between each other in an indirect way. This concept has inspired the development of algorithms, which are based on the social behavior of the ant colonies called ant colony optimization algorithms. These algorithms allow to solve NP-hard problems in a very efficient manner. These algorithms are considered to be metaheuristics. ACO algorithms have a large number of variations and configuration parameters, that drastically influence the algorithm performance. These parameters may be unified by means of some framework.
+Some insect species show an extreme degree of social organization. For example many ant species have pheromone production and detection body parts and therefore seize an ability to communicate between each other in an indirect way. Such indirect communication between organism is called stigmergy. Biologists conducted several experiments with ant colonies and found out that they tend to find short paths by means of such communication. This concept has inspired the development of algorithms, which are based on the social behavior of ant colonies called ant colony optimization (ACO) algorithms. These algorithms allow to solve NP-hard problems in a very efficient manner. These algorithms are considered to be metaheuristics. By metaheuristic we imply a generic set of rules for deriving heuristic algorithms. ACO algorithms have a large number of variations and configuration parameters, that drastically influence the algorithm performance. These parameters may be unified by means of some framework.
 
-At the moment, there exists a state-of-the-art software called ACOTSPQAP. As the name says, it is designed to solve Traveling Salesman Problem and Quadratic Assignment Problems with high-efficiency by means of ACO meta-heuristics. It also includes different algorithm variations as AS, EAS, MMAS, RAS, BWAS, ACS. As for the implementation, it is written in C and, therefore, it adheres to structural programming paradigm. Although switching to a different problem type context is still possible, it is nonetheless more costly than if it is was written in an objective oriented language.
+At the moment, there exists a state-of-the-art software called ACOTSPQAP. As the name says, it is designed to solve Traveling Salesman Problem and Quadratic Assignment Problems with high-efficiency by means of ACO meta-heuristics. It also includes different algorithm variations as Ant System (AS), Elitist Ant System (EAS) \cite{Dor1992:thesis,Maniezzo_antsystem,Dorigo1996}, Max-Min Ant System (MMAS) \cite{STUTZLE2000889}, Rank-based Ant System (RAS) \cite{Bullnheimer97anew}, Best-Worst Ant System (BWAS) \cite{Cordon00anew}, Ant Colony System (ACS) \cite{Dorigo1997}. As for the implementation, it is written in C and, therefore, it adheres to structural programming paradigm.
 
-The development of a flexible OOP driven ACO framework is the next step of formalizing this area. Such a framework can then be used as a tool to help resolving various optimization problems. This report gives a brief overview of the current state of the ACO research area, existing framework description and some tools which can be used for the automatic configuration of the framework.
+Although switching to a different problem type context is still possible, it is nonetheless more costly than if it is was written according to object-oriented programming (OOP) paradigm. OOP reduces cost, due to its essential properties (inheritance, abstraction and polymorphism). These properties may heavily reduce code repetitions. For example having implemented an abstraction of NP-hard problem and one of its implementations for one concrete NP-hard problem, one will only have to make another implementation, in case if switching to another problem type is required. These implementations contain only problem specific parts of the code and are mutually replaceable. In structured programming however, the program is split into high and low level modules, and in case of program extension both high and low level modules will be subject to modify.
 
-The work was started by analyzing and aggregating possible options and choices, trying to define their common parts in order to derive abstract classes and reduce component repetitions. In the chapter 2, we describe the theoretical foundations of the framework, that is required to develop. However unreasonable selection of a running configuration may lead to producing of low-quality results even after a long runtime execution. A simple decision is to perform certain configuration tuning before the actual executing. This chapter also introduces a description of an efficient configuration tuning software called I-RACE, that allows to obtain high-performing configurations for further framework exploiting. We integrated the developed framework into the I-RACE by giving a specification of the framework parameter space.
+The development of a flexible OOP driven ACO framework is the next step of formalizing this area. Such a framework can then be used as a tool to help resolving various optimization problems. This thesis gives a brief overview of the current state of the ACO research area, existing framework description and some tools which can be used for the automatic configuration of the framework.
 
-The development of such framework would also require its application to some particular problem for testing and analysis purposes. Vehicle Routing Problem was chosen as the one. It is a widely researched NP-hard combinatorial optimization problem, therefore, it will allow us to perform benchmark comparison of the public available problem instances and its solutions with the solutions, that we obtain. In the chapter 3, we introduce formulation of Vehicle Routing Problem and also mention several variations thereof.
+The work was started by analyzing and aggregating possible options and choices, trying to define their common parts in order to derive abstract classes and reduce component repetitions. In chapter 2, we describe the theoretical foundations of the framework, that is required to develop. However unreasonable selection of a running configuration may lead to producing of low-quality results even after a long runtime execution. A simple decision is to perform certain configuration tuning before the actual executing. This chapter also introduces a description of an efficient configuration software called irace, that allows to obtain high-performing configurations for further framework exploiting. We adapted the developed framework for the irace by giving a specification of the framework parameter space.
 
-In the chapter 4, we describe thorough implementation details and decisions for the ACO framework, the way we adapt it specifically to VRP-problems and also show line-by-line description of the parameter space defined for the framework. We also explain there how do we attain high flexibility of the framework in order to adapt it for various problem types besides VRP.
+The development of such framework would also require its application to some particular problem for testing and analysis purposes. Vehicle Routing Problem (VRP) was chosen as the one. It is a widely researched NP-hard combinatorial optimization problem, therefore, it will allow us to perform benchmark comparison of the public available problem instances and its solutions with the solutions, that we obtain. In chapter 3, we introduce formulation of VRP and also mention several variations thereof.
 
-In the chapter 5, one can see the experimental set-up, tuning results, performance benchmark and verbal interpretations of the results.
+In chapter 4, we describe the implementation details and decisions for the ACO framework, the way we adapt it specifically to VRP-problems and also show a line-by-line description of the parameter space defined for the framework. We also explain there how do we attain high flexibility of the framework in order to adapt it for various problem types besides VRP.
+
+In chapter 5, one can see the experimental set-up, tuning results, performance benchmark and verbal interpretations of the results.
 
 \chapter{Background}
 
-\section{Combinatorial Optimization Problems and Constructive Heuristics 5}
+\section{Combinatorial Optimization Problems and Constructive Heuristics}
 
 Combinatorial optimization problems (COPs) are a large class of mathematical optimization problems. These problems can be described as a grouping, ordering, assignment or any other operations over a set of discrete objects. In practice, one may need to resolve COPs, which have a large number of extra constraints for the solutions to consider them as admissible. Many of these problems which are still being thoroughly researched at the moment, belong to NP-hard discrete optimization problems. The best performing algorithms known today to solve such problems have a worst-case run-time larger than polynomial (e.g. exponential).
 
@@ -360,7 +362,7 @@ For the mentioned update techniques several variants are possible: \\
 
 where $S^*$ is the best solution so far, and $\Delta t_j^* = 1/z^*$, $z^*$ is the cost of $S^*$.
 
-\item \textbf{Max-Min Ant System}. The pheromone values are updated by evaporating all pheromone trails according to \eqref{eq:mmas_evaporation} with consequent deposit of $\Delta \tau = 1 / z$ to the solution components in global-best or iteration-best or reset-based solution, where $z$ is the cost of this solution. The amount of pheromones per component is bounded $\tau_i \in [\tau_{max};\tau_{min}]$. The update schedule switches between ib, gb and rb depending on the value called branching factor \cite{STUTZLE2000889}.
+\item \textbf{Max-Min Ant System}. The pheromone values are updated by evaporating all pheromone trails according to \eqref{eq:mmas_evaporation} with consequent deposit of $\Delta \tau = 1 / z$ to the solution components in global-best or iteration-best or reset-based solution, where $z$ is the cost of this solution. The amount of pheromones per component is bounded $\tau_i \in [\tau_{max};\tau_{min}]$. The update schedule switches between ib, gb and rb depending on the value called branching factor.
 \begin{equation}
 \tau_i' = \rho \tau_i + \sum \limits_{\forall ants} \delta t_i^k
 \end{equation}
@@ -400,16 +402,30 @@ When applied, the value of each pheromone trail is increased according to formul
 
 \textit{where $\delta$ - is elevation parameter in [0;1].}
 
+The problem size parameter $n$, that is required for MMAS, is equal to the number of nodes, i.e. all customers plus one depot.
 
+In MMAS bounds for the pheromone trail values are imposed according to formulas \eqref{eq:tau_max} and \eqref{eq:tau_min}.
 
-\item {\textbf{Rank-based Ant System} uses the notion of rank by depositing \cite{Bullnheimer97anew} to the pheromone trail the following value:
+\begin{equation}
+\tau_{max} = \frac{\sum \limits_{\forall k} \frac{1}{L^k(t)}}{\rho}
+\label{eq:tau_max}
+\end{equation}
+
+\begin{equation}
+\tau_{min} = \tau_{max} \times \frac{1-\sqrt[n]{p_{best}}}{(\frac{n}{2}-1) \times \sqrt[n]{p_{best}}}
+\label{eq:tau_min}
+\end{equation}
+
+\textit{where $p_{best}$ - is the probability of constructing the best solution.}
+
+\item {\textbf{Rank-based Ant System} uses the notion of rank by depositing to the pheromone trail the following value:
 $w_k \times F(s_k) = \frac{max(0,w-r)}{f(s_k)}$
 where: $w=|S^{upd}|$, r-solution rank in the current iteration
 }
 
-\item {\textbf{Elitist Ant System} - all solutions from the current iteration deposit pheromones as well as the global-best solution $s_{gb}$ deposits an amount $w_{gb} \times F(s_{gb}) = Q \times \frac{m_{elite}}{f(s_{gb})}$ \cite{Dor1992:thesis,Maniezzo_antsystem,Dorigo1996}, where $m_{elite}$ is the multiplicative factor that increases the weight of $s_{gb}$ solution, $Q$ is the same multiplication factor from the standard AS.}
+\item {\textbf{Elitist Ant System} - all solutions from the current iteration deposit pheromones as well as the global-best solution $s_{gb}$ deposits an amount $w_{gb} \times F(s_{gb}) = Q \times \frac{m_{elite}}{f(s_{gb})}$, where $m_{elite}$ is the multiplicative factor that increases the weight of $s_{gb}$ solution, $Q$ is the same multiplication factor from the standard AS.}
 
-\item \textbf{Best-Worst Ant System} denotes that pheromone trail values are deposited to the solution components that constitute the global-best solution but also evaporation is applied to the components from the worst solution of the current iteration (which are in the global-best solution) \cite{Cordon00anew}
+\item \textbf{Best-Worst Ant System} denotes that pheromone trail values are deposited to the solution components that constitute the global-best solution but also evaporation is applied to the components from the worst solution of the current iteration (which are in the global-best solution).
 
 Mutation mechanism is used hand in hand with BWAS. It is inspired by natural evolution process of gene mutation. It provides certain amount of diversity by modifying pheromone values of some components. The mutation mechanism is illustrated in formula \eqref{eq:mutation}. Every component is mutated with probability $p_{mut}$. Uniform random $q$ is generated within $[0;1]$
 
@@ -502,7 +518,7 @@ end
   \label{fig:ils}
 \end{figure}
 
-The simplest acceptance criteria is choice of a better solution, however one may want to use a probabilistic approach. It prevents   major perturbation moves, that do not effectively contribute to objective goal improving, and thus, attains good trade-off between exploration and intensification. History can be taken into account in this heuristics, so the whole procedure is in fact a "Markovian" process, which implies that further moves completely depend on the current state.
+The simplest acceptance criteria is choice of a better solution, however one may want to use a probabilistic approach. It prevents   major perturbation moves, that do not effectively contribute to objective goal improving, and thus, attains good trade-off between exploration and intensification. History can be taken into account in this heuristics, so the whole procedure is in fact a "Markovian" process, which implies that further moves depend completely on the current state.
 
 \section{Iterated F-Race}
 
@@ -546,14 +562,14 @@ end
 \begin{figure}
   \centering
     \includegraphics{irace.jpg}
-  \caption{I-RACE execution illustration}
+  \caption{irace execution illustration}
   \label{fig:irace}
 \end{figure}
 
 
-I-RACE (iterated race) configuration implementation was developed and described in \cite{LopDubStuBir2011:techreport-004}. It was implemented in R with taking into account the parallel programming techniques and an initial candidate set-up. It is implemented as an offline tuning. That means, that the tuning is a separate preparatory process from the actual real-world problem application. The feature of the I-RACE is based on iterated generation of new configurations and removing of solutions with lower quality for further evaluating on the problem instances.
+Irace (iterated race) configuration implementation was developed and described in \cite{LopDubStuBir2011:techreport-004}. It was implemented in R with taking into account the parallel programming techniques and an initial candidate set-up. It is implemented as an offline tuning. That means, that the tuning is a separate preparatory process from the actual real-world problem application. The feature of the irace is based on iterated generation of new configurations and removing of solutions with lower quality for further evaluating on the problem instances.
 
-In order to tune the configurations that are sampled, I-RACE algorithms uses independent sampling distributions for each of the parameters. For numeric values those are normal distributions and discretely-defined distributions for the rest. The configuration biasing procedure is based on modifying the sampling distributions.
+In order to tune the configurations that are sampled, irace algorithms uses independent sampling distributions for each of the parameters. For numeric values those are normal distributions and discretely-defined distributions for the rest. The configuration biasing procedure is based on modifying the sampling distributions.
 
 Iterated racing is an automatic configuration implementation that consists of three steps:
 
@@ -563,9 +579,9 @@ Iterated racing is an automatic configuration implementation that consists of th
 \item Updating the sampling distribution in order to bias the sampling towards the best configurations.
 \end{itemize}
 
-After new configurations are sampled comes the selection stage. At the configuration selection stage, I-RACE runs each of the configurations on a single problem instance from the predefined instance set. After each racing iteration the worst configurations are discarded. Then the rest of the configurations update parameter sampling distributions. The racing stops when the number of the survived configurations becomes small enough (defined by termination criteria).
+After new configurations are sampled comes the selection stage. At the configuration selection stage, irace runs each of the configurations on a single problem instance from the predefined instance set. After each racing iteration the worst configurations are discarded. Then the rest of the configurations update parameter sampling distributions. The racing stops when the number of the survived configurations becomes small enough (defined by termination criteria).
 
-Some I-RACE extensions can be applied. \textbf{Initial configurations} can be set before the run of the I-RACE. \textbf{Soft-restart} is used for preventing premature convergence. Such convergence may suppresses configuration diversity and, therefore some good configurations may be lost. This restart is triggered if the value of an ad hoc function of configuration distance is lower than a certain margin. Then reinitialization is applied to the elite configurations.
+Some irace extensions can be applied. \textbf{Initial configurations} can be set before the run of the irace. \textbf{Soft-restart} is used for preventing premature convergence. Such convergence may suppresses configuration diversity and, therefore some good configurations may be lost. This restart is triggered if the value of an ad hoc function of configuration distance is lower than a certain margin. Then reinitialization is applied to the elite configurations.
 
 
 \chapter{Vehicle Routing Problem}
@@ -573,17 +589,25 @@ Some I-RACE extensions can be applied. \textbf{Initial configurations} can be se
 
 \section{Problem definition}
 
-VRP is a generalization of Traveling Salesman Problem. TSP is such a particular case of VRP, where a single vehicle is disposed instead of a whole fleet, and all capacity and length constraints are always satisfied. Both of these problem require return to the initial node in general variation. Both problems have an objective defined as the total distance passed by a vehicle/vehicles.
+All variations of VRP represent a problem of distribution of goods among the given customers by means of a vehicle fleet. Each edge between nodes is attributed by a measure of cost, that represents distance between these nodes or time required to travel from one to another. Each customer is attributed by its demand of goods. As a goal one usually uses the total distance passed. However, in some variants the objective can be as follows:
 
-As a basis for VRP formulation variation we use the Classical Vehicle Routing Problem \cite{CORDEAU2007367}. However minor generalizations are actually implemented in the framework above the given formulation. \par
+\begin{itemize}
+\item Minimize the number of the required vehicles.
+\item Minimize variation in travel distances and required capacities, i.e. vehicle fairness.
+\item Minimize penalties for low quality service.
+\end{itemize}
 
-VRP is defined on a complete undirected graph $G=(V,E)$. A set of nodes $V=\{0,1,...,n\}$ is a union of all customer nodes $V\setminus\{0\}$ and a depot node $0$. Distance (a.k.a. travel cost or length or time) $c_e$ or $c_{ij}$ is assigned to each edge $e \in E = \{(i,j): i,j \in V, i<j\}$. Vehicle fleet is represented by $m$ identical vehicles, having a capacity $Q$ and total distance limit $L$.
+One may also take into account several objectives at once, thus having a multi-objective optimization problem.
+
+As a basis for VRP formulation variation we use the Capacitated Vehicle Routing Problem (CVRP) \cite{CORDEAU2007367}. However minor generalizations are actually implemented in the framework above the given formulation. \par
+
+CVRP is defined on a complete undirected graph $G=(V,E)$. A set of nodes $V=\{0,1,...,n\}$ is a union of all customer nodes $V\setminus\{0\}$ and a depot node $\{0\}$. Distance $c_e$ or $c_{ij}$ is assigned to each edge $e \in E = \{(i,j): i,j \in V, i<j\}$. The vehicle fleet is represented by $m$ identical vehicles, having a capacity $Q$ and total distance limit $L$.
 
 Constraints are defined as follows:
 \begin{enumerate}
 \item Each customer is only visited by exactly one vehicle.
 \item Each route starts and ends at the depot.
-\item Total demand, that any vehicle provides does not exceed the capacity $Q$.
+\item Total demand, that any vehicle covers does not exceed the vehicle's capacity $Q$.
 \item Total distance, that any vehicle passes on route does not exceed the limit L. 
 \end{enumerate}
 
@@ -631,21 +655,21 @@ x_e \in \{0,1,2\}, e \in \delta(0)
 However in addition to this definition one can apply several soothing generalizations:
 
 \begin{enumerate}
-\item \textbf{Non-symmetric matrix} can be considered, i.e. moving an edge one-way may have a different cost from moving backwards.
-\item \textbf{Non-homogeneous vehicle fleet}. Every vehicle has its own maximum capacity and maximum distance.
-\item A particular \textbf{vehicle may lack of maximum distance restriction}. In other words, maximum distance can be set to infinity.
-\item \textbf{Open/closed problem variations can be also generalized}. Open VRP is a VRP variation, where a vehicle does not have to return to the depot. Closed is a variation, where it must return to the depot in any case. Generalization can be done at matrix definition step by setting all edges leaving from a customer to the depot to 0 in case of opened. On contrary, in closed VRP they are set to their actual travel cost.
+\item A \textbf{Non-symmetric matrix} can be considered, i.e. moving an edge one-way may have a different cost from moving the other direction.
+\item A \textbf{Non-homogeneous vehicle fleet}. Every vehicle has its own maximum capacity and maximum distance.
+\item The \textbf{vehicle may lack of maximum distance restriction}. In other words, maximum distance can be set to infinity.
+\item \textbf{Open/closed problem variations can be also generalized}. The open VRP is a VRP variation, where a vehicle does not have to return to the depot. Closed is a variation, where it must return to the depot in any case. Generalization can be done at matrix definition step by setting all edges leaving from a customer to the depot to 0 in case of the open VRP. On contrary, in closed VRP they are set to their actual travel cost.
 \end{enumerate}
 
-Two general feasibility constraints can be verified in advance before solving a problem instance. Firstly, one can check whether total demand of all customers is not larger than total supply of all vehicles in case of limited fleet. Secondly, one can check that maximum demand of a single customer does not exceed maximum supply of a vehicle fleet, since this customer will never be satisfied, due to the fact, that only one vehicle can supply a customer.
+Two general feasibility constraints can be verified in advance before solving a problem instance. Firstly, one can check whether the total demand of all customers is not larger than the total supply of all vehicles in case of limited fleet. Secondly, one can check that the maximum demand of a single customer does not exceed the maximum supply of a vehicle fleet, since this customer will never be satisfied, due to the fact, that only one vehicle can supply a customer.
 
-The problem size parameter, that is required for MMAS, is equal to the number of nodes, i.e. all customers plus one depot.
+A related problem is Traveling Salesman Problem (TSP). TSP is such a particular case of closed CVRP, where a single vehicle is disposed instead of a whole fleet, and all capacity and length constraints are always satisfied. Both of these problems require vehicles to return to the initial node in general variation. Both problems have an objective defined as the total distance passed by a vehicle/vehicles.
 
-In case of limited non-homogeneous vehicle fleet, the results strongly depend on order of vehicle departure. We propose to emit vehicles in order of their decreasing capacities. By this we try to maximize number of customers visited by a single vehicle and remove redundant long-distance travels over zones, where customers were already satisfied.
+In case of limited non-homogeneous vehicle fleet, the results strongly depend on the order of vehicle departure. We propose to emit vehicles in order of their decreasing capacities. By this we try to the maximize number of customers visited by a single vehicle and remove redundant long-distance travels over zones, where customers were already satisfied.
 
 \section{Candidate list}
 
-Candidate list can severely boost performance. Similarly to TSP, \textbf{cl nearest neighbors} candidate lists can be used. For sake of optimization, these lists are computed once in the beginning of metaheuristcs execution and exploited during whole the run. Such a candidate list must be determined separately for every node.
+A candidate list can severely boost performance. Similarly to the TSP, a \textbf{cl nearest neighbors} candidate lists can be used. For sake of optimization, these lists are computed once in the beginning of the metaheuristcs execution and exploited during the whole the run. Such a candidate list must be determined separately for every node.
 
 During the preselection phase, the algorithm will examine the candidate list for the current node in the first place. In case if none of those will satisfy constraints (capacity, distance, already visited constraints), only then the nodes outside of the candidate list will be considered.
 
@@ -660,9 +684,9 @@ In VRP and TSP, one typically uses the inverted value of the distance between tw
 
 \section{Local search}
 
-Two local search variations are proposed - 2.5-opt move \cite{Stattenberger2007} and Iterated Local Search, that uses underlying 2.5-opt move. 
+Two local search variations are proposed - 2.5-opt move \cite{Stattenberger2007} and Iterated Local Search, that uses the underlying 2.5-opt move. 
 
-2.5-opt move illustrtions are shown in Figures \ref{fig:twohalf}, \ref{fig:twohalf1}, \ref{fig:twohalf2}, \ref{fig:twohalf3}. In 2.5-opt move, a replacable edge $(y1;y2)$ is chosen, and swapped with another sequence of edges, consisting from one up to three customers, denoted by $(x2)$, $(x2,x3)$ or $(x2,x3,x4)$ on the illustrations. Therefore, size of solution neighborhood is a function depending on tour size of complexity $O(n^2)$.
+2.5-opt move illustrations are shown in Figures \ref{fig:twohalf}, \ref{fig:twohalf1}, \ref{fig:twohalf2}, \ref{fig:twohalf3}. In 2.5-opt move, a replaceable edge $(y1;y2)$ is chosen, and swapped with another sequence of edges, consisting from one up to three customers, denoted by $(x2)$, $(x2,x3)$ or $(x2,x3,x4)$ on the illustrations. Therefore, size of solution neighborhood is a function depending on tour size of complexity $O(n^2)$.
 
 The whole local search procedure consists of sequential attempts of such local moves by trying all possible position combinations of the replacable edge and the replacing ones. The length of the replacing sequence is defined by a random number generator. The local move is applied if it is computed that it will benefit to the solution objective function. However, if local move was applied, one does not reset the position combinations of the loop, but continue with the current progress. In case if solution consists of several tours, then this procedure is applied to every one of them.
 
@@ -729,8 +753,6 @@ Solution destruction is a procedure, that is necessary to implement for iterated
 \section{Software design}
 
 The software framework is implemented in Java 1.8.0 in correspondence with object-oriented programming paradigm. Besides VRP, many other combinatorial optimization problems are also anticipated to be solved by means of this framework. This framework remains highly flexible and adaptive in terms of problem variations. This is attained by design patterns and deep abstraction of the framework components. Large application of abstractions ensures minor code-repetition, being ready for some algorithm modifications. Dependency injection concept ensures, that high-level abstraction do not determine the low-level details themselves. Instead, they only receive these dependencies as arguments. This also allows to resort to white-box unit testing of some software components.
-
-
 
 All classes are strictly grouped in two parts. The first part is \textbf{problem independent} classes. Those are:
 
@@ -891,7 +913,7 @@ In addition, one must also take into account that, although deterministic behavi
 
 In order to be able to perform benchmark comparison of the framework's performance, one may use publicly known instances of CVRP problems, see Appendix. To make the performance estimation more objective, one must strictly separate training (tuning) and testing set. This will remove the possibility of that, the results obtained are biased by overfitting, made by the tuning process on concrete instances. For the training stage all Uchoa et al.(2014) instances were selected, that were of size less than 300. These instances are generated on a square grid in Euclidean space. For test instances Golden et Al. (1998) were chosen.
 
-In the end of 20 iterations/20 configurations I-RACE tuning, a presumably good configuration was found. Then, runs of this configuration on test instances were made. The Solution Quality Distribution is shown on Figure \ref{fig:sqd-golden}.
+In the end of 20 iterations/20 configurations irace tuning, a presumably good configuration was found. Then, runs of this configuration on test instances were made. The Solution Quality Distribution is shown on Figure \ref{fig:sqd-golden}.
 
 \begin{figure}[h]
   \centering
@@ -928,11 +950,11 @@ As we were planning, we carried out analysis of the state-of-the-art variations 
 
 To apply the framework to actual problems, the framework was adapted for Vehicle Routing Problems, which belongs to NP-hard problems.
 
-Then we integrated this framework with a configuration tuning software called I-RACE, created a tuning script and framework parameter specification. The tuning process was performed on Majorana computation cluster.
+Then we integrated this framework with a configuration tuning software called irace, created a tuning script and framework parameter specification. The tuning process was performed on Majorana computation cluster.
 
 We performed training (tuning) and testing of the framework on two different publicly known instance sets. In addition, we tried to replicate a publicly known configuration in order to perform benchmark comparison.
 
-This framework in combination with the I-RACE tuning can be used for every combinatorial optimization problem by applying any custom developed ACO metaheuristics. In context of VRP problem, it can be used for transport logistics, microchip design, computer network planning, agriculture, job scheduling, X-Ray crystallography.
+This framework in combination with the irace tuning can be used for every combinatorial optimization problem by applying any custom developed ACO metaheuristics. In context of VRP problem, it can be used for transport logistics, microchip design, computer network planning, agriculture, job scheduling, X-Ray crystallography.
 
 
 
@@ -1025,6 +1047,7 @@ probabilistic\_best             & $p_{iter}$ & r    & (0.0,1.0)                 
 destruction\_probability        & $p_{destr}$  &  r & (0.0,1.0)                                                                      & iterated\_greedy in c("external-memory", "iterated-ants", "cunning-ants")                     \\ \hline
 \end{tabular}
 \end{table}
+
 
 
 \begin{table}[]
