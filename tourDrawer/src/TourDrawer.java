@@ -8,9 +8,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Collections;
-
+import java.util.List;
 
 /**
  * Created by Aldar on 17-May-18.
@@ -23,8 +24,6 @@ public class TourDrawer
     private JButton drawButton;
     private JPanel buttonPanel;
     private DrawPanel drawPanel;
-
-    private ProblemVRP problem;
 
     public static final int size = 700;
 
@@ -61,9 +60,9 @@ public class TourDrawer
 
                     try
                     {
-                        problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
+                        ProblemVRP problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
                         problem.load(file);
-                        drawNodes(problem);
+                        drawPanel.setNodes(problem.x, problem.y);
                     } catch (Exception e1)
                     {
                         e1.printStackTrace();
@@ -86,6 +85,16 @@ public class TourDrawer
                 {
                     File file = fileChooser.getSelectedFile();
 
+                    ParserSolution parserSolution = new ParserSolution();
+                    try
+                    {
+                        List<List<Integer>> nodes = parserSolution.getSolutionNodes(new File("solver\\output\\out-CMT1.vrp.txt"));
+                        drawPanel.setTours(nodes);
+                    }
+                    catch (FileNotFoundException exc)
+                    {
+                    }
+
 
 
                 }
@@ -93,10 +102,7 @@ public class TourDrawer
         });
     }
 
-    protected void drawNodes(ProblemVRP problem)
-    {
-        drawPanel.setNodes(problem.x, problem.y);
-    }
+
 
 
 

@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.Random;
+import java.util.*;
+import java.util.List;
 
 /**
  * Created by Aldar on 17-May-18.
@@ -15,6 +16,8 @@ public class DrawPanel extends JPanel
     protected double scaleFactor;
     protected double startX, startY;
 
+    protected List<List<Integer>> nodes;
+
 
     public DrawPanel(int size)
     {
@@ -25,6 +28,11 @@ public class DrawPanel extends JPanel
     {
         this.x = x;
         this.y = y;
+    }
+
+    public void setTours(List<List<Integer>> nodes)
+    {
+        this.nodes = nodes;
     }
 
     public void drawing()
@@ -47,6 +55,9 @@ public class DrawPanel extends JPanel
 
             g.setColor(Color.BLACK);
             g.drawRect(0, 0, size, size);
+
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setStroke(new BasicStroke(3));
 
             double minX, maxX, minY, maxY;
 
@@ -82,9 +93,41 @@ public class DrawPanel extends JPanel
             startY = middleY - areaSize / 2.0;
             scaleFactor = size / areaSize;
 
-            for (int i = 0; i < x.length; i++)
-                g.fillOval(scaleX(x[i]), scaleY(y[i]), 5, 5);
+            if (nodes != null)
+            {
+                for (List<Integer> list : nodes)
+                {
+                    int red = random.nextInt(256);
+                    int green = random.nextInt(256);
+                    int blue = random.nextInt(256);
+                    Color randomColour = new Color(red,green,blue);
+                    g.setColor(randomColour);
+
+                    for (int i = 0; i < list.size() - 1; i++)
+                    {
+                        int index1 = list.get(i);
+                        int index2 = list.get(i + 1);
+
+                        g2.drawLine(scaleX(x[index1]), scaleY(y[index1]), scaleX(x[index2]), scaleY(y[index2]));
+                    }
+                }
+            }
+
+
+            g.setColor(Color.BLUE);
+            g.fillOval(scaleX(x[0]) - 5, scaleY(y[0]) - 5, 10, 10);
+
+            g.setColor(Color.RED);
+
+            for (int i = 1; i < x.length; i++)
+                g.fillOval(scaleX(x[i]) - 5, scaleY(y[i]) - 5, 10, 10);
         }
+        else
+        {
+            g.setColor(Color.WHITE);
+            g.fillRect(0, 0, size, size);
+        }
+
     }
 
 
