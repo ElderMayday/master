@@ -17,7 +17,7 @@ public class AntSystem extends GlobalUpdate
 
     protected double maxToMinFactor;    // min = max x maxToMinFactor,   maxToMinFactor = 1 / (k x problemSize)
     protected double maxP, minP;        // max and min pheromone values
-    protected double rhoToMaxFactor;    // max = ? x [1 / f_opt] x [1 / (1 - rho)]
+    protected double rhoToMaxFactor;    // max = m x [1 / f_opt] x [1 / (1 - rho)]
 
 
     public AntSystem(ComponentStructure structure, double evaporationRemains, boolean isBounded, double kFactor)

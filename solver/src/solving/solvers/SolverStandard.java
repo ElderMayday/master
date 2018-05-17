@@ -37,7 +37,9 @@ public class SolverStandard extends Solver
 
         List<Solution> solutions;
 
-        //long iteration = 1;
+        long iteration = 1;
+
+        Solution best = null;
 
         do
         {
@@ -50,11 +52,23 @@ public class SolverStandard extends Solver
             if (terminationCriteria.needReinitialize())
                 initializer.initialize(problem.structure);
 
-            /*SolutionVRP best = (SolutionVRP) Solution.findBestSolution(solutions);
+            /*SolutionVRP currentBest = (SolutionVRP) Solution.findBestSolution(solutions);
             if (iteration % 1000 == 0)  // TODO remove
-                System.out.println(iteration + " " + String.format("%1$.3f", Solution.findBestSolution(solutions).objective));
+                System.out.println(iteration + " " + String.format("%1$.3f", currentBest.objective));
             iteration++;*/
 
+
+            SolutionVRP currentBest = (SolutionVRP) Solution.findBestSolution(solutions);
+
+            if (best == null)
+                best = currentBest;
+
+            if (currentBest.betterThan(best))
+            {
+                best = currentBest;
+                System.out.println(iteration + " " + String.format("%1$.3f", currentBest.objective));
+            }
+            iteration++;
         }
         while (!terminationCriteria.isFulfilled());
 

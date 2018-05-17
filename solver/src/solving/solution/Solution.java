@@ -13,7 +13,7 @@ public abstract class Solution implements Iterable<Component>
 {
     protected boolean isComplete;               // Flag: visitedNum == problem customer number
     protected boolean isPartiallyDestroyed;
-    protected Problem problem;
+    public Problem problem;
 
     /**
      * Consistency not guaranteed, exterior use has to maintain it.

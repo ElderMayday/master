@@ -288,13 +288,13 @@ end
 
 \textbf{Cunning ants} algorithm tackles to the solution generation by iterated producing of new ant population. The algorithm has a pheromone database and an ant population of fixed size. For every existing ant, a new one is produced which borrows some solution parts from its parent \cite{Tsutsui2007}. Then in each such ant pair a winner is selected and all winners continue their work in the next iteration. After each iteration all winners jointly update the pheromone database and stop if the termination criteria is met. Similarly the solution component inheritance process is problem-specific.
 
-As an extension of the original cunning ants variation, one may use local search after the reconstruction step and also a custom pheromone update algorithm.
+As an extension of the original cunning ants variation, one may use local search after the reconstruction step and also a custom pheromone update algorithm. The cunning ants algorithm is illustrated on Figure \ref{fig:cunning-ants}.
 
 \begin{figure}[h]
   \centering
     \includegraphics[scale=0.5]{cunning-ants.jpg}
   \caption{Cunning ants}
-  \label{fig:autoconf}
+  \label{fig:cunning-ants}
 \end{figure}
 
 
@@ -347,6 +347,7 @@ In the minimization case, which is the case of VRP, typically one adds a value i
 \begin{equation}
 w_k \times F(s_k) = 1 / f(s_k)
 \end{equation}
+
 
 For the mentioned update techniques several variants are possible: \\
 
@@ -447,6 +448,32 @@ f = \frac{t - t_{reinit}}{t_{end} - t_{reinit}}
 \textit{$t$ - is current time, $t_{reinit}$ - is time of last pheromone reinitialization, $t_{end}$ - is expected time of the run finish.}
 
 \end{enumerate}
+
+However, pheromone trail value bounds may be imposed not only in MMAS. In general, one uses Formula \eqref{eq:rho_to_max} to compute the $\tau_{max}$.
+
+\begin{equation}
+\tau_{max} = G \times \frac{1}{f_{opt}} \times \frac{1}{1-\rho}
+\label{eq:rho_to_max}
+\end{equation}
+
+\textit{where $G$ - is a factor, which depends on the chosen global update technique. $f_{opt}$ - is objective value of the best solution so far.}
+
+$\tau_{min}$ can be computed according to Formula \eqref{eq:max_to_min}.
+
+\begin{equation}
+\tau_{min} = \frac{\tau_{max}} {k \times n} 
+\label{eq:max_to_min}
+\end{equation}
+
+\textit{where $k$ - is a given parameter, $n$ -  is the problem size}.
+
+List of $G$ values for some global update techniques is as follows:
+
+\begin{itemize}
+\item \textbf{AS}: $G = m$
+\item \textbf{EAS}: $G = m_{elite} + m$
+\item \textbf{RAS}: $G = \frac{w \times (w + 1)}{2}$
+\end{itemize}
 
 The pheromone update schedule allows to dynamically switch between different solution selections. For example, an ACO algorithm may start from ib and then converge to gb or rb. If one wants to start the problem solution process with exploratory behavior and end up with exploiting one, then it is possible to start solution process with ib-update and then switch to gb or ib updates at the later solution iterations. The update schedule has a major influence on the ACO algorithm performance, since it determines the balance between convergence and exploration traits of the algorithm in a global scale.
 

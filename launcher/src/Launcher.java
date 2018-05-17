@@ -16,7 +16,7 @@ public class Launcher
         String configurationString = "testConfig2 instance1 1234567 [path]  " +
                 "--selector-standard --alpha 1.0 --beta 5.0 --candidate-yes --candidate-ratio 0.25 --ant-s " +
                 "--local-update-no --standard --ant-num 30 --local-search-twohalf --evaporation-remains 0.75 " +
-                "--ant-s-bounded-no --reinitialization-no --end";
+                "--ant-s-bounded-no --reinitialization-no --output solver\\output\\out --end";
 
         String[] arguments = configurationString.split("\\s+");
 

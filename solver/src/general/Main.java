@@ -89,7 +89,9 @@ public class Main
 
             Solution best = Solution.findBestSolution(solutions);
 
-            outputSolution(best, conf.outputPath);
+            String[] split = conf.path.split("\\\\");
+            String filename = split[split.length - 1];
+            outputSolution(best, conf.outputPath + "-" + filename);
 
             long stopTime = System.currentTimeMillis();
             long elapsedTime = stopTime - startTime;
@@ -107,7 +109,8 @@ public class Main
     {
         if (outputPath != null)
         {
-            PrintWriter writer = new PrintWriter(outputPath, "UTF-8");
+            File file = new File(outputPath);
+            PrintWriter writer = new PrintWriter(file, "UTF-8");
             writer.println(solution.toString());
             writer.close();
         }

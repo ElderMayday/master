@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/launcher/launcher.iml" filepath="$PROJECT_DIR$/launcher/launcher.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/master.iml" filepath="$PROJECT_DIR$/.idea/master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tourDrawer/tourDrawer.iml" filepath="$PROJECT_DIR$/tourDrawer/tourDrawer.iml" />
     </modules>
   </component>
 </project>
