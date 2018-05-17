@@ -26,6 +26,8 @@ public class ProblemVRP extends Problem2d
     public double[] demands;
     public int depotId;             // number of the vertex that represents depot
 
+    public double[] x, y;           // coordinates (needed only for tour drawer, is not involved into solution process)
+
     protected ConstructionPreselectorVRP constructionPreselector; // nested class single instance to construct solutions depending on the mode
     protected ReconstructionPreselectorVRP reconstructionPreselector;
 

@@ -189,6 +189,11 @@ public class ParserVrpTxt extends ParserVrp
                 structure2d.setDistance(column, row, distance);
             }
 
+        // set x and y vectors
+
+        problem.x = x;
+        problem.y = y;
+
         // depot is set to node #0
 
         problem.depotId = 0;
