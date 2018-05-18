@@ -27,8 +27,6 @@ public class MinMaxAntSystem extends GlobalUpdate
     protected int iterationsBetweenPTS; // how many iterations do not apply PTS between two iterations with applying of PTS, -1 for no applying
     protected int countPTS;
 
-    protected Solution globalBest;
-
     public MinMaxAntSystem(Problem problem, double evaporationRemains, double pBest, PheromoneTrailSmoothing pts, boolean mustDoGlobalIterations, int iterationsBetweenGlobal, boolean mustDoPTS, int iterationsBetweenPTS)
     {
         super(problem, evaporationRemains);
@@ -145,8 +143,8 @@ public class MinMaxAntSystem extends GlobalUpdate
 
         if (mustDoGlobalIterations)  // switch is applied
         {
-            if ((globalBest == null) || iterationBest.betterThan(globalBest))
-                globalBest = iterationBest;
+            if ((best == null) || iterationBest.betterThan(best))  // optimized way, does not call determineBest()
+                best = iterationBest;
 
             countSchedule--;
 
@@ -156,9 +154,9 @@ public class MinMaxAntSystem extends GlobalUpdate
 
                 // deposit global best
 
-                double addedValue = 1.0 / globalBest.objective;
+                double addedValue = 1.0 / best.objective;
 
-                for (Component component : globalBest.getComponents())
+                for (Component component : best.getComponents())
                 {
                     double newPheromone = component.getPheromone() + addedValue;
 

@@ -15,12 +15,14 @@ public abstract class GlobalUpdate
     protected ComponentStructure structure;
     protected double evaporationRemains;  // what fraction of pheromone remains (aka Ro)
     protected double evaporationStrength; // what fraction of pheromone is evaporated (1 - Ro)
+    public Solution best;                 // global best solution
 
     public GlobalUpdate(ComponentStructure structure, double evaporationRemains)
     {
         this.structure = structure;
         this.evaporationRemains = evaporationRemains;
         this.evaporationStrength = 1.0 - evaporationRemains;
+        this.best = null;
 
         if ((evaporationRemains < 0.0) || (evaporationRemains > 1.0))
             throw new IllegalArgumentException("Wrong evaporation factor");
@@ -34,6 +36,19 @@ public abstract class GlobalUpdate
 
         if ((evaporationRemains < 0.0) || (evaporationRemains > 1.0))
             throw new IllegalArgumentException("Wrong evaporation factor");
+    }
+
+
+    /**
+     * Must be called in every update
+     * @param solutions
+     */
+    public void determineBest(List<Solution> solutions)
+    {
+        Solution newBest = Solution.findBestSolution(solutions);
+
+        if ((best == null) || newBest.betterThan(best))
+            best = newBest;
     }
 
 

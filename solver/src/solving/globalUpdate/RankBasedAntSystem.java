@@ -22,13 +22,10 @@ public class RankBasedAntSystem extends GlobalUpdate
     protected double maxP, minP;        // max and min pheromone values
     protected double rhoToMaxFactor;    // max = [w x (w + 1) / 2] x [1 / f_opt] x [1 / (1 - rho)]
 
-    protected Solution globalBest;
-
     public RankBasedAntSystem(Problem problem, double evaporationRemains, int numberOfDepositing, boolean isBounded, double kFactor)
     {
         super(problem, evaporationRemains);
         this.numberOfDepositing = numberOfDepositing;
-        this.globalBest = null;
 
         if (numberOfDepositing < 1)
             throw new IllegalArgumentException("Wrong number of depositing");
@@ -64,15 +61,15 @@ public class RankBasedAntSystem extends GlobalUpdate
 
         sorted.sort(new ComparatorSolution());
 
-        // check whether global best has changed
+        // check whether global best has changed in an optimized way, does not call determineBest()
 
-        if (globalBest == null)
-            globalBest = sorted.get(0);
+        if (best == null)
+            best = sorted.get(0);
         else
-        if (sorted.get(0).betterThan(globalBest))
-            globalBest = sorted.get(0);
+        if (sorted.get(0).betterThan(best))
+            best = sorted.get(0);
 
-        maxP = rhoToMaxFactor / globalBest.objective;   // m * (1 / f_opt) * (1 / (1 - rho))
+        maxP = rhoToMaxFactor / best.objective;   // m * (1 / f_opt) * (1 / (1 - rho))
         minP = maxP * maxToMinFactor;
 
         executeStandardEvaporationAll();
@@ -118,7 +115,7 @@ public class RankBasedAntSystem extends GlobalUpdate
 
             double addValue = (double) factor / solution.objective;
 
-            for (Component component : globalBest.getComponents())
+            for (Component component : best.getComponents())
             {
                 double newPheromone = component.getPheromone() + addValue;
 
@@ -138,9 +135,9 @@ public class RankBasedAntSystem extends GlobalUpdate
 
         // deposit to the global best
 
-        double addValue = numberOfDepositing / globalBest.objective;
+        double addValue = numberOfDepositing / best.objective;
 
-        for (Component component : globalBest.getComponents())
+        for (Component component : best.getComponents())
         {
             double newPheromone = component.getPheromone() + addValue;
 

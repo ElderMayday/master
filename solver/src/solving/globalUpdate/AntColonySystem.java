@@ -14,9 +14,6 @@ import java.util.List;
  */
 public class AntColonySystem extends GlobalUpdate
 {
-    protected Solution globalBest;
-
-
     public AntColonySystem(ComponentStructure structure, double evaporationRemains)
     {
         super(structure, evaporationRemains);
@@ -45,22 +42,9 @@ public class AntColonySystem extends GlobalUpdate
     {
         // determine the global best
 
-        if (globalBest == null)
-        {
-            globalBest = solutions.get(0);
+        determineBest(solutions);
 
-            for (int index = 1; index < solutions.size(); index++)
-                if (solutions.get(index).betterThan(globalBest))
-                    globalBest = solutions.get(index);
-        }
-        else
-        {
-            for (Solution solution : solutions)
-                if (solution.betterThan(globalBest))
-                    globalBest = solution;
-        }
-
-        for (Component component : globalBest.getComponents())
-            component.setPheromone(this.evaporationRemains * component.getPheromone() + this.evaporationStrength / globalBest.objective);
+        for (Component component : best.getComponents())
+            component.setPheromone(this.evaporationRemains * component.getPheromone() + this.evaporationStrength / best.objective);
     }
 }

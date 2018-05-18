@@ -85,9 +85,8 @@ public class Main
             GlobalUpdate globalUpdate = getGlobalUpdate(conf, problem);
             Solver solver = getSolver(conf, problem, selector, globalUpdate, localUpdate, localSearch);
 
-            List<Solution> solutions = solver.solve();
-
-            Solution best = Solution.findBestSolution(solutions);
+            solver.solve();
+            Solution best = globalUpdate.best;  // the best solution is memorized in the global update, no need to check the result solutons
 
             String[] split = conf.path.split("\\\\");
             String filename = split[split.length - 1];

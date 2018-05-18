@@ -60,6 +60,8 @@ public class AntSystem extends GlobalUpdate
         executeStandardEvaporationAll();
 
         executeDepositAll(solutions);
+
+        determineBest(solutions);
     }
 
 

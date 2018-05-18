@@ -22,7 +22,6 @@ public class ElitistAntSystem extends GlobalUpdate
     protected double maxP, minP;        // max and min pheromone values
     protected double rhoToMaxFactor;    // max = [e + m] x [1 / f_opt] x [1 / (1 - rho)]
 
-    protected Solution globalBest;
 
 
 
@@ -51,9 +50,9 @@ public class ElitistAntSystem extends GlobalUpdate
     @Override
     public void update(List<Solution> solutions)
     {
-        defineGlobalBest(solutions);
+        determineBest(solutions);
 
-        maxP = (elitistFactor + solutions.size()) * rhoToMaxFactor / globalBest.objective;   // (e + m) * (1 / f_opt) * (1 / (1 - rho))
+        maxP = (elitistFactor + solutions.size()) * rhoToMaxFactor / best.objective;   // (e + m) * (1 / f_opt) * (1 / (1 - rho))
         minP = maxP * maxToMinFactor;
 
         executeStandardEvaporationAll();
@@ -87,35 +86,6 @@ public class ElitistAntSystem extends GlobalUpdate
     }
 
 
-    protected void defineGlobalBest(List<Solution> solutions)
-    {
-        if (globalBest == null)
-        {
-            globalBest = solutions.get(0);
-
-            for (int index = 1; index < solutions.size(); index++)
-            {
-                Solution currentSolution = solutions.get(index);
-
-                if (currentSolution.betterThan(globalBest))
-                    globalBest = currentSolution;
-            }
-        }
-        else
-        {
-            for (int index = 0; index < solutions.size(); index++)
-            {
-                Solution currentSolution = solutions.get(index);
-
-                if (currentSolution.betterThan(globalBest))
-                    globalBest = currentSolution;
-            }
-        }
-    }
-
-
-
-
     protected void executeDepositAll(List<Solution> solutions)
     {
         for (Solution solution : solutions)
@@ -142,9 +112,9 @@ public class ElitistAntSystem extends GlobalUpdate
 
     protected void executeEasDeposit()
     {
-        double lengthMultiply = 1.0 / globalBest.objective;
+        double lengthMultiply = 1.0 / best.objective;
 
-        for (Component component : globalBest.getComponents())
+        for (Component component : best.getComponents())
         {
             double newPheromone = component.getPheromone() + elitistFactor * lengthMultiply;
 

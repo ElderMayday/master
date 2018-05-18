@@ -16,7 +16,6 @@ import java.util.List;
  */
 public class BestWorstAntSystem extends GlobalUpdate
 {
-    protected Solution globalBest;
     protected TerminationCriteria terminationCriteria;
     protected double mutatedProbability;
 
@@ -102,32 +101,11 @@ public class BestWorstAntSystem extends GlobalUpdate
     {
         // find the global-best solution
 
-        if (globalBest == null)
-        {
-            globalBest = solutions.get(0);
+        determineBest(solutions);
 
-            for (int index = 1; index < solutions.size(); index++)
-            {
-                Solution currentSolution = solutions.get(index);
+        double addedValue = evaporationStrength / best.objective;
 
-                if (currentSolution.betterThan(globalBest))
-                    globalBest = currentSolution;
-            }
-        }
-        else
-        {
-            for (int index = 0; index < solutions.size(); index++)
-            {
-                Solution currentSolution = solutions.get(index);
-
-                if (currentSolution.betterThan(globalBest))
-                    globalBest = currentSolution;
-            }
-        }
-
-        double addedValue = evaporationStrength / globalBest.objective;
-
-        for (Component component : globalBest)
+        for (Component component : best)
             component.setPheromone(component.getPheromone() + addedValue);
     }
 
@@ -156,7 +134,7 @@ public class BestWorstAntSystem extends GlobalUpdate
         // evaporate
 
         for (Component component : worstIteration)
-            if (!globalBest.getComponents().contains(component))     // if this component from the iteration-worst is not in global-best
+            if (!best.getComponents().contains(component))     // if this component from the iteration-worst is not in global-best
                 component.setPheromone(component.getPheromone() * evaporationRemains);
     }
 }
