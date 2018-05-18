@@ -88,23 +88,16 @@ public class TourDrawer
                     ParserSolution parserSolution = new ParserSolution();
                     try
                     {
-                        List<List<Integer>> nodes = parserSolution.getSolutionNodes(new File("solver\\output\\out-CMT1.vrp.txt"));
+                        List<List<Integer>> nodes = parserSolution.getSolutionNodes(file);
                         drawPanel.setTours(nodes);
                     }
                     catch (FileNotFoundException exc)
                     {
                     }
-
-
-
                 }
             }
         });
     }
-
-
-
-
 
 
     public static void main(String[] args)

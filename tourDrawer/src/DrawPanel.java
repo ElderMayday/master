@@ -26,12 +26,14 @@ public class DrawPanel extends JPanel
 
     public void setNodes(double[] x, double[] y)
     {
+        set = false;
         this.x = x;
         this.y = y;
     }
 
     public void setTours(List<List<Integer>> nodes)
     {
+        set = false;
         this.nodes = nodes;
     }
 
@@ -58,6 +60,8 @@ public class DrawPanel extends JPanel
 
             Graphics2D g2 = (Graphics2D) g;
             g2.setStroke(new BasicStroke(3));
+
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
             double minX, maxX, minY, maxY;
 
@@ -113,14 +117,20 @@ public class DrawPanel extends JPanel
                 }
             }
 
-
             g.setColor(Color.BLUE);
             g.fillOval(scaleX(x[0]) - 5, scaleY(y[0]) - 5, 10, 10);
 
-            g.setColor(Color.RED);
-
             for (int i = 1; i < x.length; i++)
-                g.fillOval(scaleX(x[i]) - 5, scaleY(y[i]) - 5, 10, 10);
+            {
+                int xPoint = scaleX(x[i]) - 5;
+                int yPoint = scaleY(y[i]) - 5;
+                g.setColor(Color.RED);
+                g.fillOval(xPoint, yPoint, 10, 10);
+                g.setColor(Color.BLACK);
+                g2.drawString(Integer.toString(i), xPoint, yPoint - 5);
+            }
+
+
         }
         else
         {
