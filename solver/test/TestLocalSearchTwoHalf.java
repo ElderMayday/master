@@ -9,9 +9,12 @@ import solving.localSearch.LocalSearch;
 import solving.localSearch.LocalSearchTwoHalf;
 import solving.localSearch.localMove.Move;
 import solving.localSearch.localMove.MoveTwoHalf;
+import solving.solution.Solution;
 import solving.solution.SolutionVRP;
 
 import java.io.File;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -135,6 +138,44 @@ public class TestLocalSearchTwoHalf
             assertEquals(objective, solution.objective, 0.00001);
         } catch (Exception e)
         {
+            assertTrue(false);
+        }
+    }
+
+    @Test
+    public void testMoveTwoHalf_CrossExchange()
+    {
+        try
+        {
+            ComponentStructure2d structure = new ComponentStructure2dStandard();
+            ProblemVRP problem = new ProblemVRP(structure, new FleetDescendingCapacity(), new CandidateDeterminerVrpSorting(2));
+            problem.load(new File("irace\\test\\CMT1.vrp.txt"));
+
+            SolutionVRP solution = new SolutionVRP(problem);
+
+            int[][] nodes = {{0,46,12,47,4,18,14,25,0},
+                    {0,1,22,28,31,8,26,23,24,43,7,48,27,0},
+                    {0,32,11,38,9,50,34,30,39,33,45,0},
+                    {0,6,17,13,41,19,40,42,44,15,37,5,10,0},
+                    {0,2,3,36,35,20,21,29,16,49,0}};
+
+            for (int i = 0; i < nodes.length; i++)
+                for (int j = 0; j < nodes[i].length - 1; j++)
+                {
+                    solution.addConstructionComponent(structure.get(nodes[i][j], nodes[i][j + 1]));
+                }
+
+            LocalSearch localSearch = new LocalSearchTwoHalf();
+
+            localSearch.search(problem, solution);
+
+            double objective = solution.objective;
+            solution.recomputeObjective();
+            assertEquals(objective, solution.objective, 0.00001);
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
             assertTrue(false);
         }
     }
