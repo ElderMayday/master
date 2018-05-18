@@ -48,19 +48,19 @@ public class TestLocalSearchTwoHalf
             List<Integer> customers = solution.getTours().get(0).getCustomers();
 
             assertEquals(customers.get(0).intValue(), 0);
-            assertEquals(customers.get(1).intValue(), 3);
+            assertEquals(customers.get(1).intValue(), 2);
             assertEquals(customers.get(2).intValue(), 1);
-            assertEquals(customers.get(3).intValue(), 2);
+            assertEquals(customers.get(3).intValue(), 3);
             assertEquals(customers.get(4).intValue(), 0);
 
             assertEquals(solution.objective, 49.2, 0.0001);
 
             List<Component2d> components = solution.getComponents2d();
             assertEquals(components.size(), 4);
-            assertTrue(components.contains(structure.get(0, 3)));
-            assertTrue(components.contains(structure.get(3, 1)));
-            assertTrue(components.contains(structure.get(1, 2)));
-            assertTrue(components.contains(structure.get(2, 0)));
+            assertTrue(components.contains(structure.get(0, 2)));
+            assertTrue(components.contains(structure.get(2, 1)));
+            assertTrue(components.contains(structure.get(1, 3)));
+            assertTrue(components.contains(structure.get(3, 0)));
         }
         catch (Exception e)
         {
