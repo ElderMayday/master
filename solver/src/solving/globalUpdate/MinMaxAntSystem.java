@@ -140,12 +140,12 @@ public class MinMaxAntSystem extends GlobalUpdate
                 iterationBest = current;
         }
 
+        if ((best == null) || iterationBest.betterThan(best))  // optimized way, does not call determineBest()
+            best = iterationBest.deepCopy();
+
 
         if (mustDoGlobalIterations)  // switch is applied
         {
-            if ((best == null) || iterationBest.betterThan(best))  // optimized way, does not call determineBest()
-                best = iterationBest;
-
             countSchedule--;
 
             if (countSchedule <= 0)

@@ -7,13 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ecf803f-2efb-433b-b808-048082cc77ed" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/memoire_en/memoire.pdf" afterPath="$PROJECT_DIR$/memoire_en/memoire.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/memoire_en/memoire.synctex.gz" afterPath="$PROJECT_DIR$/memoire_en/memoire.synctex.gz" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solver/output/out-CMT1.vrp.txt" afterPath="$PROJECT_DIR$/solver/output/out-CMT1.vrp.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solver/output/out-CMT2.vrp.txt" afterPath="$PROJECT_DIR$/solver/output/out-CMT2.vrp.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solver/output/out-CMT3.vrp.txt" afterPath="$PROJECT_DIR$/solver/output/out-CMT3.vrp.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solver/src/general/Main.java" afterPath="$PROJECT_DIR$/solver/src/general/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solver/src/solving/solvers/SolverIteratedAnts.java" afterPath="$PROJECT_DIR$/solver/src/solving/solvers/SolverIteratedAnts.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solver/src/solving/solvers/SolverStandard.java" afterPath="$PROJECT_DIR$/solver/src/solving/solvers/SolverStandard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/memoire_en/memoire.aux" afterPath="$PROJECT_DIR$/memoire_en/memoire.aux" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/memoire_en/memoire.tex" afterPath="$PROJECT_DIR$/memoire_en/memoire.tex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solver/src/solving/globalUpdate/GlobalUpdate.java" afterPath="$PROJECT_DIR$/solver/src/solving/globalUpdate/GlobalUpdate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solver/src/solving/globalUpdate/MinMaxAntSystem.java" afterPath="$PROJECT_DIR$/solver/src/solving/globalUpdate/MinMaxAntSystem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solver/src/solving/globalUpdate/RankBasedAntSystem.java" afterPath="$PROJECT_DIR$/solver/src/solving/globalUpdate/RankBasedAntSystem.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,6 +24,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/master$Main.coverage" NAME="Main Coverage Results" MODIFIED="1526914227222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/master$TourDrawer.coverage" NAME="TourDrawer Coverage Results" MODIFIED="1526599168803" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/master$TestProblemVRP_testProblemVrpLoadInstanceTxt.coverage" NAME="TestProblemVRP.testProblemVrpLoadInstanceTxt Coverage Results" MODIFIED="1522784103392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
@@ -35,8 +37,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/solver/src/general/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="106" column="9" lean-forward="true" selection-start-line="106" selection-start-column="9" selection-end-line="106" selection-end-column="9" />
+            <state relative-caret-position="340">
+              <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
               <folding>
                 <element signature="method#getCandidateDeterminer#0;class#Main#0" expanded="false" />
                 <element signature="method#getSelector#0;class#Main#0" expanded="false" />
@@ -47,31 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Solver.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/Solver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="74" column="57" lean-forward="false" selection-start-line="74" selection-start-column="57" selection-end-line="74" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SolverCunningAnts.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverCunningAnts.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="53" column="9" lean-forward="false" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SolverExternalMemory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverExternalMemory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1440">
-              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state relative-caret-position="820">
+              <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -80,58 +62,78 @@
       <file leaf-file-name="SolverIteratedAnts.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverIteratedAnts.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="54" column="10" lean-forward="false" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
+            <state relative-caret-position="406">
+              <caret line="72" column="20" lean-forward="false" selection-start-line="72" selection-start-column="20" selection-end-line="72" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SolverStandard.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverStandard.java">
+      <file leaf-file-name="GlobalUpdate.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/GlobalUpdate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="606">
-              <caret line="70" column="26" lean-forward="false" selection-start-line="70" selection-start-column="26" selection-end-line="70" selection-end-column="26" />
+            <state relative-caret-position="480">
+              <caret line="50" column="38" lean-forward="false" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Configuration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/solver/src/general/Configuration.java">
+      <file leaf-file-name="AntColonySystem.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/AntColonySystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="7" column="1" lean-forward="false" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+            <state relative-caret-position="366">
+              <caret line="40" column="27" lean-forward="false" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestLocalSearchTwoHalf.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/solver/test/TestLocalSearchTwoHalf.java">
+      <file leaf-file-name="AntSystem.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/AntSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="820">
-              <caret line="61" column="61" lean-forward="false" selection-start-line="61" selection-start-column="61" selection-end-line="61" selection-end-column="61" />
+            <state relative-caret-position="495">
+              <caret line="63" column="18" lean-forward="false" selection-start-line="63" selection-start-column="18" selection-end-line="63" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestMoveTwoHalf.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/solver/test/TestMoveTwoHalf.java">
+      <file leaf-file-name="ElitistAntSystem.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/ElitistAntSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="31" column="65" lean-forward="false" selection-start-line="31" selection-start-column="65" selection-end-line="31" selection-end-column="65" />
+            <state relative-caret-position="175">
+              <caret line="52" column="16" lean-forward="false" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Launcher.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/launcher/src/Launcher.java">
+      <file leaf-file-name="MinMaxAntSystem.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/MinMaxAntSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="20" column="30" lean-forward="false" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+            <state relative-caret-position="-1160">
+              <caret line="67" column="22" lean-forward="false" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RankBasedAntSystem.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/RankBasedAntSystem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="155">
+              <caret line="67" column="13" lean-forward="false" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BestWorstAntSystem.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/BestWorstAntSystem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1275">
+              <caret line="99" column="25" lean-forward="false" selection-start-line="99" selection-start-column="25" selection-end-line="99" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -205,11 +207,8 @@
         <option value="$PROJECT_DIR$/tourDrawer/src/DrawPanel.java" />
         <option value="$PROJECT_DIR$/solver/src/solving/globalUpdate/AntColonySystem.java" />
         <option value="$PROJECT_DIR$/solver/src/solving/globalUpdate/AntSystem.java" />
-        <option value="$PROJECT_DIR$/solver/src/solving/globalUpdate/GlobalUpdate.java" />
         <option value="$PROJECT_DIR$/solver/src/solving/globalUpdate/BestWorstAntSystem.java" />
         <option value="$PROJECT_DIR$/solver/src/solving/globalUpdate/ElitistAntSystem.java" />
-        <option value="$PROJECT_DIR$/solver/src/solving/globalUpdate/MinMaxAntSystem.java" />
-        <option value="$PROJECT_DIR$/solver/src/solving/globalUpdate/RankBasedAntSystem.java" />
         <option value="$PROJECT_DIR$/solver/src/solving/localSearch/LocalSearchTwoHalf.java" />
         <option value="$PROJECT_DIR$/solver/src/solving/localSearch/localMove/MoveTwoHalf.java" />
         <option value="$PROJECT_DIR$/solver/test/TestLocalSearchTwoHalf.java" />
@@ -217,6 +216,9 @@
         <option value="$PROJECT_DIR$/solver/src/general/Main.java" />
         <option value="$PROJECT_DIR$/solver/src/solving/solvers/SolverIteratedAnts.java" />
         <option value="$PROJECT_DIR$/solver/src/solving/solvers/SolverStandard.java" />
+        <option value="$PROJECT_DIR$/solver/src/solving/globalUpdate/GlobalUpdate.java" />
+        <option value="$PROJECT_DIR$/solver/src/solving/globalUpdate/MinMaxAntSystem.java" />
+        <option value="$PROJECT_DIR$/solver/src/solving/globalUpdate/RankBasedAntSystem.java" />
       </list>
     </option>
   </component>
@@ -248,7 +250,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -282,24 +283,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="solver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -399,11 +382,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="localSearch" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="localMove" />
+              <option name="myItemId" value="globalUpdate" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -482,6 +461,7 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -817,7 +797,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="general.Main" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="3 24 627607104 D:\master\irace\instances\X-n209-k16.vrp.txt --selector-maniezzo --alpha 0.17 --candidate-yes --candidate-ratio  0.72 --rank-based-ant-s --external-memory --ant-num 38 --local-search-ils-twohalf --ils-iterations 30 --evaporation-remains 0.21 --ras-w 30 --ras-bounded-yes --ras-k 5.16 --reinitialization-yes --reinitialization-time 0.14 --top-k 1 --memory-size 24 --tournament-selector-size 4 --destruction-probability 0.38 --end" />
+      <option name="PROGRAM_PARAMETERS" value="8 21 505006211 D:\master\irace\instances\X-n101-k25.vrp.txt --selector-standard --alpha 3.87 --beta 2.11 --candidate-yes --candidate-ratio 0.54 --min-max-s --local-update-no --external-memory --ant-num 20 --local-search-none --evaporation-remains 0.36 --min-max-s-p-best 0.39 --min-max-s-global-best-no --min-max-s-pts-yes --min-max-s-pts-iterations 24 --pts-lambda 0.58 --pts-ratio 0.2 --pts-delta 0.32 --reinitialization-no --top-k 1 --memory-size 17 --tournament-selector-size 8 --destruction-probability 0.64 --end" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
@@ -883,13 +863,13 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test - 2018.05.19 at 01h 06m 23s.xml">
-      <configuration name="Test" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Test - 2018.05.19 at 21h 24m 31s.xml">
       <configuration name="Test" configurationId="JUnit" />
     </history-entry>
     <history-entry file="Test - 2018.05.20 at 20h 08m 55s.xml">
+      <configuration name="Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Test - 2018.05.21 at 17h 06m 43s.xml">
       <configuration name="Test" configurationId="JUnit" />
     </history-entry>
     <history-entry file="TestLocalSearchTwoHalf_testMoveTwoHalf_CrossExchange - 2018.05.19 at 00h 58m 57s.xml">
@@ -936,25 +916,25 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5025707" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35531628" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19537275" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20051414" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42126516" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -994,7 +974,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="229" />
+      <option name="time" value="238" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1222,62 +1202,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/AntColonySystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="40" column="27" lean-forward="false" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/AntSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1160">
-          <caret line="63" column="31" lean-forward="false" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/ElitistAntSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="920">
-          <caret line="50" column="20" lean-forward="false" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/BestWorstAntSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1840">
-          <caret line="99" column="25" lean-forward="false" selection-start-line="99" selection-start-column="25" selection-end-line="99" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/MinMaxAntSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2900">
-          <caret line="150" column="35" lean-forward="false" selection-start-line="150" selection-start-column="35" selection-end-line="150" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/RankBasedAntSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2660">
-          <caret line="139" column="39" lean-forward="false" selection-start-line="139" selection-start-column="39" selection-end-line="139" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/solver/src/solving/localSearch/LocalSearch.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/GlobalUpdate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="740">
-          <caret line="42" column="24" lean-forward="false" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -1330,10 +1258,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverStandard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1180">
+          <caret line="70" column="26" lean-forward="false" selection-start-line="70" selection-start-column="26" selection-end-line="70" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverCunningAnts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="53" column="9" lean-forward="false" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/Solver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="47" column="21" lean-forward="true" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverIteratedAnts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="72" column="20" lean-forward="false" selection-start-line="72" selection-start-column="20" selection-end-line="72" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverExternalMemory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="820">
+          <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/solver/src/general/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="106" column="9" lean-forward="true" selection-start-line="106" selection-start-column="9" selection-end-line="106" selection-end-column="9" />
+        <state relative-caret-position="340">
+          <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
           <folding>
             <element signature="method#getCandidateDeterminer#0;class#Main#0" expanded="false" />
             <element signature="method#getSelector#0;class#Main#0" expanded="false" />
@@ -1343,42 +1313,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/Solver.java">
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/GlobalUpdate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="74" column="57" lean-forward="false" selection-start-line="74" selection-start-column="57" selection-end-line="74" selection-end-column="57" />
+        <state relative-caret-position="480">
+          <caret line="50" column="38" lean-forward="false" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverCunningAnts.java">
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/BestWorstAntSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="53" column="9" lean-forward="false" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+        <state relative-caret-position="1275">
+          <caret line="99" column="25" lean-forward="false" selection-start-line="99" selection-start-column="25" selection-end-line="99" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverExternalMemory.java">
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/AntColonySystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1440">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="366">
+          <caret line="40" column="27" lean-forward="false" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverIteratedAnts.java">
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/AntSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="54" column="10" lean-forward="false" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
+        <state relative-caret-position="495">
+          <caret line="63" column="18" lean-forward="false" selection-start-line="63" selection-start-column="18" selection-end-line="63" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/solver/src/solving/solvers/SolverStandard.java">
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/ElitistAntSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="70" column="26" lean-forward="false" selection-start-line="70" selection-start-column="26" selection-end-line="70" selection-end-column="26" />
+        <state relative-caret-position="175">
+          <caret line="52" column="16" lean-forward="false" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/MinMaxAntSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1160">
+          <caret line="67" column="22" lean-forward="false" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solver/src/solving/globalUpdate/RankBasedAntSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="67" column="13" lean-forward="false" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
           <folding />
         </state>
       </provider>

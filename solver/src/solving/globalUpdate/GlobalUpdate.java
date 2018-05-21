@@ -48,7 +48,7 @@ public abstract class GlobalUpdate
         Solution newBest = Solution.findBestSolution(solutions);
 
         if ((best == null) || newBest.betterThan(best))
-            best = newBest;
+            best = newBest.deepCopy();
     }
 
 

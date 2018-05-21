@@ -64,10 +64,9 @@ public class RankBasedAntSystem extends GlobalUpdate
         // check whether global best has changed in an optimized way, does not call determineBest()
 
         if (best == null)
-            best = sorted.get(0);
-        else
-        if (sorted.get(0).betterThan(best))
-            best = sorted.get(0);
+            best = sorted.get(0).deepCopy();
+        else if (sorted.get(0).betterThan(best))
+            best = sorted.get(0).deepCopy();
 
         maxP = rhoToMaxFactor / best.objective;   // m * (1 / f_opt) * (1 / (1 - rho))
         minP = maxP * maxToMinFactor;
