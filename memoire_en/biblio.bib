@@ -1,15 +1,28 @@
-@article{papadimitriou1982combinatorial,
+@article{papadimitriou1982combinatorial_old,
 	title="Combinatorial optimization: algorithms and complexity",
 	author="Christos H. {Papadimitriou} and Kenneth {Steiglitz}",
 	journal="",
 	year="1982"
 }
 
+@book{papadimitriou1982combinatorial,
+publisher = {Prentice Hall},
+isbn = {0131524623},
+year = {1982},
+title = {Combinatorial optimization : algorithms and complexity},
+language = {eng},
+address = {Englewood Cliffs, N.J.},
+author = {Christos H. {Papadimitriou} and Kenneth {Steiglitz}},
+keywords = {Mathematical optimization; Combinatorial optimization; Computational complexity; Optimisation mathématique; Optimisation combinatoire; Complexité de calcul (Informatique)},
+}
+
+
+
+
 @article{Maniezzo1999,
   doi = {10.1287/ijoc.11.4.358},
   url = {https://doi.org/10.1287/ijoc.11.4.358},
   year  = {1999},
-  month = {nov},
   publisher = {Institute for Operations Research and the Management Sciences ({INFORMS})},
   volume = {11},
   number = {4},
@@ -36,15 +49,18 @@ abstract="In this paper we introduce an Ant Colony Optimisation (ACO) algorithm 
 isbn="978-3-540-49672-4"
 }
 
-
-@inproceedings{Dorigo,
-  doi = {10.1109/cec.1999.782657},
-  url = {https://doi.org/10.1109/cec.1999.782657},
-  publisher = {{IEEE}},
-  author = {M. Dorigo and G. Di Caro},
-  title = {Ant colony optimization: a new meta-heuristic},
-  booktitle = {Proceedings of the 1999 Congress on Evolutionary Computation-{CEC}99 (Cat. No. 99TH8406)}
-}
+@INPROCEEDINGS{782657, 
+author={Marco Dorigo and Gianni Di Caro}, 
+booktitle={Proceedings of the 1999 Congress on Evolutionary Computation-CEC99}, 
+title={Ant colony optimization: a new meta-heuristic}, 
+year={1999}, 
+volume={2}, 
+number={}, 
+pages={1477 Vol. 2}, 
+keywords={artificial life;evolutionary computation;heuristic programming;set theory;ACO;ant colony optimization;discrete optimization problems;foraging behavior;meta-heuristic;novel meta-heuristic;paradigmatic examples;Ant colony optimization;Circuits;Cities and towns;Cost function;Routing;Time measurement;Traveling salesman problems;Vehicles}, 
+doi={10.1109/CEC.1999.782657}, 
+ISSN={}, 
+month={},}
 
 
 @article{Dorigo1997,
@@ -56,19 +72,37 @@ isbn="978-3-540-49672-4"
   volume = {1},
   number = {1},
   pages = {53--66},
-  author = {M. Dorigo and L.M. Gambardella},
+  author = {Marco Dorigo and Luca Maria Gambardella},
   title = {Ant colony system: a cooperative learning approach to the traveling salesman problem},
   journal = {{IEEE} Transactions on Evolutionary Computation}
 }
 
-@inproceedings{Alba2007,
-  doi = {10.1145/1276958.1276961},
-  url = {https://doi.org/10.1145/1276958.1276961},
-  year  = {2007},
-  publisher = {{ACM} Press},
-  author = {Enrique Alba and Francisco Chicano},
-  title = {{ACOhg}},
-  booktitle = {Proceedings of the 9th annual conference on Genetic and evolutionary computation  - {GECCO} {\textquotesingle}07}
+@inproceedings{DBLP:conf/gecco/AlbaC07,
+  author    = {Enrique Alba and
+               Francisco Chicano},
+  title     = {ACOhg: dealing with huge graphs},
+  booktitle = {Genetic and Evolutionary Computation Conference, {GECCO} 2007, Proceedings,
+               London, England, UK, July 7-11, 2007},
+  pages     = {10--17},
+  year      = {2007},
+  crossref  = {DBLP:conf/gecco/2007},
+  url       = {http://doi.acm.org/10.1145/1276958.1276961},
+  doi       = {10.1145/1276958.1276961},
+  timestamp = {Fri, 02 Jun 2017 20:48:53 +0200},
+  biburl    = {https://dblp.org/rec/bib/conf/gecco/AlbaC07},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@proceedings{DBLP:conf/gecco/2007,
+  editor    = {Hod Lipson},
+  title     = {Genetic and Evolutionary Computation Conference, {GECCO} 2007, Proceedings,
+               London, England, UK, July 7-11, 2007},
+  publisher = {{ACM}},
+  year      = {2007},
+  isbn      = {978-1-59593-697-4},
+  timestamp = {Tue, 21 Aug 2007 12:31:32 +0200},
+  biburl    = {https://dblp.org/rec/bib/conf/gecco/2007},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 
 @article{Ruiz2007,
@@ -155,12 +189,6 @@ isbn="978-3-540-38483-0"
 }
 
 
-@MISC{Maniezzo_antsystem,
-    author = {Dorigo Maniezzo and M. Dorigo and V. Maniezzo and A. Colorni},
-    title = {Ant System: An Autocatalytic Optimizing Process},
-    year = {}
-}
-
 @article{Dorigo1996,
   doi = {10.1109/3477.484436},
   url = {https://doi.org/10.1109/3477.484436},
@@ -169,7 +197,7 @@ isbn="978-3-540-38483-0"
   volume = {26},
   number = {1},
   pages = {29--41},
-  author = {M. Dorigo and V. Maniezzo and A. Colorni},
+  author = {Marco Dorigo and Vittorio Maniezzo and Alberto Colorni},
   title = {Ant system: optimization by a colony of cooperating agents},
   journal = {{IEEE} Transactions on Systems,  Man and Cybernetics,  Part B (Cybernetics)}
 }
@@ -177,7 +205,7 @@ isbn="978-3-540-38483-0"
 
 @MISC{Cordon00anew,
     author = {Oscar Cordon and I{\~n}aki Fern{\'a}ndez de Viana and Francisco Herrera and Llanos Moreno},
-    title = {A New ACO Model Integrating Evolutionary Computation Concepts: The Best-Worst Ant System},
+    title = {A new {ACO} Model Integrating Evolutionary Computation Concepts: The Best-Worst Ant System},
     year = {2000}
 }
 
@@ -205,8 +233,11 @@ journal = "Proceedings of the 4th Metaheuristics Conference",
 pages = "1 - 6",
 year = "2001",
 url = "http://difusion.ulb.ac.be/vufind/Record/ULB-DIPOT:oai:dipot.ulb.ac.be:2013/77343/Details",
-author = "Thomas St{\"u}tzle and Holger H. Hoos"
+author = "{Thomas St{\"u}tzle, Holger H. Hoos, Helena R. Louren\c{c}o, and Olivier Martin}"
 }
+
+
+
 
 
 @techreport{LopDubStuBir2011:techreport-004,
@@ -220,7 +251,7 @@ author = "Thomas St{\"u}tzle and Holger H. Hoos"
 }
 
 @incollection{CORDEAU2007367,
-title = "Chapter 6 Vehicle Routing",
+title = "Vehicle Routing",
 editor = "Cynthia Barnhart and Gilbert Laporte",
 series = "Handbooks in Operations Research and Management Science",
 publisher = "Elsevier",
@@ -244,7 +275,6 @@ and Schneider, Johannes J.",
 title="On the Neighborhood Structure of the Traveling Salesman Problem Generated by Local Search Moves",
 journal="Journal of Statistical Physics",
 year="2007",
-month="Nov",
 day="01",
 volume="129",
 number="4",
@@ -255,23 +285,20 @@ doi="10.1007/s10955-007-9382-1",
 url="https://doi.org/10.1007/s10955-007-9382-1"
 }
 
-
-@Article{Bullnheimer1999,
-author="Bullnheimer, B.
-and Hartl, R.F.
-and Strauss, C.",
-title="An improved Ant System algorithm for theVehicle Routing Problem",
-journal="Annals of Operations Research",
-year="1999",
-month="Jan",
-day="01",
-volume="89",
-number="0",
-pages="319--328",
-abstract="The Ant System is a distributed metaheuristic that combines an adaptive memory with alocal heuristic function to repeatedly construct solutions of hard combinatorial optimizationproblems. In this paper, we present an improved ant system algorithm for the Vehicle RoutingProblem with one central depot and identical vehicles. Computational results on fourteenbenchmark problems from the literature are reported and a comparison with five othermetaheuristic approaches for solving Vehicle Routing Problems is given.",
-issn="1572-9338",
-doi="10.1023/A:1018940026670",
-url="https://doi.org/10.1023/A:1018940026670"
+@article{DBLP:journals/anor/BullnheimerHS99,
+  author    = {Bernd Bullnheimer and
+               Richard F. Hartl and
+               Christine Strauss},
+  title     = {An improved Ant System algorithm for theVehicle Routing Problem},
+  journal   = {Annals {OR}},
+  volume    = {89},
+  pages     = {319--328},
+  year      = {1999},
+  url       = {https://doi.org/10.1023/A%3A1018940026670},
+  doi       = {10.1023/A%3A1018940026670},
+  timestamp = {Fri, 10 Nov 2017 13:03:10 +0100},
+  biburl    = {https://dblp.org/rec/bib/journals/anor/BullnheimerHS99},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 
 

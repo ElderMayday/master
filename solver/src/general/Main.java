@@ -88,9 +88,12 @@ public class Main
             solver.solve();
             Solution best = globalUpdate.best;  // the best solution is memorized in the global update, no need to check the result solutons
 
-            String[] split = conf.path.split("\\\\");
-            String filename = split[split.length - 1];
-            outputSolution(best, conf.outputPath + "-" + filename);
+            if (conf.outputPath != null)
+            {
+                String[] split = conf.path.split("\\\\");
+                String filename = split[split.length - 1];
+                outputSolution(best, conf.outputPath + "-" + filename);
+            }
 
             long stopTime = System.currentTimeMillis();
             long elapsedTime = stopTime - startTime;

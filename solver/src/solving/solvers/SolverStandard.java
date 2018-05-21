@@ -58,7 +58,7 @@ public class SolverStandard extends Solver
             iteration++;*/
 
 
-            SolutionVRP currentBest = (SolutionVRP) Solution.findBestSolution(solutions);
+            /*SolutionVRP currentBest = (SolutionVRP) Solution.findBestSolution(solutions);
 
             if (best == null)
                 best = currentBest;
@@ -68,7 +68,7 @@ public class SolverStandard extends Solver
                 best = currentBest;
                 System.out.println(iteration + " " + String.format("%1$.3f", currentBest.objective));
             }
-            iteration++;
+            iteration++;*/
         }
         while (!terminationCriteria.isFulfilled());
 
