@@ -616,7 +616,7 @@ Some irace extensions can be applied. \textbf{Initial configurations} can be set
 
 \section{Problem definition}
 
-All variations of Vehicle Routing Problem (VRP) represent a problem of distribution of goods among the given customers by means of a vehicle fleet. Each edge between nodes is attributed by a measure of cost, that represents distance between these nodes or time required to travel from one to another. Each customer is attributed by its demand of goods. As a goal one usually uses the total distance passed. However, in some variants the objective can be as follows:
+All variations of the Vehicle Routing Problem (VRP) represent a problem of distribution of goods among the given customers by means of a vehicle fleet. Each edge between nodes is attributed a measure of cost, that represents the distance between these nodes or the time required to travel from one to another. Each customer is attributed its demand of goods. As a goal one usually uses the total distance traveled. However, in some variants the objective can be as follows:
 
 \begin{itemize}
 \item Minimize the number of the required vehicles.
@@ -626,98 +626,57 @@ All variations of Vehicle Routing Problem (VRP) represent a problem of distribut
 
 One may also take into account several objectives at once, thus having a multi-objective optimization problem.
 
-As a basis for VRP formulation variation we use the Capacitated Vehicle Routing Problem (CVRP) \cite{CORDEAU2007367}. However minor generalizations are actually implemented in the framework above the given formulation. \par
+As a basis for the VRP formulation we use the Capacitated Vehicle Routing Problem (CVRP) \cite{CORDEAU2007367}. However minor generalizations are actually implemented in the framework above the given formulation. \par
 
-CVRP is defined on a complete undirected graph $G=(V,E)$. A set of nodes $V=\{0,1,...,n\}$ is a union of all customer nodes $V\setminus\{0\}$ and a depot node $\{0\}$. Distance $c_e$ or $c_{ij}$ is assigned to each edge $e \in E = \{(i,j): i,j \in V, i<j\}$. The vehicle fleet is represented by $m$ identical vehicles, having a capacity $Q$ and total distance limit $L$.
+The CVRP is defined on a complete undirected graph $G=(V,E)$. A set of nodes $V=\{0,1,...,n\}$ is a union of all customer nodes $V\setminus\{0\}$ and a depot node $\{0\}$. Distance $c_e$ or $c_{ij}$ is assigned to each edge $e \in E = \{(i,j): i,j \in V, i<j\}$. The vehicle fleet is represented by $m$ identical vehicles, having a capacity $Q$ and a total distance limit $L$.
 
-Constraints are defined as follows:
+The constraints are defined as follows:
 \begin{enumerate}
 \item Each customer is only visited by exactly one vehicle.
 \item Each route starts and ends at the depot.
-\item Total demand, that any vehicle covers does not exceed the vehicle's capacity $Q$.
-\item Total distance, that any vehicle passes on route does not exceed the limit L. 
+\item The total demand that any vehicle covers does not exceed the vehicle's capacity $Q$.
+\item The total distance that any vehicle passes on route does not exceed the limit L. 
 \end{enumerate}
-
-A proposed problem formulation is given below.
-
-The decision variables $x_e$ are presented by an integer variable for each edge $e \in E$.
-
-Let $r(S)$ be the minimum number of vehicles needed to serve the customers $S \subseteq V\setminus\{0\}, S \neq \emptyset$.
-
-Let $\delta(S)=\{(i,j):i \in S, j \notin \textit{S or i} \notin S, j \in S\}$
-
-Then we have a following integer linear programming problem:
-
-\begin{equation}
-\label{eq:cvrp_obj}
-minimize {\sum\limits_{e \in E} c_ex_e} 
-\end{equation}
-
-\begin{equation}
-\label{eq:cvrp_constr1}
-{\sum\limits_{e \in \delta(i)} x_e = 2}, i \in V\setminus\{0\}
-\end{equation}
-
-\begin{equation}
-\label{eq:cvrp_constr2}
-{\sum\limits_{e \in \delta(0)} x_e = 2m},
-\end{equation}
-
-\begin{equation}
-\label{eq:cvrp_constr3}
-{\sum\limits_{e \in \delta(s)} x_e \geq 2r(S)},
-\end{equation}
-
-\begin{equation}
-\label{eq:cvrp_constr4}
-x_e \in \{0,1\}, e \notin \delta(0)
-\end{equation}
-
-\begin{equation}
-\label{eq:cvrp_constr5}
-x_e \in \{0,1,2\}, e \in \delta(0)
-\end{equation}
-
 
 However in addition to this definition one can apply several soothing generalizations:
 
 \begin{enumerate}
 \item A \textbf{Non-symmetric matrix} can be considered, i.e. moving an edge one-way may have a different cost from moving the other direction.
 \item A \textbf{Non-homogeneous vehicle fleet}. Every vehicle has its own maximum capacity and maximum distance.
-\item The \textbf{vehicle may lack of maximum distance restriction}. In other words, maximum distance can be set to infinity.
-\item \textbf{Open/closed problem variations can be also generalized}. The open VRP is a VRP variation, where a vehicle does not have to return to the depot. Closed is a variation, where it must return to the depot in any case. Generalization can be done at matrix definition step by setting all edges leaving from a customer to the depot to 0 in case of the open VRP. On contrary, in closed VRP they are set to their actual travel cost.
+\item The \textbf{vehicle may lack of maximum distance restriction}. In other words, the maximum distance can be set to infinity.
+\item \textbf{Open/closed problem variations}. The open VRP is a VRP variation, where a vehicle does not have to return to the depot. Closed is a variation, where it must return to the depot in any case. The generalization can be done at the matrix definition step by setting all edges leaving from a customer to the depot to 0 in case of the open VRP. On the contrary, in the closed VRP they are set to their actual travel cost.
 \end{enumerate}
 
-Two general feasibility constraints can be verified in advance before solving a problem instance. Firstly, one can check whether the total demand of all customers is not larger than the total supply of all vehicles in case of limited fleet. Secondly, one can check that the maximum demand of a single customer does not exceed the maximum supply of a vehicle fleet, since this customer will never be satisfied, due to the fact, that only one vehicle can supply a customer.
+Two general feasibility constraints can be verified in advance before solving a problem instance. Firstly, one can check whether the total demand of all customers is not larger than the total supply of all vehicles in the case of rhe limited fleet. Secondly, one can check that the maximum demand of a single customer does not exceed the maximum supply of a vehicle fleet, since only one vehicle supply a customer in the basic VRP model.
 
-A related problem is Traveling Salesman Problem (TSP). TSP is such a particular case of closed CVRP, where a single vehicle is disposed instead of a whole fleet, and all capacity and length constraints are always satisfied. Both of these problems require vehicles to return to the initial node in general variation. Both problems have an objective defined as the total distance passed by a vehicle/vehicles.
+A problem is the Traveling Salesman Problem (TSP). TSP is a particular case of closed CVRP, where a single vehicle is used instead of a whole fleet, and all capacity and length constraints are always satisfied. Both of these problems require vehicles to return to the initial node in the general variation. Both problems have an objective defined as the total distance traveled by a vehicle/vehicles. Another way to look at the VRP problem is to consider it a combination of a partitioning problem and routing problem. Partition part defines which elements (customers) are together in one partition (tour). Routing problem  finds the shortest route for the given subset of customers, which corresponds to the TSP problem.
+
+The purpose of the ants is to obtain initial routes, that are biased by the pheromone trail values. The next part of the solution is to improve the obtained routes by means of local search.
 
 In case of limited non-homogeneous vehicle fleet, the results strongly depend on the order of vehicle departure. We propose to emit vehicles in order of their decreasing capacities. By this we try to the maximize number of customers visited by a single vehicle and remove redundant long-distance travels over zones, where customers were already satisfied.
 
-\section{Candidate list}
+\section{Applying ACO to the VRP}
 
-A candidate list can severely boost performance. Similarly to the TSP, a \textbf{cl nearest neighbors} candidate lists can be used. For sake of optimization, these lists are computed once in the beginning of the metaheuristcs execution and exploited during the whole the run. Such a candidate list must be determined separately for every node.
+Applications of ACO algorithms for the VRP are described in various papers. An improved Ant System algorithm for the VRP was introduced by Bullnheimer in \cite{DBLP:journals/anor/BullnheimerHS99}. It uses heuristic information, candidate list and local search. An algorithm called SavingsAnts was described by Doerner in \cite{10.1007/3-540-46004-7_2}. It uses a notion of savings of combining two customers on one tour as opposed to serving them on two different tours. An Ant Colony System algorithm was applied for a dynamic VRP by Montemanni and Gambradella in \cite{MontemanniR.2005ACSf}. ACO metaheuristics may include many various algorithmic options such as using of candidate lists, heuristic values, local search algorithms, solution destruction/reconstruction procedures.
 
-During the preselection phase, the algorithm will examine the candidate list for the current node in the first place. In case if none of those will satisfy constraints (capacity, distance, already visited constraints), only then the nodes outside of the candidate list will be considered.
+A \textbf{candidate list} can severely boost performance. Similarly to the TSP, a \textbf{cl nearest neighbors} candidate lists can be used. For sake of optimization, these lists are computed once in the beginning of the metaheuristics execution and exploited during the whole run. Such a candidate list must be determined separately for every node.
 
-\section{Heuristic values}
+During the preselection phase, the algorithm will examine the candidate list for the current node in the first place. If none of these will satisfy the constraints (capacity, distance, already visited constraints), only then the nodes outside the candidate list will be considered.
 
-In VRP and TSP, one typically uses the inverted value of the distance between two nodes as the heuristics value, see \eqref{eq:vrp_heuristic_value}. Thus, the selection phase will bias the tour edge towards shorter ones.
+In the VRP and TSP, one typically uses the inverted value of the distance between two nodes as the \textbf{heuristics value}, see \eqref{eq:vrp_heuristic_value}. Thus, the selection phase will bias the tour edge towards shorter ones.
 
 \begin{equation}
 \label{eq:vrp_heuristic_value}
 \eta_{edge} = 1 / c_{edge}
 \end{equation}
 
-\section{Local search}
+Two \textbf{local search} variations are proposed - Or-opt move \cite{Stattenberger2007} and an Iterated Local Search, that uses the underlying Or-opt move, see Listing \ref{lst:ils}.
 
-Two local search variations are proposed - 2.5-opt move \cite{Stattenberger2007} and Iterated Local Search, that uses the underlying 2.5-opt move. 
+Illustrations of Or-opt moves are shown in Figures \ref{fig:twohalf}, \ref{fig:twohalf1}, \ref{fig:twohalf2}, \ref{fig:twohalf3}. In an Or-opt move, a replaceable edge $(y1;y2)$ is chosen, and swapped with another sequence of edges, consisting from one up to three customers, denoted by $(x2)$, $(x2,x3)$ or $(x2,x3,x4)$ on the illustrations. Therefore, the size of solution neighborhood is a function depending on tour size of complexity $O(n^2)$.
 
-2.5-opt move illustrations are shown in Figures \ref{fig:twohalf}, \ref{fig:twohalf1}, \ref{fig:twohalf2}, \ref{fig:twohalf3}. In 2.5-opt move, a replaceable edge $(y1;y2)$ is chosen, and swapped with another sequence of edges, consisting from one up to three customers, denoted by $(x2)$, $(x2,x3)$ or $(x2,x3,x4)$ on the illustrations. Therefore, size of solution neighborhood is a function depending on tour size of complexity $O(n^2)$.
+The whole local search procedure consists of sequential attempts of such local moves by trying all possible position combinations of the replacable edge and the replacing ones. The length of the replacing sequence is defined by a random number generator. In our implementation the local move is applied if it reduces the value of the objective function. However, if a local move was applied, one does not reset the position combinations of the loop, but continue with the current progress. In case if a solution consists of several tours, this procedure is applied to every one of them.
 
-The whole local search procedure consists of sequential attempts of such local moves by trying all possible position combinations of the replacable edge and the replacing ones. The length of the replacing sequence is defined by a random number generator. The local move is applied if it is computed that it will benefit to the solution objective function. However, if local move was applied, one does not reset the position combinations of the loop, but continue with the current progress. In case if solution consists of several tours, then this procedure is applied to every one of them.
-
-In order to accelerate computation of the objective function value one may simply distract the distance of the edges, that are removed and add distance of the edges, that are added. Thus, we avoid full tour recomputation. If during the full attempt cycle one applied the local move at least one time, then the whole attempt cycle is repeated. Otherwise, it means that we have converged to a local optimum and we keep the current solution. The 2.5-opt pseudo-code is shown in Listing \ref{lst:vrp-two-half}.
+In order to accelerate the computation of the objective function value one may simply subtract the distance of the edges that are removed and add the distances of the edges that are added. Thus, we avoid full tour recomputation. If during the exploration of the neighborhood one applied the local move at least one time, the whole attempt cycle is repeated. Otherwise, it means that we have converged to a local optimum and we keep the current solution. The 2.5-opt pseudo-code is shown in Listing \ref{lst:vrp-two-half}.
 
 \begin{multicols}{2}
 \begin{figure*}[ht!]
@@ -749,13 +708,29 @@ do
         improved = true
     end
   end
-while improved = true
+while (improved = true)
 
 end
 \end{lstlisting}
 \end{minipage}
 
+In addition one may use 2-opt moves that are based on selecting two random non-adjacent edges, swapping two customers between these two edges and reversing the sequence of customers between them. Whether such a move is profitable can also be computed in optimized way.
+
 For ILS in case of VRP problems, one can implement perturbation as double-bridge move, see Figure \ref{fig:dbridge1} and \ref{fig:dbridge2}.
+
+\begin{minipage}[c, breaklines=true]{0.95\textwidth}
+\begin{lstlisting}[caption={Iterated Local Search outline}, label={lst:ils},mathescape]
+procedure ils(solution s)
+	$s_0$ = GenerateInitialSolution
+	$s^*$ = LocalSearch($s_0$)
+	repeat
+		$s'$ = Perturbation($s^*$,history)
+		$s^*$' = LocalSearch($s'$)
+		$s^*$' = AcceptanceCriterion($s^*$, $s^*$', history)
+	until (termination condition met)
+end
+\end{lstlisting}
+\end{minipage}
 
 
 \begin{multicols}{2}
@@ -768,9 +743,9 @@ For ILS in case of VRP problems, one can implement perturbation as double-bridge
 \end{multicols}
 
 
-\section{Solution destruction}
+\textbf{Solution destruction} is a procedure, that is necessary to implement for iterated greedy extensions. A whole range of diverse algorithms can be proposed here only being limited by fantasy. This procedure is necessary to implement for performing iterated ants and cunning ants algorithms. We implemented it as the following stochastic procedure: every tour of a certain solution with certain probability is a subject to slicing. Slicing means that a random number of solution components are removed. At the same moment, the corresponding quantity of length-capacity and supply-capacity is updated to the vehicle of the sliced tour, so refinishing of the tour can be done. The objective function is also updated to the one of the obtained partial solution. Still, the initial "parent" objective function value has to be backed-up, in order to be able to compare partially destroyed solutions in External memory during tournament selection process.
 
-Solution destruction is a procedure, that is necessary to implement for iterated greedy extensions. A whole range of diverse algorithms can be proposed here only being limited by fantasy. We implemented it as the following stochastic procedure: every tour of a certain solution with certain probability is a subject to slicing. Slicing means that a random number of final solution components are removed. At the same moment, the corresponding quantity of length-capacity and supply-capacity is compensated to the vehicle of the sliced tour, so refinishing of the tour can be done. Objective function is also modified to the actual progress. Still, the initial "parent" objective function value has to be backed-up, in order to be able to compare partially destroyed solutions in External memory during tournament selection process.
+In our implementation the solution is reconstructed in the same way as in the normal construction. This means that an ant continues the tour from the last customer visited and visits the rest of the nodes, being biased by pheromone trail values and problem constraints.
 
 
 
