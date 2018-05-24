@@ -19,8 +19,8 @@
 \contentsline {section}{\numberline {4.2}Preselection stage}{28}{section.4.2}
 \contentsline {section}{\numberline {4.3}Configuration process set-up}{29}{section.4.3}
 \contentsline {section}{\numberline {4.4}Testing}{29}{section.4.4}
-\contentsline {chapter}{\numberline {5}Experimental}{30}{chapter.5}
-\contentsline {section}{\numberline {5.1}Train and test runs}{30}{section.5.1}
-\contentsline {section}{\numberline {5.2}Existing configuration verification}{31}{section.5.2}
-\contentsline {chapter}{\numberline {6}Conclusion}{33}{chapter.6}
-\contentsline {chapter}{Appendix}{34}{appendix*.3}
+\contentsline {chapter}{\numberline {5}Experimental}{31}{chapter.5}
+\contentsline {section}{\numberline {5.1}Train and test runs}{31}{section.5.1}
+\contentsline {section}{\numberline {5.2}Existing configuration verification}{32}{section.5.2}
+\contentsline {chapter}{\numberline {6}Conclusion}{34}{chapter.6}
+\contentsline {chapter}{Appendix}{35}{appendix*.3}

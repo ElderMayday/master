@@ -754,91 +754,91 @@ In our implementation the solution is reconstructed in the same way as in the no
 
 \section{Software design}
 
-The software framework is implemented in Java 1.8.0 in correspondence with object-oriented programming paradigm. Besides VRP, many other combinatorial optimization problems are also anticipated to be solved by means of this framework. This framework remains highly flexible and adaptive in terms of problem variations. This is attained by design patterns and deep abstraction of the framework components. Large application of abstractions ensures minor code-repetition, being ready for some algorithm modifications. Dependency injection concept ensures, that high-level abstraction do not determine the low-level details themselves. Instead, they only receive these dependencies as arguments. This also allows to resort to white-box unit testing of some software components.
+The software framework is implemented in Java 1.8.0 in correspondence with the object-oriented programming paradigm. Besides VRP, many other combinatorial optimization problems are also anticipated to be solved by means of this framework. This framework remains highly flexible and adaptive in terms of problem variations. This is attained by design patterns and deep abstraction of the framework components. Consistent application of abstractions ensures minor code-repetition, being ready for some algorithm modifications. The dependency injection concept ensures, that the high-level abstractions do not determine the low-level details themselves. Instead, they only receive these dependencies as arguments. This also allows to resort to white-box unit testing of some software components.
 
-All classes are strictly grouped in two parts. The first part is \textbf{problem independent} classes. Those are:
+All classes are strictly grouped in two parts. The first part comprises the \textbf{problem independent} classes. The second part comprises the problem dependent classes. Problem independents are:
 
 \begin{itemize}
-\item \textbf{Solver} - abstract class, that encapsulates high-level metaheuristics, that aim to solve abstract combinatorial optimization problems. It is the central class in the framework. It also contains all shared lower-level algorithmic components, such as problem instance itself, solution component selector, termination criteria, local search, pheromone initializer, local and global update strategies. Basic abstract operations are already implemented in this class such as constructing one abstract solution of an abstract problem.
+\item \textbf{Solver}, which is an abstract class that encapsulates high-level metaheuristics, that aim to solve abstract combinatorial optimization problems. It is the central class in the framework. It also contains all shared lower-level algorithmic components, such as problem instance itself, solution component selector, termination criteria, local search, pheromone initializer, local and global update strategies. Basic abstract operations are already implemented in this class such as constructing one abstract solution of an abstract problem. Abstract solution description will be given later.
 
-\item \textbf{SolverStandard} - metaheuristcs without any iterated greedy or other extensions.
+\item \textbf{SolverStandard} - ACO algorithm without any iterated greedy or other extensions.
 
-\item \textbf{SolverIteratedAnts} - metaheuristics with iterated ants as iterated greedy extension. Also holds an IteratedCriteria.
+\item \textbf{SolverIteratedAnts} - ACO algorithm with iterated ants as iterated greedy extension. Also holds an IteratedCriteria.
 
-\item \textbf{IteratedCriteria} - an algorithm that gives preference to either one solution or another. Is used in SolverIteratedAnts. Can be either deterministic or probabilistic.
+\item \textbf{IteratedCriteria} - an algorithm that gives preference to either one solution or another. It is used in SolverIteratedAnts. Can be either deterministic or probabilistic.
 
-\item \textbf{SolverExternalMemory} - metaheuristics with iterated ants as iterated greedy extension. Also contains TournamentSelector.
+\item \textbf{SolverExternalMemory} - ACO algorithm with iterated ants as iterated greedy extension. Also contains TournamentSelector.
 
-\item \textbf{TournamentSelector} - a procedure used in SolverExternalMemory, that selects certain number of solutions from a given set according to tournament selection rule.
+\item \textbf{TournamentSelector} - a procedure used in SolverExternalMemory, that selects certain number of solutions from a given set according to the tournament selection rule.
 
-\item \textbf{SolverCunningAnts} - metaheuristics with cunning ants as iterated greedy extension. Is is also obliged to use MMAS as global update strategy.
+\item \textbf{SolverCunningAnts} - ACO algorithm with cunning ants as iterated greedy extension. Is is also obliged to use MMAS as global update strategy.
 
-\item \textbf{Problem} - is an encapsulation of an abstract problem. It contains general problem components as CandidateDeterminer, ComponentSructure and a flag whether it is maximizing or minimizing problem.
+\item \textbf{Problem} - is an encapsulation of an abstract problem. It contains general problem components such as CandidateDeterminer, ComponentStructure and a flag whether it is a maximization or minimization problem.
 
-\item \textbf{Component} - encapsulated an abstract problem solution component. Allows computation of its selection weight. Performs caching of selection weight, so it gets rid of redundant recomputations.
+\item \textbf{Component} - encapsulates an abstract problem solution component. Allows computation of its selection weight. Performs caching of the selection weight, so it gets rid of redundant recomputations.
 
 \item \textbf{ComponentStructure} - contains the solution components in an unspecified data structure (matrix in case of VRP).
 
-\item \textbf{CandidateDeterminer} - generates abstract problem-specific CandidateList.
+\item \textbf{CandidateDeterminer} - generates an abstract, problem-specific CandidateList.
 
-\item \textbf{CandidateList} - abstract problem-specific candidate list. Is computed once before the run.
+\item \textbf{CandidateList} - abstract, problem-specific candidate list. It is computed once before the run.
 
-\item \textbf{Solution} - encapsulates an abstract problem-independent solution of an abstract problem. It must have an objective function value, that is update during the construction run according to the problem formulation. It also must have a procedure of obtaining a solution component set, that are available at the current construction step. Also deep copying method must be implemented, since it is widely used by solvers and local search strategies.
+\item \textbf{Solution} - encapsulates an abstract, problem-independent solution of an abstract problem. It must have an objective function value, that is updated during the construction run according to the problem formulation. It also must have a procedure of obtaining a solution component set that is available at the current construction step. Also deep copying method must be implemented, since it is widely used by solvers and local search strategies. Deep copying implies that all comprised objects (arrays, lists, solution tours) are copied too, not simply leaving the reference copies.
 
-\item \textbf{GlobalUpdate} - abstract global pheromone update strategy. Includes standard evaporation method, since it is shared by most of the global updates.
+\item \textbf{GlobalUpdate} - abstract global pheromone update strategy. It includes a standard evaporation method, since it is shared by most of the global updates.
 
 \item \textbf{AntSystem}, \textbf{AntColonySystem}, \textbf{MinMaxAntSystem}, \textbf{RankBasedAntSystem}, \textbf{ElitistAntSystem}, \textbf{BestWorthAntSystem} - correspond to the respective global update strategies. MMAS in addition contains PheromoneTrailSmoothing.
 
-\item \textbf{PheromoneTrailSmoothing} - is used bu MMAS. It is an optional step.
+\item \textbf{PheromoneTrailSmoothing} - is used bu MMAS. As an optional step.
 
-\item \textbf{LocalUpdate} - optional argument in general case and mandatory in case of choosing AntColonyOptimization as a global update strategy.
+\item \textbf{LocalUpdate} - optional argument in the general case and mandatory in case of choosing AntColonySystem as a global update strategy.
 
 \item \textbf{LocalSearch} - high-level hybrid SLS. May use Move class as low-level components.
 
 \item \textbf{IteratedLocalSearch} - performs an iterated local search. Depends on Perturbation and Move strategy. High level class, that is not dependent on a problem type.
 
-\item \textbf{Move} - simple SLS. performs full convergence local move, that is used by hybrid SLS.
+\item \textbf{Move} - simple SLS. It performs local move, that is used by hybrid SLS.
 
-\item \textbf{Selector} - an abstract stochastic algorithm that selects a solution component out of a set of components according to some stochastic rule, by taking into consideration pheromone trail values and heuristic values of these components.
+\item \textbf{Selector} - an abstract stochastic algorithm that selects a solution component out of a set of components according to some stochastic rule, by taking into consideration the pheromone trail and heuristic values of these components.
 
-\item \textbf{TerminationCriteria} - an abstract solver termination criteria. Implemented as time criteria and number of iterations criteria for unit testing.
+\item \textbf{TerminationCriteria} - abstract solver termination criterion. Implemented as time criteria and number of iterations criteria for unit testing.
 
-\item \textbf{PheromoneInitializer} - an abstract strategy that initialized/reinitializes pheromone trail values for a whole ComponentStructure. Normally implemented as a stochastic operation.
+\item \textbf{PheromoneInitializer} - an abstract strategy that initializes/reinitializes pheromone trail values for a whole ComponentStructure. Normally implemented as a stochastic operation.
 
 \end{itemize}
 
-The second part is \textbf{problem dependent} classes. These classes may be easily substituted by the others, thus switching the framework application. It is only necessary to determine certain low-level methods for them, such as determining of possible solution components, problem-specific local searches and solution destroyers, determining solution component candidate lists , etc. Those are:
+A feature of problem-dependent is that they may be easily substituted by others, thus switching the framework application. It is only necessary to implement certain low-level methods for them, such as implementing of possible solution components, problem-specific local searches and solution destroyers, determining solution component candidate lists , etc. Those are:
 
 \begin{itemize}
 \item \textbf{Problem2d} - extends Problem class. Encapsulates a problem, that has a two-dimensional matrix organization of its solution components.
 
 \item \textbf{ProblemVRP} - encapsulates a VRP problem instance.
 
-\item \textbf{ComponentStucture2d} - a ComponentStructure implementation for Problem2d. Implemented as dense matrix of solution components and sparse matrix of solution components by means of hash table. The latter allows to have some memory consumption gain, however it cannot be used specifically for VRP problem, due its dense definition of solution components.
+\item \textbf{ComponentStructure2d} - a ComponentStructure implementation for Problem2d. Implemented as dense matrix of solution components and sparse matrix of solution components by means of a hash table. The latter allows to have some memory consumption gain, however it cannot be used specifically for the VRP problem, due its dense definition of solution components.
 
 \item \textbf{ParserVRP} - VRP problem instance parsing. May have many implementations, since one problem type may have many formats of representation.
 
-\item \textbf{Vehicle} - encapsulation of a vehicle. Contains information related to constraints of capacity and distance.
+\item \textbf{Vehicle} - encapsulation of a vehicle. Contains information related to capacity and distance constraints.
 
 \item \textbf{Fleet} - abstract class, that contains a sequence of vehicles. Generates a vehicle iterator for their sequential emission during solution process. The order of emission depends on a particular implementation of this class.
 
-\item \textbf{Tour} - is an inherent part of VRP problem solution. Set of tours defines a solution. One tour is associated with one predefined vehicle. Contains current consumption of capacity and distance, resting capacity and distance, list of visited nodes, associated vehicle pointer.
+\item \textbf{Tour} - is an inherent part of the VRP problem solution. A set of tours defines a solution. One tour is associated with one predefined vehicle. It contains the current consumption of capacity and distance, remaining capacity and distance, list of visited nodes, associated vehicle pointer.
 
-\item \textbf{SolutionVRP} - is a solution of a VRP problem instance. Contains all selected solution components, array of flags of visited customers with, vehicle iterator (generated by Fleet class), all solution tours, and current solution construction progress information.
+\item \textbf{SolutionVRP} - is a solution of a VRP problem instance. It contains all selected solution components, array of flags of visited customers with, vehicle iterator (generated by Fleet class), all solution tours, and current solution construction progress information.
 
 \end{itemize}
 
 
 
-Design patterns are widely used during development process. One of the most used patterns here are "Strategy", "Command" and "Template method", due to having a various range of algorithms on different levels, that adhere to some common structure. All concrete implementation in the program entry point are inferred from the program arguments and are created by means of many "Factory methods" in the \textbf{Launcher} class. "Prototype" pattern is used for \textbf{Solution} class and its sub-classes in order to be able to clone solutions one from another as it is required by some algorithms. "Iterator" is used for vehicle fleet for obtaining a sequence of vehicles, that build a solution in order of their emission.
+Design patterns are widely used during the development process. One of the most used patterns here are "Strategy", "Command" and "Template method", due to having a varied range of algorithms on different levels, that adhere to some common structure. All concrete implementation in the program entry point are inferred from the program arguments and are created by means of many "Factory methods" in the \textbf{Launcher} class. "Prototype" pattern is used for \textbf{Solution} class and its sub-classes in order to be able to clone solutions one from another as it is required by some algorithms. "Iterator" is used for the vehicle fleet for obtaining a sequence of vehicles, that build a solution in order of their emission.
 
 
 
 \section{Preselection stage}
 
-Generally in ACO optimization heuristics there are two ways of maintaining solution feasibility. First is two ensure solution \textbf{feasibility at every moment} of the run. Second is to \textbf{allow processing unfeasible solutions}, however trying to bias towards the components, that keep or likely to keep the solution feasible. Second is good for solving problems with complicated constraints that require a lot of computations in order to keep them feasible. In VRP however, we have decided to use the first approach. This will allow to avoid unnecessary construction of solutions, that are expected to be unfeasible beforehand. \par
+Generally, in ACO algorithms there are two ways of maintaining feasibility of solutions. The first is two ensure solution \textbf{feasibility at every moment} of the run, the second is to \textbf{allow processing unfeasible solutions}, however trying to bias towards the solution components, that keep or likely keep the solution feasible. The second possibility is good for solving problems with complicated constraints that require a lot of computations in order to keep or make them feasible. In the VRP, however, we have decided to use the first approach. This will allow to avoid unnecessary construction of solutions, that are expected to be unfeasible beforehand. \par
 
-Before applying selectors according to formulas \eqref{eq:construction_classic}, \eqref{eq:construction_maniezzo} or \eqref{eq:construction_dorigo} one has to determine the possible solution components at the current construction step. Proposed preselection algorithm is shown in Listing \ref{lst:preselection}. It selects all constraint non-violating edges. Among such constraints there are non-revisiting, not going to itself, not going to the depot edges. Out of those several are filtered out, such as the ones, who violate capacity constraint and distance constraint. In particular, we ensure condition $leftDistance >= dist(current;N) + dist(N;depot)$, since it does not make to go by a certain edge, if it will not be possible even to return to the depot from it. Neither it will be possible to return to the depot by going any farther from that node, which is ensured by triangle inequality property, that works in all VRP instances, that are based on Euclidean space. In case if none such node is found, then the vehicle returns directly to the depot from the current node.
+Before applying selectors according to formulas \eqref{eq:construction_classic}, \eqref{eq:construction_maniezzo} or \eqref{eq:construction_dorigo} (see Page \pageref{eq:construction_classic}) one has to determine the possible solution components at the current construction step. The proposed preselection algorithm is shown in Listing \ref{lst:preselection}. It selects all edges that do not violate any constraint. Among such constraints there are non-revisiting, not going to itself, not going to the depot edges. Out of those several are filtered out, such as the ones, that violate the capacity constraint and distance constraint. In particular, we ensure condition $leftDistance >= dist(current;N) + dist(N;depot)$, since it does not make sense to go by a certain edge, if it will not be possible even to return to the depot from it. Neither it will be possible to return to the depot by going any farther from that node, which is ensured by triangle inequality property, that works in all VRP instances, which are based on Euclidean space. In case if no such node is found, then the vehicle returns directly to the depot from the current node.
 
 In case if a candidate list is used, then the initial set is populated from this list, and the constraints are applied after.
 
@@ -865,7 +865,7 @@ end
 
 \section{Configuration process set-up}
 
-By aggregating all options, strategy choices and flags, one forms a parameter space according to Table \ref{tbl:space}. This space formulation corresponds to the i-race representation. Every parameter is defined by its i-race name, publicly known alias (or new if such does was not invented), type, possible parameter values, condition of validity. Every parameter is can be categorical, integer or real. In case of integer and real lower and upper bounds of the parameter are specified. In case of categorical all possible values are listed. Condition is a predicate, that defines whether this parameter must be assigned a value, or this parameter must not present in the generated configuration.
+By aggregating all options, strategy choices and flags, one forms a parameter space according to Table \ref{tbl:space} on Page \pageref{tbl:space}. This parameter space formulation corresponds to the irace representation. Every parameter is defined by its i-race name, publicly known alias (or new if such was not invented), type, possible parameter values, condition of validity. Every parameter can be categorical, integer or real. In case of integer and real parameters lower and upper bounds of the possible values are specified. In case of categorical all possible values are listed. Condition is a predicate, that defines whether this parameter must be assigned a value, or this parameter must not present in the generated configuration.
 
 
 In addition to the conditional restrictions, several additional constraints have to be ensured by means of forbidden configuration file.
@@ -884,9 +884,9 @@ In addition to the conditional restrictions, several additional constraints have
 \section{Testing}
 
 
-All parameter constraints are checked on two levels. Firstly, i-race scenario is set in such way, that it will only generate valid configurations by means of conditional parameters and specification of forbidden configurations. Secondly, configuration is wholly scanned in the framework itself, not only by checking valid parameter bounds, but also by verifying consistency between several parameters. In case of inconsistency, the framework returns a verbal exception response with error description.
+All parameter constraints are checked on two levels. Firstly, the irace scenario is set in such a way, that it will only generate valid configurations by means of conditional parameters and specification of forbidden configurations. Secondly, configuration is wholly scanned in the framework itself, not only by checking valid parameter bounds, but also by verifying consistency between several parameters. In case of inconsistency, the framework returns a verbal exception response with error description.
 
-Thorough unit and integrated testing is done in order to validate performance of the framework. Several auxiliary problem instances are used in order to simulate very specific artificial situations. Both white-box and black-box methodologies are used depending on a test case. For white-box mock objects are used to test specific method calls/returns by tested objects. This is done by using Mockito framework in combination with JUnit library. Random seed forcing is used to switch execution behavior
+Thorough unit and integrated testing is done in order to validate the performance of the framework. Several auxiliary problem instances are used in order to simulate very specific artificial situations. Both white-box and black-box methodologies are used depending on a test case. For white-box mock objects are used to test specific method calls/returns by tested objects. This is done by using the Mockito framework in combination with JUnit library. Random seed forcing is used to switch execution behavior
 from pseudo-random to deterministic, thus ensuring a concrete scenario.
 
 \chapter{Experimental}
@@ -980,7 +980,7 @@ The framework sources, automatic configuration setup, problem instances, analysi
 
 Public CVRP problem instances are available on \url{http://vrp.atd-lab.inf.puc-rio.br/index.php/en/}.
 
-
+Mockito Testing framework is available on \url{http://site.mockito.org/}.
 
 
 \begin{table}[]

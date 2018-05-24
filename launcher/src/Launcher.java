@@ -7,16 +7,42 @@ public class Launcher
 {
     public static void main(String[] args)
     {
-        /*String configurationString = "testConfig2 instance1 1234567 [path]  " +
-                "--selector-dorigo --alpha 0.2 --beta 3.56 --dorigo-probability 0.72 --candidate-no --elitist-ant-s " +
-                "--local-update-yes --iterated-ants --ant-num 6 --lupd-epsilon 0.46 --tau0 0.19 --local-search-twohalf " +
-                "--evaporation-remains 0.66 --eas-m-elite 90 --eas-bounded-yes --eas-k 4.02 --reinitialization-yes " +
-                "--reinitialization-time 0.13 --iterated-criteria-best --destruction-probability 0.15 --end";*/
-
+        /* // AS (Bullnheimer)
         String configurationString = "testConfig2 instance1 1234567 [path]  " +
-                "--selector-standard --alpha 1.0 --beta 5.0 --candidate-yes --candidate-ratio 0.25 --ant-s " +
+                "--selector-standard --alpha 5.0 --beta 5.0 --candidate-yes --candidate-ratio 0.25 --ant-s " +
                 "--local-update-no --standard --ant-num 30 --local-search-twohalf --evaporation-remains 0.75 " +
-                "--ant-s-bounded-no --reinitialization-no --output solver\\output\\out --end";
+                "--ant-s-bounded-no --reinitialization-no --end";*/
+
+        /*// RAS (Bullnheimer)
+        String configurationString = "testConfig2 instance1 1234567 [path]  " +
+                "--selector-standard --alpha 5.0 --beta 5.0 --candidate-yes --candidate-ratio 0.25 --rank-based-ant-s " +
+                "--local-update-no --standard --ant-num 30 --local-search-twohalf --evaporation-remains 0.75 " +
+                "--ras-w 5 --ras-k 1.0 --ras-bounded-no --reinitialization-no --end";*/
+
+        /*// MMAS
+        String configurationString = "testConfig2 instance1 1234567 [path]  " +
+                "--selector-standard --alpha 1.0 --beta 2.0 --candidate-yes --candidate-ratio 0.25 --min-max-s " +
+                "--local-update-no --standard --ant-num 30 --local-search-twohalf --evaporation-remains 0.8 " +
+                "--min-max-s-p-best 0.005 --min-max-s-global-best-no --min-max-s-pts-no --reinitialization-no --end";*/
+
+        /*// ACS
+        String configurationString = "testConfig2 instance1 1234567 [path]  " +
+                "--selector-standard --alpha 1.0 --beta 2.0 --candidate-yes --candidate-ratio 0.25 --ant-colony-s " +
+                "--local-update-yes --standard --ant-num 30 --local-search-twohalf --evaporation-remains 0.9 " +
+                "--lupd-epsilon 0.1 --tau0 0.000004166 --reinitialization-no --end";*/
+
+        /*// BWAS
+        String configurationString = "testConfig2 instance1 1234567 [path]  " +
+                "--selector-standard --alpha 1.0 --beta 2.0 --candidate-yes --candidate-ratio 0.25 --best-worst-ant-s " +
+                "--local-update-no --standard --ant-num 40 --local-search-twohalf --evaporation-remains 0.9 " +
+                "--bwas-mutation-probability 0.01 --reinitialization-no --end";*/
+
+        // Tuned
+        String configurationString = "testConfig2 instance1 1234567 [path]  " +
+                "--selector-dorigo --alpha 3.04 --beta 4.52 --dorigo-probability 0.87 --candidate-yes --candidate-ratio  " +
+                "0.65 --min-max-s --local-update-yes --cunning-ants --ant-num 10 --lupd-epsilon 0.62 --tau0 0.57 " +
+                "--local-search-twohalf --evaporation-remains 0.35 --min-max-s-p-best 0.14 --min-max-s-global-best-no " +
+                "--min-max-s-pts-no --reinitialization-no --destruction-probability 0.14 --end";
 
         String[] arguments = configurationString.split("\\s+");
 
