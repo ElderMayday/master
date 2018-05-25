@@ -13,6 +13,8 @@
 \usepackage{url}
 
 
+\usepackage{float}
+
 % for argmin formula operator
 \usepackage{amsmath}
 \DeclareMathOperator*{\argmax}{arg\,max}
@@ -756,7 +758,7 @@ In our implementation the solution is reconstructed in the same way as in the no
 
 The software framework is implemented in Java 1.8.0 in correspondence with the object-oriented programming paradigm. Besides VRP, many other combinatorial optimization problems are also anticipated to be solved by means of this framework. This framework remains highly flexible and adaptive in terms of problem variations. This is attained by design patterns and deep abstraction of the framework components. Consistent application of abstractions ensures minor code-repetition, being ready for some algorithm modifications. The dependency injection concept ensures, that the high-level abstractions do not determine the low-level details themselves. Instead, they only receive these dependencies as arguments. This also allows to resort to white-box unit testing of some software components.
 
-All classes are strictly grouped in two parts. The first part comprises the \textbf{problem independent} classes. The second part comprises the problem dependent classes. Problem independents are:
+All classes are strictly grouped in two parts. The first part comprises the \textbf{problem independent} classes. The second part comprises the problem dependent classes. Simplified class structure in shown in Figure \ref{fig:uml-simple}. Problem independent classes are:
 
 \begin{itemize}
 \item \textbf{Solver}, which is an abstract class that encapsulates high-level metaheuristics, that aim to solve abstract combinatorial optimization problems. It is the central class in the framework. It also contains all shared lower-level algorithmic components, such as problem instance itself, solution component selector, termination criteria, local search, pheromone initializer, local and global update strategies. Basic abstract operations are already implemented in this class such as constructing one abstract solution of an abstract problem. Abstract solution description will be given later.
@@ -832,7 +834,12 @@ A feature of problem-dependent is that they may be easily substituted by others,
 
 Design patterns are widely used during the development process. One of the most used patterns here are "Strategy", "Command" and "Template method", due to having a varied range of algorithms on different levels, that adhere to some common structure. All concrete implementation in the program entry point are inferred from the program arguments and are created by means of many "Factory methods" in the \textbf{Launcher} class. "Prototype" pattern is used for \textbf{Solution} class and its sub-classes in order to be able to clone solutions one from another as it is required by some algorithms. "Iterator" is used for the vehicle fleet for obtaining a sequence of vehicles, that build a solution in order of their emission.
 
-
+\begin{figure}[H]
+  \centering
+    \includegraphics[scale=0.6]{uml-simple.jpg}
+  \caption{Simplified UML class diagram of the framework}
+  \label{fig:uml-simple}
+\end{figure}
 
 \section{Preselection stage}
 
@@ -896,11 +903,11 @@ While running the framework on certain instances one must remember, that perform
 \begin{itemize}
 \item Performance of a concrete configuration.
 \item Features of a concrete problem instance.
-\item Performance of hardware and run conditions.
+\item Performance of the hardware and run conditions.
 \item Run-time.
 \end{itemize}
 
-To make configuration benchmark more fair, all factors except the configuration itself must be equalized. The runs must be done on same hardware in same or at least roughly same run conditions. Majorana computation cluster was used for this experiments. The precise configuration is given below.
+To make configuration benchmark more fair, all factors except the configuration itself must be equalized. The runs must be done on the same hardware in the same or at least roughly same run conditions. The Majorana computation cluster was used for these experiments. The precise configuration is given below.
 \begin{itemize}
 \item 32 computational nodes
 \item 2 INTEL Xeon E5410 (4 cores each, 2.33GHz, 2x 6MB L2 cache)
@@ -913,35 +920,24 @@ In addition, one must also take into account that, although deterministic behavi
 
 \section{Train and test runs}
 
-In order to be able to perform benchmark comparison of the framework's performance, one may use publicly known instances of CVRP problems, see Appendix. To make the performance estimation more objective, one must strictly separate training (tuning) and testing set. This will remove the possibility of that, the results obtained are biased by overfitting, made by the tuning process on concrete instances. For the training stage all Uchoa et al.(2014) instances were selected, that were of size less than 300. These instances are generated on a square grid in Euclidean space. For test instances Golden et Al. (1998) were chosen.
+In order to be able to perform benchmark comparison of the framework's performance, one may use publicly known instances of CVRP problems, see Appendix. To make the performance estimation more objective, one must strictly separate training (tuning) and testing set. This will remove the possibility of that, the results obtained are biased by overfitting, made by the tuning process on concrete instances. For the training stage all Uchoa et al.(2014) instances were selected, that were of size less than 300. These instances are generated on a square grid in Euclidean space. For test instances Christofides, Mingozzi and Toth (1979) were chosen.
 
-In the end of 20 iterations/20 configurations irace tuning, a presumably good configuration was found. Then, runs of this configuration on test instances were made. The Solution Quality Distribution is shown on Figure \ref{fig:sqd-golden}.
-
-\begin{figure}[h]
-  \centering
-    \includegraphics[scale=0.8]{sqd-golden.png}
-  \caption{Solution Quality Distribution over Golden et. Al instances}
-  \label{fig:sqd-golden}
-\end{figure}
-
-The configuration is shown in Table \ref{tbl:obtained}.
-
-In that configuration Dorigo selector is chosen, which may be explained by good balance between exploration and exploitation. The heuristics information impact strongly dominates over the pheromone trail value impact. This however will work only if heuristics information is computed duly, as in our case (inverse value of edge distance). Candidate lists are not used, probably since high beta values already manage to cut off the most of poorly promising edges. EAS is used as global update technique. Local update is used. Iterated greedy heuristics is iterated ants. 2.5-opt is used as local search algorithm. The elitist ant factor is 90, which is very high. Reinitialization time is $0.13 \times runtime$, which means that reinitialization will be only enacted 7 times during the run. The iterated ants solution choice criteria is strictly best.
-
-
-
-\section{Existing configuration verification}
-
-In addition to the best configuration obtained, one could use a publicly discovered configurations in literature, \cite{DBLP:journals/anor/BullnheimerHS99}. One can run the replication of that configuration on the same instances (Christofides, Mingozzi and Toth 1979). The SQD of the Bullnheimer and its replication are shown on Figure \ref{fig:sqd-bullheimer-obtained}.
+In the end of the irace tuning (20 iterations/20 configurations), a MMAS configuration was selected as the best one. This configuration is subject to comparison with other ACO algorithms, implemented in the framework. The configurations of these algorithms are replications of the publicly known configurations in the papers. The runs of these configurations on the test instances were made. The Solution Quality Distribution diagram is shown on Figure \ref{fig:sqd-cmt}.
 
 \begin{figure}[h]
   \centering
-    \includegraphics[scale=0.8]{sqd-bullnheimer-obtained.PNG}
-  \caption{Solution Quality Distribution for Bullnheimer and its replication}
-  \label{fig:sqd-bullheimer-obtained}
+    \includegraphics[scale=0.55]{sqd-benchmark.jpg}
+  \caption{Solution Quality Distribution over Christofides, Mingozzi and Toth (1979) instances}
+  \label{fig:sqd-cmt}
 \end{figure}
 
-The replication did not show as good results as the original, which might be explained by lesser runtime performed or by differences in some implementation details.
+The obtained configuration is shown in Table \ref{tbl:obtained}.
+
+This obtained configuration showed the best results. The runs discovered solutions that are better than the best publicly known ones. In particular, all configurations discovered a better solution for the \textit{CMT13} instance. The results are shown in Table \ref{tbl:benchmark}. The best configuration among the replications is the ACS. In general, the clustered instances are solved better than the uniform ones.
+
+In the obtained configuration Dorigo selector is chosen, which may be explained by good balance between exploration and exploitation. The heuristic information impacts strongly dominates over the pheromone trail value impact. However, this will work only if heuristics information is computed duly, as in our case (inverse value of edge distance). Candidate lists are used. MMAS is used as pheromone update technique. Local update is used. Iterated greedy heuristics is cunning ants. 2.5-opt is used as local search algorithm. Reinitialization is disabled.
+
+In addition, a solution browser software was implemented, in order to be able to perform visual assessment of the solutions. It requires the problem and solution files to be specified for browsing. The customers and the tours are shown in a 2D space. In particular, this software helped to detect presence of criss-crosses in the solution tours.
 
 
 
@@ -1060,27 +1056,53 @@ destruction\_probability        & $p_{destr}$  &  r & (0.0,1.0)                 
 \hline
 \textbf{Parameter}       & \textbf{Value}         \\ \hline
 selector                 & selector-dorigo        \\ \hline
-alpha                    & 0.2                    \\ \hline
-beta                     & 3.56                   \\ \hline
-dorigo\_probability      & 0.72                   \\ \hline
-candidate\_list          & candidate-no           \\ \hline
-global\_update           & elitist-ant-s          \\ \hline
+alpha                    & 3.04                   \\ \hline
+beta                     & 4.52                   \\ \hline
+dorigo\_probability      & 0.87                   \\ \hline
+candidate\_list          & candidate-yes          \\ \hline
+candidate\_ratio         & 0.65                   \\ \hline
+global\_update           & min-max-s              \\ \hline
 local\_update            & local-update-yes       \\ \hline
-iterated\_greedy         & iterated-ants          \\ \hline
-ant\_num                 & 6                      \\ \hline
-lupd\_epsilon            & 0.46                   \\ \hline
-lupd\_tau0               & 0.19                   \\ \hline
+iterated\_greedy         & cunning-ants           \\ \hline
+ant\_num                 & 10                     \\ \hline
+lupd\_epsilon            & 0.62                   \\ \hline
+lupd\_tau0               & 0.57                   \\ \hline
 local\_search            & local-search-twohalf   \\ \hline
-evaporation\_remains     & 0.66                   \\ \hline
-eas\_m\_elite            & 90                     \\ \hline
-eas\_is\_bounded         & eas-bounded-yes        \\ \hline
-eas\_k                   & 4.02                   \\ \hline
-reinitialization         & reinitialization-yes   \\ \hline
-reinitialization\_time   & 0.13                   \\ \hline
-criteria                 & iterated-criteria-best \\ \hline
-destruction\_probability & 0.15                   \\ \hline
+evaporation\_remains     & 0.35                   \\ \hline
+min\_max\_s\_p\_best     & 0.14                   \\ \hline
+min\_max\_s\_global\_best & min-max-s-global-best-no  \\ \hline
+min\_max\_s\_pts         & min-max-s-pts-no       \\ \hline
+reinitialization         & reinitialization-no    \\ \hline
+destruction\_probability & 0.14                   \\ \hline
 \end{tabular}
 \end{table}
 
+
+\begin{table}[]
+\centering
+\caption{Relative solution qualities of different ACO algorithms for the CMT instances, in \%}
+\label{tbl:benchmark}
+\begin{tabular}{|l|r|r|r|r|r|r|}
+\hline
+\textbf{Instance (CMT)} & \textbf{AS} & \textbf{RAS} &\textbf{MMAS} & \textbf{ACS} & \textbf{BWAS} & \textbf{Tuned} \\ \hline
+1                            & 8.69                  & 5.72                   & 3.52                    & 1.22                   & 6.47                    & 0.87                     \\ \hline
+2                            & 20.11                 & 17.53                  & 12.95                   & 6.49                   & 20.77                   & 1.00                        \\ \hline
+3                            & 18.21                 & 23.17                  & 17.13                   & 13.42                  & 25.8                    & 1.86                     \\ \hline
+4                            & 28.59                 & 28.43                  & 24.89                   & 31.06                  & 43.39                   & 3.91                     \\ \hline
+5                            & 28.19                 & 31.55                  & 27.09                   & 34.73                  & 49.85                   & 3.79                     \\ \hline
+6                            & 1.38                  & 1.32                   & -2.61                   & -2.86                  & 2.05                    & -5.00                       \\ \hline
+7                            & 11.66                 & 4.79                   & 2.41                    & -2.63                  & 8.37                    & -6.86                    \\ \hline
+8                            & 13.34                 & 14.00                     & 10.92                   & 9.24                   & 18.21                   & -2.27                    \\ \hline
+9                            & 12.28                 & 12.48                  & 8.52                    & 13.88                  & 27.72                   & -7.20                     \\ \hline
+10                           & 20.22                 & 23.67                  & 19.68                   & 20.19                  & 35.7                    & -2.31                    \\ \hline
+11                           & 20.40                  & 20.38                  & 18.49                   & 18.82                  & 23.43                   & 0.58                     \\ \hline
+12                           & 24.54                 & 22.09                  & 13.39                   & 11.76                  & 23.76                   & 3.35                     \\ \hline
+13                           & -18.59                & -18.60                  & -19.88                  & -19.66                 & -16.54                  & -31.33                   \\ \hline
+14                           & 17.82                 & 15.50                   & 7.27                    & 5.72                   & 16.59                   & -2.24                    \\ \hline
+\textbf{Average}                      & 14.77                 & 14.43                  & 10.27                   & 10.10                   & 20.40                    & -2.99                    \\ \hline
+\textbf{Average uniform (1-10)}    & 16.27                 & 16.27                  & 12.45                   & 12.47                  & 23.83                   & -1.22                    \\ \hline
+\textbf{Average clustered (11-14)} & 11.04                 & 9.84                   & 4.82                    & 4.16                   & 11.81                   & -7.41                    \\ \hline
+\end{tabular}
+\end{table}
 
 \end{document}
