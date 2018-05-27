@@ -927,7 +927,14 @@ The runtime is set as a value, depending on size of an instance: $runtime = num_
 
 In addition, one must also take into account that, although deterministic behavior of the program can assured by forcing a random seed, one can not guarantee the same result of the program run even with the same configuration, since number of iterations, that will be effectively done within the specified time range, may vary.
 
-A solution browser software was implemented, in order to be able to perform visual assessment of the solutions. It requires the problem and solution files to be specified for browsing. The customers and the tours are shown in a 2D space. In particular, this software helped to detect presence of criss-crosses in the solution tours.
+A solution browser software was implemented, in order to be able to perform visual assessment of the solutions. It requires the problem and solution files to be specified for browsing. The customers and the tours are shown in a 2D space. In particular, this software helped to detect presence of criss-crosses in the solution tours. An example of a solution illustration is shown in Figure \ref{fig:cmt1-illustration}.
+
+\begin{figure}[h]
+  \centering
+    \includegraphics[scale=0.61]{CMT1.PNG}
+  \caption{Solution illustration for the Christofides, Mingozzi and Toth \#1 instance.}
+  \label{fig:cmt1-illustration}
+\end{figure}
 
 \section{Train and test runs}
 
