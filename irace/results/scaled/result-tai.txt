@@ -1,0 +1,84 @@
+1
+testConfig2 instance1 1234567 [path]  --selector-standard --alpha 5.0 --beta 5.0 --candidate-yes --candidate-ratio 0.25 --ant-s --local-update-no --standard --ant-num 30 --local-search-twohalf --evaporation-remains 0.75 --ant-s-bounded-no --reinitialization-no --end
+2092.696 38.61
+1867.338 38.04
+1807.180 38.05
+1889.233 38.02
+2574.069 50.54
+2669.008 50.53
+2243.171 50.53
+2180.107 50.53
+4234.037 75.56
+3870.551 75.56
+3520.303 75.55
+3909.851 75.55
+2
+testConfig2 instance1 1234567 [path]  --selector-standard --alpha 5.0 --beta 5.0 --candidate-yes --candidate-ratio 0.25 --rank-based-ant-s --local-update-no --standard --ant-num 30 --local-search-twohalf --evaporation-remains 0.75 --ras-w 5 --ras-k 1.0 --ras-bounded-no --reinitialization-no --end
+2024.455 38.01
+1929.407 38.02
+1752.659 38.02
+1913.937 38.01
+2575.758 50.52
+2574.545 50.53
+2075.413 50.52
+2093.395 50.52
+4259.782 75.55
+3643.373 75.55
+3466.413 75.55
+3649.820 75.54
+3
+testConfig2 instance1 1234567 [path]  --selector-standard --alpha 1.0 --beta 2.0 --candidate-yes --candidate-ratio 0.25 --min-max-s --local-update-no --standard --ant-num 30 --local-search-twohalf --evaporation-remains 0.8 --min-max-s-p-best 0.005 --min-max-s-global-best-no --min-max-s-pts-no --reinitialization-no --end
+1956.270 38.02
+1716.686 38.02
+1618.199 38.02
+1766.986 38.02
+2445.661 50.52
+2540.308 50.52
+1948.374 50.53
+2024.269 50.52
+3972.961 75.54
+3546.962 75.54
+3395.610 75.54
+3570.395 75.55
+4
+testConfig2 instance1 1234567 [path]  --selector-standard --alpha 1.0 --beta 2.0 --candidate-yes --candidate-ratio 0.25 --ant-colony-s --local-update-yes --standard --ant-num 30 --local-search-twohalf --evaporation-remains 0.9 --lupd-epsilon 0.1 --tau0 0.000004166 --reinitialization-no --end
+1901.918 38.03
+1688.297 38.01
+1592.649 38.02
+1642.604 38.02
+2509.320 50.52
+2431.968 50.53
+2003.052 50.53
+2109.121 50.53
+4086.433 75.54
+3552.557 75.54
+3274.396 75.54
+3599.556 75.55
+5
+testConfig2 instance1 1234567 [path]  --selector-standard --alpha 1.0 --beta 2.0 --candidate-yes --candidate-ratio 0.25 --best-worst-ant-s --local-update-no --standard --ant-num 40 --local-search-twohalf --evaporation-remains 0.9 --bwas-mutation-probability 0.01 --reinitialization-no --end
+2069.999 38.01
+1812.221 38.02
+1723.297 38.00
+1912.023 38.02
+2845.542 50.52
+2666.348 50.52
+2018.888 50.53
+2225.832 50.52
+4332.409 75.54
+3923.037 75.56
+4083.512 75.54
+3890.242 75.54
+6
+testConfig2 instance1 1234567 [path]  --selector-dorigo --alpha 3.04 --beta 4.52 --dorigo-probability 0.87 --candidate-yes --candidate-ratio  0.65 --min-max-s --local-update-yes --cunning-ants --ant-num 10 --lupd-epsilon 0.62 --tau0 0.57 --local-search-twohalf --evaporation-remains 0.35 --min-max-s-p-best 0.14 --min-max-s-global-best-no --min-max-s-pts-no --reinitialization-no --destruction-probability 0.14 --end
+1627.863 38.00
+1375.807 38.02
+1320.418 38.01
+1401.381 38.00
+2097.385 50.50
+1963.676 50.53
+1445.588 50.51
+1640.630 50.51
+3141.979 75.53
+2851.251 75.52
+2510.762 75.53
+2712.542 75.52

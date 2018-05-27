@@ -78,6 +78,8 @@ public class ProblemVRP extends Problem2d
             parserVrp = new ParserVrpMy();
         else if (file.getAbsolutePath().endsWith(".txt"))
             parserVrp = new ParserVrpTxt();
+        else if (file.getAbsolutePath().endsWith(".tai"))
+            parserVrp = new ParserVrpTai();
         else
             throw new Exception("Problem format is not recognized");
 

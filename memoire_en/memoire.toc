@@ -3,23 +3,23 @@
 \contentsline {section}{\numberline {2.1}Combinatorial Optimization Problems and Constructive Heuristics}{3}{section.2.1}
 \contentsline {section}{\numberline {2.2}Ant Colony Optimization}{4}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Choice of pheromone trails and heuristic information}{5}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Solution component choice}{5}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Construction extensions}{6}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}Global pheromone update}{9}{subsection.2.2.4}
-\contentsline {subsection}{\numberline {2.2.5}Initialization and reinitialization of pheromones}{13}{subsection.2.2.5}
-\contentsline {subsection}{\numberline {2.2.6}Local pheromone update}{13}{subsection.2.2.6}
-\contentsline {subsection}{\numberline {2.2.7}Pheromone trail limits}{13}{subsection.2.2.7}
-\contentsline {subsection}{\numberline {2.2.8}Local search}{14}{subsection.2.2.8}
-\contentsline {section}{\numberline {2.3}Iterated F-Race}{15}{section.2.3}
-\contentsline {chapter}{\numberline {3}Vehicle Routing Problem}{19}{chapter.3}
-\contentsline {section}{\numberline {3.1}Problem definition}{19}{section.3.1}
-\contentsline {section}{\numberline {3.2}Applying ACO to the VRP}{21}{section.3.2}
-\contentsline {chapter}{\numberline {4}Implementation}{25}{chapter.4}
-\contentsline {section}{\numberline {4.1}Software design}{25}{section.4.1}
-\contentsline {section}{\numberline {4.2}Preselection stage}{30}{section.4.2}
-\contentsline {section}{\numberline {4.3}Configuration process set-up}{31}{section.4.3}
-\contentsline {section}{\numberline {4.4}Testing}{31}{section.4.4}
-\contentsline {chapter}{\numberline {5}Experimental}{32}{chapter.5}
-\contentsline {section}{\numberline {5.1}Train and test runs}{32}{section.5.1}
-\contentsline {chapter}{\numberline {6}Conclusion}{35}{chapter.6}
-\contentsline {chapter}{Appendix}{36}{appendix*.3}
+\contentsline {subsection}{\numberline {2.2.2}Solution component choice}{6}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Construction extensions}{7}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Global pheromone update}{10}{subsection.2.2.4}
+\contentsline {subsection}{\numberline {2.2.5}Initialization and reinitialization of pheromones}{14}{subsection.2.2.5}
+\contentsline {subsection}{\numberline {2.2.6}Local pheromone update}{14}{subsection.2.2.6}
+\contentsline {subsection}{\numberline {2.2.7}Pheromone trail limits}{15}{subsection.2.2.7}
+\contentsline {subsection}{\numberline {2.2.8}Local search}{15}{subsection.2.2.8}
+\contentsline {section}{\numberline {2.3}Iterated F-Race}{16}{section.2.3}
+\contentsline {chapter}{\numberline {3}Vehicle Routing Problem}{20}{chapter.3}
+\contentsline {section}{\numberline {3.1}Problem definition}{20}{section.3.1}
+\contentsline {section}{\numberline {3.2}Applying ACO to the VRP}{22}{section.3.2}
+\contentsline {chapter}{\numberline {4}Implementation}{26}{chapter.4}
+\contentsline {section}{\numberline {4.1}Software design}{26}{section.4.1}
+\contentsline {section}{\numberline {4.2}Preselection stage}{31}{section.4.2}
+\contentsline {section}{\numberline {4.3}Configuration process set-up}{32}{section.4.3}
+\contentsline {section}{\numberline {4.4}Testing}{33}{section.4.4}
+\contentsline {chapter}{\numberline {5}Experimental}{34}{chapter.5}
+\contentsline {section}{\numberline {5.1}Train and test runs}{35}{section.5.1}
+\contentsline {chapter}{\numberline {6}Conclusion}{37}{chapter.6}
+\contentsline {chapter}{Appendix}{38}{appendix*.3}

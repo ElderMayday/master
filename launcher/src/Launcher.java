@@ -1,5 +1,8 @@
 import general.Main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Aldar on 24-Apr-18.
  */
@@ -7,63 +10,86 @@ public class Launcher
 {
     public static void main(String[] args)
     {
-        /* // AS (Bullnheimer)
-        String configurationString = "testConfig2 instance1 1234567 [path]  " +
+        List<String> configurations = new ArrayList<String>();
+
+        // AS (Bullnheimer)
+        configurations.add("testConfig2 instance1 1234567 [path]  " +
                 "--selector-standard --alpha 5.0 --beta 5.0 --candidate-yes --candidate-ratio 0.25 --ant-s " +
                 "--local-update-no --standard --ant-num 30 --local-search-twohalf --evaporation-remains 0.75 " +
-                "--ant-s-bounded-no --reinitialization-no --end";*/
+                "--ant-s-bounded-no --reinitialization-no --end");
 
-        /*// RAS (Bullnheimer)
-        String configurationString = "testConfig2 instance1 1234567 [path]  " +
+        // RAS (Bullnheimer)
+        configurations.add("testConfig2 instance1 1234567 [path]  " +
                 "--selector-standard --alpha 5.0 --beta 5.0 --candidate-yes --candidate-ratio 0.25 --rank-based-ant-s " +
                 "--local-update-no --standard --ant-num 30 --local-search-twohalf --evaporation-remains 0.75 " +
-                "--ras-w 5 --ras-k 1.0 --ras-bounded-no --reinitialization-no --end";*/
+                "--ras-w 5 --ras-k 1.0 --ras-bounded-no --reinitialization-no --end");
 
-        /*// MMAS
-        String configurationString = "testConfig2 instance1 1234567 [path]  " +
+        // MMAS
+        configurations.add("testConfig2 instance1 1234567 [path]  " +
                 "--selector-standard --alpha 1.0 --beta 2.0 --candidate-yes --candidate-ratio 0.25 --min-max-s " +
                 "--local-update-no --standard --ant-num 30 --local-search-twohalf --evaporation-remains 0.8 " +
-                "--min-max-s-p-best 0.005 --min-max-s-global-best-no --min-max-s-pts-no --reinitialization-no --end";*/
+                "--min-max-s-p-best 0.005 --min-max-s-global-best-no --min-max-s-pts-no --reinitialization-no --end");
 
-        /*// ACS
-        String configurationString = "testConfig2 instance1 1234567 [path]  " +
+        // ACS
+        configurations.add("testConfig2 instance1 1234567 [path]  " +
                 "--selector-standard --alpha 1.0 --beta 2.0 --candidate-yes --candidate-ratio 0.25 --ant-colony-s " +
                 "--local-update-yes --standard --ant-num 30 --local-search-twohalf --evaporation-remains 0.9 " +
-                "--lupd-epsilon 0.1 --tau0 0.000004166 --reinitialization-no --end";*/
+                "--lupd-epsilon 0.1 --tau0 0.000004166 --reinitialization-no --end");
 
-        /*// BWAS
-        String configurationString = "testConfig2 instance1 1234567 [path]  " +
+        // BWAS
+        configurations.add("testConfig2 instance1 1234567 [path]  " +
                 "--selector-standard --alpha 1.0 --beta 2.0 --candidate-yes --candidate-ratio 0.25 --best-worst-ant-s " +
                 "--local-update-no --standard --ant-num 40 --local-search-twohalf --evaporation-remains 0.9 " +
-                "--bwas-mutation-probability 0.01 --reinitialization-no --end";*/
+                "--bwas-mutation-probability 0.01 --reinitialization-no --end");
 
         // Tuned
-        String configurationString = "testConfig2 instance1 1234567 [path]  " +
+        configurations.add("testConfig2 instance1 1234567 [path]  " +
                 "--selector-dorigo --alpha 3.04 --beta 4.52 --dorigo-probability 0.87 --candidate-yes --candidate-ratio  " +
                 "0.65 --min-max-s --local-update-yes --cunning-ants --ant-num 10 --lupd-epsilon 0.62 --tau0 0.57 " +
                 "--local-search-twohalf --evaporation-remains 0.35 --min-max-s-p-best 0.14 --min-max-s-global-best-no " +
-                "--min-max-s-pts-no --reinitialization-no --destruction-probability 0.14 --end";
+                "--min-max-s-pts-no --reinitialization-no --destruction-probability 0.14 --end");
 
-        String[] arguments = configurationString.split("\\s+");
+        int index = 0;
+        for (String configurationString : configurations)
+        {
+            index++;
+            System.out.println(index);
+            System.out.println(configurationString);
 
-        String path = "irace\\test\\";
+            String[] arguments = configurationString.split("\\s+");
 
-        //String[] names = {"CMT13.vrp.txt"}; // TODO remove
+            String path = "irace/instances/";
 
-        String[] names = {"CMT1.vrp.txt",
-                "CMT2.vrp.txt",
-                "CMT3.vrp.txt",
-                "CMT4.vrp.txt",
-                "CMT5.vrp.txt",
-                "CMT6.vrp.txt",
-                "CMT7.vrp.txt",
-                "CMT8.vrp.txt",
-                "CMT9.vrp.txt",
-                "CMT10.vrp.txt",
-                "CMT11.vrp.txt",
-                "CMT12.vrp.txt",
-                "CMT13.vrp.txt",
-                "CMT14.vrp.txt"};
+            //String[] names = {"CMT13.vrp.txt"}; // TODO remove
+
+            /*String[] names = {"CMT1.vrp.txt",
+                    "CMT2.vrp.txt",
+                    "CMT3.vrp.txt",
+                    "CMT4.vrp.txt",
+                    "CMT5.vrp.txt",
+                    "CMT6.vrp.txt",
+                    "CMT7.vrp.txt",
+                    "CMT8.vrp.txt",
+                    "CMT9.vrp.txt",
+                    "CMT10.vrp.txt",
+                    "CMT11.vrp.txt",
+                    "CMT12.vrp.txt",
+                    "CMT13.vrp.txt",
+                    "CMT14.vrp.txt"};*/
+
+            /*String[] names = {"tai75a.tai",
+                    "tai75b.tai",
+                    "tai75c.tai",
+                    "tai75d.tai",
+                    "tai100a.tai",
+                    "tai100b.tai",
+                    "tai100c.tai",
+                    "tai100d.tai",
+                    "tai150a.tai",
+                    "tai150b.tai",
+                    "tai150c.tai",
+                    "tai150d.tai",
+                    "tai385.tai"};*/
 
         /*String[] names = {"Golden_1.vrp.txt",
                 "Golden_2.vrp.txt",
@@ -86,7 +112,7 @@ public class Launcher
                 "Golden_19.vrp.txt",
                 "Golden_20.vrp.txt"};*/
 
-        /*String[] names = {"X-n101-k25.vrp.txt",
+        String[] names = {"X-n101-k25.vrp.txt",
                 "X-n125-k30.vrp.txt",
                 "X-n148-k46.vrp.txt",
                 "X-n172-k51.vrp.txt",
@@ -128,14 +154,15 @@ public class Launcher
                 "X-n214-k11.vrp.txt",
                 "X-n237-k14.vrp.txt",
                 "X-n261-k13.vrp.txt",
-                "X-n284-k15.vrp.txt"};*/
+                "X-n284-k15.vrp.txt"};
 
-        for (String name : names)
-        {
-            arguments[3] = path + name;
-            System.out.println(arguments[3]);
-            Main.main(arguments);
-            System.out.println();
+            for (String name : names)
+            {
+                arguments[3] = path + name;
+                //System.out.println(arguments[3]);
+                Main.main(arguments);
+                //System.out.println();
+            }
         }
     }
 }

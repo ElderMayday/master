@@ -93,6 +93,25 @@ public class TestProblemVRP
     }
 
     @Test
+    public void testProblemVrpLoadInstanceTai()
+    {
+        ProblemVRP problem;
+
+        try
+        {
+            problem = new ProblemVRP(new ComponentStructure2dStandard(), new FleetDescendingCapacity(), null);
+            problem.load(new File("irace/test/tai75a.tai"));
+
+            int a = 1;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            assertTrue(false);
+        }
+    }
+
+    @Test
     public void testProblemVrpLoadInstanceTxt()
     {
         ProblemVRP problem;

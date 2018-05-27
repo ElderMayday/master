@@ -3,6 +3,8 @@ package problem.problemFormulation.parser;
 import problem.componentStructure.ComponentStructure2d;
 import problem.fleet.Vehicle;
 import problem.problemFormulation.ProblemVRP;
+import problem.problemFormulation.parser.distanceDeterminer.DistanceDeterminer;
+import problem.problemFormulation.parser.distanceDeterminer.DistanceEuclidean2d;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -217,23 +219,5 @@ public class ParserVrpTxt extends ParserVrp
                 vehicleList.add(new Vehicle(capacity, 0.0, false));
 
         problem.fleet.setVehicles(vehicleList);
-    }
-
-
-
-
-    interface DistanceDeterminer
-    {
-        double distance(double x1, double y1, double x2, double y2);
-    }
-
-    class DistanceEuclidean2d implements DistanceDeterminer
-    {
-
-        @Override
-        public double distance(double x1, double y1, double x2, double y2)
-        {
-            return Math.sqrt(Math.pow(x1 - x2, 2.0) + Math.pow(y1 - y2, 2.0));
-        }
     }
 }
