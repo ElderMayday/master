@@ -113,7 +113,7 @@ the disastrous effects of a siege.}''
 \chapter*{Acknowledgment}
 \thispagestyle{empty} 
 
-\noindent I want to thank my promoter, prof. Thomas St{\"u}tzle, whose determination and competencies were leading me to the goal of the paper, and my friend, Alain, who made this precious time of my education possible.
+\noindent I want to thank my promoter, prof. Thomas St{\"u}tzle, whose determination and competencies were leading me to the goal of the master thesis, and my friend, Alain, who made this precious time of my education possible.
 
 \thispagestyle{empty} 
 \setcounter{page}{0}
@@ -123,21 +123,21 @@ the disastrous effects of a siege.}''
 \setcounter{page}{1}
 \vspace*{0.5cm}
 
-Some insect species show an extreme degree of social organization. For example many ant species have pheromone production and detection body parts and therefore seize an ability to communicate between each other in an indirect way. Such indirect communication between organism is called stigmergy. Biologists conducted several experiments with ant colonies initiating their foraging behavior and found out that they tend to find shortest paths between the nest and food sources by means of such communication. This concept has inspired the development of algorithms, which are based on the social behavior of ant colonies, called ant colony optimization (ACO) algorithms. ACO algorithms solve NP-hard problems in a very efficient manner \cite{Dorigo1996}. These algorithms are considered to be metaheuristics. By metaheuristic we imply a generic set of rules for deriving heuristic algorithms. As for the ACO metaheuristic, it includes also the possibility of local search: once ants complete their solution construction phase, local search algorithms can be used to refine their solutions before using them for the pheromone update. Various experimental researches have shown that the combination of solution cconstruction by ants and local search procedures is a promising approach. ACO algorithms have a large number of variations and configuration parameters, that drastically influence the algorithm performance. These parameters may be unified by means of some framework.
+Some insect species show an extreme degree of social organization. For example many ant species have pheromone production and detection body parts and therefore have an ability to communicate between each other in an indirect way. Such indirect communication between organisms is called stigmergy \cite{doi:10.1162/106454699568692}. Biologists conducted several experiments with ant colonies investigating their foraging behavior and found out that they tend to find shortest paths between the nest and food sources by means of such communication \cite{6174275}. This concept has inspired the development of algorithms, which are based on the social behavior of ant colonies, called ant colony optimization (ACO) algorithms. ACO algorithms solve NP-hard problems in a very efficient manner \cite{Dorigo1996}. These algorithms are considered to be metaheuristics, which can generally be seen as a generic set of rules for deriving heuristic algorithms. In ACO algorithms, artificial ants implement a stochastic solution construction that is biased by artificial phermone trails and heuristic information that is derived from the data of the problem instance being tackled. As for the ACO metaheuristic, it includes also the possibility of local search: once ants complete their solution construction phase, local search algorithms can be used to refine their solutions before using them for the pheromone update. Over time, various researchers have explored ACO algorithms and have proposed a number of algorithmic variants. These variants often differ in specific aspects of the way pheromone trails are treated in the solution construction and the pheromone update. Independent of the specific variant, generally speaking ACO algorithms have a number of parameters that influence their behavior. These variants may be unified by means of some framework.
 
-At the moment, there exists a state-of-the-art software called ACOTSPQAP. As the name says, it is designed to solve the Traveling Salesman Problem and the Quadratic Assignment Problem with high-efficiency by means of ACO meta-heuristics. It also includes different algorithm variations as Ant System (AS), Elitist Ant System (EAS) \cite{Dor1992:thesis,Dorigo1996}, Max-Min Ant System (MMAS) \cite{STUTZLE2000889}, Rank-based Ant System (RAS) \cite{Bullnheimer97anew}, Best-Worst Ant System (BWAS) \cite{Cordon00anew}, Ant Colony System (ACS) \cite{Dorigo1997}. As for the implementation, it is written in C and, therefore, it adheres to the structural programming paradigm. Although adapting the software to a different problem type context is possible, it is nonetheless more costly than if it was written according to the object-oriented programming (OOP) paradigm. OOP reduces cost, due to its essential properties (inheritance, abstraction and polymorphism). These properties may heavily reduce code repetition. For example having implemented an abstraction of an NP-hard problem and one of its implementations for one concrete NP-hard problem, one will only have to make another implementation of the problem abstraction for the respective problem type, in case if switching to another problem type is required. These implementations contain only problem specific parts of the code and are mutually replaceable. In structured programming however, the program is split into high and low level modules, and in case of program extension both high and low level modules will be subject to modification.
+At the moment, there exists a state-of-the-art software called ACOTSPQAP. As the name says, it is designed to solve the Traveling Salesman Problem and the Quadratic Assignment Problem with high-efficiency by means of the ACO meta-heuristics. It includes different algorithm variations such as Ant System (AS), Elitist Ant System (EAS) \cite{Dor1992:thesis,Dorigo1996}, Max-Min Ant System (MMAS) \cite{STUTZLE2000889}, Rank-based Ant System (RAS) \cite{Bullnheimer97anew}, Best-Worst Ant System (BWAS) \cite{Cordon00anew} and Ant Colony System (ACS) \cite{Dorigo1997}. As for the implementation, it is written in C and, therefore, it adheres to the structural programming paradigm. Although adapting the software to a different problem type context is possible, it is nonetheless more costly than if it was written according to the object-oriented programming (OOP) paradigm. OOP reduces cost, due to its essential properties (inheritance, abstraction and polymorphism). These properties may heavily reduce code repetition. For example, having implemented an abstraction of an NP-hard problem and one of its implementations for one concrete NP-hard problem, one will only have to make another implementation of the problem abstraction for the respective problem type, in case if switching to another problem type is required. These implementations contain only problem specific parts of the code and are mutually replaceable. In structured programming however, the program is split into high and low level modules, and in case of program extension both high and low level modules will be subject to modification.
 
-The development of a flexible OOP driven ACO framework is the next step of formalizing this area. Such a framework can then be used as a tool to help solving various optimization problems. This thesis gives a brief overview of the current state of the ACO research area, existing framework description and some tools which can be used for the automatic configuration of the framework.
+The development of a flexible OOP driven ACO framework will facilitate research of ACO algorithms and development of applicable software, that uses these algorithms. Such a framework can then be used as a tool to help solving various optimization problems. This thesis gives a brief overview of the current state of art in the ACO research area, existing framework description and some tools, which can be used for the automatic configuration of the framework.
 
-The work was started by analyzing and aggregating possible options and choices, trying to define their common parts in order to derive abstract classes and reduce component repetitions. In chapter 2, we describe the theoretical foundation of the framework, that is required to be developed. However, unreasonable selection of an ACO algorithm configuration may lead to low-quality results even after a long execution. A simple decision is to perform a configuration tuning before the actual execution. This chapter also introduces a description of a configuration software called irace, that allows to obtain high-performing configurations for further framework exploiting. We adapted the developed framework for use with irace by giving a specification of the framework parameter space.
+The work was started by analyzing and aggregating possible options and choices, trying to define their common parts in order to derive abstract classes and reduce component repetitions. In chapter 2, we describe the theoretical foundation of the framework, that is required to be developed. However, unreasonable selection of an ACO algorithm configuration may lead to low-quality results even after a long execution. A simple decision is to perform a configuration tuning before the actual execution of the algorithm. This chapter also introduces a description of an automatic configuration software called irace, that allows to obtain high-performing configurations for further framework exploitation. We adapted the developed framework for use with irace by giving a specification of the framework parameter space.
 
-The development of such framework would also require its application to some particular problem for testing and analysis purposes. Vehicle Routing Problem (VRP) was chosen as the one. It is a widely researched NP-hard combinatorial optimization problem, therefore, it will allow us to perform a benchmark comparison with publicly available problem instances, that we obtain. In chapter 3, we introduce formulation of VRP and also mention several variations thereof.
+The development of such framework would also require its application to some particular problem for testing and analysis purposes. The Capacitated Vehicle Routing Problem (CVRP) was chosen for this task in the thesis. It is a widely researched NP-hard combinatorial optimization problem, therefore, it will allow us to perform a benchmark comparison with publicly available problem instances. In chapter 3, we introduce the formulation of the VRP and also mention several variations, which may also be tackled by the present code.
 
 In chapter 4, we describe the implementation details and decisions for the ACO framework, the way we adapt it specifically to VRP-problems and we also show a line-by-line description of the parameter space defined for the framework. We also explain there how we attain high flexibility of the framework in order to adapt it for various problem types besides VRP.
 
-In chapter 5, one can see the experimental set-up, tuning results, performance benchmark and verbal interpretations of the results.
+In chapter 5, one can see the experimental set-up, the tuning results, the performance benchmark and a verbal interpretations of the results.
 
-In chapter 6, we finalize the work, list conclusion remarks and give a short overview of results of each step. In addition, we emphasize the application areas, where this framework may be useful. 
+In chapter 6, we summarize the work, list concluding remarks and give a short overview of results of each step. In addition, we emphasize the application areas, where this framework may be useful. 
 
 \chapter{Background}
 
@@ -765,7 +765,9 @@ In our implementation the solution is reconstructed in the same way as in the no
 
 The software framework is implemented in Java 1.8.0 in correspondence with the object-oriented programming paradigm. Besides VRP, many other combinatorial optimization problems are also anticipated to be solved by means of this framework. This framework remains highly flexible and adaptive in terms of problem variations. This is attained by design patterns and deep abstraction of the framework components. Consistent application of abstractions ensures minor code-repetition, being ready for some algorithm modifications. The dependency injection concept ensures, that the high-level abstractions do not determine the low-level details themselves. Instead, they only receive these dependencies as arguments. This also allows to resort to white-box unit testing of some software components.
 
-All classes are strictly grouped in two parts. The first part comprises the \textbf{problem independent} classes. The second part comprises the problem dependent classes. Simplified class structure in shown in Figure \ref{fig:uml-simple}. Problem independent classes are:
+All classes are strictly grouped in two parts. The first part comprises the \textbf{problem independent} classes. The second part comprises the problem dependent classes. Simplified class structure in shown in Figure \ref{fig:uml-simple}. In this class diagram some minor classes are not mentioned, as well as private methods, private members and many abstract class implementations.
+
+Problem independent classes are:
 
 \begin{itemize}
 \item \textbf{Solver}, which is an abstract class that encapsulates high-level metaheuristics, that aim to solve abstract combinatorial optimization problems. It is the central class in the framework. It also contains all shared lower-level algorithmic components, such as problem instance itself, solution component selector, termination criteria, local search, pheromone initializer, local and global update strategies. Basic abstract operations are already implemented in this class such as constructing one abstract solution of an abstract problem. Abstract solution description will be given later.
@@ -788,9 +790,9 @@ All classes are strictly grouped in two parts. The first part comprises the \tex
 
 \item \textbf{ComponentStructure} - contains the solution components in an unspecified data structure (matrix in case of VRP).
 
-\item \textbf{CandidateDeterminer} - generates an abstract, problem-specific CandidateList.
+\item \textbf{CandidateDeterminer} - generates an abstract CandidateList. Its implementations are problem-specific.
 
-\item \textbf{CandidateList} - abstract, problem-specific candidate list. It is computed once before the run.
+\item \textbf{CandidateList} - abstract candidate list. It is computed once before the run.
 
 \item \textbf{Solution} - encapsulates an abstract, problem-independent solution of an abstract problem. It must have an objective function value, that is updated during the construction run according to the problem formulation. It also must have a procedure of obtaining a solution component set that is available at the current construction step. Also deep copying method must be implemented, since it is widely used by solvers and local search strategies. Deep copying implies that all comprised objects (arrays, lists, solution tours) are copied too, not simply leaving the reference copies.
 
@@ -903,7 +905,7 @@ All parameter constraints are checked on two levels. Firstly, the irace scenario
 Thorough unit and integrated testing is done in order to validate the performance of the framework. Several auxiliary problem instances are used in order to simulate very specific artificial situations. Both white-box and black-box methodologies are used depending on a test case. For white-box mock objects are used to test specific method calls/returns by tested objects. This is done by using the Mockito framework in combination with JUnit library. Random seed forcing is used to switch execution behavior
 from pseudo-random to deterministic, thus ensuring a concrete scenario.
 
-\chapter{Experimental}
+\chapter{Experimental results}
 
 While running the framework on certain instances one must remember, that performance of a run is a cumulative result of several factors at a time: 
 
@@ -925,11 +927,13 @@ The runtime is set as a value, depending on size of an instance: $runtime = num_
 
 In addition, one must also take into account that, although deterministic behavior of the program can assured by forcing a random seed, one can not guarantee the same result of the program run even with the same configuration, since number of iterations, that will be effectively done within the specified time range, may vary.
 
+A solution browser software was implemented, in order to be able to perform visual assessment of the solutions. It requires the problem and solution files to be specified for browsing. The customers and the tours are shown in a 2D space. In particular, this software helped to detect presence of criss-crosses in the solution tours.
+
 \section{Train and test runs}
 
 In order to be able to perform benchmark comparison of the framework's performance, one may use publicly known instances of CVRP problems, see Appendix. To make the performance estimation more objective, one must strictly separate training (tuning) and testing set. This will remove the possibility of that, the results obtained are biased by overfitting, made by the tuning process on concrete instances. For the training stage all Uchoa et al.(2014) instances were selected, that were of size less than 300. These instances are generated on a square grid in Euclidean space. For test instances Christofides, Mingozzi and Toth (1979) were chosen (the ones that have the computed optimal solutions).
 
-In the end of the irace tuning (20 iterations/20 configurations), a MMAS configuration was selected as the best one. This configuration is subject to comparison with other ACO algorithms, implemented in the framework. The configurations of these algorithms are replications of the publicly known configurations in the papers. The runs of these configurations on the test instances were made. The Solution Quality Distribution diagram is shown on Figure \ref{fig:sqd-cmt}.
+In the end of the irace tuning (20 iterations/20 configurations), one configuration was obtained as the best one. This configuration is subject to comparison with other ACO algorithms, implemented in the framework. The configurations of these algorithms are replications of the publicly known configurations in the papers. The runs of these configurations on the test instances were made. The Solution Quality Distribution diagram is shown on Figure \ref{fig:sqd-cmt}.
 
 \begin{figure}[h]
   \centering
@@ -938,29 +942,38 @@ In the end of the irace tuning (20 iterations/20 configurations), a MMAS configu
   \label{fig:sqd-cmt}
 \end{figure}
 
-The obtained configuration is shown in Table \ref{tbl:obtained}.
-
-This obtained configuration showed the best results. The results are shown in Table \ref{tbl:benchmark}. The best configurations among the replications are MMAS and ACS.
+The obtained configuration is shown in Table \ref{tbl:obtained}. This obtained configuration showed the best results. The results are shown in Table \ref{tbl:benchmark}. The best configurations among the replications are MMAS and ACS.
 
 In the obtained configuration Dorigo selector is chosen, which may be explained by good balance between exploration and exploitation. The heuristic information impacts strongly dominates over the pheromone trail value impact. However, this will work only if heuristics information is computed duly, as in our case (inverse value of edge distance). Candidate lists are used. MMAS is used as pheromone update technique. Local update is used. Iterated greedy heuristics is cunning ants. 2.5-opt is used as local search algorithm. Reinitialization is disabled.
 
-In addition, a solution browser software was implemented, in order to be able to perform visual assessment of the solutions. It requires the problem and solution files to be specified for browsing. The customers and the tours are shown in a 2D space. In particular, this software helped to detect presence of criss-crosses in the solution tours.
 
 
+In addition, experiments were carried out for the two best known configurations (MMAS and ACS) and the obtained one. Once again, only those instances were used, that have the computed optimal qualities. The results are shown in Table \ref{tbl:tai-uchoa}. A correlation analysis was done for the MMAS against the tuned configuration and for the ACS against the tuned configurationm, see Figures \ref{fig:acs-tuned}, \ref{fig:mmas-tuned}. In these results one can clearly see that the tuned configuration gives the best results among the three configurations for all instances. The relative qualities of the tuned configuration for the Taillard instances are all less than 7\%. However all the configurations showed poor performance on certain Uchoa instances. Since these poor performance instances are clearly correlated (aligned to the diagonal straight line), then it might be related to intrinsic features of these instances. 
+
+\begin{figure}[h]
+  \centering
+    \includegraphics[scale=0.75]{mmas-tuned.PNG}
+  \caption{Correlation of relative qualities of the MMAS and the tuned configurations over the Uchoa and Taillard instances}
+  \label{fig:mmas-tuned}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+    \includegraphics[scale=0.75]{acs-tuned.PNG}
+  \caption{Correlation of relative qualities of the ACS and the tuned configurations over the Uchoa and Taillard instances}
+  \label{fig:acs-tuned}
+\end{figure}
 
 
 \chapter{Conclusion}
 
-As we were planning, we carried out analysis of the state-of-the-art variations and components of the Ant Colony Optimization algorithms. We managed to emphasize the common traits of those algorithms and designed an object-oriented framework, encompassing thereof. This framework was later implemented in Java. This will allow to run and extend this framework in a platform independent way.
+The goal of the thesis was to derive an object-oriented, flexible framework of ACO algorithms for a specific class of vehicle routing problems (VRPs), the capacitated VRP. Another goal was to allow for the automatic configuration of high-performing ACO algorithms for this problem. To do so, we have analyzed the state-of-the-art variations and components of the Ant Colony Optimization algorithms. We extracted the common traits of those algorithms and design an object-oriented framework, which comprises the algorithmic components of the most widely used ACO algorithms and allows to generate new ACO algorithms that have never been tested before by combining suitably available algorithmic components. This framework was later implemented in Java, which will allow to run and extend this framework in a platform independent way. As mentioned, the framework was adapted for Vehicle Routing Problems, which belongs to NP-hard problems.
 
-To apply the framework to actual problems, the framework was adapted for Vehicle Routing Problems, which belongs to NP-hard problems.
+Then we integrated this framework with an automatic configuration  software called irace, created a tuning script and a framework parameter specification. The tuning process was performed on Majorana computation cluster.
 
-Then we integrated this framework with a configuration tuning software called irace, created a tuning script and framework parameter specification. The tuning process was performed on Majorana computation cluster.
+We performed training (tuning) and testing of the framework on two different publicly known instance sets. In addition, we tried to replicate a publicly known configuration in order to perform benchmark comparison. This comparison showed that the automatic configuration phase effectively generated a configuration, that outperforms publicly known configurations.
 
-We performed training (tuning) and testing of the framework on two different publicly known instance sets. In addition, we tried to replicate a publicly known configuration in order to perform benchmark comparison.
-
-This framework in combination with the irace tuning can be used for every combinatorial optimization problem by applying any custom developed ACO metaheuristics. In context of VRP problem, it can be used for transport logistics, microchip design, computer network planning, agriculture, job scheduling, X-Ray crystallography.
-
+This framework in combination with the irace tuning can be used for every combinatorial optimization problem by applying any custom developed ACO metaheuristics. In context of VRP problem, it can be used for transport logistics, microchip design, computer network planning, X-Ray crystallography. One may want to extend the framework, by adding new ACO algorithms for VRP problems, or by extending the framework even for other problem types. All these extensions require implementing of abstract classes of problems, solutions and/or other strategies. No modification of the old implementations is required.
 
 
 \appendix
@@ -1091,15 +1104,60 @@ destruction\_probability & 0.14                   \\ \hline
 \label{tbl:benchmark}
 \begin{tabular}{|l|r|r|r|r|r|r|}
 \hline
-\textbf{Instance (CMT)} & \textbf{AS} & \textbf{RAS} &\textbf{MMAS} & \textbf{ACS} & \textbf{BWAS} & \textbf{Tuned} \\ \hline
-1                            & 8.69                  & 5.72                   & 3.52                    & 1.22                   & 6.47                    & 0.87                     \\ \hline
-2                            & 20.11                 & 17.53                  & 12.95                   & 6.49                   & 20.77                   & 1.00                        \\ \hline
-3                            & 18.21                 & 23.17                  & 17.13                   & 13.42                  & 25.8                    & 1.86                     \\ \hline
-4                            & 28.59                 & 28.43                  & 24.89                   & 31.06                  & 43.39                   & 3.91                     \\ \hline
-5                            & 28.19                 & 31.55                  & 27.09                   & 34.73                  & 49.85                   & 3.79                     \\ \hline
-11                           & 20.40                 & 20.38                  & 18.49                   & 18.82                  & 23.43                   & 0.58                     \\ \hline
-12                           & 24.54                 & 22.09                  & 13.39                   & 11.76                  & 23.76                   & 3.35                     \\ \hline
-\textbf{Average}             & 21.24                 & 21.27                  & 16.78                   & 16.79                   & 27.64                    & 2.19                    \\ \hline
+\textbf{Instance} & \textbf{AS} & \textbf{RAS} &\textbf{MMAS} & \textbf{ACS} & \textbf{BWAS} & \textbf{Tuned} \\ \hline
+CMT1                            & 8.69                  & 5.72                   & 3.52                    & 1.22                   & 6.47                    & 0.87                     \\ \hline
+CMT2                            & 20.11                 & 17.53                  & 12.95                   & 6.49                   & 20.77                   & 1.00                        \\ \hline
+CMT3                            & 18.21                 & 23.17                  & 17.13                   & 13.42                  & 25.8                    & 1.86                     \\ \hline
+CMT4                            & 28.59                 & 28.43                  & 24.89                   & 31.06                  & 43.39                   & 3.91                     \\ \hline
+CMT5                            & 28.19                 & 31.55                  & 27.09                   & 34.73                  & 49.85                   & 3.79                     \\ \hline
+CMT11                           & 20.40                 & 20.38                  & 18.49                   & 18.82                  & 23.43                   & 0.58                     \\ \hline
+CMT12                           & 24.54                 & 22.09                  & 13.39                   & 11.76                  & 23.76                   & 3.35                     \\ \hline
+\textbf{Average}             & \textbf{21.24}                 & \textbf{21.27}                  & \textbf{16.78}                   & \textbf{16.79}                   & \textbf{27.64}                    & \textbf{2.19}                    \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+\begin{table}[]
+\centering
+\caption{Relative solution qualities of different algorithms for Taillard and Uchoa instances, in \%}
+\label{tbl:tai-uchoa}
+\begin{tabular}{|l|r|r|r|r|r|r|}
+\hline
+\textbf{Instance}        & \textbf{AS}     & \textbf{RAS}    & \textbf{MMAS}   & \textbf{ACS}    & \textbf{BWAS}   & \textbf{Tuned}  \\ \hline
+tai75a                   & 29.31           & 25.09           & 20.88           & 17.52           & 27.91           & 0.59            \\ \hline
+tai75b                   & 38.87           & 43.49           & 27.67           & 25.56           & 34.78           & 2.32            \\ \hline
+tai75c                   & 39.98           & 35.76           & 25.34           & 23.36           & 33.48           & 2.28            \\ \hline
+tai75d                   & 38.36           & 40.17           & 29.41           & 20.30            & 40.03           & 2.63            \\ \hline
+tai100a                  & 26.10            & 26.18           & 19.81           & 22.93           & 39.40            & 2.75            \\ \hline
+tai100b                  & 37.58           & 32.72           & 30.95           & 25.37           & 37.45           & 1.23            \\ \hline
+tai100c                  & 59.52           & 47.59           & 38.56           & 42.44           & 43.57           & 2.80             \\ \hline
+tai100d                  & 37.94           & 32.45           & 28.08           & 33.45           & 40.83           & 3.81            \\ \hline
+tai150a                  & 38.58           & 39.43           & 30.04           & 33.75           & 41.80            & 2.84            \\ \hline
+tai150b                  & 41.93           & 33.60            & 30.07           & 30.27           & 43.86           & 4.56            \\ \hline
+tai150c                  & 49.25           & 46.97           & 43.96           & 38.82           & 73.13           & 6.45            \\ \hline
+tai150d                  & 47.80            & 37.97           & 34.97           & 36.07           & 47.06           & 2.54            \\ \hline
+X-n101-k25               & 28.09           & 17.57           & 22.28           & 22.89           & 28.25           & 1.57            \\ \hline
+X-n106-k14               & 136.83          & 136.06          & 132.82          & 136.81          & 142.52          & 115.52          \\ \hline
+X-n110-k13               & 253.30           & 249.37          & 234.15          & 246.41          & 268.77          & 194.35          \\ \hline
+X-n115-k10               & 374.04          & 341.08          & 333.04          & 362.46          & 385.78          & 266.63          \\ \hline
+X-n120-k6                & 333.71          & 310.50           & 316.13          & 335.60           & 356.64          & 240.55          \\ \hline
+X-n125-k30               & 115.46          & 114.87          & 114.44          & 123.23          & 127.91          & 113.88          \\ \hline
+X-n129-k18               & 218.59          & 217.27          & 224.10           & 234.30           & 243.23          & 191.37          \\ \hline
+X-n134-k13               & 640.36          & 636.49          & 643.69          & 677.26          & 692.48          & 610.52          \\ \hline
+X-n139-k10               & 729.07          & 737.78          & 736.07          & 752.05          & 788.66          & 633.57          \\ \hline
+X-n143-k7                & 76.37           & 77.05           & 75.89           & 78.50            & 81.70            & 71.43           \\ \hline
+X-n153-k22               & 27.72           & 19.73           & 22.06           & 25.60            & 28.79           & 5.34            \\ \hline
+X-n157-k13               & 263.73          & 260.81          & 248.90           & 259.12          & 271.63          & 192.94          \\ \hline
+X-n162-k11               & 351.87          & 347.97          & 348.39          & 360.40           & 373.55          & 325.74          \\ \hline
+X-n167-k10               & 132.90           & 124.11          & 129.04          & 142.39          & 157.03          & 102.91          \\ \hline
+X-n181-k23               & 144.40           & 138.71          & 136.23          & 150.68          & 161.70           & 98.19           \\ \hline
+X-n204-k19               & 11.11           & 13.38           & 9.49            & 23.17           & 30.74           & 2.90             \\ \hline
+X-n214-k11               & 284.85          & 283.39          & 285.46          & 321.32          & 334.99          & 264.06          \\ \hline
+X-n275-k28               & 9.52            & 8.36            & 9.97            & 17.08           & 22.65           & 2.90             \\ \hline
+\textbf{Average}         & \textbf{153.91} & \textbf{149.2}  & \textbf{146.06} & \textbf{153.97} & \textbf{166.68} & \textbf{115.64} \\ \hline
+\textbf{Average (Taillard)}   & \textbf{40.44}  & \textbf{36.78}  & \textbf{29.98}  & \textbf{29.15}  & \textbf{41.94}  & \textbf{2.9}    \\ \hline
+\textbf{Average (Uchoa)} & \textbf{229.55} & \textbf{224.14} & \textbf{223.45} & \textbf{237.18} & \textbf{249.83} & \textbf{190.8}  \\ \hline
 \end{tabular}
 \end{table}
 
