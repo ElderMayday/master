@@ -1,0 +1,20 @@
+parameterFile = "./parameters.txt"
+execDir = "./execution"
+forbiddenFile = "./forbidden.txt"
+targetRunner = "./target.sh"
+trainInstancesDir = "./instances"
+digits = 2
+parallel = 2
+
+
+nbIterations = 20
+minNbSurvival = 3
+maxExperiments = 100000
+nbConfigurations = 20
+
+
+
+
+## A value of 0 silences all debug messages. Higher values provide
+## more verbose debug messages.
+# debugLevel = 0

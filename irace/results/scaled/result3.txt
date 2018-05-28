@@ -1,0 +1,942 @@
+*******************************************************************************
+* irace: An implementation in R of Iterated Race
+* Version: 2.4.1844
+* Copyright (C) 2010-2017
+* Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+* Jeremie Dubois-Lacoste  
+* Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+*
+* This is free software, and you are welcome to redistribute it under certain
+* conditions.  See the GNU General Public License for details. There is NO
+* WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*
+* irace builds upon previous code from the race package:
+*
+* race: Racing methods for the selection of the best
+* Copyright (C) 2003 Mauro Birattari
+*******************************************************************************
+# installed at: /home/asaranov/R/x86_64-redhat-linux-gnu-library/2.15/irace
+# called with: --scenario scenario.txt
+# 4 expression(s) specifying forbidden configurations read from '/home/asaranov/irace2/forbidden.txt'
+# 2018-04-26 22:26:42 CEST: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 20
+# minNbSurvival: 3
+# nbParameters: 41
+# seed: 736912998
+# confidence level: 0.95
+# budget: 1e+05
+# mu: 5
+# deterministic: FALSE
+
+# 2018-04-26 22:26:42 CEST: Iteration 1 of 20
+# experimentsUsedSoFar: 0
+# remainingBudget: 1e+05
+# currentBudget: 5000
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          1|         20|         13|    26947.51500|         20|00:17:51|   NA|  NA|    NA|
+|x|          2|         20|         13|    26554.22050|         40|00:30:23|+0.89|0.95|0.1185|
+|x|          3|         20|         13|    34033.69600|         60|00:28:52|+0.79|0.86|0.2212|
+|x|          4|         20|         13|    35404.23950|         80|00:49:57|+0.79|0.84|0.2113|
+|-|          5|          4|         13|    44269.17800|        100|00:44:35|+0.50|0.60|0.2286|
+|-|          6|          1|         13|    40577.32733|        104|00:05:37|   NA|  NA|    NA|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          13    mean value:     40577.32733
+Description of the best configuration:
+   .ID.        selector candidate_list global_update iterated_greedy ant_num      local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+13   13 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      39 local-search-none                0.73 reinitialization-yes end  0.79 3.42             NA               0.56              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA           9 eas-bounded-no  4.76                        NA                  0.17    NA          NA                       NA iterated-criteria-best                    0.31         0.12      0.35      NA                          NA                       NA         NA        NA        NA                 NA       NA
+
+# 2018-04-27 01:24:01 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+          selector candidate_list global_update iterated_greedy ant_num      local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+13 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      39 local-search-none                0.73 reinitialization-yes end  0.79 3.42             NA               0.56              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA           9 eas-bounded-no  4.76                        NA                  0.17    NA          NA                       NA iterated-criteria-best                    0.31         0.12      0.35      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-27 01:24:01 CEST: Iteration 2 of 20
+# experimentsUsedSoFar: 104
+# remainingBudget: 99896
+# currentBudget: 5257
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          7|         20|         13|    25192.75000|         20|00:31:13|   NA|  NA|    NA|
+|x|          2|         20|         13|    25676.83800|         39|00:28:52|+0.92|0.96|0.0118|
+|x|          4|         20|         13|    30289.84867|         58|00:47:27|+0.94|0.96|0.0308|
+|x|          1|         20|         13|    29454.26525|         77|00:16:57|+0.91|0.93|0.0412|
+|-|          6|          1|         13|    27987.02700|         96|00:26:37|   NA|  NA|    NA|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          13    mean value:     27987.02700
+Description of the best configuration:
+   .ID.        selector candidate_list global_update iterated_greedy ant_num      local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+13   13 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      39 local-search-none                0.73 reinitialization-yes end  0.79 3.42             NA               0.56              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA           9 eas-bounded-no  4.76                        NA                  0.17    NA          NA                       NA iterated-criteria-best                    0.31         0.12      0.35      NA                          NA                       NA         NA        NA        NA                 NA       NA
+
+# 2018-04-27 03:55:09 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+          selector candidate_list global_update iterated_greedy ant_num      local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+13 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      39 local-search-none                0.73 reinitialization-yes end  0.79 3.42             NA               0.56              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA           9 eas-bounded-no  4.76                        NA                  0.17    NA          NA                       NA iterated-criteria-best                    0.31         0.12      0.35      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-27 03:55:09 CEST: Iteration 3 of 20
+# experimentsUsedSoFar: 200
+# remainingBudget: 99800
+# currentBudget: 5544
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          8|         20|         57|    20601.17800|         20|00:34:13|   NA|  NA|    NA|
+|x|          5|         20|         56|    49373.86450|         39|00:42:21|+0.94|0.97|0.0128|
+|x|          4|         20|         56|    45399.51467|         58|00:47:26|+0.96|0.98|0.0098|
+|x|          3|         20|         56|    45743.76425|         77|00:27:25|+0.96|0.97|0.0385|
+|!|          6|          3|         56|    41003.01220|         96|00:26:39|+0.70|0.76|0.1810|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          56    mean value:     41003.01220
+Description of the best configuration:
+   .ID.          selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+56   56 selector-standard   candidate-no elitist-ant-s   iterated-ants      13 local-search-twohalf                0.41 reinitialization-yes end   2.4  3.7             NA                 NA              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          16 eas-bounded-yes  2.96                        NA                  0.18    NA          NA                       NA iterated-criteria-best                    0.18         0.18      0.11      NA                          NA                       NA         NA        NA        NA                 NA       13
+
+# 2018-04-27 06:53:17 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+            selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+56 selector-standard   candidate-no elitist-ant-s   iterated-ants      13 local-search-twohalf                0.41 reinitialization-yes end  2.40 3.70             NA                 NA              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          16 eas-bounded-yes  2.96                        NA                  0.18    NA          NA                       NA iterated-criteria-best                    0.18         0.18      0.11      NA                          NA                       NA         NA        NA        NA                 NA
+57   selector-dorigo   candidate-no         ant-s   iterated-ants      45 local-search-twohalf                0.90  reinitialization-no end  2.24 4.93             NA               0.66              NA  local-update-no             NA ant-s-bounded-no               NA                  <NA>          <NA>    NA           <NA>    NA          NA            <NA>    NA                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.23           NA        NA      NA                          NA                       NA         NA        NA        NA                 NA
+13   selector-dorigo   candidate-no elitist-ant-s   iterated-ants      39    local-search-none                0.73 reinitialization-yes end  0.79 3.42             NA               0.56              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA           9  eas-bounded-no  4.76                        NA                  0.17    NA          NA                       NA iterated-criteria-best                    0.31         0.12      0.35      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-27 06:53:17 CEST: Iteration 4 of 20
+# experimentsUsedSoFar: 296
+# remainingBudget: 99704
+# currentBudget: 5864
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|          9|         20|         61|    45987.25000|         20|00:32:42|   NA|  NA|    NA|
+|x|          5|         20|         61|    61922.40650|         37|00:37:53|+0.93|0.96|0.0522|
+|x|          8|         20|         56|    48393.09167|         54|00:29:05|+0.92|0.95|0.0509|
+|x|          2|         20|         57|    43030.72475|         73|00:28:51|+0.93|0.95|0.0412|
+|!|          4|          4|         56|    41692.32080|         90|00:42:26|+0.24|0.39|0.4434|
+|=|          3|          4|         56|    42539.68617|         91|00:01:26|+0.27|0.39|0.4218|
+|=|          6|          4|         56|    39611.16014|         92|00:01:24|+0.26|0.36|0.4919|
+|!|          1|          4|         56|    37993.23375|         95|00:02:40|+0.34|0.42|0.4537|
+|=|          7|          4|         56|    36606.74733|         98|00:04:40|+0.20|0.29|0.4930|
+|-|         10|          2|         56|    36885.92080|        102|00:09:22|-0.07|0.04|0.5333|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          56    mean value:     36885.92080
+Description of the best configuration:
+   .ID.          selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+56   56 selector-standard   candidate-no elitist-ant-s   iterated-ants      13 local-search-twohalf                0.41 reinitialization-yes end   2.4  3.7             NA                 NA              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          16 eas-bounded-yes  2.96                        NA                  0.18    NA          NA                       NA iterated-criteria-best                    0.18         0.18      0.11      NA                          NA                       NA         NA        NA        NA                 NA       13
+
+# 2018-04-27 10:03:52 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+            selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+56 selector-standard   candidate-no elitist-ant-s   iterated-ants      13 local-search-twohalf                0.41 reinitialization-yes end  2.40 3.70             NA                 NA              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          16 eas-bounded-yes  2.96                        NA                  0.18    NA          NA                       NA iterated-criteria-best                    0.18         0.18      0.11      NA                          NA                       NA         NA        NA        NA                 NA
+57   selector-dorigo   candidate-no         ant-s   iterated-ants      45 local-search-twohalf                0.90  reinitialization-no end  2.24 4.93             NA               0.66              NA  local-update-no             NA ant-s-bounded-no               NA                  <NA>          <NA>    NA           <NA>    NA          NA            <NA>    NA                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.23           NA        NA      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-27 10:03:52 CEST: Iteration 5 of 20
+# experimentsUsedSoFar: 398
+# remainingBudget: 99602
+# currentBudget: 6225
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         11|         20|         56|    41931.62300|         20|00:37:23|   NA|  NA|    NA|
+|x|         10|         20|         56|    40665.05250|         38|00:42:15|+0.87|0.94|0.0192|
+|x|          6|         20|         82|    34115.79633|         56|00:25:14|+0.87|0.91|0.0134|
+|x|          5|         20|         56|    45364.95100|         74|00:40:07|+0.88|0.91|0.0240|
+|-|          7|          3|         82|    41293.60220|         92|00:28:06|-0.20|0.04|0.8071|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          82    mean value:     41293.60220
+Description of the best configuration:
+   .ID.        selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+82   82 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      33 local-search-twohalf                 0.5 reinitialization-yes end  2.69 4.89             NA               0.86              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          60 eas-bounded-yes  2.26                        NA                  0.12    NA          NA                       NA iterated-criteria-best                    0.28         0.69      0.12      NA                          NA                       NA         NA        NA        NA                 NA       56
+
+# 2018-04-27 12:57:00 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+            selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+82   selector-dorigo   candidate-no elitist-ant-s   iterated-ants      33 local-search-twohalf                0.50 reinitialization-yes end  2.69 4.89             NA               0.86              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          60 eas-bounded-yes  2.26                        NA                  0.12    NA          NA                       NA iterated-criteria-best                    0.28         0.69      0.12      NA                          NA                       NA         NA        NA        NA                 NA
+56 selector-standard   candidate-no elitist-ant-s   iterated-ants      13 local-search-twohalf                0.41 reinitialization-yes end  2.40 3.70             NA                 NA              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          16 eas-bounded-yes  2.96                        NA                  0.18    NA          NA                       NA iterated-criteria-best                    0.18         0.18      0.11      NA                          NA                       NA         NA        NA        NA                 NA
+57   selector-dorigo   candidate-no         ant-s   iterated-ants      45 local-search-twohalf                0.90  reinitialization-no end  2.24 4.93             NA               0.66              NA  local-update-no             NA ant-s-bounded-no               NA                  <NA>          <NA>    NA           <NA>    NA          NA            <NA>    NA                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.23           NA        NA      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-27 12:57:00 CEST: Iteration 6 of 20
+# experimentsUsedSoFar: 490
+# remainingBudget: 99510
+# currentBudget: 6634
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         12|         20|         56|    21855.89400|         20|00:46:04|   NA|  NA|    NA|
+|x|          1|         20|         82|    24349.87300|         38|00:16:03|+0.84|0.92|0.3446|
+|x|          4|         20|         56|    28658.15267|         56|00:44:55|+0.88|0.92|0.2637|
+|x|         11|         20|         56|    31976.52025|         73|00:31:46|+0.90|0.92|0.2001|
+|-|          8|          4|         82|    30074.69780|         91|00:30:47|+0.32|0.46|0.4134|
+|=|          2|          4|         82|    29364.54283|         93|00:03:02|+0.17|0.31|0.6096|
+|=|          7|          4|         82|    28813.48943|         94|00:01:33|+0.22|0.33|0.6093|
+|-|          6|          3|         82|    27921.46600|         95|00:01:24|+0.02|0.14|0.6573|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          82    mean value:     27921.46600
+Description of the best configuration:
+   .ID.        selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+82   82 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      33 local-search-twohalf                 0.5 reinitialization-yes end  2.69 4.89             NA               0.86              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          60 eas-bounded-yes  2.26                        NA                  0.12    NA          NA                       NA iterated-criteria-best                    0.28         0.69      0.12      NA                          NA                       NA         NA        NA        NA                 NA       56
+
+# 2018-04-27 15:52:38 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+            selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+82   selector-dorigo   candidate-no elitist-ant-s   iterated-ants      33 local-search-twohalf                0.50 reinitialization-yes end  2.69 4.89             NA               0.86              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          60 eas-bounded-yes  2.26                        NA                  0.12    NA          NA                       NA iterated-criteria-best                    0.28         0.69      0.12      NA                          NA                       NA         NA        NA        NA                 NA
+56 selector-standard   candidate-no elitist-ant-s   iterated-ants      13 local-search-twohalf                0.41 reinitialization-yes end  2.40 3.70             NA                 NA              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          16 eas-bounded-yes  2.96                        NA                  0.18    NA          NA                       NA iterated-criteria-best                    0.18         0.18      0.11      NA                          NA                       NA         NA        NA        NA                 NA
+57   selector-dorigo   candidate-no         ant-s   iterated-ants      45 local-search-twohalf                0.90  reinitialization-no end  2.24 4.93             NA               0.66              NA  local-update-no             NA ant-s-bounded-no               NA                  <NA>          <NA>    NA           <NA>    NA          NA            <NA>    NA                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.23           NA        NA      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-27 15:52:38 CEST: Iteration 7 of 20
+# experimentsUsedSoFar: 585
+# remainingBudget: 99415
+# currentBudget: 7101
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         13|         20|         56|    21380.11800|         20|00:39:03|   NA|  NA|    NA|
+|x|          6|         20|         82|    21789.95650|         37|00:23:49|+0.95|0.97|0.0467|
+|x|         12|         20|         56|    21758.67200|         54|00:39:09|+0.95|0.97|0.0610|
+|x|         10|         20|         82|    25812.98100|         71|00:39:52|+0.95|0.96|0.0655|
+|-|         11|          5|         56|    29321.22420|         88|00:31:46|-0.01|0.19|0.8236|
+|=|          3|          5|        123|    32022.52950|         91|00:04:19|+0.07|0.23|0.7337|
+|=|          8|          5|         56|    30577.23829|         93|00:03:25|-0.04|0.11|0.7940|
+|=|          1|          5|         82|    30053.88238|         95|00:01:47|-0.06|0.07|0.7995|
+|=|          4|          5|         56|    30906.58133|         97|00:04:59|-0.01|0.11|0.7627|
+|=|          9|          5|         56|    32459.07780|        100|00:04:54|+0.03|0.13|0.7204|
+|=|          7|          5|         56|    31827.78491|        102|00:03:07|+0.00|0.09|0.7669|
+|=|          5|          5|         56|    35682.94408|        104|00:04:27|+0.03|0.11|0.7598|
+|=|          2|          5|         56|    34925.14177|        106|00:03:02|+0.03|0.10|0.7592|
+|=|         14|          5|         56|    33425.99957|        111|00:05:50|+0.06|0.13|0.7366|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          56    mean value:     33425.99957
+Description of the best configuration:
+   .ID.          selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+56   56 selector-standard   candidate-no elitist-ant-s   iterated-ants      13 local-search-twohalf                0.41 reinitialization-yes end   2.4  3.7             NA                 NA              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          16 eas-bounded-yes  2.96                        NA                  0.18    NA          NA                       NA iterated-criteria-best                    0.18         0.18      0.11      NA                          NA                       NA         NA        NA        NA                 NA       13
+
+# 2018-04-27 19:22:12 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+             selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+56  selector-standard   candidate-no elitist-ant-s   iterated-ants      13 local-search-twohalf                0.41 reinitialization-yes end  2.40 3.70             NA                 NA              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          16 eas-bounded-yes  2.96                        NA                  0.18    NA          NA                       NA iterated-criteria-best                    0.18         0.18      0.11      NA                          NA                       NA         NA        NA        NA                 NA
+123   selector-dorigo   candidate-no elitist-ant-s   iterated-ants      17 local-search-twohalf                0.77  reinitialization-no end  3.51 4.56             NA               0.59              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          61 eas-bounded-yes  7.11                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.20         0.65      0.17      NA                          NA                       NA         NA        NA        NA                 NA
+82    selector-dorigo   candidate-no elitist-ant-s   iterated-ants      33 local-search-twohalf                0.50 reinitialization-yes end  2.69 4.89             NA               0.86              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          60 eas-bounded-yes  2.26                        NA                  0.12    NA          NA                       NA iterated-criteria-best                    0.28         0.69      0.12      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-27 19:22:12 CEST: Iteration 8 of 20
+# experimentsUsedSoFar: 696
+# remainingBudget: 99304
+# currentBudget: 7638
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         15|         20|         56|    27471.01200|         20|00:38:12|   NA|  NA|    NA|
+|x|          5|         20|         56|    52780.35350|         37|00:37:52|+0.84|0.92|0.0572|
+|x|         10|         20|        123|    47656.93867|         54|00:39:52|+0.83|0.88|0.0440|
+|x|          1|         20|         56|    42906.73450|         71|00:15:09|+0.74|0.80|0.0603|
+|-|         11|          6|         56|    42711.71220|         88|00:31:46|+0.06|0.25|0.7670|
+|=|         14|          6|         56|    37915.95200|         91|00:03:30|+0.10|0.25|0.7187|
+|=|          7|          6|         56|    36144.36686|         94|00:04:40|+0.11|0.23|0.7245|
+|=|          2|          6|         56|    34855.26025|         97|00:04:33|+0.17|0.27|0.6690|
+|-|          9|          4|         56|    36141.51422|        100|00:04:54|-0.03|0.09|0.7578|
+|=|          6|          4|         56|    34731.36320|        101|00:01:24|-0.05|0.05|0.7916|
+|=|          8|          4|         56|    33451.96964|        102|00:01:42|-0.02|0.07|0.7804|
+|=|          4|          4|         56|    33785.20675|        103|00:02:29|+0.00|0.09|0.7563|
+|=|         13|          4|         56|    32830.96915|        104|00:01:57|+0.04|0.12|0.7268|
+|=|          3|          4|         56|    33827.07943|        105|00:01:26|+0.05|0.12|0.7242|
+|=|         12|          4|         56|    33029.00040|        106|00:02:18|+0.09|0.15|0.6963|
+|=|         16|          4|         56|    31925.89638|        110|00:03:42|+0.07|0.13|0.6964|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          56    mean value:     31925.89638
+Description of the best configuration:
+   .ID.          selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+56   56 selector-standard   candidate-no elitist-ant-s   iterated-ants      13 local-search-twohalf                0.41 reinitialization-yes end   2.4  3.7             NA                 NA              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          16 eas-bounded-yes  2.96                        NA                  0.18    NA          NA                       NA iterated-criteria-best                    0.18         0.18      0.11      NA                          NA                       NA         NA        NA        NA                 NA       13
+
+# 2018-04-27 22:37:44 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+             selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+56  selector-standard   candidate-no elitist-ant-s   iterated-ants      13 local-search-twohalf                0.41 reinitialization-yes end  2.40 3.70             NA                 NA              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          16 eas-bounded-yes  2.96                        NA                  0.18    NA          NA                       NA iterated-criteria-best                    0.18         0.18      0.11      NA                          NA                       NA         NA        NA        NA                 NA
+123   selector-dorigo   candidate-no elitist-ant-s   iterated-ants      17 local-search-twohalf                0.77  reinitialization-no end  3.51 4.56             NA               0.59              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          61 eas-bounded-yes  7.11                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.20         0.65      0.17      NA                          NA                       NA         NA        NA        NA                 NA
+82    selector-dorigo   candidate-no elitist-ant-s   iterated-ants      33 local-search-twohalf                0.50 reinitialization-yes end  2.69 4.89             NA               0.86              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          60 eas-bounded-yes  2.26                        NA                  0.12    NA          NA                       NA iterated-criteria-best                    0.28         0.69      0.12      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-27 22:37:44 CEST: Iteration 9 of 20
+# experimentsUsedSoFar: 806
+# remainingBudget: 99194
+# currentBudget: 8266
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         17|         20|        145|    16957.76700|         20|00:26:21|   NA|  NA|    NA|
+|x|          6|         20|        155|    19345.72650|         37|00:23:49|+0.66|0.83|0.0637|
+|x|         16|         20|        145|    18127.99233|         54|00:15:43|+0.68|0.79|0.0791|
+|x|          4|         20|        123|    22848.06100|         71|00:42:24|+0.47|0.60|0.1520|
+|-|          1|         11|         56|    23705.14080|         88|00:15:09|-0.09|0.13|0.9671|
+|=|         13|         11|         56|    23317.63700|         96|00:15:37|+0.03|0.19|0.8601|
+|=|         14|         11|        146|    22310.00929|        104|00:09:20|+0.12|0.25|0.7778|
+|-|          3|          7|         56|    25077.43575|        112|00:11:32|+0.07|0.19|0.8287|
+|=|          5|          7|         56|    30967.68678|        116|00:08:54|+0.13|0.23|0.7643|
+|-|         11|          4|         56|    32064.08040|        120|00:07:28|+0.01|0.11|0.7257|
+|=|         10|          4|        123|    32517.35645|        121|00:02:20|-0.00|0.09|0.7494|
+|=|          8|          4|        123|    31547.83675|        122|00:01:42|-0.05|0.04|0.7758|
+|=|         12|          4|         56|    30965.63185|        123|00:02:18|-0.02|0.06|0.7507|
+|=|          7|          4|         56|    30576.29071|        124|00:01:33|-0.04|0.04|0.7569|
+|=|          2|          4|         56|    30259.97227|        125|00:01:31|-0.02|0.05|0.7472|
+|=|         15|          4|         56|    30085.66225|        126|00:01:54|+0.00|0.07|0.7250|
+|=|          9|          4|         56|    31047.18482|        127|00:01:38|+0.03|0.09|0.7011|
+|=|         18|          4|         56|    31561.46100|        131|00:08:24|+0.04|0.09|0.6997|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:          56    mean value:     31561.46100
+Description of the best configuration:
+   .ID.          selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+56   56 selector-standard   candidate-no elitist-ant-s   iterated-ants      13 local-search-twohalf                0.41 reinitialization-yes end   2.4  3.7             NA                 NA              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          16 eas-bounded-yes  2.96                        NA                  0.18    NA          NA                       NA iterated-criteria-best                    0.18         0.18      0.11      NA                          NA                       NA         NA        NA        NA                 NA       13
+
+# 2018-04-28 01:55:29 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+             selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+56  selector-standard   candidate-no elitist-ant-s   iterated-ants      13 local-search-twohalf                0.41 reinitialization-yes end  2.40 3.70             NA                 NA              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          16 eas-bounded-yes  2.96                        NA                  0.18    NA          NA                       NA iterated-criteria-best                    0.18         0.18      0.11      NA                          NA                       NA         NA        NA        NA                 NA
+123   selector-dorigo   candidate-no elitist-ant-s   iterated-ants      17 local-search-twohalf                0.77  reinitialization-no end  3.51 4.56             NA               0.59              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          61 eas-bounded-yes  7.11                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.20         0.65      0.17      NA                          NA                       NA         NA        NA        NA                 NA
+82    selector-dorigo   candidate-no elitist-ant-s   iterated-ants      33 local-search-twohalf                0.50 reinitialization-yes end  2.69 4.89             NA               0.86              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          60 eas-bounded-yes  2.26                        NA                  0.12    NA          NA                       NA iterated-criteria-best                    0.28         0.69      0.12      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-28 01:55:29 CEST: Iteration 10 of 20
+# experimentsUsedSoFar: 937
+# remainingBudget: 99063
+# currentBudget: 9005
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         19|         20|        162|    19675.17900|         20|00:42:53|   NA|  NA|    NA|
+|x|         16|         20|        123|    17549.27100|         37|00:15:43|+0.54|0.77|0.0042|
+|x|         15|         20|        123|    21104.05667|         54|00:32:28|+0.64|0.76|0.0159|
+|x|         13|         20|        123|    21189.56900|         71|00:33:11|+0.69|0.77|0.0130|
+|!|          3|          7|        123|    26291.77500|         88|00:24:31|+0.08|0.26|0.6051|
+|=|          5|          7|        123|    34808.93517|         92|00:08:54|+0.15|0.30|0.5852|
+|!|         12|          6|        123|    32976.87414|         96|00:09:12|+0.21|0.32|0.4338|
+|!|          4|          6|        123|    33485.94775|         99|00:07:29|+0.25|0.34|0.4036|
+|!|          2|          6|        172|    32618.87678|        102|00:04:33|+0.23|0.31|0.4607|
+|!|         10|          6|        123|    33100.20710|        105|00:07:02|+0.22|0.30|0.5424|
+|!|          6|          6|        172|    32064.28164|        108|00:04:12|+0.17|0.24|0.6156|
+|!|         18|          6|        172|    32730.92650|        111|00:06:18|+0.12|0.19|0.6977|
+|=|          7|          6|        172|    32164.59292|        114|00:04:40|+0.09|0.16|0.7288|
+|!|         17|          5|        172|    31080.67329|        117|00:03:57|+0.14|0.20|0.6511|
+|=|          1|          5|        172|    30791.94220|        119|00:01:47|+0.09|0.15|0.6903|
+|=|         14|          5|        172|    29736.19306|        121|00:02:20|+0.06|0.11|0.7231|
+|=|          9|          5|        172|    30693.22006|        123|00:03:16|+0.08|0.13|0.6995|
+|=|          8|          5|        172|    30125.35400|        125|00:03:25|+0.05|0.11|0.7218|
+|=|         11|          5|        172|    30765.02968|        127|00:03:44|+0.06|0.11|0.7085|
+|=|         20|          5|        172|    31441.56475|        132|00:06:12|+0.07|0.12|0.6973|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:         172    mean value:     31441.56475
+Description of the best configuration:
+    .ID.        selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains    reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+172  172 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      20 local-search-twohalf                0.38 reinitialization-no end  1.16 3.48             NA               0.77              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          29 eas-bounded-yes   8.5                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.17         0.52      0.04      NA                          NA                       NA         NA        NA        NA                 NA      123
+
+# 2018-04-28 05:41:25 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+             selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+172   selector-dorigo   candidate-no elitist-ant-s   iterated-ants      20 local-search-twohalf                0.38  reinitialization-no end  1.16 3.48             NA               0.77              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          29 eas-bounded-yes  8.50                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.17         0.52      0.04      NA                          NA                       NA         NA        NA        NA                 NA
+173   selector-dorigo   candidate-no elitist-ant-s   iterated-ants      18 local-search-twohalf                0.59 reinitialization-yes end  0.76 2.07             NA               0.74              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          67 eas-bounded-yes  5.51                        NA                  0.11    NA          NA                       NA iterated-criteria-best                    0.19         0.45      0.11      NA                          NA                       NA         NA        NA        NA                 NA
+56  selector-standard   candidate-no elitist-ant-s   iterated-ants      13 local-search-twohalf                0.41 reinitialization-yes end  2.40 3.70             NA                 NA              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          16 eas-bounded-yes  2.96                        NA                  0.18    NA          NA                       NA iterated-criteria-best                    0.18         0.18      0.11      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-28 05:41:25 CEST: Iteration 11 of 20
+# experimentsUsedSoFar: 1069
+# remainingBudget: 98931
+# currentBudget: 9893
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         21|         20|         56|    31812.07800|         20|00:35:02|   NA|  NA|    NA|
+|x|          5|         20|        173|    54723.38200|         37|00:37:52|+0.69|0.84|0.0752|
+|x|          6|         20|        173|    43704.79400|         54|00:23:49|+0.67|0.78|0.0812|
+|x|          2|         20|        172|    39217.67475|         71|00:25:48|+0.75|0.81|0.0619|
+|-|          3|          6|        172|    40762.12720|         88|00:24:31|-0.10|0.12|0.9056|
+|=|         12|          6|        172|    37621.42717|         91|00:06:54|-0.05|0.13|0.8248|
+|=|         16|          6|        173|    34432.45329|         94|00:02:46|+0.01|0.15|0.7829|
+|=|          1|          6|        173|    33459.98888|         97|00:02:40|+0.03|0.15|0.7835|
+|=|         17|          6|        173|    31628.62989|        100|00:03:57|+0.08|0.18|0.7492|
+|=|          7|          6|        173|    31019.86100|        103|00:04:40|+0.11|0.20|0.7133|
+|-|          9|          4|        173|    32360.26173|        106|00:04:54|-0.07|0.03|0.8035|
+|=|         11|          4|        173|    33177.42717|        107|00:01:52|-0.06|0.03|0.8040|
+|=|         18|          4|        173|    33716.97731|        108|00:02:06|-0.07|0.01|0.8013|
+|=|          8|          4|        173|    32760.18293|        109|00:01:42|-0.05|0.02|0.7824|
+|=|         10|          4|        173|    33070.34140|        110|00:02:20|-0.02|0.04|0.7659|
+|=|         15|          4|        173|    32728.44825|        111|00:01:54|-0.03|0.04|0.7673|
+|=|         19|          4|        173|    31982.90624|        112|00:02:08|-0.04|0.02|0.7718|
+|=|         13|          4|        173|    31404.56361|        113|00:01:57|-0.05|0.01|0.7751|
+|=|         20|          4|        172|    32111.94184|        114|00:01:14|-0.04|0.01|0.7719|
+|=|         14|          4|        172|    31201.34255|        115|00:01:10|-0.03|0.02|0.7679|
+|=|          4|          4|        172|    31476.55933|        116|00:02:29|-0.03|0.02|0.7648|
+|=|         22|          4|        172|    31399.86500|        120|00:08:44|-0.02|0.02|0.7624|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:         172    mean value:     31399.86500
+Description of the best configuration:
+    .ID.        selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains    reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+172  172 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      20 local-search-twohalf                0.38 reinitialization-no end  1.16 3.48             NA               0.77              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          29 eas-bounded-yes   8.5                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.17         0.52      0.04      NA                          NA                       NA         NA        NA        NA                 NA      123
+
+# 2018-04-28 09:02:04 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+           selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+172 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      20 local-search-twohalf                0.38  reinitialization-no end  1.16 3.48             NA               0.77              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          29 eas-bounded-yes  8.50                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.17         0.52      0.04      NA                          NA                       NA         NA        NA        NA                 NA
+173 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      18 local-search-twohalf                0.59 reinitialization-yes end  0.76 2.07             NA               0.74              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          67 eas-bounded-yes  5.51                        NA                  0.11    NA          NA                       NA iterated-criteria-best                    0.19         0.45      0.11      NA                          NA                       NA         NA        NA        NA                 NA
+185 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      35 local-search-twohalf                0.24  reinitialization-no end  0.94 4.81             NA               0.58              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          27 eas-bounded-yes  9.47                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.17         0.67      0.07      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-28 09:02:04 CEST: Iteration 12 of 20
+# experimentsUsedSoFar: 1189
+# remainingBudget: 98811
+# currentBudget: 10979
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         23|         20|        173|    14739.76400|         20|00:27:11|   NA|  NA|    NA|
+|x|         21|         20|        173|    23333.39650|         37|00:29:46|+0.88|0.94|0.0285|
+|x|          3|         20|        173|    31197.16200|         54|00:24:31|+0.54|0.70|0.0617|
+|x|         13|         20|        202|    28593.07825|         71|00:33:10|+0.64|0.73|0.0476|
+|-|         17|          6|        202|    26270.96200|         88|00:22:24|+0.12|0.30|0.7505|
+|=|          9|          6|        173|    29651.04200|         91|00:04:54|+0.10|0.25|0.7510|
+|=|          7|          6|        202|    29099.25729|         94|00:04:40|+0.06|0.19|0.7570|
+|=|          2|          6|        202|    28690.20325|         97|00:04:33|+0.07|0.19|0.7507|
+|=|         15|          6|        173|    28538.46544|        100|00:05:43|+0.10|0.20|0.7528|
+|=|         12|          6|        173|    27876.57770|        103|00:06:54|+0.12|0.20|0.7523|
+|=|          5|          6|        173|    32389.59200|        106|00:06:40|+0.09|0.17|0.7541|
+|=|         19|          6|        173|    31361.64550|        109|00:06:25|+0.08|0.15|0.7682|
+|-|         18|          4|        185|    32110.22469|        112|00:06:18|-0.05|0.03|0.7753|
+|=|         10|          4|        173|    32424.56321|        113|00:02:20|-0.02|0.05|0.7509|
+|=|         11|          4|        173|    33074.00880|        114|00:01:52|+0.00|0.07|0.7312|
+|=|          8|          4|        173|    32276.99925|        115|00:01:42|+0.03|0.09|0.7076|
+|=|         16|          4|        173|    31276.56194|        116|00:00:55|+0.02|0.08|0.7203|
+|=|          1|          4|        173|    31019.68283|        117|00:00:53|+0.01|0.06|0.7321|
+|=|         14|          4|        173|    30127.26916|        118|00:01:10|-0.00|0.05|0.7388|
+|=|         22|          4|        173|    30120.64935|        119|00:02:11|+0.00|0.05|0.7350|
+|=|          6|          4|        173|    29718.12405|        120|00:01:24|+0.01|0.06|0.7263|
+|=|         20|          4|        173|    30391.51618|        121|00:01:14|+0.01|0.06|0.7306|
+|=|          4|          4|        172|    30677.24052|        122|00:02:29|+0.02|0.06|0.7210|
+|=|         24|          4|        172|    30636.69167|        126|00:04:20|+0.03|0.07|0.7143|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:         172    mean value:     30636.69167
+Description of the best configuration:
+    .ID.        selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains    reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+172  172 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      20 local-search-twohalf                0.38 reinitialization-no end  1.16 3.48             NA               0.77              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          29 eas-bounded-yes   8.5                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.17         0.52      0.04      NA                          NA                       NA         NA        NA        NA                 NA      123
+
+# 2018-04-28 12:25:55 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+           selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+172 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      20 local-search-twohalf                0.38  reinitialization-no end  1.16 3.48             NA               0.77              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          29 eas-bounded-yes  8.50                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.17         0.52      0.04      NA                          NA                       NA         NA        NA        NA                 NA
+173 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      18 local-search-twohalf                0.59 reinitialization-yes end  0.76 2.07             NA               0.74              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          67 eas-bounded-yes  5.51                        NA                  0.11    NA          NA                       NA iterated-criteria-best                    0.19         0.45      0.11      NA                          NA                       NA         NA        NA        NA                 NA
+185 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      35 local-search-twohalf                0.24  reinitialization-no end  0.94 4.81             NA               0.58              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          27 eas-bounded-yes  9.47                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.17         0.67      0.07      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-28 12:25:55 CEST: Iteration 13 of 20
+# experimentsUsedSoFar: 1315
+# remainingBudget: 98685
+# currentBudget: 12335
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         25|         20|        219|    12019.27700|         20|00:35:52|   NA|  NA|    NA|
+|x|         20|         20|        217|    28199.85450|         37|00:21:07|+0.28|0.64|0.3807|
+|x|         21|         20|        217|    29392.35033|         54|00:29:46|+0.42|0.61|0.3371|
+|x|         14|         20|        217|    25545.29200|         71|00:19:50|+0.43|0.57|0.3600|
+|-|          3|         13|        217|    29801.76880|         88|00:24:31|-0.17|0.06|1.0839|
+|=|         22|         13|        217|    29837.07300|         98|00:21:51|-0.10|0.09|0.9947|
+|=|         16|         13|        227|    27683.53386|        108|00:09:15|-0.05|0.10|0.9599|
+|=|         12|         13|        217|    27010.39375|        118|00:23:01|+0.01|0.14|0.8839|
+|=|         13|         13|        217|    26342.46422|        128|00:19:31|+0.07|0.17|0.8396|
+|!|          8|          8|        227|    25675.99010|        138|00:17:06|+0.01|0.11|0.8647|
+|=|         24|          8|        227|    26056.83391|        143|00:05:25|-0.01|0.08|0.8829|
+|=|          7|          8|        227|    25975.61525|        148|00:07:47|+0.01|0.09|0.8581|
+|=|          6|          8|        227|    25617.61877|        153|00:07:00|+0.04|0.12|0.8276|
+|=|         19|          8|        217|    25237.61607|        158|00:10:43|+0.04|0.10|0.8286|
+|=|         23|          8|        227|    24510.63493|        163|00:06:47|+0.04|0.10|0.8247|
+|=|         10|          8|        213|    25298.98981|        168|00:11:43|+0.04|0.10|0.8399|
+|=|          2|          8|        213|    25321.73965|        173|00:07:35|+0.04|0.09|0.8348|
+|=|         18|          8|        213|    26144.75072|        178|00:10:30|+0.05|0.10|0.8275|
+|=|          4|          8|        213|    26728.10479|        183|00:12:28|+0.04|0.09|0.8257|
+|=|          5|          8|        213|    29278.72630|        188|00:11:08|+0.02|0.07|0.8516|
+|=|         15|          8|        213|    29207.89357|        193|00:09:33|+0.02|0.07|0.8566|
+|=|         11|          8|        213|    29782.51136|        198|00:09:20|+0.02|0.06|0.8564|
+|=|         17|          8|        213|    29226.61339|        203|00:06:35|+0.01|0.06|0.8595|
+|=|          1|          8|        213|    29122.20871|        208|00:04:27|+0.01|0.05|0.8623|
+|=|          9|          8|        213|    29834.34768|        213|00:08:10|+0.01|0.05|0.8678|
+|=|         26|          8|        213|    30712.03627|        221|00:19:41|+0.01|0.05|0.8729|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:         213    mean value:     30712.03627
+Description of the best configuration:
+    .ID.        selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains    reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+213  213 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      19 local-search-twohalf                0.46 reinitialization-no end  0.41  4.1             NA               0.67              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          10 eas-bounded-yes  6.46                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.26         0.52      0.36      NA                          NA                       NA         NA        NA        NA                 NA      185
+
+# 2018-04-28 18:36:49 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+           selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+213 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      19 local-search-twohalf                0.46  reinitialization-no end  0.41 4.10             NA               0.67              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          10 eas-bounded-yes  6.46                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.26         0.52      0.36      NA                          NA                       NA         NA        NA        NA                 NA
+217 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       9 local-search-twohalf                0.58 reinitialization-yes end  0.44 1.76             NA               0.74              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          68 eas-bounded-yes  4.65                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.18         0.25      0.21      NA                          NA                       NA         NA        NA        NA                 NA
+172 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      20 local-search-twohalf                0.38  reinitialization-no end  1.16 3.48             NA               0.77              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          29 eas-bounded-yes  8.50                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.17         0.52      0.04      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-28 18:36:49 CEST: Iteration 14 of 20
+# experimentsUsedSoFar: 1536
+# remainingBudget: 98464
+# currentBudget: 14066
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         27|         20|        245|    17733.15800|         20|00:31:51|   NA|  NA|    NA|
+|x|          7|         20|        245|    21449.86400|         37|00:26:30|+0.78|0.89|0.0711|
+|x|         17|         20|        172|    20034.50167|         54|00:22:23|+0.70|0.80|0.0835|
+|x|         24|         20|        233|    22417.72750|         71|00:18:25|+0.64|0.73|0.0693|
+|-|         22|          6|        213|    23668.53340|         88|00:37:09|-0.17|0.06|0.9446|
+|=|          6|          6|        213|    23270.42983|         91|00:04:12|-0.13|0.06|0.9086|
+|=|          4|          6|        213|    25264.43671|         94|00:07:29|-0.11|0.05|0.8651|
+|=|         25|          6|        213|    23614.23175|         97|00:05:22|-0.06|0.07|0.8036|
+|=|          3|          6|        217|    26289.42367|        100|00:04:19|-0.02|0.09|0.7549|
+|=|         15|          6|        217|    26434.80720|        103|00:05:43|+0.03|0.12|0.7198|
+|=|         21|          6|        217|    26920.49218|        106|00:05:15|+0.07|0.16|0.6862|
+|=|         16|          6|        217|    25950.39242|        109|00:02:46|+0.08|0.15|0.7082|
+|-|         19|          5|        217|    25469.85454|        112|00:06:25|+0.04|0.11|0.7491|
+|=|         13|          5|        237|    25030.39693|        114|00:03:54|+0.05|0.12|0.7312|
+|=|         26|          5|        237|    26776.39680|        116|00:04:55|+0.03|0.10|0.7499|
+|=|          9|          5|        237|    27997.62062|        118|00:03:16|+0.01|0.07|0.7664|
+|=|          8|          5|        237|    27533.56618|        120|00:03:25|+0.01|0.07|0.7529|
+|=|          2|          5|        237|    27438.32850|        122|00:03:02|-0.02|0.04|0.7846|
+|=|         10|          5|        237|    27934.86553|        124|00:04:41|-0.01|0.05|0.7790|
+|=|         11|          5|        237|    28623.87545|        126|00:03:44|+0.01|0.06|0.7648|
+|=|         12|          5|        237|    28302.90719|        128|00:04:36|+0.02|0.06|0.7638|
+|=|         14|          5|        237|    27665.22500|        130|00:02:20|-0.00|0.04|0.7850|
+|=|          1|          5|        237|    27631.42530|        132|00:01:47|-0.02|0.03|0.8003|
+|=|          5|          5|        237|    29701.39763|        134|00:04:27|-0.01|0.03|0.7974|
+|=|         18|          5|        237|    30106.85684|        136|00:04:12|-0.01|0.03|0.7890|
+|=|         23|          5|        237|    29514.16473|        138|00:02:43|-0.00|0.04|0.7879|
+|=|         20|          5|        237|    30074.93704|        140|00:02:29|-0.01|0.03|0.7968|
+|=|         28|          5|        237|    29404.86329|        145|00:05:37|+0.00|0.04|0.7867|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:         237    mean value:     29404.86329
+Description of the best configuration:
+    .ID.        selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+237  237 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       5 local-search-twohalf                0.66 reinitialization-yes end  0.13 2.54             NA               0.82              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          83 eas-bounded-yes  6.03                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.25         0.27      0.23      NA                          NA                       NA         NA        NA        NA                 NA      217
+
+# 2018-04-28 22:29:59 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+           selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+237 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       5 local-search-twohalf                0.66 reinitialization-yes end  0.13 2.54             NA               0.82              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          83 eas-bounded-yes  6.03                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.25         0.27      0.23      NA                          NA                       NA         NA        NA        NA                 NA
+217 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       9 local-search-twohalf                0.58 reinitialization-yes end  0.44 1.76             NA               0.74              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          68 eas-bounded-yes  4.65                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.18         0.25      0.21      NA                          NA                       NA         NA        NA        NA                 NA
+213 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      19 local-search-twohalf                0.46  reinitialization-no end  0.41 4.10             NA               0.67              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          10 eas-bounded-yes  6.46                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.26         0.52      0.36      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-28 22:29:59 CEST: Iteration 15 of 20
+# experimentsUsedSoFar: 1681
+# remainingBudget: 98319
+# currentBudget: 16386
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         29|         20|        217|    39481.43200|         20|00:41:22|   NA|  NA|    NA|
+|x|         28|         20|        237|    25621.78800|         37|00:19:08|+0.04|0.52|0.8721|
+|x|          1|         20|        257|    25949.77500|         54|00:15:09|+0.23|0.48|0.6333|
+|x|          5|         20|        251|    38758.52850|         71|00:37:52|+0.34|0.50|0.5813|
+|-|         12|         13|        257|    35517.80100|         88|00:39:08|-0.09|0.13|0.9750|
+|=|         18|         13|        257|    36238.82200|         98|00:21:01|+0.00|0.17|0.8885|
+|=|         15|         13|        257|    34950.47200|        108|00:19:06|+0.08|0.21|0.8252|
+|=|         16|         13|        237|    32420.33650|        118|00:09:15|+0.07|0.18|0.8350|
+|=|         14|         13|        237|    30404.06567|        128|00:11:40|+0.02|0.13|0.8553|
+|=|         19|         13|        237|    29340.75270|        138|00:21:26|+0.08|0.17|0.8044|
+|-|          4|          8|        237|    30015.57864|        148|00:24:56|+0.01|0.10|0.8339|
+|=|         23|          8|        237|    28739.01892|        153|00:06:47|-0.02|0.07|0.8729|
+|=|          8|          8|        237|    28075.14785|        158|00:08:32|+0.00|0.08|0.8542|
+|=|         20|          8|        237|    29259.42421|        163|00:06:12|+0.01|0.08|0.8257|
+|=|         21|          8|        237|    29426.28413|        168|00:08:45|+0.04|0.10|0.8075|
+|=|         17|          8|        237|    28651.17869|        173|00:06:35|+0.03|0.09|0.8363|
+|=|         11|          8|        237|    29419.64253|        178|00:09:20|+0.05|0.10|0.8131|
+|=|         25|          8|        237|    28451.41256|        183|00:08:58|+0.06|0.11|0.8037|
+|-|          3|          5|        237|    29424.80416|        188|00:07:12|+0.04|0.09|0.7504|
+|=|         24|          5|        237|    29427.60440|        190|00:02:10|+0.03|0.08|0.7480|
+|=|          6|          5|        237|    29043.45305|        192|00:02:48|+0.04|0.09|0.7389|
+|=|         22|          5|        237|    29043.66223|        194|00:04:22|+0.05|0.09|0.7419|
+|-|         13|          3|        237|    28680.97352|        196|00:03:54|+0.02|0.06|0.6615|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:         237    mean value:     28680.97352
+Description of the best configuration:
+    .ID.        selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+237  237 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       5 local-search-twohalf                0.66 reinitialization-yes end  0.13 2.54             NA               0.82              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          83 eas-bounded-yes  6.03                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.25         0.27      0.23      NA                          NA                       NA         NA        NA        NA                 NA      217
+
+# 2018-04-29 04:05:48 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+           selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+237 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       5 local-search-twohalf                0.66 reinitialization-yes end  0.13 2.54             NA               0.82              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          83 eas-bounded-yes  6.03                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.25         0.27      0.23      NA                          NA                       NA         NA        NA        NA                 NA
+217 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       9 local-search-twohalf                0.58 reinitialization-yes end  0.44 1.76             NA               0.74              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          68 eas-bounded-yes  4.65                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.18         0.25      0.21      NA                          NA                       NA         NA        NA        NA                 NA
+213 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      19 local-search-twohalf                0.46  reinitialization-no end  0.41 4.10             NA               0.67              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          10 eas-bounded-yes  6.46                        NA                    NA    NA          NA                       NA iterated-criteria-best                    0.26         0.52      0.36      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-29 04:05:48 CEST: Iteration 16 of 20
+# experimentsUsedSoFar: 1877
+# remainingBudget: 98123
+# currentBudget: 19624
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         30|         20|        278|    21348.29800|         20|00:47:33|   NA|  NA|    NA|
+|x|         17|         20|        213|    19418.92000|         37|00:22:23|+0.35|0.67|0.4217|
+|x|         12|         20|        275|    20194.74433|         54|00:39:08|+0.51|0.68|0.2632|
+|x|         22|         20|        275|    22313.97225|         71|00:37:09|+0.59|0.70|0.2219|
+|-|         29|          8|        275|    25756.64760|         88|00:35:10|-0.16|0.07|0.9959|
+|=|          4|          8|        275|    27599.44883|         93|00:12:28|-0.07|0.11|0.9170|
+|=|         23|          8|        275|    25744.08714|         98|00:06:47|-0.03|0.11|0.8983|
+|=|         21|          8|        267|    26554.92313|        103|00:08:45|-0.01|0.12|0.8977|
+|=|          3|          8|        275|    28774.13111|        108|00:07:12|-0.03|0.09|0.9219|
+|=|         24|          8|        275|    28843.42360|        113|00:05:25|-0.03|0.07|0.9065|
+|=|          1|          8|        275|    28656.84200|        118|00:04:27|-0.03|0.06|0.9107|
+|=|         14|          8|        275|    27440.61550|        123|00:05:50|-0.01|0.07|0.8999|
+|=|         11|          8|        275|    28559.81246|        128|00:09:20|-0.01|0.06|0.8930|
+|=|          6|          8|        275|    28040.73464|        133|00:07:00|+0.01|0.08|0.8731|
+|=|         16|          8|        275|    27192.98940|        138|00:04:37|+0.01|0.08|0.8712|
+|=|          2|          8|        275|    27102.46381|        143|00:07:35|+0.04|0.10|0.8532|
+|=|         19|          8|        275|    26677.55759|        148|00:10:43|+0.03|0.09|0.8590|
+|=|         26|          8|        275|    27966.76989|        153|00:12:18|+0.02|0.07|0.8638|
+|=|          5|          8|        275|    30573.67821|        158|00:11:08|+0.02|0.07|0.8638|
+|=|         28|          8|        275|    29614.79430|        163|00:05:37|-0.00|0.05|0.8791|
+|=|         27|          8|        275|    29047.24714|        168|00:07:57|+0.00|0.05|0.8712|
+|=|         13|          8|        275|    28673.08486|        173|00:09:45|+0.01|0.05|0.8643|
+|=|         10|          8|        275|    29013.12835|        178|00:11:43|+0.01|0.06|0.8613|
+|=|         20|          8|        275|    29643.01867|        183|00:06:12|+0.02|0.06|0.8581|
+|=|          8|          8|        275|    29286.59844|        188|00:08:33|+0.01|0.05|0.8661|
+|=|          9|          8|        275|    29912.34896|        193|00:08:10|+0.00|0.04|0.8656|
+|=|         18|          8|        275|    30278.44370|        198|00:10:30|+0.01|0.05|0.8548|
+|=|          7|          8|        275|    30101.76264|        203|00:07:47|+0.01|0.05|0.8520|
+|=|         25|          8|        275|    29481.53317|        208|00:08:58|+0.02|0.05|0.8484|
+|=|         15|          8|        275|    29411.68757|        213|00:09:33|+0.02|0.05|0.8450|
+|=|         31|          8|        275|    29170.12661|        221|00:10:16|+0.03|0.06|0.8397|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:         275    mean value:     29170.12661
+Description of the best configuration:
+    .ID.        selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+275  275 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       6 local-search-twohalf                0.66 reinitialization-yes end   0.2 3.56             NA               0.72              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          90 eas-bounded-yes  4.02                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.15         0.46      0.19      NA                          NA                       NA         NA        NA        NA                 NA      237
+
+# 2018-04-29 10:46:03 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+           selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+275 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       6 local-search-twohalf                0.66 reinitialization-yes end  0.20 3.56             NA               0.72              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          90 eas-bounded-yes  4.02                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.15         0.46      0.19      NA                          NA                       NA         NA        NA        NA                 NA
+237 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       5 local-search-twohalf                0.66 reinitialization-yes end  0.13 2.54             NA               0.82              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          83 eas-bounded-yes  6.03                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.25         0.27      0.23      NA                          NA                       NA         NA        NA        NA                 NA
+217 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       9 local-search-twohalf                0.58 reinitialization-yes end  0.44 1.76             NA               0.74              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          68 eas-bounded-yes  4.65                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.18         0.25      0.21      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-29 10:46:03 CEST: Iteration 17 of 20
+# experimentsUsedSoFar: 2098
+# remainingBudget: 97902
+# currentBudget: 24475
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         32|         20|        282|    28027.51800|         20|00:17:00|   NA|  NA|    NA|
+|x|         20|         20|        275|    36163.31300|         37|00:21:07|+0.38|0.69|0.0518|
+|x|         19|         20|        275|    30735.22800|         54|00:36:26|+0.41|0.60|0.0686|
+|x|          6|         20|        275|    28374.60175|         71|00:23:48|+0.45|0.59|0.0865|
+|-|         29|         11|        275|    30605.15120|         88|00:35:10|+0.03|0.23|0.8868|
+|=|         23|         11|        275|    27939.61217|         96|00:10:52|-0.01|0.16|0.8868|
+|=|          1|         11|        275|    27775.52843|        104|00:07:07|-0.02|0.12|0.8792|
+|=|         10|         11|        275|    28865.34800|        112|00:18:45|+0.01|0.13|0.8510|
+|=|         31|         11|        275|    28094.00911|        120|00:10:16|+0.06|0.16|0.8066|
+|=|         13|         11|        275|    27366.17590|        128|00:15:36|+0.09|0.18|0.7801|
+|-|         15|          6|        275|    27367.99309|        136|00:15:16|-0.03|0.06|0.8294|
+|=|          3|          6|        275|    28985.27892|        139|00:04:19|-0.01|0.08|0.8065|
+|=|          9|          6|        275|    30259.95838|        142|00:04:54|+0.02|0.09|0.7947|
+|=|         11|          6|        275|    31097.83107|        145|00:05:36|+0.00|0.08|0.8047|
+|=|          7|          6|        275|    30713.40060|        148|00:04:40|+0.00|0.07|0.8105|
+|=|          4|          6|        275|    31094.65400|        151|00:07:29|+0.01|0.07|0.8108|
+|=|         27|          6|        275|    30306.51576|        154|00:04:46|+0.00|0.06|0.8084|
+|=|          5|          6|        275|    32928.26644|        157|00:06:40|+0.01|0.06|0.8119|
+|=|         21|          6|        275|    32878.52332|        160|00:05:15|-0.01|0.04|0.8302|
+|=|         12|          6|        275|    32325.29960|        163|00:06:54|-0.02|0.03|0.8359|
+|=|         14|          6|        275|    31455.62457|        166|00:03:30|-0.03|0.02|0.8371|
+|=|         16|          6|        275|    30722.39418|        169|00:02:46|-0.02|0.02|0.8377|
+|=|         24|          6|        275|    30667.81426|        172|00:03:15|-0.02|0.02|0.8360|
+|=|         25|          6|        275|    29894.78483|        175|00:05:22|-0.02|0.02|0.8366|
+|=|         30|          6|        275|    29569.36200|        178|00:07:08|-0.02|0.03|0.8326|
+|=|         22|          6|        275|    29534.83485|        181|00:06:33|-0.00|0.04|0.8222|
+|=|         18|          6|        275|    29914.91159|        184|00:06:18|+0.01|0.04|0.8133|
+|=|          2|          6|        275|    29765.97118|        187|00:04:33|+0.01|0.05|0.8120|
+|=|         17|          6|        275|    29326.14355|        190|00:03:57|+0.01|0.04|0.8099|
+|=|         26|          6|        275|    30011.38473|        193|00:07:23|+0.01|0.05|0.8037|
+|=|          8|          6|        275|    29712.06629|        196|00:05:07|+0.01|0.04|0.8139|
+|=|         28|          6|        275|    29139.68922|        199|00:03:22|+0.00|0.03|0.8184|
+|=|         33|          6|        275|    31241.40076|        205|00:14:31|+0.01|0.04|0.8145|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:         275    mean value:     31241.40076
+Description of the best configuration:
+    .ID.        selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+275  275 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       6 local-search-twohalf                0.66 reinitialization-yes end   0.2 3.56             NA               0.72              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          90 eas-bounded-yes  4.02                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.15         0.46      0.19      NA                          NA                       NA         NA        NA        NA                 NA      237
+
+# 2018-04-29 16:22:00 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+           selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+275 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       6 local-search-twohalf                0.66 reinitialization-yes end  0.20 3.56             NA               0.72              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          90 eas-bounded-yes  4.02                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.15         0.46      0.19      NA                          NA                       NA         NA        NA        NA                 NA
+237 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       5 local-search-twohalf                0.66 reinitialization-yes end  0.13 2.54             NA               0.82              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          83 eas-bounded-yes  6.03                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.25         0.27      0.23      NA                          NA                       NA         NA        NA        NA                 NA
+290 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       7 local-search-twohalf                0.56 reinitialization-yes end  0.36 3.16             NA               0.62              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          69 eas-bounded-yes  4.85                        NA                  0.09    NA          NA                       NA iterated-criteria-best                    0.27         0.16      0.11      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-29 16:22:00 CEST: Iteration 18 of 20
+# experimentsUsedSoFar: 2303
+# remainingBudget: 97697
+# currentBudget: 32565
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         34|         20|        304|    117825.9140|         20|00:36:42|   NA|  NA|    NA|
+|x|         33|         20|        304|    108548.3935|         37|00:41:07|+0.56|0.78|0.3976|
+|x|         28|         20|        310|    76617.47467|         54|00:19:08|+0.40|0.60|0.2921|
+|x|         15|         20|        304|    63995.69700|         71|00:32:28|+0.42|0.56|0.2335|
+|-|         22|         14|        275|    56794.15380|         88|00:37:09|-0.03|0.18|0.9027|
+|=|          5|         14|        275|    60244.79950|         99|00:24:30|+0.09|0.24|0.7806|
+|-|         31|          9|        275|    54770.29929|        110|00:14:07|-0.05|0.10|0.8998|
+|=|         16|          9|        275|    49839.58138|        116|00:05:33|-0.05|0.08|0.9130|
+|=|          9|          9|        275|    49363.64033|        122|00:09:48|-0.04|0.08|0.9070|
+|=|         18|          9|        275|    48406.96700|        128|00:12:36|-0.00|0.10|0.8746|
+|=|         20|          9|        275|    48018.19691|        134|00:07:27|-0.01|0.08|0.8854|
+|=|         14|          9|        275|    45188.52417|        140|00:07:00|-0.02|0.06|0.8981|
+|=|         29|          9|        275|    44753.04915|        146|00:12:24|+0.00|0.08|0.8766|
+|=|          2|          9|        275|    43395.30136|        152|00:09:06|+0.01|0.09|0.8671|
+|=|         23|          9|        275|    41476.40907|        158|00:08:09|+0.02|0.09|0.8646|
+|=|         13|          9|        275|    40185.11331|        164|00:11:42|+0.03|0.09|0.8626|
+|=|          3|          9|        275|    40572.77859|        170|00:08:39|+0.03|0.08|0.8617|
+|=|         19|          9|        275|    39423.12744|        176|00:12:51|+0.02|0.07|0.8671|
+|=|         26|          9|        275|    39973.66700|        182|00:14:46|+0.03|0.08|0.8540|
+|=|         30|          9|        275|    39062.94435|        188|00:14:16|+0.04|0.09|0.8414|
+|=|          7|          9|        275|    38409.06005|        194|00:09:21|+0.03|0.08|0.8506|
+|=|          4|          9|        275|    38336.53255|        200|00:14:58|+0.04|0.08|0.8463|
+|=|          1|          9|        275|    37834.55400|        206|00:05:21|+0.03|0.07|0.8513|
+|=|          6|          9|        275|    37145.31104|        212|00:08:24|+0.04|0.08|0.8452|
+|!|         10|          5|        275|    37119.26200|        218|00:14:04|+0.01|0.05|0.7699|
+|=|         27|          5|        275|    36372.22515|        220|00:03:11|+0.01|0.05|0.7700|
+|=|         24|          5|        275|    36116.47815|        222|00:02:10|+0.02|0.05|0.7649|
+|=|         25|          5|        275|    35259.28636|        224|00:03:35|+0.00|0.04|0.7702|
+|=|         11|          5|        275|    35491.38600|        226|00:03:44|+0.00|0.04|0.7680|
+|=|         12|          5|        275|    35035.47477|        228|00:04:36|+0.01|0.05|0.7596|
+|=|         32|          5|        275|    34814.85074|        230|00:01:42|+0.02|0.05|0.7576|
+|=|         21|          5|        275|    34726.36000|        232|00:03:30|+0.02|0.05|0.7597|
+|=|          8|          5|        275|    34302.30403|        234|00:03:25|+0.01|0.04|0.7738|
+|=|         17|          5|        275|    33793.73538|        236|00:02:38|+0.01|0.04|0.7715|
+|=|         35|          5|        275|    34454.90406|        241|00:05:15|+0.01|0.03|0.7794|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:         275    mean value:     34454.90406
+Description of the best configuration:
+    .ID.        selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+275  275 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       6 local-search-twohalf                0.66 reinitialization-yes end   0.2 3.56             NA               0.72              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          90 eas-bounded-yes  4.02                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.15         0.46      0.19      NA                          NA                       NA         NA        NA        NA                 NA      237
+
+# 2018-04-29 23:27:35 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+           selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+275 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       6 local-search-twohalf                0.66 reinitialization-yes end  0.20 3.56             NA               0.72              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          90 eas-bounded-yes  4.02                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.15         0.46      0.19      NA                          NA                       NA         NA        NA        NA                 NA
+312 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      11 local-search-twohalf                0.90 reinitialization-yes end  0.23 3.42             NA               0.47              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          82 eas-bounded-yes  3.54                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.15         0.71      0.01      NA                          NA                       NA         NA        NA        NA                 NA
+290 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       7 local-search-twohalf                0.56 reinitialization-yes end  0.36 3.16             NA               0.62              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          69 eas-bounded-yes  4.85                        NA                  0.09    NA          NA                       NA iterated-criteria-best                    0.27         0.16      0.11      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-29 23:27:35 CEST: Iteration 19 of 20
+# experimentsUsedSoFar: 2544
+# remainingBudget: 97456
+# currentBudget: 48728
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         36|         20|        324|    49886.15400|         20|00:29:31|   NA|  NA|    NA|
+|x|         22|         20|        275|    39334.10200|         37|00:37:09|+0.58|0.79|0.0485|
+|x|         32|         20|        275|    35621.44467|         54|00:14:27|+0.44|0.63|0.0672|
+|x|         19|         20|        275|    31685.84800|         71|00:36:26|+0.44|0.58|0.0604|
+|-|         33|          8|        275|    45047.91240|         88|00:41:07|+0.05|0.24|0.8704|
+|=|         14|          8|        275|    39883.61433|         93|00:05:50|+0.03|0.20|0.8715|
+|=|         13|          8|        275|    37159.62329|         98|00:09:45|+0.07|0.20|0.8373|
+|=|          1|          8|        275|    35863.54863|        103|00:04:27|+0.01|0.13|0.8809|
+|=|         11|          8|        275|    36544.28500|        108|00:09:20|+0.03|0.14|0.8655|
+|=|         15|          8|        275|    35628.47300|        113|00:09:33|+0.07|0.16|0.8262|
+|=|          6|          8|        275|    34325.22300|        118|00:07:00|+0.09|0.17|0.8098|
+|=|         20|          8|        275|    35142.32908|        123|00:06:12|+0.09|0.17|0.7995|
+|-|          3|          6|        275|    36037.18246|        128|00:07:12|-0.01|0.07|0.8557|
+|=|         35|          6|        275|    37529.85793|        131|00:03:09|-0.03|0.04|0.8660|
+|=|         21|          6|        275|    37160.07720|        134|00:05:15|-0.01|0.06|0.8520|
+|=|         18|          6|        275|    37324.87906|        137|00:06:18|+0.01|0.07|0.8336|
+|=|         23|          6|        275|    35988.82247|        140|00:04:04|+0.01|0.07|0.8277|
+|=|         28|          6|        275|    34622.55456|        143|00:03:22|+0.01|0.07|0.8317|
+|=|         29|          6|        275|    34880.70163|        146|00:06:12|+0.00|0.05|0.8420|
+|=|         34|          6|        275|    39037.70545|        149|00:05:30|-0.01|0.04|0.8423|
+|=|         24|          6|        275|    38581.96024|        152|00:03:15|-0.01|0.04|0.8383|
+|=|         31|          6|        275|    37824.74832|        155|00:03:51|+0.00|0.05|0.8293|
+|=|          2|          6|        275|    37299.52361|        158|00:04:33|+0.01|0.05|0.8257|
+|=|          7|          6|        275|    36800.85071|        161|00:04:40|-0.00|0.04|0.8325|
+|=|         16|          6|        275|    35941.79892|        164|00:02:46|-0.01|0.03|0.8322|
+|=|         25|          6|        275|    35025.38773|        167|00:05:22|-0.00|0.04|0.8279|
+|=|         17|          6|        275|    34358.18707|        170|00:03:57|+0.01|0.04|0.8243|
+|=|         30|          6|        275|    33908.22375|        173|00:07:08|+0.00|0.04|0.8279|
+|=|          8|          6|        275|    33453.88890|        176|00:05:07|-0.01|0.02|0.8352|
+|=|         10|          6|        275|    33555.22877|        179|00:07:02|-0.01|0.03|0.8319|
+|=|         27|          6|        275|    33043.65055|        182|00:04:46|-0.00|0.03|0.8265|
+|=|          5|          6|        275|    34432.84984|        185|00:06:41|+0.00|0.03|0.8256|
+|=|         12|          6|        275|    34050.46194|        188|00:06:54|+0.01|0.04|0.8239|
+|=|         26|          6|        275|    34516.13597|        191|00:07:23|+0.01|0.03|0.8238|
+|=|          4|          6|        275|    34581.77366|        194|00:07:29|+0.00|0.03|0.8263|
+|=|          9|          6|        275|    34886.61639|        197|00:04:54|+0.00|0.03|0.8274|
+|=|         37|          6|        275|    34314.80784|        203|00:05:48|+0.00|0.03|0.8270|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:         275    mean value:     34314.80784
+Description of the best configuration:
+    .ID.        selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+275  275 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       6 local-search-twohalf                0.66 reinitialization-yes end   0.2 3.56             NA               0.72              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          90 eas-bounded-yes  4.02                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.15         0.46      0.19      NA                          NA                       NA         NA        NA        NA                 NA      237
+
+# 2018-04-30 05:11:16 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+           selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+275 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       6 local-search-twohalf                0.66 reinitialization-yes end  0.20 3.56             NA               0.72              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          90 eas-bounded-yes  4.02                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.15         0.46      0.19      NA                          NA                       NA         NA        NA        NA                 NA
+330 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       7 local-search-twohalf                0.83 reinitialization-yes end  0.20 4.79             NA               0.48              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          95 eas-bounded-yes  2.39                        NA                  0.11    NA          NA                       NA iterated-criteria-best                    0.26         0.71      0.22      NA                          NA                       NA         NA        NA        NA                 NA
+331 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       8 local-search-twohalf                0.69 reinitialization-yes end  0.78 4.32             NA               0.57              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          89 eas-bounded-yes  4.90                        NA                  0.09    NA          NA                       NA iterated-criteria-best                    0.19         0.10      0.34      NA                          NA                       NA         NA        NA        NA                 NA
+# 2018-04-30 05:11:16 CEST: Iteration 20 of 20
+# experimentsUsedSoFar: 2747
+# remainingBudget: 97253
+# currentBudget: 97253
+# nbConfigurations: 20
+  Markers:
+     x No test is performed.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+                                                                   
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|      Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+|x|         38|         20|        275|    27749.90700|         20|00:39:42|   NA|  NA|    NA|
+|x|         13|         20|        275|    24282.79200|         37|00:33:10|+0.67|0.83|0.0567|
+|x|         26|         20|        275|    32816.32100|         54|00:41:50|+0.48|0.65|0.3664|
+|x|          6|         20|        275|    29935.42150|         71|00:23:48|+0.38|0.53|0.3464|
+|-|         34|         10|        331|    47727.55600|         88|00:31:11|-0.07|0.14|0.9483|
+|=|         16|         10|        331|    42297.61000|         95|00:06:28|+0.03|0.19|0.8899|
+|=|         19|         10|        331|    39099.05571|        102|00:15:00|-0.02|0.13|0.9214|
+|=|          5|         10|        275|    43808.01325|        109|00:15:35|-0.00|0.12|0.9068|
+|=|         30|         10|        275|    41358.14667|        116|00:16:38|-0.02|0.09|0.9223|
+|=|         15|         10|        275|    39960.94850|        123|00:13:22|+0.01|0.11|0.8876|
+|=|         29|         10|        275|    39921.53036|        130|00:14:28|+0.04|0.13|0.8526|
+|=|         28|         10|        275|    37544.40283|        137|00:07:52|+0.02|0.10|0.8692|
+|=|         21|         10|        275|    37116.61392|        144|00:12:15|-0.01|0.07|0.8904|
+|=|         32|         10|        275|    36479.43650|        151|00:05:57|-0.00|0.07|0.8776|
+|=|         12|         10|        275|    35501.74400|        158|00:16:07|+0.02|0.08|0.8680|
+|=|         11|         10|        275|    35907.27100|        165|00:13:04|+0.03|0.09|0.8509|
+|=|         24|         10|        275|    35528.43482|        172|00:07:35|+0.04|0.10|0.8414|
+|=|          1|         10|        275|    35043.02322|        179|00:06:14|+0.05|0.10|0.8367|
+|-|          8|          8|        275|    34289.83847|        186|00:11:58|-0.02|0.04|0.8859|
+|=|         27|          8|        275|    33460.16175|        191|00:07:57|-0.00|0.05|0.8733|
+|=|         18|          8|        275|    33761.91152|        196|00:10:30|-0.00|0.05|0.8665|
+|=|         37|          8|        335|    33050.82745|        201|00:04:50|-0.01|0.04|0.8677|
+|=|         10|          8|        275|    33009.73596|        206|00:11:43|-0.01|0.04|0.8655|
+|=|          7|          8|        275|    32689.80421|        211|00:07:47|-0.01|0.03|0.8649|
+|=|         35|          8|        275|    33659.59760|        216|00:05:15|-0.00|0.04|0.8583|
+|=|          3|          8|        275|    34164.05242|        221|00:07:12|+0.00|0.04|0.8496|
+|=|          4|          8|        275|    34262.17844|        226|00:12:28|-0.00|0.03|0.8511|
+|=|         33|          8|        275|    36556.24957|        231|00:12:05|-0.00|0.03|0.8491|
+|=|         23|          8|        275|    35799.54845|        236|00:06:47|+0.00|0.04|0.8452|
+|=|         14|          8|        346|    35160.83280|        241|00:05:50|+0.00|0.04|0.8490|
+|=|         31|          8|        275|    34650.72023|        246|00:06:25|+0.00|0.04|0.8513|
+|=|          2|          8|        275|    34372.40334|        251|00:07:35|+0.01|0.04|0.8424|
+|=|         36|          8|        275|    34845.86227|        256|00:07:22|+0.02|0.05|0.8366|
+|=|          9|          8|        275|    35160.86962|        261|00:08:10|+0.02|0.05|0.8306|
+|-|         17|          6|        275|    34642.30106|        266|00:06:35|-0.01|0.02|0.8326|
+|=|         20|          6|        275|    34905.86203|        269|00:03:43|-0.00|0.03|0.8258|
+|=|         22|          6|        275|    34737.36997|        272|00:06:33|+0.00|0.03|0.8200|
+|=|         25|          6|        275|    34142.04729|        275|00:05:22|+0.00|0.03|0.8236|
+|=|         39|          6|        275|    34810.10031|        281|00:10:03|+0.01|0.03|0.8207|
++-+-----------+-----------+-----------+---------------+-----------+--------+-----+----+------+
+Best configuration:         275    mean value:     34810.10031
+Description of the best configuration:
+    .ID.        selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best .PARENT.
+275  275 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       6 local-search-twohalf                0.66 reinitialization-yes end   0.2 3.56             NA               0.72              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          90 eas-bounded-yes  4.02                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.15         0.46      0.19      NA                          NA                       NA         NA        NA        NA                 NA      237
+
+# 2018-04-30 13:18:05 CEST: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+           selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+275 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       6 local-search-twohalf                0.66 reinitialization-yes end  0.20 3.56             NA               0.72              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          90 eas-bounded-yes  4.02                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.15         0.46      0.19      NA                          NA                       NA         NA        NA        NA                 NA
+333 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       5 local-search-twohalf                0.63 reinitialization-yes end  0.51 4.28             NA               0.79              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          87 eas-bounded-yes  4.95                        NA                  0.14    NA          NA                       NA iterated-criteria-best                    0.27         0.27      0.17      NA                          NA                       NA         NA        NA        NA                 NA
+346 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      10 local-search-twohalf                0.78 reinitialization-yes end  0.58 4.70             NA               0.57              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          87 eas-bounded-yes  1.98                        NA                  0.09    NA          NA                       NA iterated-criteria-best                    0.16         0.68      0.18      NA                          NA                       NA         NA        NA        NA                 NA
+# Best configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+           selector candidate_list global_update iterated_greedy ant_num         local_search evaporation_remains     reinitialization end alpha beta alpha_maniezzo dorigo_probability candidate_ratio     local_update ils_iterations ant_s_is_bounded min_max_s_p_best min_max_s_global_best min_max_s_pts ras_w ras_is_bounded ras_k eas_m_elite  eas_is_bounded eas_k bwas_mutation_probability reinitialization_time top_k memory_size tournament_selector_size               criteria destruction_probability lupd_epsilon lupd_tau0 ant_s_k min_max_s_global_iterations min_max_s_pts_iterations pts_lambda pts_ratio pts_delta probabilistic_best
+275 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       6 local-search-twohalf                0.66 reinitialization-yes end  0.20 3.56             NA               0.72              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          90 eas-bounded-yes  4.02                        NA                  0.13    NA          NA                       NA iterated-criteria-best                    0.15         0.46      0.19      NA                          NA                       NA         NA        NA        NA                 NA
+333 selector-dorigo   candidate-no elitist-ant-s   iterated-ants       5 local-search-twohalf                0.63 reinitialization-yes end  0.51 4.28             NA               0.79              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          87 eas-bounded-yes  4.95                        NA                  0.14    NA          NA                       NA iterated-criteria-best                    0.27         0.27      0.17      NA                          NA                       NA         NA        NA        NA                 NA
+346 selector-dorigo   candidate-no elitist-ant-s   iterated-ants      10 local-search-twohalf                0.78 reinitialization-yes end  0.58 4.70             NA               0.57              NA local-update-yes             NA             <NA>               NA                  <NA>          <NA>    NA           <NA>    NA          87 eas-bounded-yes  1.98                        NA                  0.09    NA          NA                       NA iterated-criteria-best                    0.16         0.68      0.18      NA                          NA                       NA         NA        NA        NA                 NA
+# Best configurations as commandlines (first number is the configuration ID; same order as above):
+275  --selector-dorigo --alpha 0.2 --beta 3.56 --dorigo-probability 0.72 --candidate-no --elitist-ant-s --local-update-yes --iterated-ants --ant-num 6 --lupd-epsilon 0.46 --tau0 0.19 --local-search-twohalf --evaporation-remains 0.66 --eas-m-elite 90 --eas-bounded-yes --eas-k 4.02 --reinitialization-yes --reinitialization-time 0.13 --iterated-criteria-best --destruction-probability 0.15 --end
+333  --selector-dorigo --alpha 0.51 --beta 4.28 --dorigo-probability 0.79 --candidate-no --elitist-ant-s --local-update-yes --iterated-ants --ant-num 5 --lupd-epsilon 0.27 --tau0 0.17 --local-search-twohalf --evaporation-remains 0.63 --eas-m-elite 87 --eas-bounded-yes --eas-k 4.95 --reinitialization-yes --reinitialization-time 0.14 --iterated-criteria-best --destruction-probability 0.27 --end
+346  --selector-dorigo --alpha 0.58 --beta 4.7 --dorigo-probability 0.57 --candidate-no --elitist-ant-s --local-update-yes --iterated-ants --ant-num 10 --lupd-epsilon 0.68 --tau0 0.18 --local-search-twohalf --evaporation-remains 0.78 --eas-m-elite 87 --eas-bounded-yes --eas-k 1.98 --reinitialization-yes --reinitialization-time 0.09 --iterated-criteria-best --destruction-probability 0.16 --end

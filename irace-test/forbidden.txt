@@ -1,0 +1,27 @@
+#
+# Ant Colony System only works with standard or dorigo selector
+#
+(global_update == "ant-colony-s") & !((selector == "selector-standard") | (selector == "selector-dorigo"))
+#
+#
+#
+#
+#
+# Ant Colony System forces the local update options
+#
+(global_update == "ant-colony-s") & (local_update == "local-update-no")
+#
+#
+#
+#
+#
+# Top-k in external memory must be equal or less to the ant number
+#
+(iterated_greedy == "external-memory") & (ant_num < top_k)
+#
+#
+#
+#
+# Pheromone min cannot be more than max (EFFICIENT IN TERMS OF GENERATION?)
+#
+pheromone_min > pheromone_max
