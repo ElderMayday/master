@@ -916,18 +916,18 @@ While running the framework on certain instances one must remember, that perform
 \item Run-time.
 \end{itemize}
 
-To make configuration benchmark more fair, all factors except the configuration itself must be equalized. The runs must be done on the same hardware in the same or at least roughly same run conditions. The Majorana computation cluster was used for these experiments. The precise configuration is given below.
+To make configuration benchmark more fair, all factors except the configuration itself must be equalized. The runs must be done on the same hardware in the same or at least roughly same run conditions. The Majorana computation cluster was used for these experiments. The precise configuration of the computational node is given below.
 \begin{itemize}
 \item 32 computational nodes
-\item 2 INTEL Xeon E5410 (4 cores each, 2.33GHz, 2x 6MB L2 cache)
+\item 2 INTEL Xeon E5410 CPUs (4 cores each, 2.33GHz, 2x 6MB L2 cache)
 \item RAM per job:450MB
 \end{itemize}
 
-The runtime is set as a value, depending on size of an instance: $runtime = num_{nodes} / 2$ (in seconds).
+The runtime is set as a value that depends on size of an instance: $runtime = num_{nodes} / 2$ (in CPU seconds).
 
 In addition, one must also take into account that, although deterministic behavior of the program can assured by forcing a random seed, one can not guarantee the same result of the program run even with the same configuration, since number of iterations, that will be effectively done within the specified time range, may vary.
 
-A solution browser software was implemented, in order to be able to perform visual assessment of the solutions. It requires the problem and solution files to be specified for browsing. The customers and the tours are shown in a 2D space. In particular, this software helped to detect presence of criss-crosses in the solution tours. An example of a solution illustration is shown in Figure \ref{fig:cmt1-illustration}.
+A solution browser software was implemented, in order to be able to perform a visual assessment of the solutions. It requires the problem and solution files to be specified for browsing. The customers and the tours are shown in a 2D space. In particular, this software helped to detect presence of criss-crosses in the solution tours, which were due to the fact that in the initial local search implementation no 2-exchange moves have been considered. Once the local search has been improved, also the solution quality of the algorithms has improved significantly.  An example of a solution illustration with the developed solution browser is shown in Figure \ref{fig:cmt1-illustration}.
 
 \begin{figure}[h]
   \centering
@@ -938,7 +938,7 @@ A solution browser software was implemented, in order to be able to perform visu
 
 \section{Train and test runs}
 
-In order to be able to perform benchmark comparison of the framework's performance, one may use publicly known instances of CVRP problems, see Appendix. To make the performance estimation more objective, one must strictly separate training (tuning) and testing set. This will remove the possibility of that, the results obtained are biased by overfitting, made by the tuning process on concrete instances. For the training stage all Uchoa et al.(2014) instances were selected, that were of size less than 300. These instances are generated on a square grid in Euclidean space. For test instances Christofides, Mingozzi and Toth (1979) were chosen (the ones that have the computed optimal solutions).
+In order to be able to perform benchmark comparison of the framework's performance, one may use publicly known instances of CVRP problems, see Appendix. To make the performance estimation more objective, one must strictly separate training (tuning) and testing set. This will remove the possibility of that, the results obtained are biased by overfitting, made by the tuning process on concrete instances. For the training stage all Uchoa et al.(2014) instances were selected that were of size less than 300. These instances are generated on a square grid in Euclidean space. Test instances Christofides, Mingozzi and Toth (1979) were chosen (the ones that have the computed optimal solutions).
 
 In the end of the irace tuning (20 iterations/20 configurations), one configuration was obtained as the best one. This configuration is subject to comparison with other ACO algorithms, implemented in the framework. The configurations of these algorithms are replications of the publicly known configurations in the papers. The runs of these configurations on the test instances were made. The Solution Quality Distribution diagram is shown on Figure \ref{fig:sqd-cmt}.
 
@@ -949,13 +949,13 @@ In the end of the irace tuning (20 iterations/20 configurations), one configurat
   \label{fig:sqd-cmt}
 \end{figure}
 
-The obtained configuration is shown in Table \ref{tbl:obtained}. This obtained configuration showed the best results. The results are shown in Table \ref{tbl:benchmark}. The best configurations among the replications are MMAS and ACS.
+The configuration that is obtained from the configuration process is shown in Table \ref{tbl:obtained}. This obtained configuration showed the best results. The results are shown in Table \ref{tbl:benchmark}. The best configurations among the replications of known algorithms are by MMAS and ACS.
 
-In the obtained configuration Dorigo selector is chosen, which may be explained by good balance between exploration and exploitation. The heuristic information impacts strongly dominates over the pheromone trail value impact. However, this will work only if heuristics information is computed duly, as in our case (inverse value of edge distance). Candidate lists are used. MMAS is used as pheromone update technique. Local update is used. Iterated greedy heuristics is cunning ants. 2.5-opt is used as local search algorithm. Reinitialization is disabled.
+In the obtained configuration, the Dorigo selector is chosen, which may be explained by good balance between exploration and exploitation. The heuristic information impacts strongly dominates over the pheromone trail value impact. However, this will work only if the heuristics information is computed duly, as in our case (inverse value of edge distance). Candidate lists are used. MMAS is used as the pheromone update technique. Local pheromone update is used. Iterated greedy heuristics is cunning ants. 2.5-opt is used as local search algorithm. Reinitialization is disabled.
 
 
 
-In addition, experiments were carried out for the two best known configurations (MMAS and ACS) and the obtained one. Once again, only those instances were used, that have the computed optimal qualities. The results are shown in Table \ref{tbl:tai-uchoa}. A correlation analysis was done for the MMAS against the tuned configuration and for the ACS against the tuned configurationm, see Figures \ref{fig:acs-tuned}, \ref{fig:mmas-tuned}. In these results one can clearly see that the tuned configuration gives the best results among the three configurations for all instances. The relative qualities of the tuned configuration for the Taillard instances are all less than 7\%. However all the configurations showed poor performance on certain Uchoa instances. Since these poor performance instances are clearly correlated (aligned to the diagonal straight line), then it might be related to intrinsic features of these instances. 
+In addition, experiments were carried out for the two best known configurations (MMAS and ACS) and the obtained one. Once again, only those instances were used, that have the computed optimal qualities. For test sets Taillard and Uchoa instances were taken. The results are shown in Table \ref{tbl:tai-uchoa}. A correlation analysis was done for the MMAS against the tuned configuration and for the ACS against the tuned configurationm, see Figures \ref{fig:acs-tuned}, \ref{fig:mmas-tuned}. In these results one can clearly see that the tuned configuration gives the best results among the three configurations for all instances. The relative qualities of the tuned configuration for the Taillard instances are all less than 7\%. However all the configurations showed poor performance on certain Uchoa instances. Since these poor performance instances are clearly correlated (aligned to the diagonal straight line), then it might be related to intrinsic features of these instances. 
 
 \begin{figure}[h]
   \centering
@@ -974,13 +974,13 @@ In addition, experiments were carried out for the two best known configurations 
 
 \chapter{Conclusion}
 
-The goal of the thesis was to derive an object-oriented, flexible framework of ACO algorithms for a specific class of vehicle routing problems (VRPs), the capacitated VRP. Another goal was to allow for the automatic configuration of high-performing ACO algorithms for this problem. To do so, we have analyzed the state-of-the-art variations and components of the Ant Colony Optimization algorithms. We extracted the common traits of those algorithms and design an object-oriented framework, which comprises the algorithmic components of the most widely used ACO algorithms and allows to generate new ACO algorithms that have never been tested before by combining suitably available algorithmic components. This framework was later implemented in Java, which will allow to run and extend this framework in a platform independent way. As mentioned, the framework was adapted for Vehicle Routing Problems, which belongs to NP-hard problems.
+The goal of the thesis was to derive an object-oriented, flexible framework of ACO algorithms for a specific class of vehicle routing problems (VRPs), the capacitated VRP. Another goal was to allow for the automatic configuration of high-performing ACO algorithms for this problem. To do so, we have analyzed the state-of-the-art variations and components of Ant Colony Optimization algorithms. We extracted the common traits of those algorithms and designed an object-oriented framework, which comprises the algorithmic components of the most widely used ACO algorithms and allows to generate new ACO algorithms that have never been tested before by combining suitably available algorithmic components. This framework was later implemented in Java, which will allow to run and extend this framework in a platform independent way. As mentioned, the framework was adapted for Vehicle Routing Problems, which belongs to NP-hard problems.
 
-Then we integrated this framework with an automatic configuration  software called irace, created a tuning script and a framework parameter specification. The tuning process was performed on Majorana computation cluster.
+Then we integrated this framework with an automatic configuration  software called irace, created a tuning script and a framework parameter specification. The tuning process was performed on Majorana computation cluster, available at the IRIDIA research group.
 
-We performed training (tuning) and testing of the framework on two different publicly known instance sets. In addition, we tried to replicate a publicly known configuration in order to perform benchmark comparison. This comparison showed that the automatic configuration phase effectively generated a configuration, that outperforms publicly known configurations.
+We performed training (tuning) and testing of the framework on two different publicly known instance sets. In addition, we tried to replicate a publicly known configuration in order to perform benchmark comparisons. This comparison showed that the automatic configuration phase effectively generated a configuration, that outperforms default configurations of various known ACO algorithms.
 
-This framework in combination with the irace tuning can be used for every combinatorial optimization problem by applying any custom developed ACO metaheuristics. In context of VRP problem, it can be used for transport logistics, microchip design, computer network planning, X-Ray crystallography. One may want to extend the framework, by adding new ACO algorithms for VRP problems, or by extending the framework even for other problem types. All these extensions require implementing of abstract classes of problems, solutions and/or other strategies. No modification of the old implementations is required.
+This framework in combination with the irace tuning can be used for every combinatorial optimization problem by applying any custom developed ACO metaheuristics. One may want to extend the framework, by adding new ACO algorithms for VRP problems, or by extending the framework even for other problem types. All these extensions require implementing of abstract classes of problems, solutions and/or other strategies. No modification of the old implementations is required.
 
 
 \appendix
